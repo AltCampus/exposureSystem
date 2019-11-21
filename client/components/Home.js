@@ -8,10 +8,6 @@ import SignUp from "./SignUp";
 class Home extends React.Component {
   render() {
     return (
-      // <div style={{ textAlign: "center" }}>
-      //   <h1>Hello World</h1>
-      // </div>
-
       <>
         <Header />
         <SignUp />
