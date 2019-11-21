@@ -1,7 +1,8 @@
 import React from "react";
-// import Login from "./Login/Login";
-import AdminLogin from "./AdminLogin";
+// import Login from "./Login";
 import "../assets/stylesheets/style.css";
+// import AdminLogin from "./AdminLogin";
+import SignUp from "./SignUp";
 
 class Home extends React.Component {
   render() {
@@ -11,7 +12,7 @@ class Home extends React.Component {
       // </div>
 
       <>
-        <AdminLogin />
+        <SignUp />
       </>
     );
   }

@@ -1,53 +1,57 @@
-import React, { Component } from "react"
- 
+import React, { Component } from "react";
+
 class Login extends Component {
-    constructor() {
-        super()
-        this.state = {
-            email: "",
-            password: ""
-        }
-    }
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
 
-    handleChange = (event) => {
-        const { name, value } = event.target
-        this.setState({
-            [name]: value
-        })
-    }
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
-    render() {
-        console.log(this.state)
-        return (
-            <div className="login">
-                <h1>Login</h1>
-                <div>
-                    <div>
-                        <input type="text"
-                            name="email"
-                            placeholder="Enter email"
-                            onChange={this.handleChange}
-                            value={this.state.email}
-                        />
-                        <br></br>
+  render() {
+    console.log(this.state);
+    return (
+      <div>
+        <div className="wrapper text-center">
+          <h1 className="heading">Login</h1>
+          <div>
+            <div>
+              <input
+                className="input"
+                type="text"
+                name="email"
+                placeholder="Enter email"
+                onChange={this.handleChange}
+                value={this.state.email}
+              />
+              <br></br>
 
-                        <input type="password"
-                            name="password"
-                            placeholder="Enter password"
-                            onChange={this.handleChange}
-                            value={this.state.password}
-                        />
-                        
-                        <br></br>
-                        
-                        <button>Submit</button>
-                    </div>
-                </div>
+              <input
+                className="input"
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                onChange={this.handleChange}
+                value={this.state.password}
+              />
+
+              <br></br>
+
+              <button className="button">Submit</button>
             </div>
-        )
-    }
-
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-
-export default Login
+export default Login;
