@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // Providing The Path
 var usersRouter = require('./routes/UserRoutes');
+var AdminRoutes = require('./routes/AdminRoutes');
 var mongoose = require('mongoose');
 // Connecting With DataBase
 mongoose.connect('mongodb://localhost/User', { useNewUrlParser: true }, (err) => {
@@ -22,7 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use("/admin",AdminRoutes)
+app.use('/users', AdminRoutes);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
