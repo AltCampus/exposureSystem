@@ -1,15 +1,16 @@
 // Requring The Express
 const express = require('express');
+
 // Extracting The Router
 const router = express.Router();
-// Requring The UserSchema
-const User = require('../Models/userSchema');
+
+// Requring The UsersControllers
+var Users = require('../Controllers/UsersControllers');
+
 // Users Registeration Route
-router.post('/', (req, res, next) => {
-	User.create(req.body, (err, UserCreated) => {
-		if (err) return next(err);
-		res.json({ User: UserCreated });
-	});
-});
+router.post('/', Users.UserInformation);
+// User Status Route
+router.get('/', Users.UserStatus);
+
 // Exporting The Router
 module.exports = router;

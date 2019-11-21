@@ -27,7 +27,7 @@ const userSchema = new Schema(
 		isAdmin: false
 	},
 	{
-		timestamp: true
+		timestamps: true
 	}
 );
 
@@ -40,9 +40,7 @@ userSchema.pre('save', function(next) {
 });
 
 //Creating User Model
-
 const User = mongoose.model('User', userSchema);
 
 //Exporting User Model
-
 module.exports = User;

@@ -39,7 +39,6 @@ app.use('/users', AdminRoutes);
 app.use('/users', usersRouter);
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/users', usersRouter);
 
 if (process.env.NODE_ENV === "development") {
   var webpack = require("webpack");
@@ -51,14 +50,14 @@ if (process.env.NODE_ENV === "development") {
       noInfo: true,
       publicPath: webpackConfig.output.publicPath
     })
-  );
-
+    );
+    
   app.use(require("webpack-hot-middleware")(compiler));
 }
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/env", AdminRoutes)
+app.use("/admin", AdminRoutes)
 
 
 // catch 404 and forward to error handler
