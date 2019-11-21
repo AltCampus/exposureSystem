@@ -6,7 +6,7 @@ import SignUp from "./Auth/SignUp";
 import SignIn from "./Auth/SignIn";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import AdminLogin from "./Auth/AdminLogin";
-
+import Page404 from "./Page404";
 
 class App extends React.Component {
   render() {
@@ -19,6 +19,7 @@ class App extends React.Component {
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
             <Route path="/admin" component={AdminLogin} />
+            <Route component={Page404} />
           </Switch>
       </Router>
       </>
