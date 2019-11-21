@@ -5,7 +5,7 @@
   "scripts": {
     "start": "NODE_ENV=development node ./bin/www",
     "webpack": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "sass": "node-sass -w ./public/assets/stylesheets/style.scss ./public/assets/stylesheets/style.css"
+    "sass": "node-sass -w ./client/assets/stylesheets/style.scss ./client/assets/stylesheets/style.css"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -31,6 +31,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "nodemon": "^2.0.0",
     "sass-loader": "^8.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
