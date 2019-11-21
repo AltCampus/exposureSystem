@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
 class Header extends React.Component {
   render() {
@@ -6,14 +7,14 @@ class Header extends React.Component {
       <div className="wrapper">
         <div className="flex-between">
           <div>
-            <h2>Exposure System</h2>
+            <Link to="/"><h2>Exposure System</h2></Link>
           </div>
           <div>
             <nav>
               <ul>
                 <li>
-                  <a>Sign In</a>
-                  <a>Sign Up</a>
+                  <Link to="/signup">SignUp</Link>
+                  <Link to="/signin">SignIn</Link>
                 </li>
               </ul>
             </nav>

@@ -16,11 +16,13 @@ class SignUp extends Component {
       [name]: value
     });
   };
+
   handleSubmit = event => {
     event.preventDefault();
   };
 
   render() {
+    console.log("signup")
     return (
       <div className="wrapper text-center">
         <h1 className="heading">SignUp</h1>
