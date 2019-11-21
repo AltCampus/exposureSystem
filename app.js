@@ -11,13 +11,28 @@ var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+if (process.env.NODE_ENV === "development") {
+  var webpack = require("webpack");
+  var webpackConfig = require("./webpack.config");
+  var compiler = webpack(webpackConfig);
+
+  app.use(
+    require("webpack-dev-middleware")(compiler, {
+      noInfo: true,
+      publicPath: webpackConfig.output.publicPath
+    })
+  );
+
+  app.use(require("webpack-hot-middleware")(compiler));
+}
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

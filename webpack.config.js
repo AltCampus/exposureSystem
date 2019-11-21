@@ -1,35 +1,59 @@
-const path = require("path");
-
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: "./client/index.html",
-  filename: "index.html",
-  inject: "body"
-});
+/* eslint-disable */
+var webpack = require('webpack');
+var path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: "./client/index.js",
-  output: {
-    path: path.resolve("dist"),
-    filename: "index_bundle.js"
-  },
+  mode: 'development',
+  devtool: 'inline-source-map',
+  entry: [
+    './client/index.js',
+  ],
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: { loader: 'babel-loader' },
       },
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: "babel-loader"
+        test: /\.(scss|css)$/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: 'css-loader',
+          },
+          { loader: 'sass-loader' }
+        ]
       },
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: "babel-loader"
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
       }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig]
-};
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  output: {
+    filename: 'bundle.js',
+    path: __dirname + '/dist/bundle/',
+    publicPath: '/static/'
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development')
+      }
+    }),
+    new MiniCssExtractPlugin({
+      filename: "bundle.css",
+    })
+  ]
+}
