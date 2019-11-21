@@ -22,7 +22,8 @@ class AdminLogin extends Component {
             <div className="Adminlogin">
                 <h1>Admin-Login</h1>
                 <div>
-                    <input type="text"
+                    <input 
+                        type="text"
                         name="username"
                         placeholder="Enter username"
                         onChange={this.handleChange}
@@ -30,7 +31,8 @@ class AdminLogin extends Component {
                     />
                     <br></br>
 
-                    <input type="text"
+                    <input 
+                        type="text"
                         name="email"
                         placeholder="Enter email"
                         onChange={this.handleChange}
@@ -38,7 +40,8 @@ class AdminLogin extends Component {
                     />
                     <br></br>
 
-                    <input type="text"
+                    <input 
+                        type="password"
                         name="password"
                         placeholder="Enter password"
                         onChange={this.handleChange}
