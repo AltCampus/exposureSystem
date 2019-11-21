@@ -1,8 +1,12 @@
 import React from "react";
+<<<<<<< HEAD
 import Login from './Login/Login'
 import AdminLogin from "./AdminLogin/AdminLogin"
+=======
+import '../style.scss'
+>>>>>>> helloWorld#3
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       // <div style={{ textAlign: "center" }}>
@@ -15,3 +19,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App;
