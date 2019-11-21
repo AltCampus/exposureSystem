@@ -4,24 +4,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 // Requring The DotEnv file
 require("dotenv").config()
+
 // Providing The Path
 var usersRouter = require('./routes/UserRoutes');
 var AdminRoutes = require('./routes/AdminRoutes');
 var mongoose = require('mongoose');
+
 // Connecting With DataBase
 mongoose.connect('mongodb://localhost/User', { useNewUrlParser: true }, (err) => {
 	err ? console.log('Not Connected To DB') : console.log('Connected Sucessfully TO DB');
 });
 
-// Mounting The Express Application
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
 var AdminRoutes = require("./routes/AdminRoutes")
+
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/UserRoutes");
 
@@ -41,6 +39,8 @@ app.use('/users', AdminRoutes);
 app.use('/users', usersRouter);
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use('/users', usersRouter);
+
 if (process.env.NODE_ENV === "development") {
   var webpack = require("webpack");
   var webpackConfig = require("./webpack.config");
@@ -58,7 +58,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/env",AdminRoutes)
+app.use("/env", AdminRoutes)
 
 
 // catch 404 and forward to error handler
@@ -83,7 +83,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
-
 });
 
 module.exports = app;
