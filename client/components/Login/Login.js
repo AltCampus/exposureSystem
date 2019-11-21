@@ -17,6 +17,7 @@ class Login extends Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className="login">
                 <h1>Login</h1>
@@ -30,12 +31,13 @@ class Login extends Component {
                         />
                         <br></br>
 
-                        <input type="text"
+                        <input type="password"
                             name="password"
                             placeholder="Enter password"
                             onChange={this.handleChange}
                             value={this.state.password}
                         />
+                        
                         <br></br>
                         
                         <button>Submit</button>
