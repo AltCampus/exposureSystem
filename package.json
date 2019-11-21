@@ -8,6 +8,7 @@
     "sass": "node-sass -w ./public/assets/stylesheets/style.scss ./public/assets/stylesheets/style.css"
   },
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "^2.7.4",
