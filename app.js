@@ -4,7 +4,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+// Requring The DotEnv file
+require("dotenv").config()
 // Providing The Path
 var usersRouter = require('./routes/UserRoutes');
 var AdminRoutes = require('./routes/AdminRoutes');
@@ -20,9 +21,9 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
+var AdminRoutes = require("./routes/AdminRoutes")
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+var usersRouter = require("./routes/UserRoutes");
 
 var app = express();
 
@@ -57,6 +58,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/env",AdminRoutes)
 
 
 // catch 404 and forward to error handler

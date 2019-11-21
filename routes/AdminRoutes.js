@@ -5,6 +5,8 @@ const router = express.Router();
 
 // Requring The Schema
 const User = require('../Models/userSchema');
+// Requring The Auth
+var auth = require("../Auth/Auth")
 
 // Making The Route For Getting User Information
 router.get('/', (req, res) => {
@@ -14,7 +16,10 @@ router.get('/', (req, res) => {
 	});
 });
 // Route For Verify The Admin
-router.post("/",(req,res) => {
-    console.log(req.body)
-})
+router.post('/', (req, res) => {
+	var username=req.body.username;
+	if(username===process.env.NAME){
+		var token =auth.gen
+	}
+});
 module.exports = router;

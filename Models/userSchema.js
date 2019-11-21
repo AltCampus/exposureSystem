@@ -1,16 +1,13 @@
 //Require Mongose
-
 const mongoose = require('mongoose');
 
 //Requring The Bcrypt
 const bcrypt = require('bcrypt');
 
 //Extracting Schema
-
 const Schema = mongoose.Schema;
 
 //Creating user schema
-
 const userSchema = new Schema(
 	{
 		username: {
