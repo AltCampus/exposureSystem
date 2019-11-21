@@ -1,6 +1,7 @@
 import React from "react";
-// import Login from "./Login";
 import "../assets/stylesheets/style.css";
+import Header from "./Header";
+// import Login from "./Login";
 // import AdminLogin from "./AdminLogin";
 import SignUp from "./SignUp";
 
@@ -12,6 +13,7 @@ class Home extends React.Component {
       // </div>
 
       <>
+        <Header />
         <SignUp />
       </>
     );
