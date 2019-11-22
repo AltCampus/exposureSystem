@@ -24,7 +24,8 @@ const userSchema = new Schema(
 		},
 		isInCampus: Boolean,
 		isActive: Boolean,
-		isAdmin: false
+		isAdmin: false,
+		isVerified : false
 	},
 	{
 		timestamps: true
