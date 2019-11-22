@@ -1,18 +1,21 @@
-module.exports = app => {
-  const newContent = require("../controllers/newContent.controller.js");
+var express = require("express");
+var router = express.Router();
 
-  // Create new content
-  app.post("/newContent", newContent.create);
+const newContent = require("../controllers/newContent.controller.js");
 
-  // Retrieve all content
-  app.get("/newContent", newContent.findAll);
+// Create new content
+router.post("/", newContent.create);
 
-  // Retrieve single content with contentId
-  app.get("/newContent/:contentId", newContent.findOne);
+// Retrieve all content
+router.get("/", newContent.findAll);
 
-  // Update content with contentId
-  app.put("/newContent/:contentId", newContent.update);
+// Retrieve single content with contentId
+router.get("/:contentId", newContent.findOne);
 
-  // Delete content with contentId
-  app.delete("/newContent/:contentId", newContent.delete);
-};
+// Update content with contentId
+router.put("/:contentId", newContent.update);
+
+// Delete content with contentId
+router.delete("/:contentId", newContent.delete);
+
+module.exports = router;

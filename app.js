@@ -23,10 +23,11 @@ var AdminRoutes = require("./routes/AdminRoutes");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/UserRoutes");
+var newContent = require("./routes/newContent");
 
 var app = express();
 
-require("./routes/newContent")(app);
+// require("./routes/newContent")(app);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -62,6 +63,7 @@ if (process.env.NODE_ENV === "development") {
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/env", AdminRoutes);
+app.use("/newContent", newContent);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

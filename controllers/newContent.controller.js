@@ -8,13 +8,17 @@ exports.create = (req, res) => {
   //   var title = req.body.title;
   //   var description = req.body.description;
 
-  const content = new Content({
-    type: req.body.type,
-    contentUrl: req.body.contentUrl,
-    title: req.body.title || "Untitled",
-    description: req.body.description
-  });
+  // var { type, contentUrl, title, description } = req.body;
 
+  const content = new Content(req.body);
+  // const content = new Content({
+  //   type: req.body.type,
+  //   contentUrl: req.body.contentUrl,
+  //   title: req.body.title || "Untitled",
+  //   description: req.body.description
+  // });
+  console.log(content);
+  console.log(contentId);
   // Save content in the database
   content
     .save()
