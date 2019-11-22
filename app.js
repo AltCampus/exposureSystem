@@ -13,10 +13,6 @@ var usersRouter = require('./routes/UserRoutes');
 var AdminRoutes = require('./routes/AdminRoutes');
 var mongoose = require('mongoose');
 
-// Connecting With DataBase
-mongoose.connect('mongodb://localhost/User', { useNewUrlParser: true }, (err) => {
-	err ? console.log('Not Connected To DB') : console.log('Connected Sucessfully TO DB');
-});
 
 var AdminRoutes = require("./routes/AdminRoutes")
 
@@ -39,6 +35,10 @@ app.use('/users', AdminRoutes);
 app.use('/users', usersRouter);
 app.use(express.static(path.join(__dirname, "public")));
 
+// Connecting With DataBase
+mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true }, (err) => {
+	err ? console.log('Not Connected To DB') : console.log('Connected Sucessfully TO DB');
+});
 
 if (process.env.NODE_ENV === "development") {
   var webpack = require("webpack");
