@@ -36,7 +36,7 @@ app.use('/users', usersRouter);
 app.use(express.static(path.join(__dirname, "public")));
 
 // Connecting With DataBase
-mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true }, (err) => {
+mongoose.connect('mongodb://localhost:27017/exposuresystem', { useNewUrlParser: true }, (err) => {
 	err ? console.log('Not Connected To DB') : console.log('Connected Sucessfully TO DB');
 });
 
@@ -58,8 +58,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/users", usersRouter);
 app.use("/admin", AdminRoutes)
-app.use("/", indexRouter);
-
+app.use("/admin",AdminRoutes)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

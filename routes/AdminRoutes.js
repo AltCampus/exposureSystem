@@ -3,16 +3,23 @@ const express = require('express');
 
 // Extracting The Router
 const router = express.Router();
+
 // Requring The AdminControllers
 const Admin = require('../Controllers/AdminControllers');
 
 //Require verifyUser
-const User = require('../Utils/VerifyAdmin');
+const Auth = require('../Utils/Auth');
 
 // Route For Verify The Admin
-router.post('/login', Admin.AdminLogin);
+router.post('/login', Admin.adminLogin);
 
-router.put('/verify' , User.verifyAdmin , Admin.verifyUser );
+//student approved
+router.put('/approved/:id', Auth.verifyAdminToken, Admin.verifyUser);
 
+// Student Rejected
+router.delete('/remove/:id', Auth.verifyAdminToken, Admin.removeUser);
+
+// Student Pending
+router.get('/pending', Auth.verifyAdminToken, Admin.pendingUser);
 // Exporting The Router
 module.exports = router;

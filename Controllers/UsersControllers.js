@@ -2,7 +2,7 @@
 const User = require('../Models/userSchema');
 
 // Users Registration
-module.exports.UserInformation = (req,res,next) => {
+module.exports.CreatingUsers = (req,res,next) => {
 	User.create(req.body, (err, UserCreated) => {
 		if (err) return next(err);
 		res.status(200).json({ User: UserCreated });
