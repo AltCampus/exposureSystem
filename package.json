@@ -5,7 +5,7 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon ./bin/www",
     "webpack": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "sass": "node-sass -w ./public/assets/stylesheets/style.scss ./public/assets/stylesheets/style.css"
+    "sass": "node-sass -w ./client/assets/stylesheets/style.scss ./client/assets/stylesheets/style.css"
   },
   "dependencies": {
     "bcrypt": "^3.0.7",
@@ -23,7 +23,8 @@
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "sass": "^1.23.7"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
