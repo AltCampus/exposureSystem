@@ -1,0 +1,33 @@
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.heading {
+  margin-top: 1rem;
+  color: $primary;
+  font-weight: 500;
+}
+
+.input {
+  border-radius: 5px;
+  width: 30%;
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 1px solid rgb(199, 193, 193);
+  font-size: 1rem;
+  color: $textPrimary;
+  box-shadow: $shadow;
+}
+
+.button {
+  width: 10%;
+  padding: 1rem;
+  background: $primary;
+  font-size: 1rem;
+  color: $white;
+  border-radius: 10px;
+  margin-top: 1.5rem;
+  cursor: pointer;
+}
