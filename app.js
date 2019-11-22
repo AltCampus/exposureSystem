@@ -60,10 +60,15 @@ if (process.env.NODE_ENV === "development") {
   app.use(require("webpack-hot-middleware")(compiler));
 }
 
-app.use("/", indexRouter);
+
 app.use("/users", usersRouter);
+<<<<<<< HEAD
 app.use("/env", AdminRoutes);
 app.use("/newContent", newContent);
+=======
+app.use("/", indexRouter);
+
+>>>>>>> master
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
