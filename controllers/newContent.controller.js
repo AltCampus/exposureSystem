@@ -3,12 +3,6 @@ const Content = require("../Models/contentSchema");
 // Create and Save a new content
 exports.create = (req, res) => {
   // Create content
-  //   var type = req.body.type;
-  //   var contentUrl = req.body.contentUrl;
-  //   var title = req.body.title;
-  //   var description = req.body.description;
-
-  // var { type, contentUrl, title, description } = req.body;
 
   const content = new Content(req.body);
   // const content = new Content({
@@ -18,7 +12,7 @@ exports.create = (req, res) => {
   //   description: req.body.description
   // });
   console.log(content);
-  console.log(contentId);
+
   // Save content in the database
   content
     .save()
