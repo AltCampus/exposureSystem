@@ -8,7 +8,7 @@ const router = express.Router();
 const Admin = require('../Controllers/AdminControllers');
 
 //Require verifyUser
-const Auth = require('../Utils/Auth');
+const Auth = require('../Utils/auth');
 
 // Route For Verify The Admin
 router.post('/login', Admin.adminLogin);

@@ -2,7 +2,7 @@
 var jwt = require('jsonwebtoken');
 
 // Exporting The Module Of Jwt Token
- function genrateToken (payload) {
+ function generateToken (payload) {
 	return jwt.sign(payload, process.env.SECRETID);
 };
 
@@ -20,4 +20,4 @@ function verifyAdminToken (req, res, next) {
 	}
 };
 
-module.exports = {genrateToken,verifyAdminToken}
+module.exports = {generateToken, verifyAdminToken}

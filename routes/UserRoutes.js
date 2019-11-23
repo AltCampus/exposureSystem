@@ -8,7 +8,7 @@ const router = express.Router();
 var Users = require('../Controllers/UsersControllers');
 
 // Requring The Auth
-var Auth = require('../Utils/Auth');
+var Auth = require('../Utils/auth');
 
 // Users Registeration Route
 router.post('/', Users.creatingUsers);

@@ -1,5 +1,5 @@
 // Requring The Auth
-var auth = require('../Utils/Auth');
+var auth = require('../Utils/auth');
 
 // Requring The
 var User = require('../Models/userSchema');
