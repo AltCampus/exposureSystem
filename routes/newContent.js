@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const newContent = require("../controllers/newContent.controller.js");
+const newContent = require("../controllers/content.controller.js");
 
 // Create new content
 router.post("/", newContent.create);
