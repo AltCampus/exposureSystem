@@ -1,18 +1,17 @@
-
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var mongoose = require('mongoose');
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
+var mongoose = require("mongoose");
 
 // Requring The DotEnv file
 require("dotenv").config();
 
 // Requring The Routing Section
 var indexRouter = require("./routes/index");
-var usersRouter = require('./routes/UserRoutes');
-var AdminRoutes = require('./routes/AdminRoutes');
+var usersRouter = require("./routes/UserRoutes");
+var AdminRoutes = require("./routes/AdminRoutes");
 var newContent = require("./routes/newContent");
 
 var app = express();
@@ -29,18 +28,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-
 // Providing The Paths
 app.use("/", indexRouter);
-app.use("/admin", AdminRoutes)
+app.use("/admin", AdminRoutes);
 app.use("/users", usersRouter);
 app.use("/newContent", newContent);
 
 // Connecting With DataBase
-mongoose.connect('mongodb://localhost:27017/exposuresystem', { useNewUrlParser: true }, (err) => {
-	err ? console.log('Not Connected To DB') : console.log('Connected Sucessfully TO DB');
-});
-
+mongoose.connect(
+  "mongodb://localhost:27017/exposuresystem",
+  { useNewUrlParser: true },
+  err => {
+    err
+      ? console.log("Not Connected To DB")
+      : console.log("Connected Sucessfully TO DB");
+  }
+);
 
 if (process.env.NODE_ENV === "development") {
   var webpack = require("webpack");
@@ -52,11 +55,10 @@ if (process.env.NODE_ENV === "development") {
       noInfo: true,
       publicPath: webpackConfig.output.publicPath
     })
-    );
-    
+  );
+
   app.use(require("webpack-hot-middleware")(compiler));
 }
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

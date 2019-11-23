@@ -1,4 +1,4 @@
-const Content = require("../Models/contentSchema");
+const Content = require("../models/contentSchema");
 
 module.exports = {
   create: (req, res) => {

@@ -1,29 +1,29 @@
 // Requring The Express
-const express = require('express');
+const express = require("express");
 
 // Extracting The Router
 const router = express.Router();
 
 // Requring The AdminControllers
-const Admin = require('../controllers/adminControllers');
+const Admin = require("../controllers/adminControllers");
 
 // Requring The Schema
-const User = require("../Models/userSchema");
+const User = require("../models/userSchema");
 
 //Require verifyUser
-const Auth = require('../Utils/auth');
+const Auth = require("../Utils/auth");
 
 // Route For Verify The Admin
-router.post('/login', Admin.adminLogin);
+router.post("/login", Admin.adminLogin);
 
 //student approved
-router.put('/approved/:id', Auth.verifyAdminToken, Admin.verifyUser);
+router.put("/approved/:id", Auth.verifyAdminToken, Admin.verifyUser);
 
 // Student Rejected
-router.delete('/remove/:id', Auth.verifyAdminToken, Admin.removeUser);
+router.delete("/remove/:id", Auth.verifyAdminToken, Admin.removeUser);
 
 // Student Pending
-router.get('/pending', Auth.verifyAdminToken, Admin.pendingUser);
+router.get("/pending", Auth.verifyAdminToken, Admin.pendingUser);
 // Exporting The Router
 ////////////////////////////////
 
