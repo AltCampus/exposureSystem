@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/admin",AdminRoutes)
-app.use('/users', AdminRoutes);
+// app.use('/users', AdminRoutes);
 app.use('/users', usersRouter);
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -58,7 +58,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/users", usersRouter);
 app.use("/admin", AdminRoutes)
-app.use("/admin",AdminRoutes)
+// app.use("/admin",AdminRoutes)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
