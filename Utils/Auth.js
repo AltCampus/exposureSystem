@@ -2,12 +2,12 @@
 var jwt = require('jsonwebtoken');
 
 // Exporting The Module Of Jwt Token
-module.exports.genrateToken = function(payload) {
+ function genrateToken (payload) {
 	return jwt.sign(payload, process.env.SECRETID);
 };
 
 // Verify The Admin Token
-module.exports.verifyAdminToken = function(req, res, next) {
+function verifyAdminToken (req, res, next) {
 	var Token = req.headers.authorization || '';
 	console.log(req.headers,"Token")
 	if (Token) {
@@ -19,3 +19,5 @@ module.exports.verifyAdminToken = function(req, res, next) {
 		return res.json({ Token: 'Token Not Found' });
 	}
 };
+
+module.exports = {genrateToken,verifyAdminToken}
