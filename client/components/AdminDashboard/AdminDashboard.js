@@ -11,8 +11,8 @@ class AdminDashboard extends Component{
         return(
             <>
             <div className="wrapper grid-dashboard">
-                <AdminSidebar />
                 <div></div>
+                <AdminSidebar />
             </div>
             </>
 

@@ -5,8 +5,8 @@ class AllContents extends Component{
     render(){
         return(
             <div className="wrapper grid-dashboard">
-                <AdminSidebar />
                 <h1>List of all Content.</h1>
+                <AdminSidebar />
             </div>
         )
     }

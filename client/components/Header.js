@@ -1,22 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { NavLink} from "react-router-dom"
 
 class Header extends React.Component {
   render() {
     return (
-      <div className="wrapper">
+      <div className="wrapper header">
         <div className="flex-between">
           <div>
-            <Link to="/"><h2>Exposure System</h2></Link>
+            <NavLink className="icon" to="/"><h2>Exposure System</h2></NavLink>
           </div>
           <div>
             <nav>
-              <ul>
-                <li>
-                  <Link to="/signup">SignUp</Link>
-                  <Link to="/signin">SignIn</Link>
-                </li>
-              </ul>
+                  <NavLink className="head-links" activeClassName="active" to="/signup">SignUp</NavLink>
+                  <NavLink className="head-links" activeClassName="active" to="/signin">SignIn</NavLink>   
             </nav>
           </div>
         </div>

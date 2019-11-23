@@ -9,12 +9,12 @@ class AdminSidebar extends Component{
     render(){
         return(
             <>
-                <div >
-
-                <NavLink to="/allcontent">All Contents</NavLink>
-                <NavLink to="/addcontent">Add Content</NavLink>
-                <NavLink to="/students">Students</NavLink>
-                <NavLink to="/pendingapprovals">Pending Approvals</NavLink>
+                <div className="flex-column flex-center sidebar">
+                <div className="sidebar-heading flex-center">Quick Access</div>
+                <NavLink className="dash-link" activeClassName="active" to="/allcontent">All Contents</NavLink>
+                <NavLink className="dash-link" activeClassName="active" to="/addcontent">Add Content</NavLink>
+                <NavLink className="dash-link" activeClassName="active" to="/students">Students</NavLink>
+                <NavLink className="dash-link" activeClassName="active" to="/pendingapprovals">Pending Approvals</NavLink>
                 </div>
             </>
         )

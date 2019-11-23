@@ -7,18 +7,21 @@ class AddContent extends Component{
         return(
             <>
             <div className="wrapper grid-dashboard">
-                <AdminSidebar />
-                <form>
-                    <p>Type :</p> 
-                    <select>
-                        <option value="resource">Resource</option>
-                        <option value="challenge">Challenge</option>
+                <form className="flex-column flex-center card">
+                    
+
+                    <select className="input input-select">
+                        <option selected disabled>Type </option>
+                        <option className="input" value="resource">Resource</option>
+                        <option className="input" value="challenge">Challenge</option>
                     </select>
-                    <input type="text" placeholder="Content Url"></input>
-                    <input type="text" placeholder="Title"></input>
-                    <input type="text" placeholder="Description"></input>
-                    <button>Add Content</button>
+                    
+                    <input className="input" type="text" placeholder="Content Url"></input>
+                    <input className="input" type="text" placeholder="Title"></input>
+                    <textarea className="input" type="text" placeholder="Description"></textarea>
+                    <button className="button">Add Content</button>
                 </form>
+                <AdminSidebar />
 
             </div>
             

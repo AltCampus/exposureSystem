@@ -24,9 +24,9 @@ class SignUp extends Component {
   render() {
     console.log("signup")
     return (
-      <div className="wrapper text-center">
+      <div className="wrapper card text-center">
         <h1 className="heading">SignUp</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form className="" onSubmit={this.handleSubmit}>
           <input
             className="input"
             type="text"
