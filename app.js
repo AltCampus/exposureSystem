@@ -7,14 +7,17 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 // Requring The DotEnv file
-require("dotenv").config()
+require("dotenv").config();
 
 // Requring The Routing Section
+var indexRouter = require("./routes/index");
 var usersRouter = require('./routes/UserRoutes');
 var AdminRoutes = require('./routes/AdminRoutes');
-var indexRouter = require("./routes/index");
+var newContent = require("./routes/newContent");
 
 var app = express();
+
+// require("./routes/newContent")(app);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -24,13 +27,20 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, "public")));
+
+
+// Providing The Paths
+app.use("/", indexRouter);
+app.use("/admin", AdminRoutes)
+app.use("/users", usersRouter);
+app.use("/newContent", newContent);
 
 // Connecting With DataBase
 mongoose.connect('mongodb://localhost:27017/exposuresystem', { useNewUrlParser: true }, (err) => {
 	err ? console.log('Not Connected To DB') : console.log('Connected Sucessfully TO DB');
 });
+
 
 if (process.env.NODE_ENV === "development") {
   var webpack = require("webpack");
@@ -47,25 +57,14 @@ if (process.env.NODE_ENV === "development") {
   app.use(require("webpack-hot-middleware")(compiler));
 }
 
-// Providing The Paths
-app.use("/users", usersRouter);
-app.use("/admin", AdminRoutes)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-	next(createError(404));
+  next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-	// set locals, only providing error in development
-	res.locals.message = err.message;
-	res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-	// render the error page
-	res.status(err.status || 500);
-	res.render('error');
-
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};

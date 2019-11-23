@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 // Requring The UsersControllers
-var Users = require('../Controllers/UsersControllers');
+var Users = require('../controllers/usersControllers');
 
 // Requring The Auth
 var Auth = require('../Utils/auth');
