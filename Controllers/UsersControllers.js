@@ -1,5 +1,5 @@
 // Requring The UserSchema
-const User = require('../Models/userSchema');
+const User = require('../models/userSchema');
 
 // Users Registration
 function creatingUsers(req,res,next){

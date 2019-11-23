@@ -2,7 +2,7 @@
 var auth = require('../Utils/auth');
 
 // Requring The
-var User = require('../Models/userSchema');
+var User = require('../models/userSchema');
 
 // Admin Login Middleware
 function adminLogin(req, res, err){
