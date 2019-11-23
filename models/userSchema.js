@@ -12,11 +12,13 @@ const userSchema = new Schema(
 	{
 		username: {
 			type: String,
-			required: true
+			required: true,
+			unique: true
 		},
 		email: {
 			type: String,
-			required: true
+			required: true,
+			unique: true
 		},
 		password: {
 			type: String,
@@ -24,10 +26,11 @@ const userSchema = new Schema(
 		},
 		isInCampus: Boolean,
 		isActive: Boolean,
-		isAdmin: false
+		isAdmin: false,
+		isVerified: { type: Boolean, default: false }
 	},
 	{
-		timestamp: true
+		timestamps: true
 	}
 );
 
@@ -40,9 +43,7 @@ userSchema.pre('save', function(next) {
 });
 
 //Creating User Model
-
 const User = mongoose.model('User', userSchema);
 
 //Exporting User Model
-
 module.exports = User;

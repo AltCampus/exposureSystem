@@ -1,28 +1,18 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var mongoose = require('mongoose');
 
 // Requring The DotEnv file
 require("dotenv").config();
 
-// Providing The Path
-var usersRouter = require("./routes/UserRoutes");
-var AdminRoutes = require("./routes/AdminRoutes");
-var mongoose = require("mongoose");
-
-// Connecting With DataBase
-mongoose.connect("mongodb://localhost/User", { useNewUrlParser: true }, err => {
-  err
-    ? console.log("Not Connected To DB")
-    : console.log("Connected Sucessfully TO DB");
-});
-
-var AdminRoutes = require("./routes/AdminRoutes");
-
+// Requring The Routing Section
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/UserRoutes");
+var usersRouter = require('./routes/UserRoutes');
+var AdminRoutes = require('./routes/AdminRoutes');
 var newContent = require("./routes/newContent");
 
 var app = express();
@@ -38,12 +28,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/admin", AdminRoutes);
-app.use("/users", AdminRoutes);
-app.use("/users", usersRouter);
-app.use(express.static(path.join(__dirname, "public")));
 
+
+// Providing The Paths
+app.use("/", indexRouter);
+app.use("/admin", AdminRoutes)
 app.use("/users", usersRouter);
+app.use("/newContent", newContent);
+
+// Connecting With DataBase
+mongoose.connect('mongodb://localhost:27017/exposuresystem', { useNewUrlParser: true }, (err) => {
+	err ? console.log('Not Connected To DB') : console.log('Connected Sucessfully TO DB');
+});
+
 
 if (process.env.NODE_ENV === "development") {
   var webpack = require("webpack");
@@ -55,15 +52,11 @@ if (process.env.NODE_ENV === "development") {
       noInfo: true,
       publicPath: webpackConfig.output.publicPath
     })
-  );
-
+    );
+    
   app.use(require("webpack-hot-middleware")(compiler));
 }
 
-app.use("/users", usersRouter);
-app.use("/env", AdminRoutes);
-app.use("/newContent", newContent);
-app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
