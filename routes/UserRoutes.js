@@ -11,10 +11,10 @@ var Users = require('../Controllers/UsersControllers');
 var Auth = require('../Utils/Auth');
 
 // Users Registeration Route
-router.post('/', Users.CreatingUsers);
+router.post('/', Users.creatingUsers);
 
 // User Status Route
-router.get('/', Auth.verifyAdminToken, Users.UserStatus);
+router.get('/', Auth.verifyAdminToken, Users.userStatus);
 
 // Exporting The Router
 module.exports = router;

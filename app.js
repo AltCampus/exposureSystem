@@ -4,20 +4,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 // Requring The DotEnv file
 require("dotenv").config()
 
-// Providing The Path
+// Requring The Routing Section
 var usersRouter = require('./routes/UserRoutes');
 var AdminRoutes = require('./routes/AdminRoutes');
-var mongoose = require('mongoose');
-
-
-var AdminRoutes = require("./routes/AdminRoutes")
-
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/UserRoutes");
 
 var app = express();
 
@@ -30,9 +25,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use("/admin",AdminRoutes)
-// app.use('/users', AdminRoutes);
-app.use('/users', usersRouter);
 app.use(express.static(path.join(__dirname, "public")));
 
 // Connecting With DataBase
@@ -55,10 +47,9 @@ if (process.env.NODE_ENV === "development") {
   app.use(require("webpack-hot-middleware")(compiler));
 }
 
-
+// Providing The Paths
 app.use("/users", usersRouter);
 app.use("/admin", AdminRoutes)
-// app.use("/admin",AdminRoutes)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
