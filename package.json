@@ -5,16 +5,20 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon ./bin/www",
     "webpack": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "sass": "node-sass -w ./client/assets/stylesheets/style.scss ./client/assets/stylesheets/style.css"
+    "sass": "node-sass -w ./public/assets/stylesheets/style.scss ./public/assets/stylesheets/style.css"
   },
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "ejs": "^2.7.4",
     "express": "~4.16.0",
     "html-webpack-plugin": "^3.2.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.12",
     "morgan": "~1.9.0",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
@@ -32,7 +36,6 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
-    "nodemon": "^2.0.0",
     "sass-loader": "^8.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",

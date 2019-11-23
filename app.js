@@ -4,10 +4,30 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
+// Requring The DotEnv file
+require("dotenv").config();
+
+// Providing The Path
+var usersRouter = require("./routes/UserRoutes");
+var AdminRoutes = require("./routes/AdminRoutes");
+var mongoose = require("mongoose");
+
+// Connecting With DataBase
+mongoose.connect("mongodb://localhost/User", { useNewUrlParser: true }, err => {
+  err
+    ? console.log("Not Connected To DB")
+    : console.log("Connected Sucessfully TO DB");
+});
+
+var AdminRoutes = require("./routes/AdminRoutes");
+
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+var usersRouter = require("./routes/UserRoutes");
+var newContent = require("./routes/newContent");
 
 var app = express();
+
+// require("./routes/newContent")(app);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -18,6 +38,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/admin", AdminRoutes);
+app.use("/users", AdminRoutes);
+app.use("/users", usersRouter);
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/users", usersRouter);
 
 if (process.env.NODE_ENV === "development") {
   var webpack = require("webpack");
@@ -34,10 +60,10 @@ if (process.env.NODE_ENV === "development") {
   app.use(require("webpack-hot-middleware")(compiler));
 }
 
-
 app.use("/users", usersRouter);
+app.use("/env", AdminRoutes);
+app.use("/newContent", newContent);
 app.use("/", indexRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
