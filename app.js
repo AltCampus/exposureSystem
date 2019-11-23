@@ -28,12 +28,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// Providing The Paths
-app.use("/", indexRouter);
-app.use("/admin", AdminRoutes);
-app.use("/users", usersRouter);
-app.use("/newContent", newContent);
-
 // Connecting With DataBase
 mongoose.connect(
   "mongodb://localhost:27017/exposuresystem",
@@ -59,6 +53,12 @@ if (process.env.NODE_ENV === "development") {
 
   app.use(require("webpack-hot-middleware")(compiler));
 }
+
+// Providing The Paths
+app.use("/admin", AdminRoutes);
+app.use("/users", usersRouter);
+app.use("/newContent", newContent);
+app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
