@@ -2,6 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom"
 
 class Header extends React.Component {
+
+  handleLogout = () => {
+    localStorage.clear()
+    this.redirect()
+  }
+
+  redirect = () => {
+    this.props.history.push("/")
+  }
+
   render() {
     return (
       <div className="wrapper">
@@ -13,8 +23,19 @@ class Header extends React.Component {
             <nav>
               <ul>
                 <li>
-                  <Link to="/signup">SignUp</Link>
-                  <Link to="/signin">SignIn</Link>
+                  {
+                    <div>
+                      localStorage.Token ?
+                      <button onClick={this.handleLogout}>Logout</button>
+                      <Link to="/signup">SignUp</Link>
+                      <Link to="/signin">SignIn</Link>
+                      
+                      :
+
+                      <Link to="/signup">SignUp</Link>
+                      <Link to="/signin">SignIn</Link>
+                    </div>
+                  }
                 </li>
               </ul>
             </nav>
