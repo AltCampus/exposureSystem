@@ -25,7 +25,6 @@ class Header extends React.Component {
                 <li>
                   {
                     localStorage.Token ?
-                    
                       <div>
                         <button onClick={this.handleLogout}>Logout</button>
                         <Link to="/signup">SignUp</Link>
