@@ -5,16 +5,16 @@ const express = require('express');
 const router = express.Router();
 
 // Requring The UsersControllers
-var Users = require('../controllers/usersControllers');
+var users = require('../controllers/usersControllers');
 
 // Requring The Auth
-var Auth = require('../Utils/auth');
+var auth = require('../utils/auth');
 
 // Users Registeration Route
-router.post('/', Users.creatingUsers);
+router.post('/', users.creatingUsers);
 
 // User Status Route
-router.get('/', Auth.verifyAdminToken, Users.userStatus);
+router.get('/', auth.verifyAdminToken, users.userStatus);
 
 // Exporting The Router
 module.exports = router;

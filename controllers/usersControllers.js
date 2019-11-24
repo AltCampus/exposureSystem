@@ -1,9 +1,9 @@
 // Requring The UserSchema
-const User = require('../models/userSchema');
+const user = require('../models/userSchema');
 
 // Users Registration
 function creatingUsers(req,res,next){
-	User.create(req.body, (err, UserCreated) => {
+	user.create(req.body, (err, UserCreated) => {
 		if (err) return next(err);
 		res.status(200).json({ User: UserCreated });
 	});
@@ -11,7 +11,7 @@ function creatingUsers(req,res,next){
 
 // All Users Status
 function userStatus(req,res,next){
-    User.find({}, (err, Users) => {
+    user.find({}, (err, Users) => {
 		if (err) console.log(err);
 		res.status(200).json({ users: Users });
 	});

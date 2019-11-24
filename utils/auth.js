@@ -8,9 +8,9 @@ var jwt = require('jsonwebtoken');
 
 // Verify The Admin Token
 function verifyAdminToken (req, res, next) {
-	var Token = req.headers.authorization || '';
+	var token = req.headers.authorization || '';
 	console.log(req.headers,"Token")
-	if (Token) {
+	if (token) {
 		jwt.verify(Token, process.env.SECRETID, (err, Decoded) => {
 			if (err) res.json({ Token: 'Not Admin' });
 			next();
