@@ -24,17 +24,18 @@ class Header extends React.Component {
               <ul>
                 <li>
                   {
-                    <div>
-                      localStorage.Token ?
-                      <button onClick={this.handleLogout}>Logout</button>
-                      <Link to="/signup">SignUp</Link>
-                      <Link to="/signin">SignIn</Link>
-                      
+                    localStorage.Token ?
+                      <div>
+                        <button onClick={this.handleLogout}>Logout</button>
+                        <Link to="/signup">SignUp</Link>
+                        <Link to="/signin">SignIn</Link>
+                      </div>
                       :
+                      <div>
+                        <Link to="/signup">SignUp</Link>
+                        <Link to="/signin">SignIn</Link>
+                      </div>
 
-                      <Link to="/signup">SignUp</Link>
-                      <Link to="/signin">SignIn</Link>
-                    </div>
                   }
                 </li>
               </ul>
