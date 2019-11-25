@@ -7,6 +7,7 @@ class AddContent extends Component{
         return(
             <>
             <div className="wrapper grid-dashboard">
+                <AdminSidebar />
                 <form className="flex-column flex-center card">
                     
 
@@ -21,7 +22,6 @@ class AddContent extends Component{
                     <textarea className="input" type="text" placeholder="Description"></textarea>
                     <button className="button">Add Content</button>
                 </form>
-                <AdminSidebar />
 
             </div>
             

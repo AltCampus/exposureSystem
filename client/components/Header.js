@@ -7,12 +7,12 @@ class Header extends React.Component {
       <div className="wrapper header">
         <div className="flex-between">
           <div>
-            <NavLink className="icon" to="/"><h2>Exposure System</h2></NavLink>
+            <NavLink className="icon" to="/"><h3>Exposure System</h3></NavLink>
           </div>
           <div>
             <nav>
-                  <NavLink className="head-links" activeClassName="active" to="/signup">SignUp</NavLink>
-                  <NavLink className="head-links" activeClassName="active" to="/signin">SignIn</NavLink>   
+                  <NavLink className="head-links" activeClassName="active" to="/signup">Sign Up</NavLink>
+                  <NavLink className="head-links" activeClassName="active" to="/signin">Sign In</NavLink>   
             </nav>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import "../assets/stylesheets/style.css";
+import "../assets/stylesheets/style.scss";
 import Header from "./Header";
 import Home from "./Home";
 import SignUp from "./Auth/SignUp";

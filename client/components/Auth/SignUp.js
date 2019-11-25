@@ -25,7 +25,7 @@ class SignUp extends Component {
     console.log("signup")
     return (
       <div className="wrapper card text-center">
-        <h1 className="heading">SignUp</h1>
+        <h1 className="heading">Sign Up</h1>
         <form className="" onSubmit={this.handleSubmit}>
           <input
             className="input"
