@@ -6,7 +6,6 @@ var user = require('../models/userSchema');
 
 // Admin Login Middleware
 function adminLogin(req, res, err) {
-	console.log(req.body);
 	var username = req.body.username;
 	var Password = req.body.password;
 	if (username == process.env.USERNAME && process.env.PASSWORD == Password) {
