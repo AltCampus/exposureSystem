@@ -1,8 +1,5 @@
-.env
+
 node_modules
-package-lock.json
-<<<<<<< HEAD
 .env
-=======
+package-lock.json
 .gitignore
->>>>>>> master
