@@ -35,7 +35,6 @@ class Header extends React.Component {
                         <Link to="/signup">SignUp</Link>
                         <Link to="/signin">SignIn</Link>
                       </div>
-
                   }
                 </li>
               </ul>
