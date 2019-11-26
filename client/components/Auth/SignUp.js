@@ -32,6 +32,9 @@ class SignUp extends Component {
       }
     })
       .then(res => res.json())
+      .then(content => {
+        console.log(content);
+      })
       .then(this.props.history.push("/signin"));
   };
 
@@ -52,7 +55,7 @@ class SignUp extends Component {
 
           <input
             className="input"
-            type="text"
+            type="email"
             name="email"
             placeholder="Enter email"
             onChange={this.handleChange}
