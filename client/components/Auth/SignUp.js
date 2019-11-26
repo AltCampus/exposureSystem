@@ -24,7 +24,6 @@ class SignUp extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    console.log(data);
     fetch("/users", {
       method: "POST",
       body: JSON.stringify(data),
@@ -33,41 +32,10 @@ class SignUp extends Component {
       }
     })
       .then(res => res.json())
-      .then(user => {
-        console.log(user, "user created");
-        return res.redirect("/signin");
-        // if (response.status >= 200 && response.status < 300) {
-        //   console.log(response);
-        //   return response;
-        // } else {
-        //   console.log("Somthing went wrong");
-        // }
-      })
-      .catch(err => err);
+      .then(this.props.history.push("/signin"));
   };
 
-  // registerUser = () => {
-  //   e.preventDefault();
-  //   console.log("registeruser called");
-  //   const data = {
-  //     username: this.state.username,
-  //     email: this.state.email,
-  //     password: this.state.password
-  //   };
-  // fetch("http://localhost:3000/users", {
-  //   method: POST,
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   },
-  //   body: JSON.stringify(data)
-  // })
-  //   .then(res => res.json())
-  //   .then(user => {
-  //     console.log(user);
-  //   });
-  // };
   render() {
-    // console.log("signup")
     return (
       <div className="wrapper card text-center">
         <h1 className="heading">Sign Up</h1>
