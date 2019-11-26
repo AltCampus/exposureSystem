@@ -16,15 +16,34 @@ class AddContent extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log("handleSubmit called");
+    const data = {
+      type: this.state.type,
+      url: this.state.url,
+      title: this.state.title,
+      description: this.state.description
+    };
+    fetch("/newcontent", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(this.props.history.push("/allcontent"));
+  };
+
   render() {
     return (
       <>
         <div className="wrapper grid-dashboard">
           <AdminSidebar />
           <form
-            action="/"
-            method="post"
             className="flex-column flex-center card"
+            // onSubmit={this.handleSubmit}
           >
             <select
               name="type"
@@ -44,30 +63,32 @@ class AddContent extends Component {
             </select>
 
             <input
+              name="url"
               className="input"
               type="text"
               placeholder="Content Url"
               value={this.state.url}
               onChange={this.handleChange}
-              name="url"
             ></input>
             <input
+              name="title"
               className="input"
               type="text"
               placeholder="Title"
               value={this.state.title}
               onChange={this.handleChange}
-              name="title"
             ></input>
             <textarea
+              name="description"
               className="input"
               type="text"
               placeholder="Description"
               value={this.state.description}
               onChange={this.handleChange}
-              name="description"
             ></textarea>
-            <button className="button">Add Content</button>
+            <button className="button" onClick={this.handleSubmit}>
+              Add Content
+            </button>
           </form>
         </div>
       </>

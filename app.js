@@ -57,7 +57,7 @@ mongoose.connect(
 // Providing The Paths
 app.use("/admin", AdminRoutes);
 app.use("/users", usersRouter);
-app.use("/newContent", newContent);
+app.use("/newcontent", newContent);
 app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
