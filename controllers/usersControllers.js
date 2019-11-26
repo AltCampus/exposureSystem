@@ -1,8 +1,8 @@
 // Requring The UserSchema
-const User = require('../Models/userSchema');
+const User = require('../models/userSchema');
 
 // Users Registration
-module.exports.UserInformation = (req,res,next) => {
+function creatingUsers(req,res,next){
 	User.create(req.body, (err, UserCreated) => {
 		if (err) return next(err);
 		res.status(200).json({ User: UserCreated });
@@ -10,9 +10,11 @@ module.exports.UserInformation = (req,res,next) => {
 };
 
 // All Users Status
-module.exports.UserStatus = (req,res,next) => {
+function userStatus(req,res,next){
     User.find({}, (err, Users) => {
 		if (err) console.log(err);
 		res.status(200).json({ users: Users });
 	});
 }
+
+module.exports = {creatingUsers , userStatus};
