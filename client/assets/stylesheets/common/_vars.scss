@@ -1,17 +1,17 @@
 // Colors
 $primary: #19bdc0;
-$secondary: #fceed3;
+$secondary: rgb(160, 155, 155);
 
 $textPrimary: rgb(59, 57, 57);
-$textSecondary: rgb(160, 155, 155);
+$textSecondary:  #fceed3;
 
 $white: white;
 
 // Fonts
-
+$font : 'Oswald', sans-serif;
 // box shadow that I like to use
-$shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-// $shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.75);
+// $shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+$shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.08);
 
 // Mixin I like, below comment shows how to use it
 // @include border-radius(0.5rem);

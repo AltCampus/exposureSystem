@@ -38,6 +38,7 @@ function removeUser(req, res, err) {
 		return res.status(200).json({ user: users });
 	});
 }
+
 // Pending Users Middleware
 function pendingUser(req, res, err) {
 	user.find({ isVerified: false }, (err, users) => {

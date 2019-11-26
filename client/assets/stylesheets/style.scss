@@ -1,3 +1,5 @@
+// Variables
+@import "./common/vars";
 // CSS Reset
 @import "./lib/reset";
 // Assign base values after reset
@@ -6,14 +8,14 @@
 @import "./lib/flex";
 // Grid
 @import "./lib/grid";
-// Variables
-@import "./common/vars";
 // General classes
 @import "./common/general";
 //Header
 @import "./common/header";
 
 // Add other files here
-
+@import "./dashboard";
+@import "./student";
+@import "./content";
 // Footer
 @import "./common/footer";

@@ -10,10 +10,9 @@ class SignUp extends Component {
     };
   }
 
-  handleChange = event => {
-    const { name, value } = event.target;
+  handleChange = (e) => {
     this.setState({
-      [name]: value
+      [e.target.name]: e.target.value
     });
   };
 
@@ -24,9 +23,9 @@ class SignUp extends Component {
   render() {
     console.log("signup")
     return (
-      <div className="wrapper text-center">
-        <h1 className="heading">SignUp</h1>
-        <form onSubmit={this.handleSubmit}>
+      <div className="wrapper card text-center">
+        <h1 className="heading">Sign Up</h1>
+        <form className="" onSubmit={this.handleSubmit}>
           <input
             className="input"
             type="text"

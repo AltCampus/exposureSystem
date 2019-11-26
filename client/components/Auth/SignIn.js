@@ -9,10 +9,9 @@ class SignIn extends Component {
     };
   }
 
-  handleChange = event => {
-    const { name, value } = event.target;
+  handleChange = (e) => {
     this.setState({
-      [name]: value
+      [e.target.name]: e.target.value
     });
   };
 
@@ -20,7 +19,7 @@ class SignIn extends Component {
     console.log(this.state);
     return (
       <div>
-        <div className="wrapper text-center">
+        <div className="wrapper card text-center">
           <h1 className="heading">Login</h1>
           <div>
             <div>
