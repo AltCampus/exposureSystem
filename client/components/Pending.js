@@ -3,7 +3,7 @@ import React , {Component} from "react";
 class Pending extends Component{
     render(){
         return(
-            <div>
+            
                 <div>
                     <div className="sidebar-heading flex-center">Dummy</div>
                     <div className="student-details">
@@ -20,7 +20,6 @@ class Pending extends Component{
                     </div>
 
                 </div>
-            </div>
         )
     }
 }

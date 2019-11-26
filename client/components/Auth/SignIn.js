@@ -9,10 +9,9 @@ class SignIn extends Component {
     };
   }
 
-  handleChange = event => {
-    const { name, value } = event.target;
+  handleChange = (e) => {
     this.setState({
-      [name]: value
+      [e.target.name]: e.target.value
     });
   };
 
