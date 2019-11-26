@@ -18,7 +18,7 @@ var newContent = require('./routes/newContent');
 // Mounting The Express Application
 var app = express();
 
-// view engine setup
+// view engine setup(Middle-Wares)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -28,11 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Connecting With DataBase
-mongoose.connect('mongodb://localhost:27017/exposuresystem', { useNewUrlParser: true }, (err) => {
-	err ? console.log('Not Connected To DB') : console.log('Connected Sucessfully TO DB');
-});
-
+// Webpack Configuration
 if (process.env.NODE_ENV === 'development') {
 	var webpack = require('webpack');
 	var webpackConfig = require('./webpack.config');
@@ -47,6 +43,11 @@ if (process.env.NODE_ENV === 'development') {
 
 	app.use(require('webpack-hot-middleware')(compiler));
 }
+
+// Connecting With DataBase
+mongoose.connect('mongodb://localhost:27017/exposuresystem', { useNewUrlParser: true }, (err) => {
+	err ? console.log('Not Connected To DB') : console.log('Connected Sucessfully TO DB');
+});
 
 // Providing The Paths
 app.use('/admin', adminRoutes);
@@ -69,5 +70,6 @@ app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.render('error');
 });
+
 // Exporting The Sever App
 module.exports = app;

@@ -7,14 +7,14 @@ var user = require('../models/userSchema');
 // Admin Login Middleware
 function adminLogin(req, res, err) {
 	var username = req.body.username;
-	var Password = req.body.password;
-	if (username == process.env.USERNAME && process.env.PASSWORD == Password) {
+	var password = req.body.password;
+	if (username == process.env.USERNAME && process.env.PASSWORD == password) {
 		var token = auth.generateToken(username);
-		const Admin = {
+		const admin = {
 			userName: username,
 			Token: token
 		};
-		res.status(200).json({ admin: Admin });
+		res.status(200).json({ admin: admin });
 	} else {
 		res.status(400).json({ error: 'Not Admin' });
 	}
@@ -44,5 +44,5 @@ function pendingUser(req, res, err) {
 		res.json({ users: users });
 	});
 }
-
+// Exporting The Middlewares
 module.exports = { adminLogin, verifyUser, removeUser, pendingUser };

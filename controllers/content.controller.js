@@ -1,21 +1,18 @@
+// Requring The Content Schema
 const Content = require('../models/contentSchema');
 
 module.exports = {
 	create: (req, res) => {
-		// Create content
-
 		const content = new Content(req.body);
-
-		console.log(content);
 
 		// Save content in the database
 		content
 			.save()
 			.then((data) => {
-				res.send(data);
+				res.json({ data });
 			})
 			.catch((err) => {
-				res.status(500).send({
+				res.status(500).json({
 					message: err.message || 'Some error occurred while creating the Content piece.'
 				});
 			});
@@ -26,10 +23,10 @@ module.exports = {
 	findAll: (req, res) => {
 		Content.find()
 			.then((contents) => {
-				res.send(contents);
+				res.json({ contents });
 			})
 			.catch((err) => {
-				res.status(500).send({
+				res.status(500).json({
 					message: err.message || 'Some error occurred while retrieving content.'
 				});
 			});
@@ -45,7 +42,7 @@ module.exports = {
 						message: 'Content not found with id ' + req.params.contentId
 					});
 				}
-				res.send(content);
+				res.json({ content });
 			})
 			.catch((err) => {
 				if (err.kind === 'ObjectId') {
@@ -53,7 +50,7 @@ module.exports = {
 						message: 'Content not found with id ' + req.params.contentId
 					});
 				}
-				return res.status(500).send({
+				return res.status(500).json({
 					message: 'Error retrieving content with id ' + req.params.contentId
 				});
 			});
@@ -86,7 +83,7 @@ module.exports = {
 						message: 'Content not found with id ' + req.params.contentId
 					});
 				}
-				res.send(content);
+				res.json({ content });
 			})
 			.catch((err) => {
 				if (err.kind === 'ObjectId') {
@@ -94,7 +91,7 @@ module.exports = {
 						message: 'Content not found with id ' + req.params.contentId
 					});
 				}
-				return res.status(500).send({
+				return res.status(500).json({
 					message: 'Error updating content with id ' + req.params.contentId
 				});
 			});
@@ -106,11 +103,11 @@ module.exports = {
 		Content.findByIdAndRemove(req.params.contentId)
 			.then((content) => {
 				if (!content) {
-					return res.status(404).send({
+					return res.status(404).json({
 						message: 'Content not found with id ' + req.params.contentId
 					});
 				}
-				res.send({ message: 'Content deleted successfully!' });
+				res.json({ message: 'Content deleted successfully!' });
 			})
 			.catch((err) => {
 				if (err.kind === 'ObjectId' || err.name === 'NotFound') {
@@ -118,7 +115,7 @@ module.exports = {
 						message: 'Content not found with id ' + req.params.contentId
 					});
 				}
-				return res.status(500).send({
+				return res.status(500).json({
 					message: 'Could not delete content with id ' + req.params.contentId
 				});
 			});
