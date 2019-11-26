@@ -12,6 +12,7 @@ module.exports = {
     content
       .save()
       .then(data => {
+        console.log("contentcontroller", data);
         res.send(data);
       })
       .catch(err => {

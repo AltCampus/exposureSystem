@@ -21,7 +21,11 @@ class AddContent extends Component {
       <>
         <div className="wrapper grid-dashboard">
           <AdminSidebar />
-          <form className="flex-column flex-center card">
+          <form
+            action="/"
+            method="post"
+            className="flex-column flex-center card"
+          >
             <select
               name="type"
               className="input input-select"
