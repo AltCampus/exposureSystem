@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SignIn extends Component {
+class LoginUser extends Component {
   constructor() {
     super();
     this.state = {
@@ -9,7 +9,7 @@ class SignIn extends Component {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -53,4 +53,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default LoginUser;

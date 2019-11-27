@@ -2,8 +2,8 @@ import React from "react";
 import "../assets/stylesheets/style.scss";
 import Header from "./Header";
 import Home from "./Home";
-import SignUp from "./Auth/SignUp";
-import SignIn from "./Auth/SignIn";
+import RegisterUser from "./Auth/RegisterUser";
+import LoginUser from "./Auth/LoginUser";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import AdminLogin from "./Auth/AdminLogin";
 import Page404 from "./Page404";
@@ -17,12 +17,12 @@ class App extends React.Component {
   render() {
     return (
       <>
-      <Router>
-      <Header />
+        <Router>
+          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/signin" component={SignIn} />
+            <Route path="/register" component={RegisterUser} />
+            <Route path="/login" component={LoginUser} />
             <Route path="/admin" component={AdminLogin} />
             <Route exact path="/admindashboard" component={AdminDashboard} />
             <Route path="/allcontent" component={AllContents} />
@@ -31,7 +31,7 @@ class App extends React.Component {
             <Route path="/pendingapprovals" component={PendingApprovals} />
             <Route component={Page404} />
           </Switch>
-      </Router>
+        </Router>
       </>
     );
   }

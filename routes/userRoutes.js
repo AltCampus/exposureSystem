@@ -1,23 +1,15 @@
-// Requring The Express
-const express = require('express');
-
-// Extracting The Router
+const express = require("express");
 const router = express.Router();
-
-// Requring The UsersControllers
-var users = require('../controllers/usersControllers');
-
-// Requring The Auth
-var auth = require('../utils/auth');
+var users = require("../controllers/usersControllers");
+var auth = require("../utils/auth");
 
 // Users Registeration Route
-router.post('/', users.creatingUsers);
+router.post("/", users.registerUser); //changed from creatingUsers
 
 // User Login Route
-router.post("/login",users.userLogin)
+router.post("/login", users.loginUser); //changed from userLogin
 
 // User Status Route
-router.get('/all', auth.verifyAdminToken, users.userStatus);
+router.get("/all", auth.verifyAdminToken, users.userStatus);
 
-// Exporting The Router
 module.exports = router;

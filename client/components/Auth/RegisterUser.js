@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SignUp extends Component {
+class RegisterUser extends Component {
   constructor() {
     super();
     this.state = {
@@ -10,7 +10,7 @@ class SignUp extends Component {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -21,10 +21,10 @@ class SignUp extends Component {
   };
 
   render() {
-    console.log("signup")
+    // console.log("signup")
     return (
       <div className="wrapper card text-center">
-        <h1 className="heading">Sign Up</h1>
+        <h1 className="heading">Register</h1>
         <form className="" onSubmit={this.handleSubmit}>
           <input
             className="input"
@@ -63,4 +63,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default RegisterUser;
