@@ -1,6 +1,6 @@
 import React , {Component} from "react";
-import AdminSidebar from "./AdminSidebar";
-import Content from "../Content";
+import AdminSidebar from "../adminDashboard/AdminSidebar";
+import Content from "./Content";
 
 class AllContents extends Component{
     render(){
