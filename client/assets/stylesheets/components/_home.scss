@@ -1,0 +1,21 @@
+.home-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 900;
+    width: 100%;
+    color: $textPrimary ;
+    h4 {
+        color: $primary;
+        font-size: 3rem;
+        margin-top: 0.5rem;
+        vertical-align: text-bottom;
+    }
+}
+
+.alt-image{
+    
+    height: 4.5rem;
+    width: 12rem;
+    margin-left: 1rem;
+}
