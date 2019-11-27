@@ -13,8 +13,11 @@ var auth = require('../utils/auth');
 // Users Registeration Route
 router.post('/', users.creatingUsers);
 
+// User Login Route
+router.post("/login",users.userLogin)
+
 // User Status Route
-router.get('/', auth.verifyAdminToken, users.userStatus);
+router.get('/all', auth.verifyAdminToken, users.userStatus);
 
 // Exporting The Router
 module.exports = router;

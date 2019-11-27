@@ -10,7 +10,6 @@ var Admin = require('../models/adminSchema');
 // Admin Registration Middleware
 function adminRegistration(req, res, next) {
 	Admin.create(req.body, (err, adminCreated) => {
-		console.log('create');
 		if (err) return next(err);
 		res.status(200).json({ admin: adminCreated });
 	});
