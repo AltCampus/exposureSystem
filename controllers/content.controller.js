@@ -28,10 +28,10 @@ module.exports = {
   findAll: (req, res) => {
     Content.find()
       .then(contents => {
-        res.send(contents);
+        res.json({ contents });
       })
       .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
           message:
             err.message || "Some error occurred while retrieving content."
         });
