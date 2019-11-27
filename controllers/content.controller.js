@@ -1,17 +1,19 @@
 const Content = require("../models/contentSchema");
 
 module.exports = {
-  create: (req, res) => {
+  create:  async (req, res) => {
     // Create content
 
-    const content = new Content(req.body);
+    const content = await new Content(req.body);
+    console.log(req.body, "inside content")
 
-    console.log(content);
+    // console.log(content);
 
     // Save content in the database
     content
       .save()
       .then(data => {
+        // console.log(data, "content data")
         res.send(data);
       })
       .catch(err => {

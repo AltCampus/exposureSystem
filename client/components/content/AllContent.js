@@ -14,7 +14,6 @@ class AllContents extends Component{
                         <Content />
                         <Content />
                     </div>
-
                 </div>
             </div>
         )
