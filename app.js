@@ -50,9 +50,9 @@ mongoose.connect('mongodb://localhost:27017/exposuresystem', { useNewUrlParser: 
 });
 
 // Providing The Paths
-app.use('/admin', adminRoutes);
-app.use('/users', usersRouter);
-app.use('/newContent', newContent);
+app.use('api/v1/admin', adminRoutes);
+app.use('api/v1/users', usersRouter);
+app.use('api/v1/newContent', newContent);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
