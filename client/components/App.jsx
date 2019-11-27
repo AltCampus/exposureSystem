@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/stylesheets/style.scss";
-import Header from "./Header";
-import Home from "./Home";
+import Header from "./header/Header";
+import Home from "./home/Home";
 import RegisterUser from "./auth/RegisterUser";
 import LoginUser from "./auth/LoginUser";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
