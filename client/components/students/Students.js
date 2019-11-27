@@ -1,6 +1,6 @@
 import React , {Component} from "react";
-import AdminSidebar from "./AdminSidebar";
-import Student from "../Student";
+import AdminSidebar from "../adminDashboard/AdminSidebar";
+import Student from "./StudentCard";
 
 class Students extends Component {
     render(){

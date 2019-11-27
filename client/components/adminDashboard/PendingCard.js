@@ -4,7 +4,7 @@ class Pending extends Component{
     render(){
         return(
             
-                <div>
+                <div className="student-card">
                     <div className="sidebar-heading flex-center">Dummy</div>
                     <div className="student-details">
                         <div>

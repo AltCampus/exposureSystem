@@ -2,16 +2,18 @@ import React from "react";
 import "../assets/stylesheets/style.scss";
 import Header from "./Header";
 import Home from "./Home";
-import RegisterUser from "./Auth/RegisterUser";
-import LoginUser from "./Auth/LoginUser";
+import RegisterUser from "./auth/RegisterUser";
+import LoginUser from "./auth/LoginUser";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import AdminLogin from "./Auth/AdminLogin";
+import AdminLogin from "./auth/AdminLogin";
 import Page404 from "./Page404";
-import AdminDashboard from "./AdminDashboard/AdminDashboard";
-import AllContents from "./AdminDashboard/AllContent";
-import AddContent from "./AdminDashboard/AddContent";
-import Students from "./AdminDashboard/Students";
-import PendingApprovals from "./AdminDashboard/PendingApprovals";
+import AdminDashboard from "./adminDashboard/AdminDashboard";
+import AllContents from "./content/AllContent";
+import AddContent from "./content/AddContent";
+import Students from "./students/Students";
+import PendingApprovals from "./adminDashboard/PendingApprovals";
+import ContentSubmission from "./content/ContentSubmission";
+import Content from "./content/Content";
 
 class App extends React.Component {
   render() {
@@ -29,6 +31,8 @@ class App extends React.Component {
             <Route path="/addcontent" component={AddContent} />
             <Route path="/students" component={Students} />
             <Route path="/pendingapprovals" component={PendingApprovals} />
+            <Route path="/content" component={Content} />
+            <Route path="/content-submission" component={ContentSubmission} />
             <Route component={Page404} />
           </Switch>
         </Router>

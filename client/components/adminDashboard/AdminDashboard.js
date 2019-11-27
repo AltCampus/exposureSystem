@@ -1,7 +1,7 @@
 //Importing react
 
 import React , {Component} from "react";
-import Header from "../Header";
+import Header from "../header/Header";
 import AdminSidebar from "./AdminSidebar";
 
 //Creating dashboard component
