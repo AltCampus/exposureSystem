@@ -1,6 +1,6 @@
 import React , {Component} from "react";
-import Header from "../Header";
-import AdminSidebar from "./AdminSidebar";
+import Header from "../header/Header";
+import AdminSidebar from "../adminDashboard/AdminSidebar";
 
 class AddContent extends Component{
     constructor(){

@@ -1,0 +1,33 @@
+.content-head{
+    color: $white;
+    background: $primary;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 0.5rem;
+}
+
+.submission-head{
+    display: flex;
+    flex-direction: column;
+    color: $white;
+    background: $secondary;
+    padding: 0.5rem;
+    // margin: 0 !important; 
+}
+
+.article{
+    width: 100%;
+    height: 60rem;
+    border: 1px solid $secondary;
+}
+
+.summary{
+    display: flex;
+    flex-direction: column;
+    color: $textPrimary;
+    font-weight: 900;
+    padding: 1rem;
+    padding-bottom: 6rem;
+    
+    margin-top: 6rem;
+}

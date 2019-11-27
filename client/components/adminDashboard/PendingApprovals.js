@@ -1,6 +1,6 @@
 import React , {Component} from "react";
 import AdminSidebar from "./AdminSidebar";
-import Pending from "../Pending";
+import Pending from "./PendingCard";
 class PendingApprovals extends Component{
     render(){
         return(

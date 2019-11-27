@@ -1,8 +1,8 @@
 import React , {Component} from "react";
 import { Route , NavLink } from "react-router-dom";
-import AllContents from "./AllContent";
-import AddContent from "./AddContent";
-import Students from "./Students";
+import AllContents from "../content/AllContent";
+import AddContent from "../content/AddContent";
+import Students from "../students/Students";
 import PendingApprovals from "./PendingApprovals";
 
 class AdminSidebar extends Component{
