@@ -17,11 +17,15 @@ class LoginUser extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.postLoginData();
+  };
 
+  postLoginData = () => {
     const user = {
       email: this.state.email,
       password: this.state.password
     };
+    console.log(user);
 
     fetch("/users/login", {
       method: "POST",

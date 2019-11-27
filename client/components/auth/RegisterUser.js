@@ -33,7 +33,7 @@ class RegisterUser extends Component {
     })
       .then(res => res.json())
       .then(user => {
-        console.log(user);
+        console.log(user, "final user");
       })
       .then(this.props.history.push("/login"));
   };
