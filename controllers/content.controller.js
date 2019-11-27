@@ -8,7 +8,6 @@ module.exports = {
     console.log(req.body, "inside content")
 
     // console.log(content);
-
     // Save content in the database
     content
       .save()

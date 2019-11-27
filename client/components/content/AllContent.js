@@ -1,18 +1,40 @@
-import React , {Component} from "react";
+import React, { Component } from "react";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
 import Content from "./Content";
 
-class AllContents extends Component{
-    render(){
-        return(
+class AllContents extends Component {
+    constructor() {
+        super();
+        this.state = {
+            contentList: null
+        }
+    }
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    componentDidMount() {
+        fetch("/newContent")
+            .then(res => res.json())
+            .then(data => this.setState({ contentList: data }))
+    }
+
+
+    render() {
+        const contentList = this.state && this.state.contentList
+        console.log(contentList)
+
+        return (
             <div className="wrapper grid-dashboard">
                 <AdminSidebar />
                 <div>
-                    <h3 className="flex-center" style={{color : "rgb(59, 57, 57)"}}>Content</h3>
+                    <h3 className="flex-center" style={{ color: "rgb(59, 57, 57)" }}>Content</h3>
                     <div className="grid-col-3">
-                        <Content />
-                        <Content />
-                        <Content />
+                        {
+                            contentList && contentList.map(content => {
+                                return <Content content {...content} />
+                            })
+                        }
                     </div>
                 </div>
             </div>
