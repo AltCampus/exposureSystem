@@ -2,6 +2,7 @@ const User = require("../models/userSchema");
 const auth = require("../utils/auth");
 
 function registerUser(req, res, next) {
+  console.log("register user called");
   User.create(req.body, (err, UserCreated) => {
     if (err) return next(err);
     res.status(200).json({ User: UserCreated });
