@@ -12,11 +12,13 @@ const userSchema = new Schema(
 	{
 		username: {
 			type: String,
-			required: true
+			required: true,
+			unique: true
 		},
 		email: {
 			type: String,
-			required: true
+			required: true,
+			unique: true
 		},
 		password: {
 			type: String,
@@ -25,7 +27,7 @@ const userSchema = new Schema(
 		isInCampus: Boolean,
 		isActive: Boolean,
 		isAdmin: false,
-		isVerified : false
+		isVerified: { type: Boolean, default: false }
 	},
 	{
 		timestamps: true

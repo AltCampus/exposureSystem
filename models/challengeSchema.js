@@ -12,9 +12,9 @@ var challengeSchema = new Schema({
     userId: String, 
     contentId: String, 
     hasSubmitted: Boolean, 
-    Submission: String, 
+    submission: String, 
     pointsAwarded: String, 
-    Type: { 
+    type: { 
         type: "string", 
         enum: [
             "individual", 
@@ -22,20 +22,20 @@ var challengeSchema = new Schema({
             "group"
         ]
     }, 
-    Pair: [{ 
+    pair: [{ 
         type: app.mongoose.Schema.ObjectId, 
         ref: 'userSchema'
     }], 
-    Group: [{ 
+    group: [{ 
         type: app.mongoose.Schema.ObjectId, 
         ref: 'userSchema'
     }], 
     hasOptedOut: boolean, 
-    Deadline: { 
+    deadline: { 
         type: Date, 
         default: Date.now 
     } }, { 
-        timestamp: true 
+        timestamps: true 
     });
 
 //Creating challenge Model
