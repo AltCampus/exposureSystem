@@ -29,6 +29,7 @@ module.exports = {
   findAll: (req, res) => {
     Content.find()
       .then(contents => {
+        // console.log(contents);
         res.send(contents);
       })
       .catch(err => {

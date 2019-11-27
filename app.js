@@ -12,7 +12,7 @@ require("dotenv").config();
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/UserRoutes");
 var AdminRoutes = require("./routes/AdminRoutes");
-var newContent = require("./routes/newContent");
+var contentRouter = require("./routes/contentRouter");
 
 var app = express();
 
@@ -57,7 +57,7 @@ mongoose.connect(
 // Providing The Paths
 app.use("/admin", AdminRoutes);
 app.use("/users", usersRouter);
-app.use("/newcontent", newContent);
+app.use("/content", contentRouter); //changed from ("/newContent", newContent)
 app.use("/", indexRouter);
 
 // catch 404 and forward to error handler

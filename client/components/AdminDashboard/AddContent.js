@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "../Header";
 import AdminSidebar from "./AdminSidebar";
 
 class AddContent extends Component {
@@ -25,7 +24,7 @@ class AddContent extends Component {
       title: this.state.title,
       description: this.state.description
     };
-    fetch("/newcontent", {
+    fetch("/content/new", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -33,7 +32,10 @@ class AddContent extends Component {
       }
     })
       .then(res => res.json())
-      .then(this.props.history.push("/allcontent"));
+      .then(content => {
+        console.log(content);
+        this.props.history.push("/allcontent");
+      });
   };
 
   render() {
