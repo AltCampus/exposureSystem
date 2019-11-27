@@ -11,7 +11,7 @@ const Admin = require("../controllers/adminControllers");
 const User = require("../models/userSchema");
 
 //Require verifyUser
-const Auth = require("../Utils/auth");
+const Auth = require("../utils/auth");
 
 // Route For Verify The Admin
 router.post("/login", Admin.adminLogin);

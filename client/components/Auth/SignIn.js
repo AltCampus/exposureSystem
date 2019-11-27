@@ -15,8 +15,35 @@ class SignIn extends Component {
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    fetch("/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json())
+      .then(user => {
+        console.log(user);
+        // this.props.dispatch({ type: "UpdateState", UserData: user });
+        // localStorage.setItem("Data", JSON.stringify(user));
+        // localStorage.setItem("Token", user.user.token);
+        // localStorage.Token
+        //   ? this.props.history.push("/Homepage")
+        //   : this.setState({ ...this.state, autherisation: user.user });
+      });
+  };
+
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div>
         <div className="wrapper card text-center">
@@ -44,7 +71,9 @@ class SignIn extends Component {
 
               <br></br>
 
-              <button className="button">Submit</button>
+              <button className="button" onClick={this.handleSubmit}>
+                Submit
+              </button>
             </div>
           </div>
         </div>
