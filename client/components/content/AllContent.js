@@ -1,6 +1,6 @@
 import React , {Component} from "react";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
-import Content from "./Content";
+import ContentCard from "./ContentCard";
 
 class AllContents extends Component{
     render(){
@@ -10,9 +10,9 @@ class AllContents extends Component{
                 <div>
                     <h3 className="flex-center" style={{color : "rgb(59, 57, 57)"}}>Content</h3>
                     <div className="grid-col-3">
-                        <Content />
-                        <Content />
-                        <Content />
+                        <ContentCard />
+                        <ContentCard />
+                        <ContentCard />
                     </div>
 
                 </div>

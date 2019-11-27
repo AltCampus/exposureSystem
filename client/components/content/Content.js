@@ -2,18 +2,25 @@ import React , {Component} from "react";
 
 class Content extends Component{
     render(){
-        const style = {
-            padding: "0.5rem" , 
-            background : "rgb(160, 155, 155)" , 
-            color : "#fff"
-        }
         return(
-            <div>
-                <div className="grid-col-2 content-head">
-                    <div>Title</div>
-                    <div>Type</div>
+            <div className="wrapper">
+                <div className="sidebar-heading flex-center">Title</div>
+                <div className="grid-col-2">
+                    <div className="submission-head flex-center">
+                        <div>Description:</div>
+                    </div>
+                    <div className="submission-head flex-center">
+                        <div>Submissions:</div>                   
+                        <div>Type:</div>
+                    </div>
                 </div>
-                <div style={style}>Read More >>></div>
+                <iframe className="article" src="https://en.wikipedia.org/wiki/Der_Ring_des_Nibelungen"></iframe>
+                <div className="flex-end ">
+                    
+                    <button className="content-button">Edit</button>
+                    <button className="content-button">Delete</button>
+                   
+                </div>
             </div>
         )
     }
