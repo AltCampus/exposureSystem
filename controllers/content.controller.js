@@ -1,125 +1,117 @@
-// Requring The Content Schema
-const Content = require('../models/contentSchema');
+const Content = require("../models/contentSchema");
 
 module.exports = {
-	create: (req, res) => {
-		const content = new Content(req.body);
+  create: (req, res) => {
+    const content = new Content(req.body);
 
-		// Save content in the database
-		content
-			.save()
-			.then((data) => {
-				res.json({ data });
-			})
-			.catch((err) => {
-				res.status(500).json({
-					message: err.message || 'Some error occurred while creating the Content piece.'
-				});
-			});
-	},
+    content
+      .save()
+      .then(data => {
+        res.json({ data });
+      })
+      .catch(err => {
+        res.status(500).json({
+          message:
+            err.message ||
+            "Some error occurred while creating the Content piece."
+        });
+      });
+  },
 
-	///////////////////////
-	// Retrieve and return all content from the database.
-	findAll: (req, res) => {
-		Content.find()
-			.then((contents) => {
-				res.json({ contents });
-			})
-			.catch((err) => {
-				res.status(500).json({
-					message: err.message || 'Some error occurred while retrieving content.'
-				});
-			});
-	},
+  findAll: (req, res) => {
+    Content.find()
+      .then(contents => {
+        res.json({ contents });
+      })
+      .catch(err => {
+        res.status(500).json({
+          message:
+            err.message || "Some error occurred while retrieving content."
+        });
+      });
+  },
 
-	//////////////////////
-	// Find a single content with a contentId
-	findOne: (req, res) => {
-		Content.findById(req.params.contentId)
-			.then((content) => {
-				if (!content) {
-					return res.status(404).send({
-						message: 'Content not found with id ' + req.params.contentId
-					});
-				}
-				res.json({ content });
-			})
-			.catch((err) => {
-				if (err.kind === 'ObjectId') {
-					return res.status(404).send({
-						message: 'Content not found with id ' + req.params.contentId
-					});
-				}
-				return res.status(500).json({
-					message: 'Error retrieving content with id ' + req.params.contentId
-				});
-			});
-	},
+  findOne: (req, res) => {
+    Content.findById(req.params.contentId)
+      .then(content => {
+        if (!content) {
+          return res.status(404).send({
+            message: "Content not found with id " + req.params.contentId
+          });
+        }
+        res.json({ content });
+      })
+      .catch(err => {
+        if (err.kind === "ObjectId") {
+          return res.status(404).send({
+            message: "Content not found with id " + req.params.contentId
+          });
+        }
+        return res.status(500).json({
+          message: "Error retrieving content with id " + req.params.contentId
+        });
+      });
+  },
 
-	/////////////////////
-	// Update a content identified by the contentId in the request
-	update: (req, res) => {
-		// Validate Request
-		//   if (!req.body.description) {
-		//     return res.status(400).send({
-		//       message: "Description content can not be empty"
-		//     });
-		//   }
+  update: (req, res) => {
+    // Validate Request
+    //   if (!req.body.description) {
+    //     return res.status(400).send({
+    //       message: "Description content can not be empty"
+    //     });
+    //   }
 
-		// Find content and update it with the request body
-		Content.findByIdAndUpdate(
-			req.params.contentId,
-			{
-				type: req.body.type,
-				contentUrl: req.body.contentUrl,
-				title: req.body.title || 'Untitled',
-				description: req.body.description
-			},
-			{ new: true }
-		)
-			.then((content) => {
-				if (!content) {
-					return res.status(404).send({
-						message: 'Content not found with id ' + req.params.contentId
-					});
-				}
-				res.json({ content });
-			})
-			.catch((err) => {
-				if (err.kind === 'ObjectId') {
-					return res.status(404).send({
-						message: 'Content not found with id ' + req.params.contentId
-					});
-				}
-				return res.status(500).json({
-					message: 'Error updating content with id ' + req.params.contentId
-				});
-			});
-	},
+    Content.findByIdAndUpdate(
+      req.params.contentId,
+      {
+        type: req.body.type,
+        contentUrl: req.body.contentUrl,
+        title: req.body.title || "Untitled",
+        description: req.body.description
+      },
+      { new: true }
+    )
+      .then(content => {
+        if (!content) {
+          return res.status(404).send({
+            message: "Content not found with id " + req.params.contentId
+          });
+        }
+        res.json({ content });
+      })
+      .catch(err => {
+        if (err.kind === "ObjectId") {
+          return res.status(404).send({
+            message: "Content not found with id " + req.params.contentId
+          });
+        }
+        return res.status(500).json({
+          message: "Error updating content with id " + req.params.contentId
+        });
+      });
+  },
 
-	/////////////////////
-	// Delete content with the specified contentId in the request
-	delete: (req, res) => {
-		Content.findByIdAndRemove(req.params.contentId)
-			.then((content) => {
-				if (!content) {
-					return res.status(404).json({
-						message: 'Content not found with id ' + req.params.contentId
-					});
-				}
-				res.json({ message: 'Content deleted successfully!' });
-			})
-			.catch((err) => {
-				if (err.kind === 'ObjectId' || err.name === 'NotFound') {
-					return res.status(404).send({
-						message: 'Content not found with id ' + req.params.contentId
-					});
-				}
-				return res.status(500).json({
-					message: 'Could not delete content with id ' + req.params.contentId
-				});
-			});
-	}
+  delete: (req, res) => {
+    Content.findByIdAndRemove(req.params.contentId)
+      .then(content => {
+        if (!content) {
+          return res.status(404).json({
+            message: "Content not found with id " + req.params.contentId
+          });
+        }
+        res.json({ message: "Content deleted successfully!" });
+      })
+      .catch(err => {
+        if (err.kind === "ObjectId" || err.name === "NotFound") {
+          return res.status(404).send({
+            message: "Content not found with id " + req.params.contentId
+          });
+        }
+        return res.status(500).json({
+          message: "Could not delete content with id " + req.params.contentId
+        });
+      });
+  }
 };
 
 // /////////////////////////////////////////////////////////////////////////////////////////////

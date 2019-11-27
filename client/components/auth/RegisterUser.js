@@ -18,6 +18,24 @@ class RegisterUser extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    console.log("handleSubmit called");
+    const data = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password
+    };
+    fetch("/users", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(content => {
+        console.log(content);
+      })
+      .then(this.props.history.push("/signin"));
   };
 
   render() {
@@ -25,7 +43,7 @@ class RegisterUser extends Component {
     return (
       <div className="wrapper card text-center">
         <h1 className="heading">Register</h1>
-        <form className="" onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <input
             className="input"
             type="text"
@@ -38,7 +56,7 @@ class RegisterUser extends Component {
 
           <input
             className="input"
-            type="text"
+            type="email"
             name="email"
             placeholder="Enter email"
             onChange={this.handleChange}

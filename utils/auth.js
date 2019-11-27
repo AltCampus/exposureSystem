@@ -2,22 +2,22 @@
 var jwt = require('jsonwebtoken');
 
 // Exporting The Module Of Jwt Token
-function generateToken(payload) {
-	console.log('generateToken called at Utils/auth');
-	return jwt.sign(payload, "abcdef");
-}
+ function generateToken (payload) {
+	return jwt.sign(payload, process.env.SECRETID);
+};
 
 // Verify The Admin Token
-function verifyAdminToken(req, res, next) {
-	var token = req.headers.authorization || '';
-	if (token) {
-		jwt.verify(Token, "abcdef", (err, Decoded) => {
+function verifyAdminToken (req, res, next) {
+	var Token = req.headers.authorization || '';
+	console.log(req.headers,"Token")
+	if (Token) {
+		jwt.verify(Token, process.env.SECRETID, (err, Decoded) => {
 			if (err) res.json({ Token: 'Not Admin' });
 			next();
 		});
 	} else {
 		return res.json({ Token: 'Token Not Found' });
 	}
-}
-// Exporting The Middlewares
-module.exports = { generateToken, verifyAdminToken };
+};
+
+module.exports = {generateToken, verifyAdminToken}
