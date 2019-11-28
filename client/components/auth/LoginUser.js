@@ -46,9 +46,13 @@ class LoginUser extends Component {
 	//       //   ? this.props.history.push("/Homepage")
 	//       //   : this.setState({ ...this.state, autherisation: user.user });
 	//     });
-	// };
-	handleLogin = (e) => {
-		e.preventDefault();
+  // };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.PostLoginData()
+  }
+
+	PostLoginData = (e) => {
 		var studentData = {
 			email: this.state.email,
 			password: this.state.password
@@ -61,8 +65,11 @@ class LoginUser extends Component {
 			},
 			body: JSON.stringify(studentData)
 		})
-			.then((res) => res.json())
-			.then(this.props.history.push("/Home"))
+      .then((res) => res.json())
+      .then(user => {
+        console.log(user.Token,"user data")
+      })
+			.then(this.props.history.push("/"))
 	};
 
 	render() {
@@ -93,7 +100,7 @@ class LoginUser extends Component {
 
 							<br />
 
-							<button className="button" onClick={this.handleLogin}>
+							<button className="button" onClick={this.handleSubmit}>
 								Submit
 							</button>
 						</div>
