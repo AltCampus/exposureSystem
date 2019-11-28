@@ -13,6 +13,7 @@ import AddContent from "./content/AddContent";
 import Students from "./students/Students";
 import PendingApprovals from "./adminDashboard/PendingApprovals";
 import ContentSubmission from "./content/ContentSubmission";
+import Content from "./content/Content";
 
 class App extends React.Component {
   render() {
@@ -30,6 +31,7 @@ class App extends React.Component {
             <Route path="/addcontent" component={AddContent} />
             <Route path="/students" component={Students} />
             <Route path="/pendingapprovals" component={PendingApprovals} />
+            <Route path="/content" component={Content} />
             <Route path="/content-submission" component={ContentSubmission} />
             <Route component={Page404} />
           </Switch>

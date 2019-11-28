@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
-import Content from "./Content";
+import ContentCard from "./ContentCard";
 
 class AllContents extends Component {
     constructor() {
@@ -32,7 +32,8 @@ class AllContents extends Component {
                     <div className="grid-col-3">
                         {
                             contentList && contentList.map(content => {
-                                return <Content content {...content} />
+                                return console.log(content),
+                                 <ContentCard {...content} />
                             })
                         }
                     </div>
