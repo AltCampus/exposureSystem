@@ -15,10 +15,10 @@ class ContentCard extends Component {
                     <div>{this.props.contentData.type}</div>
                 </div>
                 <div className="content-card-description">{this.props.contentData.description}:</div>
-                <NavLink to={{ pathname: "/content", contentProps: { name: this.props.contentData } }} className="content-link">Read More >>></NavLink>
+                <NavLink to={{ pathname: "/content", contentProps: { contentData: this.props.contentData } }} className="content-link">Read More >>></NavLink>
             </div>
         )
     }
 }
-
+    
 export default ContentCard;

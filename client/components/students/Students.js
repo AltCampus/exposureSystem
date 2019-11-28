@@ -23,7 +23,7 @@ class Students extends Component {
 
     render() {
         const studentList = (this.state && this.state.studentList)
-        console.log(studentList)
+        // console.log(studentList)
         return (
             <div className="wrapper grid-dashboard">
                 <AdminSidebar />

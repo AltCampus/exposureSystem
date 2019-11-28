@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
 import ContentCard from "./ContentCard";
 
-class AllContents extends Component {
+class ContentList extends Component {
     constructor() {
         super();
         this.state = {
@@ -22,7 +22,7 @@ class AllContents extends Component {
 
     render() {
         const contentList = this.state && this.state.contentList
-        // console.log(contentList)
+        console.log(contentList)
 
         return (
             <div className="wrapper grid-dashboard">
@@ -42,4 +42,4 @@ class AllContents extends Component {
     }
 }
 
-export default AllContents;
+export default ContentList;

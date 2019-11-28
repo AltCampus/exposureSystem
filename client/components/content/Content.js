@@ -7,8 +7,9 @@ class Content extends Component{
 
     render(){
         // const {title, type, description,} = this.props.location.contentProps
-        // console.log(this.props && this.props.location.contentProps, "inside content")
+        // console.log(this.props && this.props.location.contentProps.contentData, "inside content")
         return(
+
             <div className="wrapper">
                 <div className="sidebar-heading flex-center">Title</div>
                 <div className="grid-col-2">

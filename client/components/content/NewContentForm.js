@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import Header from "../header/Header";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
 
-class AddContent extends Component {
+class NewContentForm extends Component {
     constructor() {
         super();
         this.state = {
             type: "",
-            url: "",
+            contentUrl: "",
             title: "",
             description: ""
         }
@@ -21,7 +21,7 @@ class AddContent extends Component {
 
         const body = {
             type: this.state.type,
-            url: this.state.url,
+            contentUrl: this.state.contentUrl,
             title: this.state.title,
             description: this.state.description,
 
@@ -102,4 +102,4 @@ class AddContent extends Component {
 }
 
 
-export default AddContent;
+export default NewContentForm;

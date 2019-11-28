@@ -4,8 +4,9 @@ class Pending extends Component{
     constructor(props) {
         super(props)
     }
+
     render(){
-        console.log(this.props.pendingStudentData)
+        // console.log(this.props.pendingStudentData)
         const { username, email, isActive, isInCampus, isAdmin, createdAt } = this.props.pendingStudentData
 
         return(

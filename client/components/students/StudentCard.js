@@ -4,7 +4,7 @@ class Student extends Component {
 
     render() {
         const { username, email, isActive, isInCampus, isAdmin, createdAt } = this.props.studentData
-        console.log(this.props.studentData.username)
+        // console.log(this.props.studentData.username)
         return (
             <div className="student-card">
                 <div className="sidebar-heading flex-center">{username}</div>
