@@ -7,7 +7,6 @@ class ContentCard extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="student-card">
                 <div className="grid-col-2 content-head">
@@ -15,11 +14,10 @@ class ContentCard extends Component {
                     <div>{this.props.type}</div>
                 </div>
                 <div className="content-card-description">{this.props.description}:</div>
-                <NavLink to="/content" className="content-link">Read More >>></NavLink>
+                <NavLink to={{ pathname: "/content", state: { name: "ricky" } }} className="content-link">Read More >>></NavLink>
             </div>
         )
     }
 }
-
 
 export default ContentCard;

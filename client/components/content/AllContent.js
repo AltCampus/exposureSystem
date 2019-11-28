@@ -32,8 +32,7 @@ class AllContents extends Component {
                     <div className="grid-col-3">
                         {
                             contentList && contentList.map(content => {
-                                return console.log(content),
-                                 <ContentCard {...content} />
+                                return <ContentCard {...content} />
                             })
                         }
                     </div>

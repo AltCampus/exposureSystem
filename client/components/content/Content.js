@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 
 class Content extends Component{
+    constructor(props) {
+        super(props)
+    }
+
     render(){
+        // const {name} = this.props.location.state
+        // console.log(name)
         return(
             <div className="wrapper">
                 <div className="sidebar-heading flex-center">Title</div>
