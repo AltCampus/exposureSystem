@@ -49,7 +49,7 @@ class LoginUser extends Component {
   // };
   handleSubmit = (e) => {
     e.preventDefault();
-    this.PostLoginData()
+    this.PostLoginDatas()
   }
 
 	PostLoginData = (e) => {
