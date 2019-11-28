@@ -13,7 +13,7 @@ require("dotenv").config();
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/userRoutes");
 var adminRoutes = require("./routes/adminRoutes");
-var newContent = require("./routes/newContent");
+var contentRouter = require("./routes/contentRouter");
 
 // Mounting The Express Application
 var app = express();
