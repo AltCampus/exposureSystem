@@ -23,7 +23,7 @@ router.put("/approved/:id", Auth.verifyAdminToken, Admin.verifyUser);
 router.delete("/remove/:id", Auth.verifyAdminToken, Admin.removeUser);
 
 // Student Pending
-router.get("/pending", Auth.verifyAdminToken, Admin.pendingUser);
+router.get("/pending",Admin.pendingUser);
 // Exporting The Router
 ////////////////////////////////
 
