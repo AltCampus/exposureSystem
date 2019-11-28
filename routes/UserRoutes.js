@@ -14,7 +14,7 @@ var Auth = require('../Utils/auth');
 router.post('/', Users.creatingUsers);
 
 // User Status Route
-router.get('/', Auth.verifyAdminToken, Users.userStatus);
+router.get('/', Users.userStatus);
 
 // Exporting The Router
 module.exports = router;

@@ -22,7 +22,7 @@ class AllContents extends Component {
 
     render() {
         const contentList = this.state && this.state.contentList
-        console.log(contentList)
+        // console.log(contentList)
 
         return (
             <div className="wrapper grid-dashboard">
@@ -32,7 +32,7 @@ class AllContents extends Component {
                     <div className="grid-col-3">
                         {
                             contentList && contentList.map(content => {
-                                return <ContentCard {...content} />
+                                return <ContentCard contentData={content} />
                             })
                         }
                     </div>

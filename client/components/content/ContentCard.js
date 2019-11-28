@@ -7,14 +7,15 @@ class ContentCard extends Component {
     }
 
     render() {
+        // console.log(this.props)
         return (
             <div className="student-card">
                 <div className="grid-col-2 content-head">
-                    <div>{this.props.title}</div>
-                    <div>{this.props.type}</div>
+                    <div>{this.props.contentData.title}</div>
+                    <div>{this.props.contentData.type}</div>
                 </div>
-                <div className="content-card-description">{this.props.description}:</div>
-                <NavLink to={{ pathname: "/content", state: { name: "ricky" } }} className="content-link">Read More >>></NavLink>
+                <div className="content-card-description">{this.props.contentData.description}:</div>
+                <NavLink to={{ pathname: "/content", contentProps: { name: this.props.contentData } }} className="content-link">Read More >>></NavLink>
             </div>
         )
     }
