@@ -32,10 +32,10 @@ class RegisterUser extends Component {
       }
     })
       .then(res => res.json())
-      .then(content => {
-        console.log(content);
+      .then(user => {
+        console.log(user, "final user");
       })
-      .then(this.props.history.push("/signin"));
+      .then(this.props.history.push("/login"));
   };
 
   render() {
