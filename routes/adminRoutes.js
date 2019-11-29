@@ -4,7 +4,7 @@ const admin = require("../controllers/adminControllers");
 const auth = require("../utils/auth");
 
 // Route For The Admin Registration
-// router.post('/registration', admin.adminRegistration);
+router.post('/registration', admin.adminRegistration);
 
 // Route For Verify The Admin
 router.post("/login", admin.adminLogin);

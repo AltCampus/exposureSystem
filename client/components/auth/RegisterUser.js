@@ -39,7 +39,6 @@ class RegisterUser extends Component {
   };
 
   render() {
-    // console.log("signup")
     return (
       <div className="wrapper card text-center">
         <h1 className="heading">Register</h1>

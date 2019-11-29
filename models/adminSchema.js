@@ -10,10 +10,15 @@ const Schema = mongoose.Schema;
 // Creating The Admin Schema
 const adminSchema = new Schema(
 	{
-		adminname: {
+		username: {
 			type: String,
 			required: true,
 			// unique: true
+		},
+		email:{
+			type:String,
+			require:true,
+			unique:true
 		},
 		password: {
 			type: String,
@@ -39,5 +44,4 @@ adminSchema.methods.confirmPassword = function(password) {
 // Creating The Model Of The Schema
 const Admin = mongoose.model('Admin', adminSchema);
 
-// Exporting The Model Of Admin Schema
 module.exports = Admin;

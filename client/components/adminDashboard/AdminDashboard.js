@@ -1,5 +1,3 @@
-//Importing react
-
 import React, { Component } from "react";
 // import Header from "../header/Header";
 import AdminSidebar from "./AdminSidebar";
