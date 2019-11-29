@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SignUp extends Component {
+class RegisterUser extends Component {
   constructor() {
     super();
     this.state = {
@@ -10,7 +10,7 @@ class SignUp extends Component {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -18,14 +18,31 @@ class SignUp extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    console.log("handleSubmit called");
+    const data = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password
+    };
+    fetch("/users", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(user => {
+        console.log(user, "final user");
+      })
+      .then(this.props.history.push("/login"));
   };
 
   render() {
-    console.log("signup")
     return (
       <div className="wrapper card text-center">
-        <h1 className="heading">Sign Up</h1>
-        <form className="" onSubmit={this.handleSubmit}>
+        <h1 className="heading">Register</h1>
+        <form onSubmit={this.handleSubmit}>
           <input
             className="input"
             type="text"
@@ -38,7 +55,7 @@ class SignUp extends Component {
 
           <input
             className="input"
-            type="text"
+            type="email"
             name="email"
             placeholder="Enter email"
             onChange={this.handleChange}
@@ -63,4 +80,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default RegisterUser;

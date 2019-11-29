@@ -41,6 +41,10 @@ userSchema.pre('save', function(next) {
 		next();
 	}
 });
+// Comparing The Hash Password With Plane Password
+userSchema.methods.confirmPassword = function(password) {
+	return bcrypt.compareSync(password, this.password);
+};
 
 //Creating User Model
 const User = mongoose.model('User', userSchema);

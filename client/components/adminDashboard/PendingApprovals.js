@@ -45,5 +45,4 @@ class PendingApprovals extends Component {
     }
 }
 
-
 export default PendingApprovals;

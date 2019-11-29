@@ -11,8 +11,8 @@ class AdminSidebar extends Component{
             <>
                 <div className="flex-column flex-center sidebar">
                 <div className="sidebar-heading flex-center">Quick Access</div>
-                <NavLink className="dash-link" activeClassName="active" to="/allcontent">All Contents</NavLink>
-                <NavLink className="dash-link" activeClassName="active" to="/addcontent">Add Content</NavLink>
+                <NavLink className="dash-link" activeClassName="active" to="/contentlist">All Contents</NavLink>
+                <NavLink className="dash-link" activeClassName="active" to="/newcontentform">Add Content</NavLink>
                 <NavLink className="dash-link" activeClassName="active" to="/students">Students</NavLink>
                 <NavLink className="dash-link" activeClassName="active" to="/pendingapprovals">Pending Approvals</NavLink>
                 </div>

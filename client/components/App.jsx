@@ -2,8 +2,8 @@ import React from "react";
 import "../assets/stylesheets/style.scss";
 import Header from "./header/Header";
 import Home from "./home/Home";
-import SignUp from "./auth/SignUp";
-import SignIn from "./auth/SignIn";
+import RegisterUser from "./auth/RegisterUser";
+import LoginUser from "./auth/LoginUser";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import AdminLogin from "./auth/AdminLogin";
 import Page404 from "./Page404";
@@ -23,8 +23,8 @@ class App extends React.Component {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/signin" component={SignIn} />
+            <Route path="/register" component={RegisterUser} />
+            <Route path="/login" component={LoginUser} />
             <Route path="/admin" component={AdminLogin} />
             <Route exact path="/admindashboard" component={AdminDashboard} />
             <Route path="/contentlist" component={ContentList} />
