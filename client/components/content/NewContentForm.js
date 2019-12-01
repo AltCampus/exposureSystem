@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "../header/Header";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
 
-class AddContent extends Component {
+class NewContentForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -35,7 +35,7 @@ class AddContent extends Component {
       .then(res => res.json())
       .then(content => {
         console.log(content);
-        this.props.history.push("/allcontent");
+        this.props.history.push("/content/list");
       });
   };
 
@@ -99,4 +99,4 @@ class AddContent extends Component {
   }
 }
 
-export default AddContent;
+export default NewContentForm;

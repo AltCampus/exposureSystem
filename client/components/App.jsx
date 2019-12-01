@@ -8,8 +8,8 @@ import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import AdminLogin from "./auth/AdminLogin";
 import Page404 from "./Page404";
 import AdminDashboard from "./adminDashboard/AdminDashboard";
-import AllContents from "./content/AllContent";
-import AddContent from "./content/AddContent";
+import ContentList from "./content/ContentList";
+import NewContentForm from "./content/NewContentForm";
 import Students from "./students/Students";
 import PendingApprovals from "./adminDashboard/PendingApprovals";
 import ContentSubmission from "./content/ContentSubmission";
@@ -27,11 +27,11 @@ class App extends React.Component {
             <Route path="/login" component={LoginUser} />
             <Route path="/admin" component={AdminLogin} />
             <Route exact path="/admindashboard" component={AdminDashboard} />
-            <Route path="/allcontent" component={AllContents} />
-            <Route path="/addcontent" component={AddContent} />
+            <Route path="/content/list" component={ContentList} />
+            <Route path="/content/new" component={NewContentForm} />
             <Route path="/students" component={Students} />
             <Route path="/pendingapprovals" component={PendingApprovals} />
-            <Route path="/content" component={Content} />
+            <Route path="/content/:contentid" component={Content} />
             <Route path="/content-submission" component={ContentSubmission} />
             <Route component={Page404} />
           </Switch>

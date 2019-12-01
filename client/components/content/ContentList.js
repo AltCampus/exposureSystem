@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
 import ContentCard from "./ContentCard";
 
-class AllContents extends Component {
+class ContentList extends Component {
   render() {
     return (
       <div className="wrapper grid-dashboard">
@@ -22,4 +22,4 @@ class AllContents extends Component {
   }
 }
 
-export default AllContents;
+export default ContentList;
