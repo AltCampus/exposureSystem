@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 //Require Mongose
 const mongoose = require("mongoose");
 
@@ -28,7 +29,7 @@ const userSchema = new Schema(
     isActive: Boolean,
     isAdmin: false,
     isVerified: { type: Boolean, default: false },
-    sentContent: [{ type: ObjectId, ref: "contentSchema" }]
+    sentContent: [{ type: Schema.Types.ObjectId, ref: "contentSchema" }]
   },
   {
     timestamps: true
@@ -47,7 +48,6 @@ userSchema.methods.confirmPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-//Creating User Model
 const User = mongoose.model("User", userSchema);
 
 //Exporting User Model

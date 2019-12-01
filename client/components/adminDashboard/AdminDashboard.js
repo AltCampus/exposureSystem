@@ -2,8 +2,7 @@ import React, { Component } from "react";
 // import Header from "../header/Header";
 import AdminSidebar from "./AdminSidebar";
 
-//Creating dashboard component
-
+// eslint-disable-next-line react/prefer-stateless-function
 class AdminDashboard extends Component {
   render() {
     return (
