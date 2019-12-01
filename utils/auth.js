@@ -3,15 +3,14 @@ var jwt = require('jsonwebtoken');
 
 // Exporting The Module Of Jwt Token
  function generateToken (payload) {
-	return jwt.sign(payload, process.env.SECRETID);
+	return jwt.sign(payload, "abcdef");
 };
 
 // Verify The Admin Token
 function verifyAdminToken (req, res, next) {
 	var Token = req.headers.authorization || '';
-	console.log(req.headers,"Token")
 	if (Token) {
-		jwt.verify(Token, process.env.SECRETID, (err, Decoded) => {
+		jwt.verify(Token, "abcdef", (err, Decoded) => {
 			if (err) res.json({ Token: 'Not Admin' });
 			next();
 		});

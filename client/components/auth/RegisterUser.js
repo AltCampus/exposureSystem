@@ -39,7 +39,6 @@ class RegisterUser extends Component {
   };
 
   render() {
-    // console.log("signup")
     return (
       <div className="wrapper card text-center">
         <h1 className="heading">Register</h1>
@@ -74,7 +73,7 @@ class RegisterUser extends Component {
           />
           <br></br>
 
-          <button className="button">Submit</button>
+          <button className="button">Register</button>
         </form>
       </div>
     );

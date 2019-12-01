@@ -15,39 +15,64 @@ class LoginUser extends Component {
     });
   };
 
+  // This Section is comment out
+
+  // handleSubmit = e => {
+  //   e.preventDefault();
+  //   this.postLoginData();
+  // };
+
+  // postLoginData = () => {
+  //   const user = {
+  //     email: this.state.email,
+  //     password: this.state.password
+  //   };
+  //   console.log(user);
+
+  //   fetch("/users/login", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(user)
+  //   })
+  //     .then(res => res.json())
+  //     .then(user => {
+  //       console.log(user);
+  //       // this.props.dispatch({ type: "UpdateState", UserData: user });
+  //       // localStorage.setItem("Data", JSON.stringify(user));
+  //       // localStorage.setItem("Token", user.user.token);
+  //       // localStorage.Token
+  //       //   ? this.props.history.push("/Homepage")
+  //       //   : this.setState({ ...this.state, autherisation: user.user });
+  //     });
+  // };
   handleSubmit = e => {
     e.preventDefault();
     this.postLoginData();
   };
 
-  postLoginData = () => {
-    const user = {
+  postLoginData = e => {
+    var studentData = {
       email: this.state.email,
       password: this.state.password
     };
-    console.log(user);
-
+    console.log(studentData, "student data");
     fetch("/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(studentData)
     })
       .then(res => res.json())
       .then(user => {
-        console.log(user);
-        // this.props.dispatch({ type: "UpdateState", UserData: user });
-        // localStorage.setItem("Data", JSON.stringify(user));
-        // localStorage.setItem("Token", user.user.token);
-        // localStorage.Token
-        //   ? this.props.history.push("/Homepage")
-        //   : this.setState({ ...this.state, autherisation: user.user });
-      });
+        console.log(user.Token, "user data");
+      })
+      .then(this.props.history.push("/"));
   };
 
   render() {
-    // console.log(this.state);
     return (
       <div>
         <div className="wrapper card text-center">
@@ -62,7 +87,7 @@ class LoginUser extends Component {
                 onChange={this.handleChange}
                 value={this.state.email}
               />
-              <br></br>
+              <br />
 
               <input
                 className="input"
@@ -73,7 +98,7 @@ class LoginUser extends Component {
                 value={this.state.password}
               />
 
-              <br></br>
+              <br />
 
               <button className="button" onClick={this.handleSubmit}>
                 Submit
