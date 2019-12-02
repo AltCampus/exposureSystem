@@ -14,7 +14,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/userRoutes");
 var adminRoutes = require("./routes/adminRoutes");
 var contentRouter = require("./routes/contentRouter");
-
+var feedbackRouter = require("./routes/feedbackRoutes")
 // Mounting The Express Application
 var app = express();
 
@@ -56,9 +56,12 @@ mongoose.connect(
 );
 
 // Providing The Paths
-app.use("/admin", adminRoutes);
-app.use("/users", usersRouter);
-app.use("/content", contentRouter); //changed from ("/newContent", newContent)
+app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/users", usersRouter);
+app.use("/api/v1/content", contentRouter);
+app.use("/api/v1/feedback",feedbackRouter)
+app.use("/api/v1/feedback",feedbackRouter)
+ //changed from ("/newContent", newContent)
 // app.use('/newContent', newContent);
 app.use("/", indexRouter);
 

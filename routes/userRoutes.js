@@ -10,6 +10,6 @@ router.post("/", users.registerUser); //changed from creatingUsers
 router.post("/login", users.loginUser); //changed from userLogin
 
 // User Status Route
-router.get("/all", auth.verifyAdminToken, users.userStatus);
+router.get("/all", auth.verifyToken, users.userStatus);
 
 module.exports = router;
