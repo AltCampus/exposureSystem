@@ -1,21 +1,22 @@
 const Content = require("../models/contentSchema");
 
 module.exports = {
-  create: (req, res) => {
+  create:   (req, res) => {
     // Create content
 
-    const content = new Content(req.body);
+    const content =  new Content(req.body);
+    console.log(req.body, "inside content")
 
-    console.log(content);
-
+    // console.log(content);
     // Save content in the database
     content
       .save()
       .then(data => {
+        // console.log(data, "content data")
         res.send(data);
       })
       .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
           message:
             err.message ||
             "Some error occurred while creating the Content piece."
@@ -23,8 +24,6 @@ module.exports = {
       });
   },
 
-  ///////////////////////
-  // Retrieve and return all content from the database.
   findAll: (req, res) => {
     Content.find()
       .then(contents => {
@@ -38,8 +37,6 @@ module.exports = {
       });
   },
 
-  //////////////////////
-  // Find a single content with a contentId
   findOne: (req, res) => {
     Content.findById(req.params.contentId)
       .then(content => {
@@ -48,7 +45,7 @@ module.exports = {
             message: "Content not found with id " + req.params.contentId
           });
         }
-        res.send(content);
+        res.json({ content });
       })
       .catch(err => {
         if (err.kind === "ObjectId") {
@@ -56,14 +53,12 @@ module.exports = {
             message: "Content not found with id " + req.params.contentId
           });
         }
-        return res.status(500).send({
+        return res.status(500).json({
           message: "Error retrieving content with id " + req.params.contentId
         });
       });
   },
 
-  /////////////////////
-  // Update a content identified by the contentId in the request
   update: (req, res) => {
     // Validate Request
     //   if (!req.body.description) {
@@ -72,7 +67,6 @@ module.exports = {
     //     });
     //   }
 
-    // Find content and update it with the request body
     Content.findByIdAndUpdate(
       req.params.contentId,
       {
@@ -89,7 +83,7 @@ module.exports = {
             message: "Content not found with id " + req.params.contentId
           });
         }
-        res.send(content);
+        res.json({ content });
       })
       .catch(err => {
         if (err.kind === "ObjectId") {
@@ -97,23 +91,21 @@ module.exports = {
             message: "Content not found with id " + req.params.contentId
           });
         }
-        return res.status(500).send({
+        return res.status(500).json({
           message: "Error updating content with id " + req.params.contentId
         });
       });
   },
 
-  /////////////////////
-  // Delete content with the specified contentId in the request
   delete: (req, res) => {
     Content.findByIdAndRemove(req.params.contentId)
       .then(content => {
         if (!content) {
-          return res.status(404).send({
+          return res.status(404).json({
             message: "Content not found with id " + req.params.contentId
           });
         }
-        res.send({ message: "Content deleted successfully!" });
+        res.json({ message: "Content deleted successfully!" });
       })
       .catch(err => {
         if (err.kind === "ObjectId" || err.name === "NotFound") {
@@ -121,7 +113,7 @@ module.exports = {
             message: "Content not found with id " + req.params.contentId
           });
         }
-        return res.status(500).send({
+        return res.status(500).json({
           message: "Could not delete content with id " + req.params.contentId
         });
       });

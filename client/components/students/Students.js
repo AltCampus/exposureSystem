@@ -1,26 +1,29 @@
 import React, { Component } from "react";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
-import Student from "./StudentCard";
+import StudentCard from "./StudentCard";
 
 class Students extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      users: []
+      studentList: null
     };
   }
 
   componentDidMount() {
-    fetch("http:localhost:3000/users")
+    fetch("/users", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
       .then(res => res.json())
-      .then(users => {
-        const response = Users.users;
-        this.setState({ ...this.state, users: response });
-      });
+      .then(data => this.setState({ studentList: data.users }));
   }
 
   render() {
+    const studentList = this.state && this.state.studentList;
+    // console.log(studentList)
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
@@ -29,9 +32,12 @@ class Students extends Component {
             Students
           </h3>
           <div className="grid-col-3">
-            <ol>
-              <Student />
-            </ol>
+            {studentList &&
+              studentList.map(student => {
+                return (
+                  console.log(student), (<StudentCard studentData={student} />)
+                );
+              })}
           </div>
         </div>
       </div>

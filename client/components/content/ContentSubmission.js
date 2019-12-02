@@ -2,23 +2,25 @@ import React , {Component} from "react";
 
 
 class ContentSubmission extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
 
         }
     }
+
     render(){
-        
+        // console.log(this.props)
         return(
             <div className="wrapper">
                 <div className="sidebar-heading flex-center">Title</div>
                 <div className="grid-col-2">
                     <div className="submission-head flex-center">
-                        <div>Assigned to:</div>
-                        <div>Paired with:</div>
+                        <div>Description:</div>
                     </div>
                     <div className="submission-head flex-center">
+                        <div>Assigned to:</div>
+                        <div>Paired with:</div>
                         <div>Type:</div>
                         <div>Due by:</div>
                     </div>
