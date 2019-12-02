@@ -3,7 +3,30 @@ import AdminSidebar from "../adminDashboard/AdminSidebar";
 import ContentCard from "./ContentCard";
 
 class ContentList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      contentList: null
+    };
+  }
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  componentDidMount() {
+    fetch("/newContent", {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(data => this.setState({ ...this.state, contentList: data }));
+  }
+
   render() {
+    const contentList = this.state && this.state.contentList;
+    console.log(contentList);
+
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
@@ -12,9 +35,10 @@ class ContentList extends Component {
             Content
           </h3>
           <div className="grid-col-3">
-            <ContentCard />
-            <ContentCard />
-            <ContentCard />
+            {contentList &&
+              contentList.map(content => {
+                return <ContentCard contentData={content} />;
+              })}
           </div>
         </div>
       </div>
