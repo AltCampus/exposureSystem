@@ -10,10 +10,10 @@ router.post("/new", content.create);
 router.get("/", content.findAll);
 
 //TODO
-router.get("/:contentId", content.findOne); //adddress should be /content/:contentid
+router.get("/:contentId", content.findOne);
 
-router.put("/:contentId", content.update); //adddress should be /content/:contentid
+router.put("/:contentId", content.update);
 
-router.delete("/:contentId", content.delete); //adddress should be /content/:contentid
+router.delete("/:contentId", content.delete);
 
 module.exports = router;

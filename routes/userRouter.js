@@ -8,6 +8,9 @@ router.post("/", users.registerUser); //changed from creatingUsers
 router.post("/login", users.loginUser); //changed from userLogin
 
 // User Status Route
+
+//TODO
+//Relocate this line
 router.get("/all", auth.verifyAdminToken, users.userStatus);
 
 module.exports = router;

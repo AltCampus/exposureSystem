@@ -11,9 +11,9 @@ var ejs = require("ejs");
 require("dotenv").config();
 
 // Requring The Routing Section
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/userRoutes");
-var adminRoutes = require("./routes/adminRoutes");
+var indexRouter = require("./routes/indexRouter");
+var usersRouter = require("./routes/userRouter");
+var adminRoutes = require("./routes/adminRouter");
 var contentRouter = require("./routes/contentRouter");
 
 // Mounting The Express Application
