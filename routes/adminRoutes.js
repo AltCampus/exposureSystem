@@ -5,8 +5,6 @@ const auth = require("../utils/auth");
 
 //app.use('/admin', adminRoutes);
 
-router.post("/registration", admin.adminRegistration);
-
 router.post("/login", admin.adminLogin);
 
 //student approved

@@ -5,14 +5,6 @@ var User = require('../models/userSchema');
 // Requring The SchemaModel of Admin
 var Admin = require('../models/adminSchema');
 
-// Admin Registration Middleware
-function adminRegistration(req, res, next) {
-	Admin.create(req.body, (err, adminCreated) => {
-		if (err) return next(err);
-		res.status(200).json({ admin: adminCreated });
-	});
-}
-
 // Admin Login Middleware
 function adminLogin(req, res, next) {
 	var { adminname, password } = req.body;
@@ -72,5 +64,4 @@ module.exports = {
 	verifyUser,
 	removeUser,
 	pendingUser,
-	adminRegistration
 };
