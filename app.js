@@ -50,10 +50,13 @@ if (process.env.NODE_ENV === "development") {
 mongoose.connect(
   "mongodb://localhost:27017/exposuresystem",
   { useNewUrlParser: true },
-  err => {
-    err
-      ? console.log("Not Connected To DB")
-      : console.log("Connected Sucessfully TO DB");
+  function(err) {
+    if (err) {
+      console.log(err, "Not Connected To DB");
+    } else {
+      console.log("Connected Sucessfully TO DB");
+      require("./utils/seed");
+    }
   }
 );
 

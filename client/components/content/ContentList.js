@@ -14,6 +14,8 @@ class ContentList extends Component {
   };
 
   componentDidMount() {
+    //TODO
+    //change route
     fetch("/newContent", {
       headers: {
         "Content-Type": "application/json"

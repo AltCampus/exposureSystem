@@ -25,7 +25,11 @@ class AdminSidebar extends Component {
           >
             Add Content
           </NavLink>
-          <NavLink activeClassName="active" to="/students">
+          <NavLink
+            className="dash-link"
+            activeClassName="active"
+            to="/students"
+          >
             Students
           </NavLink>
           <NavLink
