@@ -9,6 +9,5 @@ Admin.find({ isAdmin: true }, (err, adminUser) => {
       isAdmin: true
     });
     NewAdmin.save();
-    console.log(NewAdmin, "admin created");
   }
 });

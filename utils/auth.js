@@ -6,12 +6,12 @@ var jwt = require('jsonwebtoken');
 	return jwt.sign(payload, "abcdef");
 };
 
-// Verify The Admin Token
-function verifyAdminToken (req, res, next) {
+// Verify The  Token
+function verifyToken (req, res, next) {
 	var Token = req.headers.authorization || '';
 	if (Token) {
 		jwt.verify(Token, "abcdef", (err, Decoded) => {
-			if (err) res.json({ Token: 'Not Admin' });
+			if (err) res.json({ Token: 'Token Not Matched' });
 			next();
 		});
 	} else {
@@ -19,4 +19,4 @@ function verifyAdminToken (req, res, next) {
 	}
 };
 
-module.exports = {generateToken, verifyAdminToken}
+module.exports = {generateToken, verifyToken}

@@ -11,6 +11,6 @@ router.post("/login", users.loginUser); //changed from userLogin
 
 //TODO
 //Relocate this line
-router.get("/all", auth.verifyAdminToken, users.userStatus);
+router.get("/all", auth.verifyToken, users.userStatus);
 
 module.exports = router;
