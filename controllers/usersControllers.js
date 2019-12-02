@@ -2,7 +2,6 @@ const User = require('../models/userSchema');
 const auth = require('../utils/auth');
 
 function registerUser(req, res, next) {
-	console.log('register user called');
 	User.create(req.body, (err, UserCreated) => {
 		if (err) return next(err);
 		res.status(200).json({ User: UserCreated });
@@ -16,7 +15,6 @@ function loginUser(req, res, next) {
 		if (!user) res.json({ user: 'User Not Found' });
 		if (!user.confirmPassword(password)) res.json({ user: 'Password Is Not Correct' });
     var token = auth.generateToken(username);
-    console.log(token)
 		res.status(200).json({ user: user, Token: token });
 	});
 }

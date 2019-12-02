@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Making The Submission Schema
-const submissionSchema = new Schema(
+const feedbackSchema = new Schema(
 	{
 		contentSummary: {
 			type: String,
@@ -15,7 +15,7 @@ const submissionSchema = new Schema(
 );
 
 // Making The Model Of The Schema
-const Submission = mongoose.model('Submission', submissionSchema);
+const Feedback = mongoose.model('Feedback', feedbackSchema);
 
 // Exporting The Schema
-module.exports = Submission;
+module.exports = Feedback;

@@ -81,8 +81,7 @@ module.exports = {
             message: "Content not found with id " + req.params.contentId
           });
         }
-        res.json({ content });
-      })
+    })
       .catch(err => {
         if (err.kind === "ObjectId") {
           return res.status(404).send({

@@ -1,4 +1,3 @@
-// Requring The FeedBack Schema
 const Feedback = require('../models/feedbackSchema');
 // Handling The Route For The Feedback Submission
 function addFeedback(req, res, next) {
