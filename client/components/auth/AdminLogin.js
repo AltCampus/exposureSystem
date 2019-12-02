@@ -31,7 +31,7 @@ class AdminLogin extends Component {
       body: JSON.stringify(adminCredentials)
     })
       .then(res => res.json())
-      .then(this.props.history.push("/admindashboard"));
+      .then(this.props.history.push("/admin/dashboard"));
   };
   render() {
     return (
