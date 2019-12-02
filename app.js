@@ -1,10 +1,11 @@
-// All Requires
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
+var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var ejs = require("ejs");
 
 // Requring The DotEnv file
 require("dotenv").config();
@@ -24,7 +25,8 @@ app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -48,10 +50,13 @@ if (process.env.NODE_ENV === "development") {
 mongoose.connect(
   "mongodb://localhost:27017/exposuresystem",
   { useNewUrlParser: true },
-  err => {
-    err
-      ? console.log("Not Connected To DB")
-      : console.log("Connected Sucessfully TO DB");
+  function(err) {
+    if (err) {
+      console.log(err, "Not Connected To DB");
+    } else {
+      console.log("Connected Sucessfully TO DB");
+      require("./utils/seed");
+    }
   }
 );
 

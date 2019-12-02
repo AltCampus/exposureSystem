@@ -3,19 +3,17 @@ var router = express.Router();
 
 const content = require("../controllers/content.controller.js");
 
-// Create new content
+// app.use("/content", contentRouter);
+
 router.post("/new", content.create);
 
-// Retrieve all content
 router.get("/", content.findAll);
 
-// Retrieve single content with contentId
-router.get("/:contentId", content.findOne);
+//TODO
+router.get("/:contentId", content.findOne); //adddress should be /content/:contentid
 
-// Update content with contentId
-router.put("/:contentId", content.update);
+router.put("/:contentId", content.update); //adddress should be /content/:contentid
 
-// Delete content with contentId
-router.delete("/:contentId", content.delete);
+router.delete("/:contentId", content.delete); //adddress should be /content/:contentid
 
 module.exports = router;

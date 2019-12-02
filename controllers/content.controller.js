@@ -1,13 +1,17 @@
 const Content = require("../models/contentSchema");
 
 module.exports = {
+  //TODO
+  //rrestructure controller
   create: (req, res) => {
     const content = new Content(req.body);
+    console.log(req.body, "inside content");
 
     content
       .save()
       .then(data => {
-        res.json({ data });
+        // console.log(data, "content data")
+        res.send(data);
       })
       .catch(err => {
         res.status(500).json({
@@ -114,7 +118,6 @@ module.exports = {
   }
 };
 
-// /////////////////////////////////////////////////////////////////////////////////////////////
 // // Create and Save a new content
 // exports.create = (req, res) => {
 //   // Create content
@@ -142,7 +145,6 @@ module.exports = {
 //     });
 // };
 
-// ///////////////////////
 // // Retrieve and return all content from the database.
 // exports.findAll = (req, res) => {
 //   Content.find()
@@ -156,7 +158,6 @@ module.exports = {
 //     });
 // };
 
-// //////////////////////
 // // Find a single content with a contentId
 // exports.findOne = (req, res) => {
 //   Content.findById(req.params.contentId)
@@ -180,7 +181,6 @@ module.exports = {
 //     });
 // };
 
-// /////////////////////
 // // Update a content identified by the contentId in the request
 // exports.update = (req, res) => {
 //   // Validate Request
@@ -221,7 +221,6 @@ module.exports = {
 //     });
 // };
 
-// /////////////////////
 // // Delete content with the specified contentId in the request
 // exports.delete = (req, res) => {
 //   Content.findByIdAndRemove(req.params.contentId)

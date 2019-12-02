@@ -14,9 +14,9 @@ function loginUser(req, res, next) {
 	User.findOne({ email }, (err, user) => {
 		if (err) return next(err);
 		if (!user) res.json({ user: 'User Not Found' });
-		if (!user.confirmPassword(password)) console.log('line 19');
-		res.json({ user: 'Password Is Not Correct' });
-		var token = auth.generateToken(username);
+		if (!user.confirmPassword(password)) res.json({ user: 'Password Is Not Correct' });
+    var token = auth.generateToken(username);
+    console.log(token)
 		res.status(200).json({ user: user, Token: token });
 	});
 }

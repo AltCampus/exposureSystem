@@ -3,10 +3,10 @@ const router = express.Router();
 const admin = require("../controllers/adminControllers");
 const auth = require("../utils/auth");
 
-// Route For The Admin Registration
-// router.post('/registration', admin.adminRegistration);
+//app.use('/admin', adminRoutes);
 
-// Route For Verify The Admin
+router.post("/registration", admin.adminRegistration);
+
 router.post("/login", admin.adminLogin);
 
 //student approved
