@@ -5,11 +5,13 @@ module.exports = {
   //rrestructure controller
   create: (req, res) => {
     const content = new Content(req.body);
+    console.log(req.body, "inside content");
 
     content
       .save()
       .then(data => {
-        res.json({ data });
+        // console.log(data, "content data")
+        res.send(data);
       })
       .catch(err => {
         res.status(500).json({
