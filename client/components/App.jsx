@@ -10,7 +10,7 @@ import Page404 from "./Page404";
 import AdminDashboard from "./adminDashboard/AdminDashboard";
 import ContentList from "./content/ContentList";
 import NewContentForm from "./content/NewContentForm";
-import Students from "./students/Students";
+import Students from "./students/StudentList";
 import PendingApprovals from "./adminDashboard/PendingApprovals";
 import ContentFeedback from "./content/ContentFeedback";
 import Content from "./content/Content";

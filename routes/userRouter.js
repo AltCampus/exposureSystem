@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-var users = require("../controllers/usersControllers");
+var users = require("../controllers/usersController");
 var auth = require("../utils/auth");
 
-router.post("/", users.registerUser); //changed from creatingUsers
+router.post("/register", users.registerUser);
 
-router.post("/login", users.loginUser); //changed from userLogin
+router.post("/login", users.loginUser);
 
 // User Status Route
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
 import StudentCard from "./StudentCard";
 
-class Students extends Component {
+class StudentList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,8 +11,7 @@ class Students extends Component {
   }
 
   componentDidMount() {
-    fetch("/users", {
-      method: "GET",
+    fetch("/api/v1/users/all", {
       headers: {
         "Content-Type": "application/json"
       }
@@ -45,4 +44,4 @@ class Students extends Component {
   }
 }
 
-export default Students;
+export default StudentList;

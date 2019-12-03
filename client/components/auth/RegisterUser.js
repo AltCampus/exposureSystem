@@ -24,7 +24,7 @@ class RegisterUser extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    fetch("/users", {
+    fetch("/api/v1/users/register", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
