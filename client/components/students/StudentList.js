@@ -6,24 +6,24 @@ class StudentList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      studentList: null
+      studentList: ""
     };
   }
-  
+
   componentDidMount() {
     fetch("/api/v1/users/all", {
       headers: {
-        // "Authorization": `${localStorage.getItem("userToken")}`,
+        "Authorization": `${localStorage.getItem("adminToken")}`,
         "Content-Type": "application/json"
       }
     })
       .then(res => res.json())
-      // .then(data => this.setState({ ...this.state, studentList: data }));
-      .then(data => console.log(data))
+      .then(data => {
+        this.setState({ ...this.state, studentList: data.users })
+      });
   }
-
   render() {
-    console.log(this.state && this.state.studentList)
+    console.log(this.state.studentList, "in student lst")
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
@@ -33,7 +33,10 @@ class StudentList extends Component {
           </h3>
           <div className="grid-col-3">
             {
-              <StudentCard />
+              this.state.studentList && this.state.studentList.map(student => {
+                return console.log(student),
+                <StudentCard student={student} />
+              })
             }
           </div>
         </div>
