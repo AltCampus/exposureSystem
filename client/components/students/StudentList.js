@@ -13,14 +13,17 @@ class StudentList extends Component {
   componentDidMount() {
     fetch("/api/v1/users/all", {
       headers: {
+        // "Authorization": `${localStorage.getItem("userToken")}`,
         "Content-Type": "application/json"
       }
     })
       .then(res => res.json())
-      .then(data => this.setState({ ...this.state, studentList: data }));
+      // .then(data => this.setState({ ...this.state, studentList: data }));
+      .then(data => console.log(data))
   }
 
   render() {
+    console.log(this.state && this.state.studentList)
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
@@ -29,13 +32,9 @@ class StudentList extends Component {
             Students
           </h3>
           <div className="grid-col-3">
-            {/* {studentList &&
-              studentList.map(student => {
-                return (
-                  console.log(student), (<StudentCard studentData={student} />)
-                );
-              })} */}
+            {
               <StudentCard />
+            }
           </div>
         </div>
       </div>

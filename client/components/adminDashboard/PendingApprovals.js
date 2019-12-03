@@ -14,9 +14,8 @@ class PendingApprovals extends Component {
     fetch("/api/v1/admin/pending", {
       method: "GET",
       headers: {
-        "Authorization": `Token ${localStorage.getItem('Admintoken')}`,
+        // "Authorization": `Token ${localStorage.getItem('Admintoken')}`,
         "Content-Type": "application/json",
-
       } 
     })
       .then(res => res.json())
@@ -39,8 +38,6 @@ class PendingApprovals extends Component {
                 pendingStudentList.map(pendingStudent => {
                   return <PendingCard pendingStudentData={pendingStudent} />;
                 })} */}
-
-                <PendingCard />
             </div>
           </div>
         </div>

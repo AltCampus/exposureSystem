@@ -34,7 +34,7 @@ class LoginUser extends Component {
       body: JSON.stringify(studentData)
     })
       .then(res => res.json())
-      .then(user => console.log(user))
+      // .then(user => localStorage.setItem("userToken", user.Token))
       .then(this.props.history.push("/"));
     //TODO
     //change redirect route

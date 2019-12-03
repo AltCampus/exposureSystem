@@ -8,7 +8,7 @@ var jwt = require('jsonwebtoken');
 
 // Verify The  Token
 function verifyToken (req, res, next) {
-	var Token = req.headers.authorization || '';
+	var Token = req.headers.authorization || '';	
 	if (Token) {
 		jwt.verify(Token, "abcdef", (err, Decoded) => {
 			if (err) res.json({ Token: 'Token Not Matched' });

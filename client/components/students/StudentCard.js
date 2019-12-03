@@ -9,7 +9,7 @@ class Student extends Component {
                 <div className="student-details">
                     <div>
                         <div className="student-pfp">
-
+                        
                         </div>
                     </div>
                     <div>Details:

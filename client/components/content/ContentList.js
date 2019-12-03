@@ -38,10 +38,9 @@ class ContentList extends Component {
           <div className="grid-col-3">
             {
               contentList && contentList.map(content => {
-                return <ContentCard content={content}/>
+                return <ContentCard key={content.id} content={content} />
               })
             }
-
           </div>
         </div>
       </div>
