@@ -32,7 +32,6 @@ class AdminLogin extends Component {
     })
       .then(res => res.json())
       .then(this.props.history.push("/admin/dashboard"));
-    console.log("admin logged in");
   };
   render() {
     return (
