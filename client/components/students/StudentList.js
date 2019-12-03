@@ -23,7 +23,6 @@ class StudentList extends Component {
       });
   }
   render() {
-    console.log(this.state.studentList, "in student lst")
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
@@ -33,9 +32,9 @@ class StudentList extends Component {
           </h3>
           <div className="grid-col-3">
             {
-              this.state.studentList && this.state.studentList.map(student => {
-                return console.log(student),
-                <StudentCard student={student} />
+              this.state.studentList && this.state.studentList.map((student, i) => {
+
+                return <StudentCard key={i} student={student} />
               })
             }
           </div>

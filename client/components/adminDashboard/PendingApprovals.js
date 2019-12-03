@@ -38,6 +38,7 @@ class PendingApprovals extends Component {
                 pendingStudentList.map(pendingStudent => {
                   return <PendingCard pendingStudentData={pendingStudent} />;
                 })} */}
+                <PendingCard />
             </div>
           </div>
         </div>

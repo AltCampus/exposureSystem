@@ -4,7 +4,6 @@ class Student extends Component {
 
     render() {
         const { username, email, createdAt } = this.props.student
-        // console.log(this.props.student)
         return (
             <div className="student-card">
                 <div className="sidebar-heading flex-center">{username}</div>
