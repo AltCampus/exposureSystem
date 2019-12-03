@@ -25,7 +25,7 @@ class NewContentForm extends Component {
       title: this.state.title,
       description: this.state.description
     };
-    fetch("/content/new", {
+    fetch("http://localhost:3000/api/v1/content/new", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

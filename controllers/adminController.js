@@ -5,6 +5,9 @@ var User = require("../models/userSchema");
 // Requring The SchemaModel of Admin
 var Admin = require("../models/adminSchema");
 
+//TODO
+//rrestructure controller
+
 // Admin Login Middleware
 function adminLogin(req, res, next) {
   var { email, password } = req.body;

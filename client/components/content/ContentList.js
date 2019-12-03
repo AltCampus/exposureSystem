@@ -16,7 +16,7 @@ class ContentList extends Component {
   componentDidMount() {
     //TODO
     //change route
-    fetch("/newContent", {
+    fetch("http://localhost:3000/api/v1/content/list", {
       headers: {
         "Content-Type": "application/json"
       }
@@ -37,10 +37,10 @@ class ContentList extends Component {
             Content
           </h3>
           <div className="grid-col-3">
-            {contentList &&
+            {/* {contentList &&
               contentList.map(content => {
                 return <ContentCard contentData={content} />;
-              })}
+              })} */}
           </div>
         </div>
       </div>
