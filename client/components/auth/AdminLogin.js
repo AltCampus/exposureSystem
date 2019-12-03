@@ -31,6 +31,9 @@ class AdminLogin extends Component {
       body: JSON.stringify(adminCredentials)
     })
       .then(res => res.json())
+      .then(admin => {
+        localStorage.setItem("Admintoken",admin.Token)
+      })
       .then(this.props.history.push("/admin/dashboard"));
   };
   render() {

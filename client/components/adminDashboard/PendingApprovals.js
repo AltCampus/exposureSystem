@@ -14,17 +14,18 @@ class PendingApprovals extends Component {
     fetch("/api/v1/admin/pending", {
       method: "GET",
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Authorization": `Token ${localStorage.getItem('Admintoken')}`,
+        "Content-Type": "application/json",
+
+      } 
     })
       .then(res => res.json())
-      .then(data => this.setState({ pendingStudentList: data }));
+      .then(data => {
+        console.log(data,"pending")
+      });
   }
 
   render() {
-    const pendingStudentList =
-      this.state.pendingStudentList && this.state.pendingStudentList.users;
-    console.log(pendingStudentList);
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -34,10 +35,12 @@ class PendingApprovals extends Component {
               Pending Approvals
             </h3>
             <div className="grid-col-3">
-              {pendingStudentList &&
+              {/* {pendingStudentList &&
                 pendingStudentList.map(pendingStudent => {
                   return <PendingCard pendingStudentData={pendingStudent} />;
-                })}
+                })} */}
+
+                <PendingCard />
             </div>
           </div>
         </div>

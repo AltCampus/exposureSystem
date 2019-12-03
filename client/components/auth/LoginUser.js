@@ -25,7 +25,7 @@ class LoginUser extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    console.log(studentData, "student data");
+    // console.log(studentData, "student data");
     fetch("/api/v1/users/login", {
       method: "POST",
       headers: {
@@ -34,9 +34,7 @@ class LoginUser extends Component {
       body: JSON.stringify(studentData)
     })
       .then(res => res.json())
-      .then(user => {
-        console.log(user.Token, "user data");
-      })
+      .then(user => console.log(user))
       .then(this.props.history.push("/"));
     //TODO
     //change redirect route

@@ -19,7 +19,6 @@ class ContentCard extends Component {
         </div>
         {/* //TODO navlink should redirect to individual content piece by passing
         contentid from props */}
-
         <NavLink
           to={{
             pathname: "/content/:contentid",

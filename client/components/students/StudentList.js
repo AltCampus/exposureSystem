@@ -9,7 +9,7 @@ class StudentList extends Component {
       studentList: null
     };
   }
-
+  
   componentDidMount() {
     fetch("/api/v1/users/all", {
       headers: {
@@ -17,12 +17,10 @@ class StudentList extends Component {
       }
     })
       .then(res => res.json())
-      .then(data => this.setState({ studentList: data.users }));
+      .then(data => this.setState({ ...this.state, studentList: data }));
   }
 
   render() {
-    const studentList = this.state && this.state.studentList;
-    // console.log(studentList)
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
@@ -31,12 +29,13 @@ class StudentList extends Component {
             Students
           </h3>
           <div className="grid-col-3">
-            {studentList &&
+            {/* {studentList &&
               studentList.map(student => {
                 return (
                   console.log(student), (<StudentCard studentData={student} />)
                 );
-              })}
+              })} */}
+              <StudentCard />
           </div>
         </div>
       </div>
