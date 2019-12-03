@@ -7,13 +7,13 @@ var Admin = require("../models/adminSchema");
 
 // Admin Login Middleware
 function adminLogin(req, res, next) {
-  var { adminname, password } = req.body;
-  //   console.log(req.body);
-  Admin.findOne({ adminname }, (err, admin) => {
+  var { email, password } = req.body;
+  console.log(req.body, "in the admin ");
+  Admin.findOne({ email }, (err, admin) => {
     if (err) return next(err);
     if (!admin) res.json({ admin: "NOT ADMIN" });
     if (!admin.confirmPassword(password)) res.json({ admin: "Not Admin" });
-    var token = auth.generateToken(adminname);
+    var token = auth.generateToken(email);
     res.status(200).json({ admin: admin, Token: token });
   });
 }

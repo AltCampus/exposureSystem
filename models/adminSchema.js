@@ -30,7 +30,6 @@ adminSchema.pre("save", function(next) {
 
 // Comparing The Hash Password With Plain Password
 adminSchema.methods.confirmPassword = function(password) {
-  console.log(password, this.password);
   return bcrypt.compareSync(password, this.password);
 };
 const Admin = mongoose.model("Admin", adminSchema);
