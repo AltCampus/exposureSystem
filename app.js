@@ -13,7 +13,7 @@ require("dotenv").config();
 // Requring The Routing Section
 var indexRouter = require("./routes/indexRouter");
 var usersRouter = require("./routes/userRouter");
-var adminRoutes = require("./routes/adminRouter");
+var adminRouter = require("./routes/adminRouter");
 var contentRouter = require("./routes/contentRouter");
 var feedbackRouter = require("./routes/feedbackRouter");
 // Mounting The Express Application
@@ -61,12 +61,10 @@ mongoose.connect(
 );
 
 // Providing The Paths
-app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/content", contentRouter);
 app.use("/api/v1/feedback", feedbackRouter);
-//changed from ("/newContent", newContent)
-// app.use('/newContent', newContent);
 app.use("/", indexRouter);
 
 // catch 404 and forward to error handler

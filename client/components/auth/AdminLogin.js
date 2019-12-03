@@ -23,7 +23,7 @@ class AdminLogin extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    fetch("admin/login", {
+    fetch("http://localhost:3000/api/v1/admin/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -32,22 +32,13 @@ class AdminLogin extends Component {
     })
       .then(res => res.json())
       .then(this.props.history.push("/admin/dashboard"));
+    console.log("admin logged in");
   };
   render() {
     return (
       <div className="wrapper text-center">
         <h1 className="heading">Admin-Login</h1>
         <div>
-          {/* <input
-            className="input"
-            type="text"
-            name="username"
-            placeholder="Enter username"
-            onChange={this.handleChange}
-            value={this.state.username}
-          /> */}
-          <br />
-
           <input
             className="input"
             type="text"

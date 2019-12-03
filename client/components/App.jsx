@@ -25,11 +25,11 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/register" component={RegisterUser} />
             <Route path="/login" component={LoginUser} />
-            <Route path="/admin" component={AdminLogin} />
-            <Route exact path="/admindashboard" component={AdminDashboard} />
+            <Route path="/admin/login" component={AdminLogin} />
+            <Route exact path="/admin/dashboard" component={AdminDashboard} />
             <Route path="/content/list" component={ContentList} />
             <Route path="/content/new" component={NewContentForm} />
-            <Route path="/students" component={Students} />
+            <Route path="/students" component={Students} /> //TODO:students/all?
             <Route path="/pendingapprovals" component={PendingApprovals} />
             <Route path="/content/:contentid" component={Content} />
             <Route path="/feedback" component={ContentFeedback} />

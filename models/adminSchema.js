@@ -6,11 +6,6 @@ const Schema = mongoose.Schema;
 
 const adminSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: true
-      // unique: true
-    },
     email: {
       type: String,
       require: true,
@@ -20,7 +15,8 @@ const adminSchema = new Schema(
       type: String,
       required: true
       // unique: true
-    }
+    },
+    isAdmin: { type: Boolean, default: true }
   },
   { timestamps: true }
 );
@@ -34,6 +30,7 @@ adminSchema.pre("save", function(next) {
 
 // Comparing The Hash Password With Plain Password
 adminSchema.methods.confirmPassword = function(password) {
+  console.log(password, this.password);
   return bcrypt.compareSync(password, this.password);
 };
 const Admin = mongoose.model("Admin", adminSchema);

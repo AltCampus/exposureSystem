@@ -28,7 +28,7 @@ const userSchema = new Schema(
     isInCampus: Boolean,
     isActive: Boolean,
     isAdmin: false,
-    isVerified: { type: Boolean, default: false },
+    isApproved: { type: Boolean, default: false },
     sentContent: [{ type: Schema.Types.ObjectId, ref: "contentSchema" }]
   },
   {
