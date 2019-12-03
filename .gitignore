@@ -1,4 +1,8 @@
 node_modules
 package-lock.json
+<<<<<<< HEAD
 .env
 utils/seed.js
+=======
+
+>>>>>>> 3577a385a1fb9cc7e6f17d47b89c6ca40b64565e

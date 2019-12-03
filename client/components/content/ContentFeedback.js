@@ -3,7 +3,7 @@ import React, { Component } from "react";
 //TODO
 //change from contentSubmission to contentSubmit
 
-class ContentSubmission extends Component {
+class ContentFeedback extends Component {
   constructor() {
     super();
     this.state = {};
@@ -49,4 +49,4 @@ class ContentSubmission extends Component {
   }
 }
 
-export default ContentSubmission;
+export default ContentFeedback;

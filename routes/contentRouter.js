@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const content = require("../controllers/content.controller.js");
+const content = require("../controllers/contentController.js");
 
 // app.use("/content", contentRouter);
 

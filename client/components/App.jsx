@@ -12,7 +12,7 @@ import ContentList from "./content/ContentList";
 import NewContentForm from "./content/NewContentForm";
 import Students from "./students/Students";
 import PendingApprovals from "./adminDashboard/PendingApprovals";
-import ContentSubmission from "./content/ContentSubmission";
+import ContentFeedback from "./content/ContentFeedback";
 import Content from "./content/Content";
 
 class App extends React.Component {
@@ -32,7 +32,7 @@ class App extends React.Component {
             <Route path="/students" component={Students} />
             <Route path="/pendingapprovals" component={PendingApprovals} />
             <Route path="/content/:contentid" component={Content} />
-            <Route path="/content-submission" component={ContentSubmission} />
+            <Route path="/feedback" component={ContentFeedback} />
             <Route component={Page404} />
           </Switch>
         </Router>

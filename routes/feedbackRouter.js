@@ -1,13 +1,12 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const auth = require("../utils/auth")
-// Requring The Controllers
-const controllers = require('../controllers/feedbackControllers');
+const auth = require("../utils/auth");
+const controllers = require("../controllers/feedbackControllers");
 // Handlinng The Route For The Feedback
-router.post('/addFeedback', controllers.addFeedback);
+router.post("/new", controllers.newFeedback);
 // Handling The Route For Getting The Single Feed
-router.get('/getFeedback/:id',auth.verifyToken, controllers.getFeedback);
+router.get("/:id", auth.verifyToken, controllers.getFeedback);
 // Handling The For The Global Feeds
-router.get("/getFeedback",auth.verifyToken,controllers.globalFeedback)
-// Exporting The Router
+router.get("/", auth.verifyToken, controllers.globalFeedback);
+
 module.exports = router;
