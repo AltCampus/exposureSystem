@@ -14,6 +14,7 @@ import Students from "./students/Students";
 import PendingApprovals from "./adminDashboard/PendingApprovals";
 import ContentFeedback from "./content/ContentFeedback";
 import Content from "./content/Content";
+import Onboarding from "./auth/Onboarding";
 
 class App extends React.Component {
   render() {
@@ -23,16 +24,17 @@ class App extends React.Component {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/register" component={RegisterUser} />
+            <Route exact path="/register" component={RegisterUser} />
             <Route path="/login" component={LoginUser} />
-            <Route path="/admin" component={AdminLogin} />
-            <Route exact path="/admindashboard" component={AdminDashboard} />
-            <Route path="/content/list" component={ContentList} />
-            <Route path="/content/new" component={NewContentForm} />
-            <Route path="/students" component={Students} />
-            <Route path="/pendingapprovals" component={PendingApprovals} />
-            <Route path="/content/:contentid" component={Content} />
-            <Route path="/feedback" component={ContentFeedback} />
+            <Route exact path="/admin" component={AdminLogin} />
+            <Route exact path="/admin/dashboard" component={AdminDashboard} />
+            <Route exact path="/content/list" component={ContentList} />
+            <Route exact path="/content/new" component={NewContentForm} />
+            <Route exact path="/students" component={Students} />
+            <Route exact path="/pendingapprovals" component={PendingApprovals} />
+            <Route exact path="/content/:contentid" component={Content} />
+            <Route exact path="/feedback" component={ContentFeedback} />
+            <Route exact path="/register/onboarding" component={Onboarding} />
             <Route component={Page404} />
           </Switch>
         </Router>

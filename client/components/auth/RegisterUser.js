@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {NavLink} from "react-router-dom";
 
 class RegisterUser extends Component {
   constructor() {
@@ -73,7 +74,7 @@ class RegisterUser extends Component {
           />
           <br></br>
 
-          <button className="button">Register</button>
+          <NavLink to="/register/onboarding" className="button">Next</NavLink>
         </form>
       </div>
     );
