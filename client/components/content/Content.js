@@ -6,7 +6,7 @@ class Content extends Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
     // const {title, type, description,} = this.props.location.contentProps
     // console.log(this.props && this.props.location.contentProps.contentData, "inside content")
     return (

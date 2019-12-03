@@ -13,13 +13,13 @@ class StudentList extends Component {
   componentDidMount() {
     fetch("/api/v1/users/all", {
       headers: {
-        "Authorization": `${localStorage.getItem("adminToken")}`,
+        Authorization: `${localStorage.getItem("adminToken")}`,
         "Content-Type": "application/json"
       }
     })
       .then(res => res.json())
       .then(data => {
-        this.setState({ ...this.state, studentList: data.users })
+        this.setState({ ...this.state, studentList: data.users });
       });
   }
   render() {
@@ -31,12 +31,10 @@ class StudentList extends Component {
             Students
           </h3>
           <div className="grid-col-3">
-            {
-              this.state.studentList && this.state.studentList.map((student, i) => {
-
-                return <StudentCard key={i} student={student} />
-              })
-            }
+            {this.state.studentList &&
+              this.state.studentList.map((student, i) => {
+                return <StudentCard key={i} student={student} />;
+              })}
           </div>
         </div>
       </div>

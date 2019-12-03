@@ -7,7 +7,7 @@ class ContentCard extends Component {
   }
 
   render() {
-    const {type, title, description} = this.props.content
+    const { type, title, description } = this.props.content;
     return (
       <div className="student-card">
         <div className="grid-col-2 content-head">
