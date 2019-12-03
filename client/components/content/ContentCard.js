@@ -7,18 +7,19 @@ class ContentCard extends Component {
   }
 
   render() {
-    // console.log(this.props)
+    const {type, title, description} = this.props.content
     return (
       <div className="student-card">
         <div className="grid-col-2 content-head">
-          <div>{this.props.contentData.title}</div>
-          <div>{this.props.contentData.type}</div>
+          <div>{type}</div>
+          <div>{title}</div>
         </div>
         <div className="content-card-description">
-          {this.props.contentData.description}:
+          <div>{description}</div>
         </div>
-        //TODO navlink should redirect to individual content piece by passing
-        contentid from props
+        {/* //TODO navlink should redirect to individual content piece by passing
+        contentid from props */}
+
         <NavLink
           to={{
             pathname: "/content/:contentid",

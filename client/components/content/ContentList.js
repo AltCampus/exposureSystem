@@ -6,7 +6,7 @@ class ContentList extends Component {
   constructor() {
     super();
     this.state = {
-      contentList: null
+      contentList: ""
     };
   }
   handleChange = e => {
@@ -26,21 +26,23 @@ class ContentList extends Component {
   }
 
   render() {
-    const contentList = this.state && this.state.contentList;
-    console.log(contentList);
+    const contentList = this.state && this.state.contentList.contents;
+    // console.log(this.state.contentList.contents)
 
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
         <div>
           <h3 className="flex-center" style={{ color: "rgb(59, 57, 57)" }}>
-            Content
           </h3>
           <div className="grid-col-3">
-            {/* {contentList &&
-              contentList.map(content => {
-                return <ContentCard contentData={content} />;
-              })} */}
+            {
+              contentList && contentList.map(content => {
+                console.log(content)
+                return <ContentCard content={content}/>
+              })
+            }
+
           </div>
         </div>
       </div>

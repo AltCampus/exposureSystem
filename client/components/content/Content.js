@@ -25,7 +25,7 @@ class Content extends Component {
           src="https://en.wikipedia.org/wiki/Der_Ring_des_Nibelungen"
         ></iframe>
         <div className="flex-end ">
-          //TODO integrate Edit and delete
+          {/* //TODO integrate Edit and delete */}
           <button className="content-button">Edit</button>
           <button className="content-button">Delete</button>
         </div>

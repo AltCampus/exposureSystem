@@ -23,6 +23,7 @@ module.exports = {
   findAllContent: (req, res) => {
     Content.find()
       .then(contents => {
+        console.log(contents, 'contentController')
         res.json({ contents });
       })
       .catch(err => {
