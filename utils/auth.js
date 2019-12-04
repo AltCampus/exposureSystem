@@ -8,14 +8,14 @@ function generateToken(payload) {
 
 // Verify The  Token
 function verifyToken(req, res, next) {
-  var Token = req.headers.authorization || "";
-  if (Token) {
-    jwt.verify(Token, "abcdef", (err, Decoded) => {
-      if (err) res.json({ Token: "Token Not Matched" });
+  var token = req.headers.authorization || "";
+  if (token) {
+    jwt.verify(token, "abcdef", (err, Decoded) => {
+      if (err) res.json({ token: "Token Not Matched" });
       next();
     });
   } else {
-    return res.json({ Token: "Token Not Found" });
+    return res.json({ token: "Token Not Found" });
   }
 }
 
