@@ -1,9 +1,9 @@
 const adminState = {
-	adminData: ''
+	adminData: ""
 };
 function adminReducer(state = adminState, action) {
 	switch (action.type) {
-		case 'ADMINLOGGEDIN':
+		case "ADMINLOGGEDIN":
 			return {
 				...adminState,
 				adminData: action.payload
