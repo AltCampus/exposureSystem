@@ -1,37 +1,41 @@
 import React from "react";
 import "../assets/stylesheets/style.scss";
-import Header from "./Header";
-import Home from "./Home";
-import SignUp from "./Auth/SignUp";
-import SignIn from "./Auth/SignIn";
+import Header from "./header/Header";
+import Home from "./home/Home";
+import RegisterUser from "./auth/RegisterUser";
+import LoginUser from "./auth/LoginUser";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import AdminLogin from "./Auth/AdminLogin";
+import AdminLogin from "./auth/AdminLogin";
 import Page404 from "./Page404";
-import AdminDashboard from "./AdminDashboard/AdminDashboard";
-import AllContents from "./AdminDashboard/AllContent";
-import AddContent from "./AdminDashboard/AddContent";
-import Students from "./AdminDashboard/Students";
-import PendingApprovals from "./AdminDashboard/PendingApprovals";
+import AdminDashboard from "./adminDashboard/AdminDashboard";
+import ContentList from "./content/ContentList";
+import NewContentForm from "./content/NewContentForm";
+import Students from "./students/StudentList";
+import PendingApprovals from "./adminDashboard/PendingApprovals";
+import ContentFeedback from "./content/ContentFeedback";
+import Content from "./content/Content";
 
 class App extends React.Component {
   render() {
     return (
       <>
-      <Router>
-      <Header />
+        <Router>
+          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/admin" component={AdminLogin} />
-            <Route exact path="/admindashboard" component={AdminDashboard} />
-            <Route path="/allcontent" component={AllContents} />
-            <Route path="/addcontent" component={AddContent} />
-            <Route path="/students" component={Students} />
+            <Route path="/register" component={RegisterUser} />
+            <Route path="/login" component={LoginUser} />
+            <Route path="/admin/login" component={AdminLogin} />
+            <Route exact path="/admin/dashboard" component={AdminDashboard} />
+            <Route path="/content/list" component={ContentList} />
+            <Route path="/content/new" component={NewContentForm} />
+            <Route path="/students" component={Students} /> //TODO:students/all?
             <Route path="/pendingapprovals" component={PendingApprovals} />
+            <Route path="/content/:contentid" component={Content} />
+            <Route path="/feedback" component={ContentFeedback} />
             <Route component={Page404} />
           </Switch>
-      </Router>
+        </Router>
       </>
     );
   }
