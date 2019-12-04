@@ -17,8 +17,8 @@ class App extends React.Component {
   render() {
     return (
       <>
-      <Router>
-      <Header />
+        <Router>
+          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/signup" component={SignUp} />
@@ -31,7 +31,7 @@ class App extends React.Component {
             <Route path="/pendingapprovals" component={PendingApprovals} />
             <Route component={Page404} />
           </Switch>
-      </Router>
+        </Router>
       </>
     );
   }
