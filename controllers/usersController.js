@@ -1,8 +1,8 @@
-const User = require("../models/userSchema");
-const auth = require("../utils/auth");
+const User = require('../models/userSchema');
+const auth = require('../utils/auth');
 
-//TODO
-//restructure controller
+// TODO
+// restructure controller
 
 function registerUser(req, res, next) {
   User.create(req.body, (err, UserCreated) => {
@@ -12,12 +12,12 @@ function registerUser(req, res, next) {
 }
 
 function loginUser(req, res, next) {
-  var { username, password, email } = req.body;
+  const { username, password, email } = req.body;
   User.findOne({ email }, (err, user) => {
     if (err) return next(err);
-    if (!user) res.json({ user: "User Not Found" });
+    if (!user) res.json({ user: 'User Not Found' });
     if (!user.confirmPassword(password))
-      res.json({ user: "Password Is Not Correct" });
+      res.json({ user: 'Password Is Not Correct' });
     var token = auth.generateToken(email);
     res.status(200).json({ user: user, Token: token });
   });
