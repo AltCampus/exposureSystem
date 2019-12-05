@@ -1,18 +1,43 @@
 import React from "react";
-import { NavLink} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 class Header extends React.Component {
+
+  handleLogout = () => {
+    localStorage.clear()
+    this.redirect()
+  }
+
+  redirect = () => {
+    this.props.history.push("/")
+  }
+
   render() {
     return (
-      <div className="wrapper header">
+      <div className="wrapper">
         <div className="flex-between">
           <div>
-            <NavLink className="icon" to="/"><h3>Exposure System</h3></NavLink>
+            <Link to="/"><h2>Exposure System</h2></Link>
           </div>
           <div>
             <nav>
-                <NavLink className="head-links" activeClassName="active" to="/signup">Sign Up</NavLink>
-                <NavLink className="head-links" activeClassName="active" to="/signin">Sign In</NavLink>   
+              <ul>
+                <li>
+                  {
+                    localStorage.Token ?
+                      <div>
+                        <button onClick={this.handleLogout}>Logout</button>
+                        <Link to="/signup">SignUp</Link>
+                        <Link to="/signin">SignIn</Link>
+                      </div>
+                      :
+                      <div>
+                        <Link to="/signup">SignUp</Link>
+                        <Link to="/signin">SignIn</Link>
+                      </div>
+                  }
+                </li>
+              </ul>
             </nav>
           </div>
         </div>
