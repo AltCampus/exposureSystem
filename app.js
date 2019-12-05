@@ -17,6 +17,8 @@ var usersRouter = require('./routes/userRouter');
 var adminRouter = require('./routes/adminRouter');
 var contentRouter = require('./routes/contentRouter');
 var feedbackRouter = require('./routes/feedbackRouter');
+var deliveryRouter = require('./routes/deliveryRouter');
+
 // Mounting The Express Application
 var app = express();
 
@@ -66,6 +68,7 @@ app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/content', contentRouter);
 app.use('/api/v1/feedback', feedbackRouter);
+app.use('/api/v1/delivery', deliveryRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
