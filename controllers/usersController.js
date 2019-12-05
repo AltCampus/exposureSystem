@@ -1,5 +1,6 @@
 const User = require("../models/userSchema");
 const auth = require("../utils/auth");
+const mail = require("../utils/mailer")
 
 //TODO
 //restructure controller
@@ -12,7 +13,7 @@ function registerUser(req, res, next) {
 }
 
 function loginUser(req, res, next) {
-  var { username, password, email } = req.body;
+  var { password, email } = req.body;
   User.findOne({ email }, (err, user) => {
     if (err) return next(err);
     if (!user) res.json({ user: "User Not Found" });
