@@ -11,5 +11,6 @@ export const userLoggedIn = (studentData) => {
 			.then((user) => {
 				dispatch({ type: 'USERLOGGEDIN', payload: user });
 			});
+			
 	};
 };
