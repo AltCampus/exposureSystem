@@ -5,6 +5,10 @@ const auth = require("../utils/auth");
 //restructure controller
 
 function registerUser(req, res, next) {
+  const { username, email, password } = req.body;
+  if (!username || !email || !password) {
+    return res.status(401).json({ error: "INVALID USER" });
+  }
   User.create(req.body, (err, UserCreated) => {
     if (err) return next(err);
     res.status(200).json({ User: UserCreated });

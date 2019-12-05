@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-
+import store from "../store/store";
+import { userRegister } from "../actions/userAction";
+import { connect } from "react-redux";
 class RegisterUser extends Component {
   constructor() {
     super();
@@ -18,24 +20,18 @@ class RegisterUser extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("handleSubmit called");
-    const data = {
+    const userCredentials = {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password
     };
-    fetch("/api/v1/users/register", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(user => {
-        console.log(user, "final user");
-      })
-      .then(this.props.history.push("/login"));
+    this.props.userRegister(userCredentials);
+    store.subscribe(() => {
+      store.getState().userReducer.userRegisterData.username
+        ? this.props.history.push("/login")
+        : alert("Please Check User Credentials!");
+    });
+    console.log(store.getState().userReducer, "in user registration");
   };
 
   render() {
@@ -80,4 +76,8 @@ class RegisterUser extends Component {
   }
 }
 
-export default RegisterUser;
+const mapstateToProps = state => {
+  return state;
+};
+
+export default connect(mapstateToProps, { userRegister })(RegisterUser);
