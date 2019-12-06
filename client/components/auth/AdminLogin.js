@@ -1,44 +1,43 @@
-import React, { Component } from "react";
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import store from '../store/store';
+import { adminloggedIn } from '../actions/adminAction';
 class AdminLogin extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      username: "",
-      email: "",
-      password: ""
+      email: '',
+      password: '',
+      admin: '',
     };
   }
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   handleAdminLogin = e => {
     e.preventDefault();
     const adminCredentials = {
-      adminname: this.state.username,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
-    fetch("http://localhost:3000/api/v1/admin/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(adminCredentials)
-    })
-      .then(res => res.json())
-      .then(admin => {
-        localStorage.setItem("adminToken", admin.Token);
-      })
-      .then(this.props.history.push("/admin/dashboard"));
+    this.props.adminloggedIn(adminCredentials);
+    store.subscribe(() => {
+      store.getState().adminReducer.adminData.Token
+        ? this.props.history.push('/admin/dashboard')
+        : this.setState({
+            ...this.state,
+            admin: 'Please Check  Admin Credentials!',
+          });
+    });
   };
   render() {
     return (
       <div className="wrapper text-center">
+        <p>{this.state.admin}</p>
         <h1 className="heading">Admin-Login</h1>
         <div>
           <input
@@ -69,5 +68,7 @@ class AdminLogin extends Component {
     );
   }
 }
-
-export default AdminLogin;
+const mapStateToProps = state => {
+  return state;
+};
+export default connect(mapStateToProps, { adminloggedIn })(AdminLogin);

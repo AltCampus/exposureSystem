@@ -6,32 +6,36 @@ const mail = require('../utils/mailer');
 // restructure controller
 
 function registerUser(req, res, next) {
+  const { username, email, password } = req.body;
+  if (email.length < 10 && password.length < 6) {
+    return res.status(401).json('INVALID USER');
+  }
+  if (!username || !email || !password) {
+    return res.status(401).json({ error: 'INVALID USER' });
+  }
   User.create(req.body, (err, UserCreated) => {
     if (err) return next(err);
+    console.log(UserCreated);
     res.status(200).json({ User: UserCreated });
   });
 }
 
 function loginUser(req, res, next) {
-  const { username, password, email } = req.body;
+  var { password, email } = req.body;
+  console.log(req.body);
+  if (email.length < 10 && password.length < 6) {
+    return res.status(401).json('INVALID USER');
+  }
   User.findOne({ email }, (err, user) => {
     if (err) return next(err);
-    if (!user) res.json({ user: 'User Not Found' });
+    if (!user) return res.json({ user: 'User Not Found' });
     if (!user.confirmPassword(password))
-      res.json({ user: 'Password Is Not Correct' });
+      return res.json({ user: 'Password Is Not Correct' });
     var token = auth.generateToken(email);
+    console.log(user);
     res.status(200).json({ user: user, Token: token });
   });
 }
-
-// function findUser(req, res, next) {
-//   const { user, password, email } = req.body;
-//   User.findOne({ email }, (err, user) => {
-//     if (err) return next(err);
-//     if (!user) res.json({ user: 'User Not Found' });
-//     res.status(200).json({ user });
-//   });
-// }
 
 function findUser(req, res) {
   User.findById(req.params.userId)

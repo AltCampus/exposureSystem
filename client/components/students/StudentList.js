@@ -1,33 +1,26 @@
-import React, { Component } from "react";
-import AdminSidebar from "../adminDashboard/AdminSidebar";
-import StudentCard from "./StudentCard";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import AdminSidebar from '../adminDashboard/AdminSidebar';
+import { allStudents } from '../actions/studentListAction';
+import StudentCard from './StudentCard';
 
 class StudentList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      studentList: ""
+      studentList: '',
     };
   }
 
   componentDidMount() {
-    fetch("/api/v1/users/all", {
-      headers: {
-        Authorization: `${localStorage.getItem("adminToken")}`,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ ...this.state, studentList: data.users });
-      });
+    this.props.allStudents();
   }
   render() {
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
         <div>
-          <h3 className="flex-center" style={{ color: "rgb(59, 57, 57)" }}>
+          <h3 className="flex-center" style={{ color: 'rgb(59, 57, 57)' }}>
             Students
           </h3>
           <div className="grid-col-3">
@@ -41,5 +34,7 @@ class StudentList extends Component {
     );
   }
 }
-
-export default StudentList;
+const mapStateToProps = state => {
+  return state;
+};
+export default connect(mapStateToProps, { allStudents })(StudentList);

@@ -7,6 +7,7 @@ class ContentFeedback extends Component {
   constructor() {
     super();
     this.state = {};
+  }
   // }
   // componentDidMount() {
   //   fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
