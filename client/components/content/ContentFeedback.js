@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 import React, { Component } from 'react';
 
 // TODO
@@ -8,18 +9,21 @@ class ContentFeedback extends Component {
     super();
     this.state = {};
   }
-  // }
-  // componentDidMount() {
-  //   fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => this.setState({}));
-  // }
+
+  componentDidMount() {
+    fetch(`http://localhost:3000/api/v1/delivery/5dea146c1c27b04750830671`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(data =>
+        this.setState({ contentUrl: data.delivery.content[0].contentUrl }),
+      );
+  }
 
   render() {
+    console.log(this.state);
     return (
       <div className="wrapper">
         <div className="sidebar-heading flex-center">Title</div>
@@ -36,7 +40,7 @@ class ContentFeedback extends Component {
         </div>
         <iframe
           className="article"
-          src="https://en.wikipedia.org/wiki/Der_Ring_des_Nibelungen"
+          src={this.state.contentURL && [this.state.contentURL.value]}
         ></iframe>
         <div className="flex-center">
           <textarea
