@@ -1,9 +1,15 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"
 
 class Content extends Component {
   constructor(props) {
     super(props);
   }
+
+
+  // handleDeleteContent = () => {
+
+  // }
 
   render() {
     console.log(this.props);
@@ -27,8 +33,12 @@ class Content extends Component {
         ></iframe>
         <div className="flex-end ">
           {/* //TODO integrate Edit and delete */}
-          <button className="content-button">Edit</button>
-          <button className="content-button">Delete</button>
+          
+          <Link to="/EditContent">
+            <button className="content-button">Edit</button>
+          </Link>
+
+          <button onClick={this.handleDeleteContent} className="content-button">Delete</button>
         </div>
       </div>
     );
