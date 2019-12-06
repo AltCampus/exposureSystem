@@ -3,9 +3,9 @@ const adminState = {
 };
 function adminReducer(state = adminState, action) {
   switch (action.type) {
-    case "ADMINLOGGEDIN":
+    case "ADMIN_LOGGEDIN":
       return {
-        ...adminState,
+        ...state,
         adminData: action.payload
       };
     default:

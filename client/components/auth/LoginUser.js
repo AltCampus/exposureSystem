@@ -34,7 +34,6 @@ class LoginUser extends Component {
         ? alert("user login sucessfully")
         : this.setState({ ...this.state, user: "Invalid User!" });
     });
-    console.log(this.props, "in the userlogin component");
   };
 
   render() {
