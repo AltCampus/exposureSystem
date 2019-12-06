@@ -9,6 +9,7 @@ export const userLoggedIn = studentData => {
     })
       .then(res => res.json())
       .then(user => {
+        console.log(user, "in user action");
         dispatch({ type: "USER_LOGGEDIN", payload: user });
       });
   };
