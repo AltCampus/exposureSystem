@@ -9,7 +9,9 @@ module.exports = {
       .save()
       .then(data => {
         // console.log(data, "content data")
+
         res.send(data);
+        // `http:localhost:3000/delivery/${:deliveryId}`
       })
       .catch(err => {
         res.status(500).json({
@@ -21,17 +23,23 @@ module.exports = {
 
   findOneDelivery: (req, res) => {
     Delivery.findById(req.params.deliveryId)
+      .populate('content')
+      // .exec(function(err, delivery) {
+      //   if (err) return console.log(err);
+      //   console.log(delivery);
+      // });
       .then(delivery => {
         if (!delivery) {
-          return res.status(404).send({
+          return res.status(404).json({
             message: 'Delivery not found with id ' + req.params.deliveryId,
           });
         }
+
         res.json({ delivery });
       })
       .catch(err => {
         if (err.kind === 'ObjectId') {
-          return res.status(404).send({
+          return res.status(404).json({
             message: 'Delivery not found with id ' + req.params.deliveryId,
           });
         }

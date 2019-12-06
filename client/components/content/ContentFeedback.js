@@ -7,7 +7,16 @@ class ContentFeedback extends Component {
   constructor() {
     super();
     this.state = {};
-  }
+  // }
+  // componentDidMount() {
+  //   fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => this.setState({}));
+  // }
 
   render() {
     return (
