@@ -1,11 +1,5 @@
-.student-details{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    color: $textPrimary ;
-}
-
 .student-card{
-    margin-left: 1rem ;
+    margin: 1rem ;
 }
 
 .student-pfp{
@@ -16,34 +10,26 @@
     margin: 1rem;
 }
 
-.student-footer{
-    color: $white;
-    display: flex;
-    justify-content: flex-end;
-    background: $secondary;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    padding: 0.5rem;
-}
+
 .pending-footer{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
 .reject{
     font-weight: 700;
-    background: red;
+
     margin: 0;
     padding: 0.5rem;
-    color: $white;
+    color: red;
     border-left: 0.5px $secondary;
     border-bottom-left-radius: 15px;
 }
 
 .approve{
     font-weight: 700;
-    background: $primary;
     margin: 0;
     padding: 0.5rem;
-    color: $white;
+    color: $primary;
     border-bottom-right-radius: 15px;
 }
