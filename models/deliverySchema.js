@@ -19,7 +19,7 @@ const deliverySchema = new Schema(
     isChallenge: { type: Boolean, default: false },
     // submissionId: [{ type: Schema.Types.ObjectId, ref: "submissionSchema" }],
     challengeMembers: [{ type: Schema.Types.ObjectId, ref: 'userSchema' }],
-    pointsRewarded: { type: Number, required: true },
+    pointsRewarded: { type: Number, required: true, default: 0 },
   },
   {
     timestamps: true,
