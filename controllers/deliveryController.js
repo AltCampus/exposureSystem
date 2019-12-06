@@ -19,27 +19,27 @@ module.exports = {
       });
   },
 
-  //   findOneDelivery: (req, res) => {
-  //     Delivery.findById(req.params.deliveryId)
-  //       .then(delivery => {
-  //         if (!delivery) {
-  //           return res.status(404).send({
-  //             message: 'Delivery not found with id ' + req.params.deliveryId,
-  //           });
-  //         }
-  //         res.json({ delivery });
-  //       })
-  //       .catch(err => {
-  //         if (err.kind === 'ObjectId') {
-  //           return res.status(404).send({
-  //             message: 'Delivery not found with id ' + req.params.deliveryId,
-  //           });
-  //         }
-  //         return res.status(500).json({
-  //           message: 'Error retrieving Delivery with id ' + req.params.deliveryId,
-  //         });
-  //       });
-  //   },
+  findOneDelivery: (req, res) => {
+    Delivery.findById(req.params.deliveryId)
+      .then(delivery => {
+        if (!delivery) {
+          return res.status(404).send({
+            message: 'Delivery not found with id ' + req.params.deliveryId,
+          });
+        }
+        res.json({ delivery });
+      })
+      .catch(err => {
+        if (err.kind === 'ObjectId') {
+          return res.status(404).send({
+            message: 'Delivery not found with id ' + req.params.deliveryId,
+          });
+        }
+        return res.status(500).json({
+          message: 'Error retrieving Delivery with id ' + req.params.deliveryId,
+        });
+      });
+  },
 
   //   updateDeliveryInfo: (req, res) => {
   //     // Validate Request
