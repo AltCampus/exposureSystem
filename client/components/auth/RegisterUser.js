@@ -25,13 +25,18 @@ class RegisterUser extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    this.props.userRegister(userCredentials);
-    store.subscribe(() => {
-      store.getState().userReducer.userRegisterData.username
-        ? this.props.history.push("/login")
-        : alert("Please Check User Credentials!");
-    });
-    console.log(store.getState().userReducer, "in user registration");
+    if (
+      !userCredentials.username ||
+      !userCredentials.email ||
+      !userCredentials.password
+    ) {
+      alert("check user details!");
+    } else {
+      this.props.userRegister(userCredentials);
+      store.subscribe(() => {
+        this.props.history.push("/login");
+      });
+    }
   };
 
   render() {
