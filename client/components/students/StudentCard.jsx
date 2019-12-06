@@ -13,8 +13,8 @@ class Student extends Component {
     // console.log(this.props.studentData.username)
     return (
       <div className="student-card">
-        <div className="sidebar-heading flex-center">{username}</div>
-        <div className="student-details">
+        <div className="card-heading flex-center">{username}</div>
+        <div className="card-details">
           <div>
             <div className="student-pfp" />
           </div>
@@ -26,12 +26,11 @@ Details:
             {isAdmin}
           </div>
         </div>
-        <div className="student-footer">
+        <div className="card-footer">
 Created at:
           {createdAt}
           {' '}
         </div>
-
       </div>
     );
   }

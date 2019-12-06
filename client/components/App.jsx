@@ -16,10 +16,9 @@ import PendingApprovals from "./adminDashboard/PendingApprovals";
 import ContentFeedback from "./content/ContentFeedback";
 import Content from "./content/Content";
 import Onboarding from "./auth/Onboarding";
-import StudentFeed from "./students/StudentFeed";
+import StudentDashboard from "./students/studentDashboard/StudentDashboard";
 
-class App extends React.Component {
-  render() {
+function App() {
     return (
       <>
         <Router>
@@ -37,13 +36,12 @@ class App extends React.Component {
             <Route exact path="/content/:contentid" component={Content} />
             <Route exact path="/feedback" component={ContentFeedback} />
             <Route exact path="/register/onboarding" component={Onboarding} />
-            <Route exact path="/feed" component={StudentFeed} />
+            <Route exact path="/username" component={StudentDashboard} />
             <Route component={Page404} />
           </Switch>
         </Router>
       </>
     );
-  }
 }
 
 export default App;
