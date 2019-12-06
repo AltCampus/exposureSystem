@@ -33,8 +33,12 @@ class Content extends Component {
         ></iframe>
         <div className="flex-end ">
           {/* //TODO integrate Edit and delete */}
-          
-          <Link to="/EditContent">
+
+          <Link to="/submitcontent">
+            <button className="content-button">Submit</button>
+          </Link>
+
+          <Link to="/editcontent">
             <button className="content-button">Edit</button>
           </Link>
 

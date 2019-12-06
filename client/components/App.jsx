@@ -15,6 +15,8 @@ import Students from './students/StudentList';
 import PendingApprovals from './adminDashboard/PendingApprovals';
 import ContentFeedback from './content/ContentFeedback';
 import Content from './content/Content';
+import SubmitContent from './content/SubmitContent';
+import EditContent from './content/EditContent';
 
 class App extends React.Component {
   render() {
@@ -35,6 +37,8 @@ class App extends React.Component {
             <Route path="/pendingapprovals" component={PendingApprovals} />
             <Route path="/content/:contentid" component={Content} />
             <Route path="/feedback" component={ContentFeedback} />
+            <Route path="/submitcontent" component={SubmitContent} />
+            <Route path="/editcontent" component={EditContent} />
             <Route component={Page404} />
           </Switch>
         </Router>

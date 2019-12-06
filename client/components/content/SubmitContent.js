@@ -1,10 +1,10 @@
 import React, { Component } from "react"
 
-class EditContent extends Component {
+class SubmitContent extends Component {
     render() {
         return (
-            <div style={{textAlign: "center"}} >
-                <h3>Update your submission</h3>
+            <div style={{textAlign: "center"}}>
+                <h3>Your submission</h3>
                 <div>
                     <textarea style={{ border: "1px solid black" }}>
 
@@ -13,6 +13,7 @@ class EditContent extends Component {
                     <button>Submit</button>
                 </div>
             </div>
+
         )
     }
 }
@@ -25,4 +26,4 @@ class EditContent extends Component {
 
 
 
-export default EditContent
+export default SubmitContent
