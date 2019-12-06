@@ -24,6 +24,37 @@ function loginUser(req, res, next) {
   });
 }
 
+// function findUser(req, res, next) {
+//   const { user, password, email } = req.body;
+//   User.findOne({ email }, (err, user) => {
+//     if (err) return next(err);
+//     if (!user) res.json({ user: 'User Not Found' });
+//     res.status(200).json({ user });
+//   });
+// }
+
+function findUser(req, res) {
+  User.findById(req.params.userId)
+    .then(user => {
+      if (!user) {
+        return res.status(404).send({
+          message: 'User not found with id ' + req.params.userId,
+        });
+      }
+      res.json({ user });
+    })
+    .catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: 'User not found with id ' + req.params.userId,
+        });
+      }
+      return res.status(500).json({
+        message: 'Error retrieving user with id ' + req.params.userId,
+      });
+    });
+}
+
 // All Users Status
 function userStatus(req, res, next) {
   User.find({}, (err, Users) => {
@@ -32,4 +63,4 @@ function userStatus(req, res, next) {
   });
 }
 
-module.exports = { registerUser, userStatus, loginUser };
+module.exports = { registerUser, userStatus, loginUser, findUser };
