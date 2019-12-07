@@ -32,3 +32,9 @@
 //     console.log(error);
 //   }
 // };
+
+// function linkGenerator(id) {
+//   return `http://localhost:3000/delivery/${id}`;
+// }
+
+// export default linkGenerator;

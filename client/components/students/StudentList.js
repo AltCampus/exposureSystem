@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
 import { studentList } from '../actions/studentListAction';
+
 import StudentCard from './StudentCard';
 
 class StudentList extends Component {
@@ -13,7 +14,7 @@ class StudentList extends Component {
   }
 
   componentDidMount() {
-    this.props.allStudents();
+    this.props.studentList();
   }
   render() {
     return (

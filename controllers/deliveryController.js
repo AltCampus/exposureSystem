@@ -1,5 +1,8 @@
 const Delivery = require('../models/deliverySchema');
 
+// import mailer from '../utils/mailer';
+
+
 module.exports = {
   newDelivery: (req, res) => {
     const delivery = new Delivery(req.body);
@@ -12,6 +15,10 @@ module.exports = {
 
         res.send(data);
         // `http:localhost:3000/delivery/${:deliveryId}`
+        const mail = `http://localhost:3000/api/v1/delivery/${data.id}`;
+        console.log(mail);
+        res.json({ data });
+
       })
       .catch(err => {
         res.status(500).json({

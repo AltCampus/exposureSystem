@@ -34,6 +34,7 @@ class LoginUser extends Component {
         ? alert('user login sucessfull')
         : this.setState({ ...this.state, user: 'Invalid User!' });
     });
+
   };
 
   render() {
