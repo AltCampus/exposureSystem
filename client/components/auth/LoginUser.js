@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import store from "../store/store";
-import { userLoggedIn } from "../actions/userAction";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import store from '../store/store';
+import { userLoggedIn } from '../actions/userAction';
 class LoginUser extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
-      user: ""
+      email: '',
+      password: '',
+      user: '',
     };
   }
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -26,13 +26,14 @@ class LoginUser extends Component {
   postLoginData = e => {
     var studentData = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
     this.props.userLoggedIn(studentData);
     store.subscribe(() => {
       store.getState().userReducer.userLoginData.Token
         ? alert("user login sucessfully")
         : this.setState({ ...this.state, user: "Invalid User!" });
+
     });
   };
 

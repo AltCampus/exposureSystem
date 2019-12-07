@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import store from "../store/store";
-import { adminloggedIn } from "../actions/adminAction";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import store from '../store/store';
+import { adminloggedIn } from '../actions/adminAction';
 class AdminLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
-      admin: ""
+      email: '',
+      password: '',
+      admin: '',
     };
   }
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -22,13 +22,13 @@ class AdminLogin extends Component {
     e.preventDefault();
     const adminCredentials = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
     this.props.adminloggedIn(adminCredentials);
     store.subscribe(() => {
       console.log(store.getState(), "in admin component");
       store.getState().adminReducer.adminData.Token
-        ? this.props.history.push("/admin/dashboard")
+        ? this.props.history.push('/admin/dashboard')
         : this.setState({
             ...this.state,
             admin: "Please Check Admin Credentials!"
