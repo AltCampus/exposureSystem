@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../store/store';
 import { adminloggedIn } from '../actions/adminAction';
+
+
 class AdminLogin extends Component {
   constructor(props) {
     super(props);

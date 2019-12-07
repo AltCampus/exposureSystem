@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* eslint-disable quotes */
 import React from "react";
 import "../assets/stylesheets/style.scss";
