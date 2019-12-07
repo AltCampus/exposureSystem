@@ -37,6 +37,7 @@ class App extends React.Component {
             <Route path="/content/:contentid" component={Content} />
             {/* <Route path="/:deliveryid" component={ContentFeedback} /> */}
             <Route path="/feedback" component={ContentFeedback} />
+
             <Route path="/editcontent" component={EditContent} />
             <Route component={Page404} />
           </Switch>

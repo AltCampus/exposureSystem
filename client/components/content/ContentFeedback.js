@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/iframe-has-title */
+
 import React, { Component } from 'react';
 
 // TODO
@@ -9,6 +9,7 @@ class ContentFeedback extends Component {
     super();
     this.state = {};
   }
+
 
   componentDidMount() {
     fetch(`http://localhost:3000/api/v1/delivery/5dea146c1c27b04750830671`, {

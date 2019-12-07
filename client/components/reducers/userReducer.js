@@ -1,19 +1,19 @@
 const userState = {
-  userLoginData: "",
-  userRegisterData: ""
+  userLoginData: '',
+  userRegisterData: '',
 };
 
 function userReducer(state = userState, action) {
   switch (action.type) {
-    case "USER_REGISTER":
+    case 'USER_REGISTER_SUCESSFULL':
       return {
         ...userState,
-        userRegisterData: action.payload
+        userRegisterData: action.payload,
       };
-    case "USER_LOGGEDIN":
+    case 'USER_LOGIN_SUCCESSFUL':
       return {
         ...userState,
-        userLoginData: action.payload
+        userLoginData: action.payload,
       };
     default:
       return state;

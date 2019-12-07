@@ -1,13 +1,13 @@
 const contentState = {
-	content: ''
+  content: '',
 };
 function contentReducer(state = contentState, action) {
-	switch (action.type) {
-		case 'CONTENT':
-			return { ...contentState, content: action.payload };
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case 'NEW_CONTENT_ADDED':
+      return { ...state, content: action.payload };
+    default:
+      return state;
+  }
 }
 
 export default contentReducer;

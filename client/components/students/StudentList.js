@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
-import { allStudents } from '../actions/studentListAction';
+import { studentList } from '../actions/studentListAction';
+
 import StudentCard from './StudentCard';
 
 class StudentList extends Component {
@@ -13,7 +14,7 @@ class StudentList extends Component {
   }
 
   componentDidMount() {
-    this.props.allStudents();
+    this.props.studentList();
   }
   render() {
     return (
@@ -37,4 +38,4 @@ class StudentList extends Component {
 const mapStateToProps = state => {
   return state;
 };
-export default connect(mapStateToProps, { allStudents })(StudentList);
+export default connect(mapStateToProps, { studentList })(StudentList);
