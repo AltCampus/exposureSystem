@@ -44,7 +44,7 @@ function removeUser(req, res, err) {
 }
 
 // Pending Users Middleware
-function pendingUser(req, res, err) {
+function pendingUsers(req, res, err) {
   User.find({ isApproved: false }, (err, users) => {
     if (err) return next(err);
     res.json({ users: users });
@@ -56,5 +56,5 @@ module.exports = {
   adminLogin,
   approveUser,
   removeUser,
-  pendingUser,
+  pendingUsers,
 };

@@ -11,7 +11,7 @@ class PendingApprovals extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/admin/pending', {
+    fetch('/api/v1/admin/pending-approvals', {
       method: 'GET',
       headers: {
         // "Authorization": `Token ${localStorage.getItem('Admintoken')}`,
