@@ -31,9 +31,8 @@ class LoginUser extends Component {
     this.props.userLoggedIn(studentData);
     store.subscribe(() => {
       store.getState().userReducer.userLoginData.Token
-        ? alert("user login sucessfully")
-        : this.setState({ ...this.state, user: "Invalid User!" });
-
+        ? alert('user login sucessfull')
+        : this.setState({ ...this.state, user: 'Invalid User!' });
     });
   };
 
