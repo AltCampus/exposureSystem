@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 
 // TODO
@@ -8,29 +7,36 @@ class ContentFeedback extends Component {
   constructor() {
     super();
     this.state = {
+      content: null,
       contentUrl: '',
+      user: null,
     };
   }
 
-
   componentDidMount() {
-    var link = window.location.href.split('/').pop();
-    console.log(link, 'link');
-    // fetch(`http://localhost:3000/api/v1/delivery/5dea146c1c27b04750830671`, {
-    fetch(`http://localhost:3000/api/v1/delivery/${link}`, {
+    var deliveryId = window.location.href.split('/').pop();
+    console.log(deliveryId, 'deliveryId');
+    fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
       headers: {
         'Content-Type': 'application/json',
       },
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data, 'data');
-        this.setState({ contentUrl: data.delivery.content[0].contentUrl });
+        // console.log(data, 'data');
+        this.setState({
+          // ...data,
+          content: data.delivery.content[0],
+          user: data.delivery.user[0],
+          contentUrl: data.delivery.content[0].contentUrl,
+        });
+        // this.setState({ contentUrl: data.delivery.content[0].contentUrl });
       });
   }
 
   render() {
-    console.log(this.state.contentUrl, 'rndr');
+    // console.log(this.state, 'rndr');
+    console.log(this.state.user, 'username');
     return (
       <div className="wrapper">
         <div className="sidebar-heading flex-center">Title</div>
@@ -39,9 +45,12 @@ class ContentFeedback extends Component {
             <div>Description:</div>
           </div>
           <div className="submission-head flex-center">
-            <div>Assigned to:</div>
-            <div>Paired with:</div>
-            <div>Type:</div>
+            <div>
+              <span>Assigned to:</span>
+              {/* {this.state.user.username} */}
+            </div>
+            {/* <div>Paired with:</div>
+            <div>Type:</div> */}
             <div>Due by:</div>
           </div>
         </div>
@@ -51,20 +60,6 @@ class ContentFeedback extends Component {
           src={`${this.state.contentUrl}`}
           target="_parent"
         ></iframe>
-
-        {/* <iframe
-          className="article"
-          src={
-            this.state.contentUrl
-              ? this.state.contentUrl
-              : 'https://css-tricks.com/snippets/javascript/select-random-item-array/'
-          }
-        ></iframe> */}
-        {/* {this.state.contentURL ? (
-          <iframe className="article" src={this.state.contentURL}></iframe>
-        ) : (
-          ''
-        )} */}
         <div className="flex-center">
           <textarea
             minLength="300"
