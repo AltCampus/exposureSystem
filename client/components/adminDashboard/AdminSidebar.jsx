@@ -9,21 +9,21 @@ function AdminSidebar() {
         <NavLink
           className="dash-link"
           activeClassName="active"
-          to="/admin"
+          to="/admin/feed"
         >
           Feed
         </NavLink>
         <NavLink
           className="dash-link"
           activeClassName="active"
-          to="/content/list"
+          to="/admin/content/list"
         >
-          Contents
+          Content List
         </NavLink>
         <NavLink
           className="dash-link"
           activeClassName="active"
-          to="/content/new"
+          to="/admin/content/new"
         >
             Create Content
         </NavLink>
@@ -37,7 +37,7 @@ function AdminSidebar() {
         <NavLink
           className="dash-link"
           activeClassName="active"
-          to="/pendingapprovals"
+          to="/admin/pending-approvals"
         >
             Pending Approvals
         </NavLink>

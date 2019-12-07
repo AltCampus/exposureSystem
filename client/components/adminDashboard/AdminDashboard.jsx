@@ -5,7 +5,9 @@ function AdminDashboard() {
   return (
     <>
       <div className="wrapper grid-dashboard">
-        <AdminSidebar />
+        <div>
+          <AdminSidebar />
+        </div>
       </div>
     </>
   );

@@ -30,7 +30,7 @@ class AdminLogin extends Component {
     store.subscribe(() => {
       console.log(store.getState(), "in admin component");
       store.getState().adminReducer.adminData.Token
-        ? this.props.history.push('/admin/dashboard')
+        ? this.props.history.push('/admin')
         : this.setState({
             ...this.state,
             admin: "Please Check Admin Credentials!"

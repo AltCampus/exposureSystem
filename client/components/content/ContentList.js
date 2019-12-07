@@ -29,9 +29,11 @@ class ContentList extends Component {
 
     return (
       <div className="wrapper grid-dashboard">
-        <AdminSidebar />
         <div>
-          <h3 className="flex-center" style={{ color: "rgb(59, 57, 57)" }}></h3>
+          <AdminSidebar />
+        </div>
+        <div>
+          <h3 className="flex-center" style={{ color: "rgb(59, 57, 57)" }}>Content List</h3>
           <div className="grid-col-3">
             {contentList &&
               contentList.map(content => {
