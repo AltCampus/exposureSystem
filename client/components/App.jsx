@@ -22,7 +22,6 @@ class App extends React.Component {
     return (
       <>
         <Router>
-          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/register" component={RegisterUser} />

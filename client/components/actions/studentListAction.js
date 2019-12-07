@@ -3,7 +3,7 @@ export const studentList = () => {
     fetch('/api/v1/users/all', {
       headers: {
         Authorization: `${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
     })
       .then(res => res.json())

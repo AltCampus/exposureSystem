@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import store from "../store/store";
 import { userRegister } from "../actions/userAction";
 import { connect } from "react-redux";
+import Header from '../header/Header';
+
+
 class RegisterUser extends Component {
   constructor() {
     super();
@@ -15,7 +18,7 @@ class RegisterUser extends Component {
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
-    });
+    })
   };
 
   handleSubmit = event => {
@@ -41,6 +44,8 @@ class RegisterUser extends Component {
 
   render() {
     return (
+      <>
+      <Header />
       <div className="wrapper card text-center">
         <h1 className="heading">Register</h1>
         <form onSubmit={this.handleSubmit}>
@@ -77,6 +82,7 @@ class RegisterUser extends Component {
           <button className="button">Register</button>
         </form>
       </div>
+      </>
     );
   }
 }

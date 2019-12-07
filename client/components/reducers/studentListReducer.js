@@ -1,4 +1,4 @@
-const studentList = {
+  const studentList = {
   students: ""
 };
 function studentListReducer(state = studentList, action) {

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../store/store';
 import { userLoggedIn } from '../actions/userAction';
+import Header from "../header/Header"
+
 class LoginUser extends Component {
   constructor(props) {
     super(props);
@@ -40,9 +42,10 @@ class LoginUser extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
+        <Header />
         <div className="wrapper card text-center">
           <p>{this.state.user}</p>
           <h1 className="heading">Login</h1>

@@ -9,6 +9,10 @@ class Header extends React.Component {
     super(props);
   }
 
+  handleLogout = () => {
+    e.preventDefault()
+  }
+
   render() {
     const isUserLoggedIn = this.props.userReducer.isLoggedIn;
     const isAdminLoggedIn = this.props.adminReducer.isLoggedIn;
@@ -23,14 +27,22 @@ class Header extends React.Component {
             </NavLink>
           </div>
 
-          <nav>
-            <NavLink className="head-links" activeClassName="active" to="/register">Register</NavLink>
-            <NavLink className="head-links" activeClassName="active" to="/login">Login</NavLink>
+
+          {
+
+            isAdminLoggedIn  ?
+              <NavLink onClick={this.handleLogout} style={{ color: "white", fontWeight: "600" }} className="head-links" activeClassName="active" to="/admin/login">Logout</NavLink>
+              :
+
+              <nav>
+                <NavLink className="head-links" activeClassName="active" to="/register">Register</NavLink>
+                <NavLink className="head-links" activeClassName="active" to="/login">Login</NavLink>
+              </nav>
+
+          }
 
 
-            
-            {/* <NavLink className="head-links" activeClassName="active" to="/">Logout</NavLink> */}
-          </nav>
+
 
         </div>
       </div >

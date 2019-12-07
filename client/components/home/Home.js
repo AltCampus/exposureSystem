@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 class Home extends React.Component {
   render() {
     return (
-      // <Header />
       <div className="wrapper">
         <div className="text-center home-description flex-center">
           <p>An exciting new initiative to expose</p>

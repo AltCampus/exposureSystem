@@ -17,6 +17,7 @@ class StudentList extends Component {
     this.props.studentList();
   }
   render() {
+    console.log(this.props)
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
@@ -25,10 +26,14 @@ class StudentList extends Component {
             Students
           </h3>
           <div className="grid-col-3">
-            {this.state.studentList &&
+            {/* {this.state.studentList &&
               this.state.studentList.map((student, i) => {
                 return <StudentCard key={i} student={student} />;
-              })}
+              })} */}
+
+
+
+
           </div>
         </div>
       </div>

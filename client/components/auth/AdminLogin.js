@@ -30,10 +30,10 @@ class AdminLogin extends Component {
       store.getState().adminReducer.adminData.Token
         ? this.props.history.push('/admin/dashboard')
         : this.setState({
-            ...this.state,
-            admin: "Please Check Admin Credentials!"
+          ...this.state,
+          admin: "Please Check Admin Credentials!"
 
-          });
+        });
     });
   };
   render() {
