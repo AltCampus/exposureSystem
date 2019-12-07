@@ -1,18 +1,17 @@
+/* eslint-disable no-useless-constructor */
 import React, { Component } from 'react';
 
-class Pending extends Component {
+class Student extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    // console.log(this.props.pendingStudentData)
     const {
       username, email, isActive, isInCampus, isAdmin, createdAt,
-    } = this.props.pendingStudentData;
-
+    } = this.props.studentData;
+    // console.log(this.props.studentData.username)
     return (
-
       <div className="student-card">
         <div className="card-heading flex-center">{username}</div>
         <div className="card-details">
@@ -23,17 +22,18 @@ class Pending extends Component {
 Details:
             {email}
             {isInCampus}
-            {/* {createdAt} */}
+            {isActive}
+            {isAdmin}
           </div>
-
         </div>
-        <div className="pending-footer">
-          <button className="reject">X</button>
-          <button className="approve">✔</button>
+        <div className="card-footer">
+Created at:
+          {createdAt}
+          {' '}
         </div>
       </div>
     );
   }
 }
 
-export default Pending;
+export default Student;
