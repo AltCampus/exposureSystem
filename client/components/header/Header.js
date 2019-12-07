@@ -1,18 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { userLoggedIn , userLogout  } from "../actions/userAction";
+import { userLoggedIn, userLogout } from "../actions/userAction";
 import { adminLogout } from "../actions/adminAction"
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   render() {
     const isUserLoggedIn = this.props.userReducer.isLoggedIn;
     const isAdminLoggedIn = this.props.adminReducer.isLoggedIn;
-    console.log(isUserLoggedIn , "user");
+    console.log(isUserLoggedIn, "user");
     console.log(isAdminLoggedIn, "admin")
     return (
       <div className="wrapper header">
@@ -23,11 +23,14 @@ class Header extends React.Component {
             </NavLink>
           </div>
 
-{/* 
-          <NavLink>Register</NavLink>
-          <NavLink>Login</NavLink>
-          <NavLink>LOgout</NavLink> */}
+          <nav>
+            <NavLink className="head-links" activeClassName="active" to="/register">Register</NavLink>
+            <NavLink className="head-links" activeClassName="active" to="/login">Login</NavLink>
 
+
+            
+            {/* <NavLink className="head-links" activeClassName="active" to="/">Logout</NavLink> */}
+          </nav>
 
         </div>
       </div >
@@ -79,7 +82,7 @@ export default connect(mapStateToProps, { userLoggedIn, userLogout, adminLogout 
 
 
 
-          {/* {
+{/* {
 
             window.location.pathname == "/admin/login"  ?
             <div>

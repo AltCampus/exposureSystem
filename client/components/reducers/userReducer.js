@@ -1,7 +1,7 @@
 const userState = {
   userLoginData: '',
   userRegisterData: '',
-  isLoggedIn : false
+  isLoggedIn: false
 };
 
 function userReducer(state = userState, action) {
@@ -15,13 +15,13 @@ function userReducer(state = userState, action) {
       return {
         ...userState,
         userLoginData: action.payload,
-        isLoggedIn : true
+        isLoggedIn: true
       };
-      case 'USER_LOGOUT':
+    case 'USER_LOGOUT':
       return {
         ...userState,
-        isLoggedIn : false,
-        
+        isLoggedIn: false,
+
       };
     default:
       return state;

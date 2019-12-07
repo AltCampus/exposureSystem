@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../header/Header";
 import { NavLink } from "react-router-dom";
 
 class Home extends React.Component {
@@ -19,6 +18,9 @@ class Home extends React.Component {
           <p>to various ideas and opinions other than just programming</p>
           <NavLink className="button" to="/register">
             Register
+          </NavLink>
+          <NavLink className="button" to="/login">
+            Login
           </NavLink>
         </div>
       </div>
