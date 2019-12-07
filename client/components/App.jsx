@@ -13,7 +13,7 @@ import ContentList from './content/ContentList';
 import NewContentForm from './content/NewContentForm';
 import Students from './students/Students';
 import PendingApprovals from './adminDashboard/PendingApprovals';
-import ContentFeedback from './content/ContentFeedback';
+import ContentSubmission from './content/ContentSubmission';
 import Content from './content/Content';
 import Onboarding from './auth/Onboarding';
 import StudentDashboard from './students/studentDashboard/StudentDashboard';
@@ -39,7 +39,7 @@ function App() {
             component={PendingApprovals}
           />
           <Route exact path="/admin/content/:contentid" component={Content} />
-          <Route path="/feedback/:deliveryid" component={ContentFeedback} />
+          <Route path="/submission/:deliveryid" component={ContentSubmission} />
           <Route exact path="/register/onboarding" component={Onboarding} />
           <Route exact path="/username" component={StudentDashboard} />
           <Route path="/admin/editcontent" component={EditContent} />
