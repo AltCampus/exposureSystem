@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../store/store';
-import { adminloggedIn } from '../actions/adminAction';
+import { adminloggedIn, adminLogout } from '../actions/adminAction';
 class AdminLogin extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +37,7 @@ class AdminLogin extends Component {
     });
   };
   render() {
+    console.log(this.props)
     return (
       <div className="wrapper text-center">
         <p>{this.state.admin}</p>
@@ -73,4 +74,4 @@ class AdminLogin extends Component {
 const mapStateToProps = state => {
   return state;
 };
-export default connect(mapStateToProps, { adminloggedIn })(AdminLogin);
+export default connect(mapStateToProps, { adminloggedIn, adminLogout })(AdminLogin);

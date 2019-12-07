@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import store from '../store/store';
 import { userLoggedIn } from '../actions/userAction';
 class LoginUser extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       password: '',
-      user: '',
+      username: '',
     };
   }
 
@@ -24,20 +24,23 @@ class LoginUser extends Component {
   };
 
   postLoginData = e => {
-    var studentData = {
+    var userCredentials = {
       email: this.state.email,
       password: this.state.password,
-    };
-    this.props.userLoggedIn(studentData);
+    }; payload : {
+      isLoggedin : false
+    }
+    this.props.userLoggedIn(userCredentials);
     store.subscribe(() => {
       store.getState().userReducer.userLoginData.Token
         ? alert('user login sucessfull')
         : this.setState({ ...this.state, user: 'Invalid User!' });
     });
-
+    this.props.history.push("/");
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <div className="wrapper card text-center">

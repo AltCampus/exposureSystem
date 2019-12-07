@@ -6,7 +6,7 @@ class RegisterUser extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
+      username: "",      
       email: "",
       password: ""
     };

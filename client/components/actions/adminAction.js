@@ -14,3 +14,11 @@ export const adminloggedIn = adminCredentials => {
       });
   };
 };
+
+
+
+export const adminLogout = () => {
+  return dispatch => {
+    dispatch({type: "ADMIN_LOGOUT"}) 
+  }
+}
