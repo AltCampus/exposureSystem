@@ -33,8 +33,6 @@
   cursor: pointer;
 }
 
-.card{
-  width: 40%;
-  padding: 1rem;
-  box-shadow: $shadow;
+.active{
+  color: $secondary;
 }

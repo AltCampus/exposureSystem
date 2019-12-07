@@ -19,12 +19,14 @@ class PendingApprovals extends Component {
       },
     })
       .then(res => res.json())
-      .then(data => {
-        console.log(data, 'pending');
-      });
+      .then(data => this.setState({ pendingStudentList: data }));
   }
 
   render() {
+    const pendingStudentList =
+      this.state.pendingStudentList && this.state.pendingStudentList.users;
+    console.log(pendingStudentList);
+
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -35,10 +37,9 @@ class PendingApprovals extends Component {
             </h3>
             <div className="grid-col-3">
               {pendingStudentList &&
-                pendingStudentList.map(pendingStudent => {
-                  return <PendingCard pendingStudentData={pendingStudent} />;
-                })}
-              <PendingCard />
+                pendingStudentList.map(pendingStudent => (
+                  <PendingCard pendingStudentData={pendingStudent} />
+                ))}
             </div>
           </div>
         </div>
