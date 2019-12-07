@@ -8,20 +8,19 @@ function userReducer(state = userState, action) {
   switch (action.type) {
     case 'USER_REGISTER_SUCCESSFULL':
       return {
-        ...userState,
+        ...state,
         userRegisterData: action.payload,
       };
     case 'USER_LOGIN_SUCCESSFULL':
       return {
-        ...userState,
+        ...state,
         userLoginData: action.payload,
         isLoggedIn: true
       };
     case 'USER_LOGOUT':
       return {
-        ...userState,
+        ...state,
         isLoggedIn: false,
-
       };
     default:
       return state;

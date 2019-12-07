@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
 import ContentCard from "./ContentCard";
 
+
 class ContentList extends Component {
   constructor() {
     super();

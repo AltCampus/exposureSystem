@@ -58,7 +58,7 @@ class ContentFeedback extends Component {
             marginRight: '14rem',
           }}
         >
-          <button className="button">Submit</button>
+          <button className="button" type="submit">Submit</button>
         </div>
       </div>
     );

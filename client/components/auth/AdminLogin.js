@@ -63,7 +63,7 @@ class AdminLogin extends Component {
           />
           <br />
 
-          <button className="button" onClick={this.handleAdminLogin}>
+          <button className="button" type="submit" onClick={this.handleAdminLogin}>
             Submit
           </button>
         </div>

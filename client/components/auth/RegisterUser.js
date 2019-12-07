@@ -9,7 +9,7 @@ class RegisterUser extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",      
+      username: "",
       email: "",
       password: ""
     };
@@ -45,43 +45,43 @@ class RegisterUser extends Component {
   render() {
     return (
       <>
-      <Header />
-      <div className="wrapper card text-center">
-        <h1 className="heading">Register</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            className="input"
-            type="text"
-            name="username"
-            placeholder="Enter username"
-            onChange={this.handleChange}
-            value={this.state.username}
-          />
-          <br></br>
+        <Header />
+        <div className="wrapper card text-center">
+          <h1 className="heading">Register</h1>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              className="input"
+              type="text"
+              name="username"
+              placeholder="Enter username"
+              onChange={this.handleChange}
+              value={this.state.username}
+            />
+            <br></br>
 
-          <input
-            className="input"
-            type="email"
-            name="email"
-            placeholder="Enter email"
-            onChange={this.handleChange}
-            value={this.state.email}
-          />
-          <br></br>
+            <input
+              className="input"
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onChange={this.handleChange}
+              value={this.state.email}
+            />
+            <br></br>
 
-          <input
-            className="input"
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-          <br></br>
+            <input
+              className="input"
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              onChange={this.handleChange}
+              value={this.state.password}
+            />
+            <br></br>
 
-          <button className="button">Register</button>
-        </form>
-      </div>
+            <button className="button" type="submit">Register</button>
+          </form>
+        </div>
       </>
     );
   }
