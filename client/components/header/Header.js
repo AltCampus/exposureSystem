@@ -9,8 +9,6 @@ class Header extends React.Component {
     super(props);
   }
   
-
-  
   render() {
     const isUserLoggedIn = this.props.userReducer.isLoggedIn;
     const isAdminLoggedIn = this.props.adminReducer.isLoggedIn;
@@ -22,13 +20,66 @@ class Header extends React.Component {
           <div>
             <NavLink className="icon" to="/">
               <h3>Exposure System</h3>
-
-
-
             </NavLink>
           </div>
 
-          {
+{/* 
+          <NavLink>Register</NavLink>
+          <NavLink>Login</NavLink>
+          <NavLink>LOgout</NavLink> */}
+
+
+        </div>
+      </div >
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return state
+}
+
+
+export default connect(mapStateToProps, { userLoggedIn, userLogout, adminLogout })(Header);
+
+// export default Header
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          {/* {
 
             window.location.pathname == "/admin/login"  ?
             <div>
@@ -73,18 +124,4 @@ class Header extends React.Component {
             </NavLink>
           </nav>
 
-          }
-        </div>
-      </div >
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return state
-}
-
-
-export default connect(mapStateToProps, { userLoggedIn, userLogout, adminLogout })(Header);
-
-// export default Header
+          } */}

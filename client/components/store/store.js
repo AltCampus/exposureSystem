@@ -5,13 +5,13 @@ import contentReducer from '../reducers/contentReducer';
 import studentListReducer from '../reducers/studentListReducer';
 import thunk from 'redux-thunk';
 
-const rootreducers = combineReducers({
+const rootreducer = combineReducers({
   adminReducer,
   userReducer,
   contentReducer,
   studentListReducer,
 });
 
-const store = createStore(rootreducers, applyMiddleware(thunk));
+const store = createStore(rootreducer, applyMiddleware(thunk));
 
 export default store;
