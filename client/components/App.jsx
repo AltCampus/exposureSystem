@@ -18,6 +18,7 @@ import Content from './content/Content';
 import Onboarding from './auth/Onboarding';
 import StudentDashboard from './students/studentDashboard/StudentDashboard';
 import EditContent from './content/EditContent';
+import AdminFeed from './adminDashboard/AdminFeed';
 
 function App() {
   return (
@@ -29,10 +30,10 @@ function App() {
           <Route exact path="/register" component={RegisterUser} />
           <Route path="/login" component={LoginUser} />
           <Route exact path="/admin/login" component={AdminLogin} />
-          <Route exact path="/admin/dashboard" component={AdminDashboard} />
+          <Route exact path="/admin/feed" component={AdminFeed} />
           <Route exact path="/admin/content/list" component={ContentList} />
           <Route exact path="/admin/content/new" component={NewContentForm} />
-          <Route exact path="/admin/students" component={Students} />
+          <Route exact path="/admin/students/list" component={Students} />
           <Route
             exact
             path="/admin/pending-approvals"

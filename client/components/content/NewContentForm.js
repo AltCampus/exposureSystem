@@ -33,9 +33,11 @@ class NewContentForm extends Component {
     return (
       <>
         <div className="wrapper grid-dashboard">
-          <AdminSidebar />
+          <div>
+            <AdminSidebar />
+          </div>
           <form
-            className="flex-column flex-center card"
+            className="flex-column flex-center"
             // onSubmit={this.handleSubmit}
           >
             <select

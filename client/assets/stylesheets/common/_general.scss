@@ -34,5 +34,6 @@
 }
 
 .active{
-  color: $secondary;
+  color: $secondary !important;
+  text-shadow: 1px 1px 6px $secondary !important;
 }

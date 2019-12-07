@@ -30,7 +30,9 @@ class PendingApprovals extends Component {
     return (
       <>
         <div className="wrapper grid-dashboard">
-          <AdminSidebar />
+          <div>
+            <AdminSidebar />
+          </div>
           <div>
             <h3 className="flex-center" style={{ color: 'rgb(59, 57, 57)' }}>
               Pending Approvals
