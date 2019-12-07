@@ -7,23 +7,29 @@ import React, { Component } from 'react';
 class ContentFeedback extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      contentUrl: '',
+    };
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/v1/delivery/5dea146c1c27b04750830671`, {
+    var link = window.location.href.split('/').pop();
+    console.log(link, 'link');
+    // fetch(`http://localhost:3000/api/v1/delivery/5dea146c1c27b04750830671`, {
+    fetch(`http://localhost:3000/api/v1/delivery/${link}`, {
       headers: {
         'Content-Type': 'application/json',
       },
     })
       .then(res => res.json())
-      .then(data =>
-        this.setState({ contentUrl: data.delivery.content[0].contentUrl }),
-      );
+      .then(data => {
+        console.log(data, 'data');
+        this.setState({ contentUrl: data.delivery.content[0].contentUrl });
+      });
   }
 
   render() {
-    console.log(this.state);
+    console.log(this.state.contentUrl, 'rndr');
     return (
       <div className="wrapper">
         <div className="sidebar-heading flex-center">Title</div>
@@ -38,10 +44,26 @@ class ContentFeedback extends Component {
             <div>Due by:</div>
           </div>
         </div>
+
         <iframe
           className="article"
-          src={this.state.contentURL && [this.state.contentURL.value]}
+          src={`${this.state.contentUrl}`}
+          target="_parent"
         ></iframe>
+
+        {/* <iframe
+          className="article"
+          src={
+            this.state.contentUrl
+              ? this.state.contentUrl
+              : 'https://css-tricks.com/snippets/javascript/select-random-item-array/'
+          }
+        ></iframe> */}
+        {/* {this.state.contentURL ? (
+          <iframe className="article" src={this.state.contentURL}></iframe>
+        ) : (
+          ''
+        )} */}
         <div className="flex-center">
           <textarea
             minLength="300"
