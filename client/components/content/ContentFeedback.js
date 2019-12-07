@@ -1,13 +1,24 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-//TODO
-//change from contentSubmission to contentSubmit
+// TODO
+// change from contentSubmission to contentSubmit
 
 class ContentFeedback extends Component {
   constructor() {
     super();
     this.state = {};
   }
+  // }
+  // componentDidMount() {
+  //   fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => this.setState({}));
+  // }
+
   render() {
     return (
       <div className="wrapper">
@@ -37,9 +48,9 @@ class ContentFeedback extends Component {
         </div>
         <div
           style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            marginRight: "14rem"
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginRight: '14rem',
           }}
         >
           <button className="button">Submit</button>
