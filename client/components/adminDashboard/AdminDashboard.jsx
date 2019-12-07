@@ -6,7 +6,6 @@ function AdminDashboard() {
     <>
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
-        <div />
       </div>
     </>
   );
