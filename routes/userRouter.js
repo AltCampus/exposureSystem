@@ -1,16 +1,18 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-var users = require("../controllers/usersController");
-var auth = require("../utils/auth");
+const users = require("../controllers/usersController");
+const auth = require("../utils/auth");
 
-router.post("/", users.registerUser); //changed from creatingUsers
 
-router.post("/login", users.loginUser); //changed from userLogin
+router.post('/register', users.registerUser);
 
+router.post('/login', users.loginUser);
+
+router.get('/:userId', users.findUser);
 // User Status Route
 
 //TODO
 //Relocate this line
-router.get("/all", auth.verifyToken, users.userStatus);
+router.get('/status/all', auth.verifyToken, users.userStatus);
 
 module.exports = router;

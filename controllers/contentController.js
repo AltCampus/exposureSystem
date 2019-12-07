@@ -1,9 +1,7 @@
 const Content = require("../models/contentSchema");
 
 module.exports = {
-  //TODO
-  //rrestructure controller
-  create: (req, res) => {
+  newContent: (req, res) => {
     const content = new Content(req.body);
     console.log(req.body, "inside content");
 
@@ -22,9 +20,10 @@ module.exports = {
       });
   },
 
-  findAll: (req, res) => {
+  findAllContent: (req, res) => {
     Content.find()
       .then(contents => {
+        console.log(contents, "contentController");
         res.json({ contents });
       })
       .catch(err => {
@@ -35,7 +34,7 @@ module.exports = {
       });
   },
 
-  findOne: (req, res) => {
+  findOneContent: (req, res) => {
     Content.findById(req.params.contentId)
       .then(content => {
         if (!content) {
@@ -57,7 +56,7 @@ module.exports = {
       });
   },
 
-  update: (req, res) => {
+  updateContent: (req, res) => {
     // Validate Request
     //   if (!req.body.description) {
     //     return res.status(400).send({
@@ -81,7 +80,7 @@ module.exports = {
             message: "Content not found with id " + req.params.contentId
           });
         }
-    })
+      })
       .catch(err => {
         if (err.kind === "ObjectId") {
           return res.status(404).send({
@@ -94,7 +93,7 @@ module.exports = {
       });
   },
 
-  delete: (req, res) => {
+  deleteContent: (req, res) => {
     Content.findByIdAndRemove(req.params.contentId)
       .then(content => {
         if (!content) {

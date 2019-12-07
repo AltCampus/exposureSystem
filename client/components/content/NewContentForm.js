@@ -1,15 +1,17 @@
-import React, { Component } from "react";
-import Header from "../header/Header";
-import AdminSidebar from "../adminDashboard/AdminSidebar";
+import React, { Component } from 'react';
+import Header from '../header/Header';
+import { newContent } from '../actions/contentAction';
+import { connect } from 'react-redux';
+import AdminSidebar from '../adminDashboard/AdminSidebar';
 
 class NewContentForm extends Component {
   constructor() {
     super();
     this.state = {
-      type: "",
-      url: "",
-      title: "",
-      description: ""
+      type: '',
+      url: '',
+      title: '',
+      description: '',
     };
   }
   handleChange = e => {
@@ -18,25 +20,13 @@ class NewContentForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("handleSubmit called");
     const data = {
       type: this.state.type,
       url: this.state.url,
       title: this.state.title,
-      description: this.state.description
+      description: this.state.description,
     };
-    fetch("/content/new", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(content => {
-        console.log(content);
-        this.props.history.push("/content/list");
-      });
+    this.props.addContent(data);
   };
 
   render() {
@@ -52,7 +42,7 @@ class NewContentForm extends Component {
               name="type"
               className="input input-select"
               onClick={this.handleChange}
-              defaultValue={"DEFAULT"}
+              defaultValue={'DEFAULT'}
             >
               <option value="DEFAULT" disabled>
                 Type
@@ -99,4 +89,7 @@ class NewContentForm extends Component {
   }
 }
 
-export default NewContentForm;
+const mapStateToProps = state => {
+  return state;
+};
+export default connect(mapStateToProps, { newContent })(NewContentForm);

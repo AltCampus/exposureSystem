@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable quotes */
 import React from "react";
 import "../assets/stylesheets/style.scss";
@@ -17,6 +18,7 @@ import ContentFeedback from "./content/ContentFeedback";
 import Content from "./content/Content";
 import Onboarding from "./auth/Onboarding";
 import StudentDashboard from "./students/studentDashboard/StudentDashboard";
+import EditContent from './content/EditContent';
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
           <Route exact path="/feedback" component={ContentFeedback} />
           <Route exact path="/register/onboarding" component={Onboarding} />
           <Route exact path="/username" component={StudentDashboard} />
+          <Route path="/editcontent" component={EditContent} />
           <Route component={Page404} />
         </Switch>
       </Router>
@@ -44,3 +47,4 @@ function App() {
   );
 
 export default App;
+

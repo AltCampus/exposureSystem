@@ -3,17 +3,14 @@ var router = express.Router();
 
 const content = require("../controllers/contentController.js");
 
-// app.use("/content", contentRouter);
+router.post("/new", content.newContent);
 
-router.post("/new", content.create);
+router.get("/list", content.findAllContent);
 
-router.get("/", content.findAll);
+router.get("/:contentId", content.findOneContent);
 
-//TODO
-router.get("/:contentId", content.findOne);
+router.put("/:contentId", content.updateContent);
 
-router.put("/:contentId", content.update);
-
-router.delete("/:contentId", content.delete);
+router.delete("/:contentId", content.deleteContent);
 
 module.exports = router;

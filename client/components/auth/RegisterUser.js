@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import {NavLink} from "react-router-dom";
+import store from "../store/store";
+import { userRegister } from "../actions/userAction";
+import { connect } from "react-redux";
 
 class RegisterUser extends Component {
   constructor() {
@@ -19,24 +22,23 @@ class RegisterUser extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("handleSubmit called");
-    const data = {
+    const userCredentials = {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password
     };
-    fetch("/users", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(user => {
-        console.log(user, "final user");
-      })
-      .then(this.props.history.push("/login"));
+    if (
+      !userCredentials.username ||
+      !userCredentials.email ||
+      !userCredentials.password
+    ) {
+      alert("check user details!");
+    } else {
+      this.props.userRegister(userCredentials);
+      store.subscribe(() => {
+        this.props.history.push("/login");
+      });
+    }
   };
 
   render() {
@@ -81,4 +83,8 @@ class RegisterUser extends Component {
   }
 }
 
-export default RegisterUser;
+const mapstateToProps = state => {
+  return state;
+};
+
+export default connect(mapstateToProps, { userRegister })(RegisterUser);

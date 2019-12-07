@@ -7,6 +7,7 @@ class PendingApprovals extends Component {
     super();
     this.state = {
       pendingStudentList: null,
+
     };
   }
 
@@ -24,6 +25,7 @@ class PendingApprovals extends Component {
   render() {
     const pendingStudentList = (this.state.pendingStudentList && this.state.pendingStudentList.users);
     console.log(pendingStudentList);
+
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -37,7 +39,6 @@ class PendingApprovals extends Component {
               }
             </div>
           </div>
-
         </div>
       </>
     );

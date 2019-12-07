@@ -1,11 +1,18 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"
 
 class Content extends Component {
   constructor(props) {
     super(props);
   }
 
+
+  // handleDeleteContent = () => {
+
+  // }
+
   render() {
+    console.log(this.props);
     // const {title, type, description,} = this.props.location.contentProps
     // console.log(this.props && this.props.location.contentProps.contentData, "inside content")
     return (
@@ -25,8 +32,17 @@ class Content extends Component {
           src="https://en.wikipedia.org/wiki/Der_Ring_des_Nibelungen"
         ></iframe>
         <div className="flex-end ">
-          <button className="content-button">Edit</button>
-          <button className="content-button">Delete</button>
+          {/* //TODO integrate Edit and delete */}
+
+          <Link to="/submitcontent">
+            <button className="content-button">Submit</button>
+          </Link>
+
+          <Link to="/editcontent">
+            <button className="content-button">Edit</button>
+          </Link>
+
+          <button onClick={this.handleDeleteContent} className="content-button">Delete</button>
         </div>
       </div>
     );

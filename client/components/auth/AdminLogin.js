@@ -1,65 +1,76 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loggedIn } from '../actions/action';
+import store from '../store/store';
+import { adminloggedIn } from '../actions/adminAction';
 class AdminLogin extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			username: '',
-			email: '',
-			password: ''
-		};
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      admin: '',
+    };
+  }
 
-	handleChange = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	};
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
 
-	render() {
-		console.log(this.props, 'in login');
-		return (
-			<div className="wrapper text-center">
-				<h1 className="heading">Admin-Login</h1>
-				<div>
-					<input
-						className="input"
-						type="text"
-						name="username"
-						placeholder="Enter username"
-						onChange={this.handleChange}
-						value={this.state.username}
-					/>
-					<br />
+  handleAdminLogin = e => {
+    e.preventDefault();
+    const adminCredentials = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    this.props.adminloggedIn(adminCredentials);
+    store.subscribe(() => {
+      console.log(store.getState(), "in admin component");
+      store.getState().adminReducer.adminData.Token
+        ? this.props.history.push('/admin/dashboard')
+        : this.setState({
+            ...this.state,
+            admin: "Please Check Admin Credentials!"
 
-					<input
-						className="input"
-						type="text"
-						name="email"
-						placeholder="Enter email"
-						onChange={this.handleChange}
-						value={this.state.email}
-					/>
-					<br />
+          });
+    });
+  };
+  render() {
+    return (
+      <div className="wrapper text-center">
+        <p>{this.state.admin}</p>
+        <h1 className="heading">Admin-Login</h1>
+        <div>
+          <input
+            className="input"
+            type="text"
+            name="email"
+            placeholder="Enter email"
+            onChange={this.handleChange}
+            value={this.state.email}
+          />
+          <br />
 
-					<input
-						className="input"
-						type="text"
-						name="password"
-						placeholder="Enter password"
-						onChange={this.handleChange}
-						value={this.state.password}
-					/>
-					<br />
+          <input
+            className="input"
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            onChange={this.handleChange}
+            value={this.state.password}
+          />
+          <br />
 
-					<button className="button">Submit</button>
-				</div>
-			</div>
-		);
-	};
+          <button className="button" onClick={this.handleAdminLogin}>
+            Submit
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
-const mapStateToProps = (state) => {
-	return state;
+const mapStateToProps = state => {
+  return state;
 };
-export default connect(mapStateToProps, {loggedIn})(AdminLogin);
+export default connect(mapStateToProps, { adminloggedIn })(AdminLogin);

@@ -1,67 +1,60 @@
-var auth = require('../utils/auth');
+var auth = require("../utils/auth");
 
-var User = require('../models/userSchema');
+var User = require("../models/userSchema");
 
 // Requring The SchemaModel of Admin
-var Admin = require('../models/adminSchema');
+var Admin = require("../models/adminSchema");
+
+//TODO
+//rrestructure controller
 
 // Admin Login Middleware
 function adminLogin(req, res, next) {
-	var { adminname, password } = req.body;
-	Admin.findOne({ adminname }, (err, admin) => {
-		if (err) return next(err);
-		if (!admin) res.json({ admin: 'NOT ADMIN' });
-		if (!admin.confirmPassword(password)) res.json({ admin: 'Not Admin' });
-		var token = auth.generateToken(adminname);
-		res.status(200).json({ admin: admin, Token: token });
-	});
+  var { email, password } = req.body;
+  if (email.length < 10 || password.length < 6) {
+    return res.status(401).json({ error: "INVALID PASSWORD" });
+  }
+  Admin.findOne({ email }, (err, admin) => {
+    if (err) return next(err);
+    if (!admin) return res.status(401).json({ admin: "NOT ADMIN" });
+    if (!admin.confirmPassword(password))
+      return res.json({ admin: "Not Admin" });
+    var token = auth.generateToken(email);
+    res.status(200).json({ admin: admin, Token: token });
+  });
 }
-// function adminLogin(req, res, err) {
-//   console.log(req.body);
-//   var username = req.body.username;
-//   var Password = req.body.password;
-//   if (username == process.env.USERNAME && process.env.PASSWORD == Password) {
-//     var token = auth.genrateToken(username);
-//     const Admin = {
-//       userName: username,
-//       Token: token
-//     };
-//     res.status(200).json({ admin: Admin });
-//   } else {
-//     res.status(400).json({ error: "Not Admin" });
-//   }
 
 //User Approval Middleware
-function verifyUser(req, res, err) {
-	req.body.isVerified = true;
-	const id = req.params.id;
-	User.findByIdAndUpdate(id, req.body, { new: true }, (err, users) => {
-		if (err) console.log(err);
-		return res.status(200).json({ user: users });
-	});
+function approveUser(req, res, err) {
+  req.body.isApproved = true;
+  const id = req.params.id;
+  User.findByIdAndUpdate(id, req.body, { new: true }, (err, users) => {
+    if (err) console.log(err);
+    return res.status(200).json({ user: users });
+  });
 }
 
 // User Rejection Middleware
 function removeUser(req, res, err) {
-	const id = req.params.id;
-	User.findByIdAndDelete(id, (err, user) => {
-		if (err) return next(err);
-		return res.status(200).json({ user: users });
-	});
+  const id = req.params.id;
+  User.findByIdAndDelete(id, (err, user) => {
+    if (err) return next(err);
+    return res.status(200).json({ user: users });
+  });
 }
 
 // Pending Users Middleware
 function pendingUser(req, res, err) {
-	User.find({ isVerified: false }, (err, users) => {
-		if (err) return next(err);
-		res.json({ users: users });
-	});
+  User.find({ isApproved: false }, (err, users) => {
+    if (err) return next(err);
+    res.json({ users: users });
+  });
 }
 
 // Exporting The Middlewares
 module.exports = {
-	adminLogin,
-	verifyUser,
-	removeUser,
-	pendingUser,
+  adminLogin,
+  approveUser,
+  removeUser,
+  pendingUser
 };

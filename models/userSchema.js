@@ -13,8 +13,7 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
     email: {
       type: String,
@@ -28,7 +27,7 @@ const userSchema = new Schema(
     isInCampus: Boolean,
     isActive: Boolean,
     isAdmin: false,
-    isVerified: { type: Boolean, default: false },
+    isApproved: { type: Boolean, default: false },
     sentContent: [{ type: Schema.Types.ObjectId, ref: "contentSchema" }]
   },
   {

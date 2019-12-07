@@ -25,12 +25,12 @@ Details:
             {isInCampus}
             {/* {createdAt} */}
           </div>
+
         </div>
         <div className="pending-footer">
           <button className="reject">X</button>
           <button className="approve">✔</button>
         </div>
-
       </div>
     );
   }

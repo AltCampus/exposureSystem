@@ -6,7 +6,7 @@ class ContentList extends Component {
   constructor() {
     super();
     this.state = {
-      contentList: null
+      contentList: ""
     };
   }
   handleChange = e => {
@@ -14,9 +14,7 @@ class ContentList extends Component {
   };
 
   componentDidMount() {
-    //TODO
-    //change route
-    fetch("/newContent", {
+    fetch("http://localhost:3000/api/v1/content/list", {
       headers: {
         "Content-Type": "application/json"
       }
@@ -26,20 +24,18 @@ class ContentList extends Component {
   }
 
   render() {
-    const contentList = this.state && this.state.contentList;
-    console.log(contentList);
+    const contentList = this.state && this.state.contentList.contents;
+    // console.log(this.state.contentList.contents)
 
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
         <div>
-          <h3 className="flex-center" style={{ color: "rgb(59, 57, 57)" }}>
-            Content
-          </h3>
+          <h3 className="flex-center" style={{ color: "rgb(59, 57, 57)" }}></h3>
           <div className="grid-col-3">
             {contentList &&
               contentList.map(content => {
-                return <ContentCard contentData={content} />;
+                return <ContentCard key={content.id} content={content} />;
               })}
           </div>
         </div>

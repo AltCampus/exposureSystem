@@ -6,11 +6,6 @@ const Schema = mongoose.Schema;
 
 const adminSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: true
-      // unique: true
-    },
     email: {
       type: String,
       require: true,
@@ -20,7 +15,8 @@ const adminSchema = new Schema(
       type: String,
       required: true
       // unique: true
-    }
+    },
+    isAdmin: { type: Boolean, default: true }
   },
   { timestamps: true }
 );
