@@ -11,7 +11,7 @@ import Page404 from './Page404';
 import AdminDashboard from './adminDashboard/AdminDashboard';
 import ContentList from './content/ContentList';
 import NewContentForm from './content/NewContentForm';
-import Students from './students/StudentList';
+import StudentList from './students/StudentList';
 import PendingApprovals from './adminDashboard/PendingApprovals';
 import ContentFeedback from './content/ContentFeedback';
 import Content from './content/Content';
@@ -31,7 +31,7 @@ class App extends React.Component {
             <Route exact path="/admin/dashboard" component={AdminDashboard} />
             <Route path="/content/list" component={ContentList} />
             <Route path="/content/new" component={NewContentForm} />
-            <Route path="/students" component={Students} />
+            <Route path="/admin/students/list" component={StudentList} />
             //TODO:students/all?
             <Route path="/pendingapprovals" component={PendingApprovals} />
             <Route path="/content/:contentid" component={Content} />

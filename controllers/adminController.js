@@ -1,9 +1,9 @@
-var auth = require("../utils/auth");
+var auth = require('../utils/auth');
 
-var User = require("../models/userSchema");
+var User = require('../models/userSchema');
 
 // Requring The SchemaModel of Admin
-var Admin = require("../models/adminSchema");
+var Admin = require('../models/adminSchema');
 
 //TODO
 //rrestructure controller
@@ -12,13 +12,13 @@ var Admin = require("../models/adminSchema");
 function adminLogin(req, res, next) {
   var { email, password } = req.body;
   if (email.length < 10 || password.length < 6) {
-    return res.status(401).json({ error: "INVALID PASSWORD" });
+    return res.status(401).json({ error: 'INVALID PASSWORD' });
   }
   Admin.findOne({ email }, (err, admin) => {
     if (err) return next(err);
-    if (!admin) return res.status(401).json({ admin: "NOT ADMIN" });
+    if (!admin) return res.status(401).json({ admin: 'NOT ADMIN' });
     if (!admin.confirmPassword(password))
-      return res.json({ admin: "Not Admin" });
+      return res.json({ admin: 'Not Admin' });
     var token = auth.generateToken(email);
     res.status(200).json({ admin: admin, Token: token });
   });
@@ -56,5 +56,5 @@ module.exports = {
   adminLogin,
   approveUser,
   removeUser,
-  pendingUser
+  pendingUser,
 };
