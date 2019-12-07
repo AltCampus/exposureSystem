@@ -1,4 +1,4 @@
-/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable quotes */
 import React from 'react';
 import '../assets/stylesheets/style.scss';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
@@ -11,38 +11,44 @@ import Page404 from './Page404';
 import AdminDashboard from './adminDashboard/AdminDashboard';
 import ContentList from './content/ContentList';
 import NewContentForm from './content/NewContentForm';
-import Students from './students/StudentList';
+import Students from './students/Students';
 import PendingApprovals from './adminDashboard/PendingApprovals';
-import ContentFeedback from './content/ContentFeedback';
+import ContentSubmission from './content/ContentSubmission';
 import Content from './content/Content';
+import Onboarding from './auth/Onboarding';
+import StudentDashboard from './students/studentDashboard/StudentDashboard';
 import EditContent from './content/EditContent';
+import AdminFeed from './adminDashboard/AdminFeed';
 
-class App extends React.Component { 
-  render() {
-    return (
-      <>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/register" component={RegisterUser} />
-            <Route path="/login" component={LoginUser} />
-            <Route path="/admin/login" component={AdminLogin} />
-            <Route exact path="/admin/dashboard" component={AdminDashboard} />
-            <Route path="/content/list" component={ContentList} />
-            <Route path="/content/new" component={NewContentForm} />
-            <Route path="/students" component={Students} />
-            //TODO:students/all?
-            <Route path="/pendingapprovals" component={PendingApprovals} />
-            <Route path="/content/:contentid" component={Content} />
-            {/* <Route path="/:deliveryid" component={ContentFeedback} /> */}
-            <Route path="/feedback" component={ContentFeedback} />
-            <Route path="/editcontent" component={EditContent} />
-            <Route component={Page404} />
-          </Switch>
-        </Router>
-      </>
-    );
-  }
+function App() {
+  return (
+    <>
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/register" component={RegisterUser} />
+          <Route path="/login" component={LoginUser} />
+          <Route exact path="/admin/login" component={AdminLogin} />
+          <Route exact path="/admin/feed" component={AdminFeed} />
+          <Route exact path="/admin/content/list" component={ContentList} />
+          <Route exact path="/admin/content/new" component={NewContentForm} />
+          <Route exact path="/admin/students/list" component={Students} />
+          <Route
+            exact
+            path="/admin/pending-approvals"
+            component={PendingApprovals}
+          />
+          <Route exact path="/admin/content/:contentid" component={Content} />
+          <Route path="/submission/:deliveryid" component={ContentSubmission} />
+          <Route exact path="/register/onboarding" component={Onboarding} />
+          <Route exact path="/username" component={StudentDashboard} />
+          <Route path="/admin/editcontent" component={EditContent} />
+          <Route component={Page404} />
+        </Switch>
+      </Router>
+    </>
+  );
 }
 
 export default App;

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import {NavLink} from "react-router-dom";
 import store from "../store/store";
 import { userRegister } from "../actions/userAction";
 import { connect } from "react-redux";
 import Header from '../header/Header';
-
 
 class RegisterUser extends Component {
   constructor() {
@@ -79,10 +79,16 @@ class RegisterUser extends Component {
             />
             <br></br>
 
+<<<<<<< HEAD
             <button className="button" type="submit">Register</button>
           </form>
         </div>
       </>
+=======
+          <NavLink to="/register/onboarding" className="button">Next</NavLink>
+        </form>
+      </div>
+>>>>>>> develop-updates
     );
   }
 }

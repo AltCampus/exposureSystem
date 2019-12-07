@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var ejs = require('ejs');
+const cron = require('./utils/cron');
 
 // Requring The DotEnv file
 require('dotenv').config();
@@ -16,7 +17,7 @@ var indexRouter = require('./routes/indexRouter');
 var usersRouter = require('./routes/userRouter');
 var adminRouter = require('./routes/adminRouter');
 var contentRouter = require('./routes/contentRouter');
-var feedbackRouter = require('./routes/feedbackRouter');
+var submissionRouter = require('./routes/submissionRouter');
 var deliveryRouter = require('./routes/deliveryRouter');
 
 // Mounting The Express Application
@@ -67,7 +68,7 @@ mongoose.connect(
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/content', contentRouter);
-app.use('/api/v1/feedback', feedbackRouter);
+app.use('/api/v1/submission', submissionRouter);
 app.use('/api/v1/delivery', deliveryRouter);
 app.use('/', indexRouter);
 

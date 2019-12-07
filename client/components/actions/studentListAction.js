@@ -1,6 +1,6 @@
 export const studentList = () => {
   return dispatch => {
-    fetch('/api/v1/users/all', {
+    fetch('/api/v1/users/status/all', {
       headers: {
         Authorization: `${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'

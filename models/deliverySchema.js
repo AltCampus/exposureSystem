@@ -10,7 +10,7 @@ const deliverySchema = new Schema(
       required: true,
     },
     content: [{ type: Schema.Types.ObjectId, ref: 'Content', required: true }],
-    userId: [{ type: Schema.Types.ObjectId, ref: 'User', required: true }],
+    user: [{ type: Schema.Types.ObjectId, ref: 'User', required: true }],
     isSubmitted: { type: Boolean, default: false },
     isChallenge: { type: Boolean, default: false },
     // submissionId: [{ type: Schema.Types.ObjectId, ref: "submissionSchema" }],
