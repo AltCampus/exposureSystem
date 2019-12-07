@@ -1,18 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { userLoggedIn , userLogout , } from "../actions/userAction";
-import {adminLogout} from "../actions/adminAction"
+import { userLoggedIn , userLogout  } from "../actions/userAction";
+import { adminLogout } from "../actions/adminAction"
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
   }
-  handleLogout = () => {
-    console.log("inside handlelogout")
-    localStorage.clear()
-  }
+  
 
+  
   render() {
     const isUserLoggedIn = this.props.userReducer.isLoggedIn;
     const isAdminLoggedIn = this.props.adminReducer.isLoggedIn;
@@ -24,10 +22,18 @@ class Header extends React.Component {
           <div>
             <NavLink className="icon" to="/">
               <h3>Exposure System</h3>
+
+
+
             </NavLink>
           </div>
 
           {
+
+            window.location.pathname == "/admin/login"  ?
+            <div>
+            </div>
+            :
             isAdminLoggedIn ?
             <NavLink
             className="head-links"
@@ -37,17 +43,13 @@ class Header extends React.Component {
             Logout
             </NavLink>
             :
-
-            window.location.pathname === "/admin/login" || window.location.pathname === "/admin/login/dashboard"  ?
-              <div>
-              </div>
-              :
             
             isUserLoggedIn ?
               <nav>
             <NavLink
               className="head-links"
               activeClassName="active"
+              onClick={userLogout}
               to="/"
             >
               Logout

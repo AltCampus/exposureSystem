@@ -18,6 +18,7 @@ export const adminloggedIn = adminCredentials => {
 
 
 export const adminLogout = () => {
+  console.log("logged out")
   return dispatch => {
     dispatch({type: "ADMIN_LOGOUT"}) 
   }
