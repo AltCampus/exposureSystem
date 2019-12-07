@@ -2,7 +2,6 @@ const Delivery = require('../models/deliverySchema');
 
 // import mailer from '../utils/mailer';
 
-
 module.exports = {
   newDelivery: (req, res) => {
     const delivery = new Delivery(req.body);
@@ -18,7 +17,6 @@ module.exports = {
         const mail = `http://localhost:3000/api/v1/delivery/${data.id}`;
         console.log(mail);
         res.json({ data });
-
       })
       .catch(err => {
         res.status(500).json({
@@ -31,6 +29,7 @@ module.exports = {
   findOneDelivery: (req, res) => {
     Delivery.findById(req.params.deliveryId)
       .populate('content')
+      .populate('user')
       // .exec(function(err, delivery) {
       //   if (err) return console.log(err);
       //   console.log(delivery);
