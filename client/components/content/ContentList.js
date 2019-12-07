@@ -25,7 +25,7 @@ class ContentList extends Component {
   }
 
   render() {
-    const contentList = this.state && this.state.contentList.contents;
+    console.log(this.props)
     return (
       <div className="wrapper grid-dashboard">
         <div>
@@ -34,10 +34,10 @@ class ContentList extends Component {
         <div>
           <h3 className="flex-center" style={{ color: "rgb(59, 57, 57)" }}>Content List</h3>
           <div className="grid-col-3">
-            {contentList &&
+            {/* {contentList &&
               contentList.map(content => {
                 return <ContentCard key={content.id} content={content} />;
-              })}
+              })} */}
           </div>
         </div>
       </div>
