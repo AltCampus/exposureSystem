@@ -37,7 +37,7 @@ class NewContentForm extends Component {
             <AdminSidebar />
           </div>
           <form
-            className="flex-column flex-center card"
+            className="flex-column flex-center"
             // onSubmit={this.handleSubmit}
           >
             <select

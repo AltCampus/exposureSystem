@@ -33,7 +33,7 @@ function App() {
           <Route exact path="/admin/feed" component={AdminFeed} />
           <Route exact path="/admin/content/list" component={ContentList} />
           <Route exact path="/admin/content/new" component={NewContentForm} />
-          <Route exact path="/admin/students" component={Students} />
+          <Route exact path="/admin/students/list" component={Students} />
           <Route
             exact
             path="/admin/pending-approvals"
