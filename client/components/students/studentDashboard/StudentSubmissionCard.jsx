@@ -1,5 +1,5 @@
 import React from 'react';
-
+// TODO : MAKE IT AS WHEN CLICKED ON THE CARD IT OPENS THE ORIGINAL ARTICLE
 function StudentSubmissionCard() {
   return (
     <div className="wrapper flex-column">

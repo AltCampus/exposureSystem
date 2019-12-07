@@ -19,29 +19,29 @@ import Onboarding from "./auth/Onboarding";
 import StudentDashboard from "./students/studentDashboard/StudentDashboard";
 
 function App() {
-    return (
-      <>
-        <Router>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/register" component={RegisterUser} />
-            <Route path="/login" component={LoginUser} />
-            <Route exact path="/admin" component={AdminLogin} />
-            <Route exact path="/admin/dashboard" component={AdminDashboard} />
-            <Route exact path="/content/list" component={ContentList} />
-            <Route exact path="/content/new" component={NewContentForm} />
-            <Route exact path="/students" component={Students} />
-            <Route exact path="/pendingapprovals" component={PendingApprovals} />
-            <Route exact path="/content/:contentid" component={Content} />
-            <Route exact path="/feedback" component={ContentFeedback} />
-            <Route exact path="/register/onboarding" component={Onboarding} />
-            <Route exact path="/username" component={StudentDashboard} />
-            <Route component={Page404} />
-          </Switch>
-        </Router>
-      </>
-    );
+  return (
+    <>
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/register" component={RegisterUser} />
+          <Route path="/login" component={LoginUser} />
+          <Route exact path="/admin/login" component={AdminLogin} />
+          <Route exact path="/admin/dashboard" component={AdminDashboard} />
+          <Route exact path="/content/list" component={ContentList} />
+          <Route exact path="/content/new" component={NewContentForm} />
+          <Route exact path="/admin/students" component={Students} />
+          <Route exact path="admin/pendingapprovals" component={PendingApprovals} />
+          <Route exact path="/content/:contentid" component={Content} />
+          <Route exact path="/feedback" component={ContentFeedback} />
+          <Route exact path="/register/onboarding" component={Onboarding} />
+          <Route exact path="/username" component={StudentDashboard} />
+          <Route component={Page404} />
+        </Switch>
+      </Router>
+    </>
+  );
 }
 
 export default App;
