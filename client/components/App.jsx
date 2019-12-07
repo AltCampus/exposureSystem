@@ -42,7 +42,7 @@ function App() {
           <Route exact path="/admin/content/:contentid" component={Content} />
           <Route path="/submission/:deliveryid" component={ContentSubmission} />
           <Route exact path="/register/onboarding" component={Onboarding} />
-          <Route exact path="/username" component={StudentDashboard} />
+          <Route exact path="/:username" component={StudentDashboard} />
           <Route path="/admin/editcontent" component={EditContent} />
           <Route component={Page404} />
         </Switch>
