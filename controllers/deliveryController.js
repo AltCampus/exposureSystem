@@ -12,17 +12,19 @@ module.exports = {
       .then(data => {
         // console.log(data, "content data")
 
-        res.send(data);
+        // res.send(data);
         // `http:localhost:3000/delivery/${:deliveryId}`
-        const mail = `http://localhost:3000/api/v1/delivery/${data.id}`;
-        console.log(mail);
-        res.json({ data });
+        // const mail = `http://localhost:3000/api/v1/delivery/${data.id}`;
+        // console.log(mail);
+        // res.json({ data });
+        return { data };
       })
       .catch(err => {
-        res.status(500).json({
-          message:
-            err.message || 'Some error occurred while initialising delivery',
-        });
+        console.log(err);
+        // res.status(500).json({
+        //   message:
+        //     err.message || 'Some error occurred while initialising delivery',
+        // });
       });
   },
 

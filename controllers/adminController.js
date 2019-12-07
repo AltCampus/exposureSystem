@@ -29,6 +29,7 @@ module.exports = {
       return res.status(200).json({ user: users });
     });
   },
+
   removeUser: (req, res, err) => {
     const id = req.params.id;
     User.findByIdAndDelete(id, (err, user) => {
@@ -36,6 +37,7 @@ module.exports = {
       return res.status(200).json({ user: users });
     });
   },
+
   pendingUsers: (req, res, err) => {
     User.find({ isApproved: false }, (err, users) => {
       if (err) return next(err);

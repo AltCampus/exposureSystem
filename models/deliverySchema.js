@@ -7,7 +7,7 @@ const deliverySchema = new Schema(
     type: {
       type: 'String',
       enum: ['resource', 'challenge'],
-      required: true,
+      // required: true,
     },
     content: [{ type: Schema.Types.ObjectId, ref: 'Content', required: true }],
     user: [{ type: Schema.Types.ObjectId, ref: 'User', required: true }],
