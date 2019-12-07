@@ -1,12 +1,12 @@
 const adminState = {
-  adminData: ""
+  adminData: '',
 };
 function adminReducer(state = adminState, action) {
   switch (action.type) {
-    case "ADMINLOGGEDIN":
+    case 'ADMIN_LOGIN_SUCCESSFUL':
       return {
-        ...adminState,
-        adminData: action.payload
+        ...state,
+        adminData: action.payload,
       };
     default:
       return state;

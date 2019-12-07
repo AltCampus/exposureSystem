@@ -23,7 +23,8 @@ function registerUser(req, res, next) {
 function loginUser(req, res, next) {
   var { password, email } = req.body;
   if (!email || !password) {
-    return res.status(401).json({ error: 'INVALID USER' });
+    return res.status(401).json({ error: "INVALID USER" });
+
   }
   User.findOne({ email }, (err, user) => {
     if (err) return next(err);

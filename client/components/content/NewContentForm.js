@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import Header from "../header/Header";
-import {addContent} from "../actions/contentAction"
-import {connect} from "react-redux"
-import AdminSidebar from "../adminDashboard/AdminSidebar";
+import React, { Component } from 'react';
+import Header from '../header/Header';
+import { newContent } from '../actions/contentAction';
+import { connect } from 'react-redux';
+import AdminSidebar from '../adminDashboard/AdminSidebar';
 
 class NewContentForm extends Component {
   constructor() {
     super();
     this.state = {
-      type: "",
-      url: "",
-      title: "",
-      description: ""
+      type: '',
+      url: '',
+      title: '',
+      description: '',
     };
   }
   handleChange = e => {
@@ -24,9 +24,9 @@ class NewContentForm extends Component {
       type: this.state.type,
       url: this.state.url,
       title: this.state.title,
-      description: this.state.description
+      description: this.state.description,
     };
-    this.props.addContent(data)
+    this.props.addContent(data);
   };
 
   render() {
@@ -42,7 +42,7 @@ class NewContentForm extends Component {
               name="type"
               className="input input-select"
               onClick={this.handleChange}
-              defaultValue={"DEFAULT"}
+              defaultValue={'DEFAULT'}
             >
               <option value="DEFAULT" disabled>
                 Type
@@ -89,7 +89,7 @@ class NewContentForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-	return state;
+const mapStateToProps = state => {
+  return state;
 };
-export default connect(mapStateToProps,{addContent})(NewContentForm);
+export default connect(mapStateToProps, { newContent })(NewContentForm);

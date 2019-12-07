@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/iframe-has-title */
+
 import React, { Component } from 'react';
 
 // TODO
@@ -11,6 +11,7 @@ class ContentFeedback extends Component {
       contentUrl: '',
     };
   }
+
 
   componentDidMount() {
     var link = window.location.href.split('/').pop();
