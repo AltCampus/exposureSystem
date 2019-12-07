@@ -26,8 +26,6 @@ class ContentList extends Component {
 
   render() {
     const contentList = this.state && this.state.contentList.contents;
-    // console.log(this.state.contentList.contents)
-
     return (
       <div className="wrapper grid-dashboard">
         <div>

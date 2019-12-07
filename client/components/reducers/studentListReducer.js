@@ -1,5 +1,5 @@
-  const studentList = {
-  students: ""
+const studentList = {
+  students: []
 };
 function studentListReducer(state = studentList, action) {
   switch (action.type) {

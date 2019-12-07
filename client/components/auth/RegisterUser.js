@@ -79,16 +79,10 @@ class RegisterUser extends Component {
             />
             <br></br>
 
-<<<<<<< HEAD
-            <button className="button" type="submit">Register</button>
+            <NavLink to="/register/onboarding" className="button">Next</NavLink>
           </form>
         </div>
-      </>
-=======
-          <NavLink to="/register/onboarding" className="button">Next</NavLink>
-        </form>
-      </div>
->>>>>>> develop-updates
+        </>
     );
   }
 }

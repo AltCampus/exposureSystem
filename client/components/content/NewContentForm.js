@@ -26,10 +26,11 @@ class NewContentForm extends Component {
       title: this.state.title,
       description: this.state.description,
     };
-    this.props.addContent(data);
+    this.props.newContent(data);
   };
 
   render() {
+    console.log(this.props)
     return (
       <>
         <div className="wrapper grid-dashboard">
