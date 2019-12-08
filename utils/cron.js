@@ -1,7 +1,8 @@
 const cron = require('node-cron');
 const User = require('../models/userSchema');
 const Content = require('../models/contentSchema');
-const Delivery = require('../controllers/deliveryController');
+// const Delivery = require('../controllers/deliveryController');
+const Delivery = require('../models/deliverySchema');
 const INDIVIDUAL = 'individual';
 const PAIR = 'pair';
 const GROUP = 'group';
@@ -58,13 +59,33 @@ const findNewContentPerStudentAndSendMail = () => {
         ];
 
       // create a new delivery.
-      //   console.log(user._id);
-      //   console.log(contentToSend._id);
-      const delivery = Delivery.newDelivery({
-        user: user._id,
-        content: contentToSend._id,
-      });
-      console.log(delivery, 'inside cron');
+
+      //   const delivery = Delivery.newDelivery({
+      //     user: user._id,
+      //     content: contentToSend._id,
+      //   });
+
+      function deliveryId(req, res) {
+        const delivery = new Delivery({
+          user: user._id,
+          content: contentToSend._id,
+        });
+
+        delivery
+          .save()
+          .then(data => {
+            // console.log(data, "content data")
+            // const id = data._id;
+            // return { id };
+
+            res.json({ data });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+
+      console.log(data, 'inside cron');
       // sendMail(user._id, content._id, delivery._id)
     });
   });

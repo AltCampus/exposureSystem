@@ -4,8 +4,8 @@ const Delivery = require('../models/deliverySchema');
 
 module.exports = {
   newDelivery: (req, res) => {
-    const delivery = new Delivery(req.body);
-    console.log(req.body, 'inside deliveryController');
+    const delivery = new Delivery(req);
+    // console.log(req, 'inside deliveryController');
 
     delivery
       .save()
@@ -17,7 +17,9 @@ module.exports = {
         // const mail = `http://localhost:3000/api/v1/delivery/${data.id}`;
         // console.log(mail);
         // res.json({ data });
-        return { data };
+        // console.log(data._id);
+        const id = data._id;
+        return { id };
       })
       .catch(err => {
         console.log(err);
