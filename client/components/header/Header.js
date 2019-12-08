@@ -1,52 +1,142 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { userLoggedIn, userLogout } from "../actions/userAction";
+import { adminLogout } from "../actions/adminAction"
 
 class Header extends React.Component {
-
-  handleLogout = () => {
-    console.log("inside handlelogout")
-    localStorage.clear()
+  constructor(props) {
+    super(props);
   }
 
-render() {
-  return (
-    <div className="wrapper header">
-      <div className="flex-between">
-        <div>
-          <NavLink className="icon" to="/">
-            <h3>Exposure System</h3>
-          </NavLink>
+  handleLogout = () => {
+    e.preventDefault()
+  }
+
+  render() {
+    const isUserLoggedIn = this.props.userReducer.isLoggedIn;
+    const isAdminLoggedIn = this.props.adminReducer.isLoggedIn;
+    console.log(isUserLoggedIn, "user");
+    console.log(isAdminLoggedIn, "admin")
+    return (
+      <div className="wrapper header">
+        <div className="flex-between">
+          <div>
+            <NavLink className="icon" to="/">
+              <h3>Exposure System</h3>
+            </NavLink>
+          </div>
+
+
+          {
+
+            isAdminLoggedIn  ?
+              <NavLink onClick={this.handleLogout} style={{ color: "white", fontWeight: "600" }} className="head-links" activeClassName="active" to="/admin/login">Logout</NavLink>
+              :
+
+              <nav>
+                <NavLink className="head-links" activeClassName="active" to="/register">Register</NavLink>
+                <NavLink className="head-links" activeClassName="active" to="/login">Login</NavLink>
+              </nav>
+
+          }
+
+
+
+
         </div>
-        <div>
-          <nav>
+      </div >
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return state
+}
+
+
+export default connect(mapStateToProps, { userLoggedIn, userLogout, adminLogout })(Header);
+
+// export default Header
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* {
+
+            window.location.pathname == "/admin/login"  ?
+            <div>
+            </div>
+            :
+            isAdminLoggedIn ?
+            <NavLink
+            className="head-links"
+            activeClassName="active"
+            to="/"
+          >
+            Logout
+            </NavLink>
+            :
+            
+            isUserLoggedIn ?
+              <nav>
+            <NavLink
+              className="head-links"
+              activeClassName="active"
+              onClick={userLogout}
+              to="/"
+            >
+              Logout
+              </NavLink>
+          </nav>
+          :
+              <nav>
             <NavLink
               className="head-links"
               activeClassName="active"
               to="/register"
             >
               Register
-              </NavLink>
+            </NavLink>
             <NavLink
               className="head-links"
               activeClassName="active"
               to="/login"
             >
               Login
-              </NavLink>
-            {
-              localStorage.userToken ?
-                <button onClick={this.handleLogout}>
-                  Logout
-                </button>
-                :
-                null
-            }
+            </NavLink>
           </nav>
-        </div>
-      </div>
-    </div >
-  );
-}
-}
 
-export default Header;
+          } */}

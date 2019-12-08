@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../store/store';
-import { adminloggedIn } from '../actions/adminAction';
-
-
+import { adminloggedIn, adminLogout } from '../actions/adminAction';
 class AdminLogin extends Component {
   constructor(props) {
     super(props);
@@ -30,15 +28,16 @@ class AdminLogin extends Component {
     store.subscribe(() => {
       console.log(store.getState(), "in admin component");
       store.getState().adminReducer.adminData.Token
-        ? this.props.history.push('/admin')
+        ? this.props.history.push('/admin/feed')
         : this.setState({
-            ...this.state,
-            admin: "Please Check Admin Credentials!"
+          ...this.state,
+          admin: "Please Check Admin Credentials!"
 
-          });
+        });
     });
   };
   render() {
+    // console.log(this.props)
     return (
       <div className="wrapper text-center">
         <p>{this.state.admin}</p>
@@ -64,7 +63,7 @@ class AdminLogin extends Component {
           />
           <br />
 
-          <button className="button" onClick={this.handleAdminLogin}>
+          <button className="button" type="submit" onClick={this.handleAdminLogin}>
             Submit
           </button>
         </div>
@@ -75,4 +74,4 @@ class AdminLogin extends Component {
 const mapStateToProps = state => {
   return state;
 };
-export default connect(mapStateToProps, { adminloggedIn })(AdminLogin);
+export default connect(mapStateToProps, { adminloggedIn, adminLogout })(AdminLogin);
