@@ -7,10 +7,7 @@ class Student extends Component {
   }
 
   render() {
-    const {
-      username, email, isActive, isInCampus, isAdmin, createdAt,
-    } = this.props.studentData;
-    // console.log(this.props.studentData.username)
+    const {username, email, isActive, isInCampus, isAdmin, createdAt } = this.props.student;
     return (
       <div className="student-card">
         <div className="card-heading flex-center">{username}</div>
@@ -19,7 +16,7 @@ class Student extends Component {
             <div className="student-pfp" />
           </div>
           <div>
-Details:
+            Details:
             {email}
             {isInCampus}
             {isActive}

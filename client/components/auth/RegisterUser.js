@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom";
 import store from "../store/store";
 import { userRegister } from "../actions/userAction";
 import { connect } from "react-redux";
+import Header from '../header/Header';
 
 class RegisterUser extends Component {
   constructor() {
@@ -17,7 +18,7 @@ class RegisterUser extends Component {
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
-    });
+    })
   };
 
   handleSubmit = event => {
@@ -43,42 +44,45 @@ class RegisterUser extends Component {
 
   render() {
     return (
-      <div className="wrapper card text-center">
-        <h1 className="heading">Register</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            className="input"
-            type="text"
-            name="username"
-            placeholder="Enter username"
-            onChange={this.handleChange}
-            value={this.state.username}
-          />
-          <br></br>
+      <>
+        <Header />
+        <div className="wrapper card text-center">
+          <h1 className="heading">Register</h1>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              className="input"
+              type="text"
+              name="username"
+              placeholder="Enter username"
+              onChange={this.handleChange}
+              value={this.state.username}
+            />
+            <br></br>
 
-          <input
-            className="input"
-            type="email"
-            name="email"
-            placeholder="Enter email"
-            onChange={this.handleChange}
-            value={this.state.email}
-          />
-          <br></br>
+            <input
+              className="input"
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onChange={this.handleChange}
+              value={this.state.email}
+            />
+            <br></br>
 
-          <input
-            className="input"
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-          <br></br>
+            <input
+              className="input"
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              onChange={this.handleChange}
+              value={this.state.password}
+            />
+            <br></br>
 
-          <NavLink to="/register/onboarding" className="button">Next</NavLink>
-        </form>
-      </div>
+            <NavLink to="/register/onboarding" className="button">Next</NavLink>
+          </form>
+        </div>
+        </>
     );
   }
 }

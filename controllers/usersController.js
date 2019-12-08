@@ -1,9 +1,6 @@
 const User = require('../models/userSchema');
 const auth = require('../utils/auth');
-const mail = require('../utils/mailer');
-
-// TODO
-// restructure controller
+// const mail = require('../utils/mailer');
 
 module.exports = {
   registerUser: (req, res, next) => {
