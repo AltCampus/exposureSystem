@@ -8,15 +8,15 @@ import StudentCard from './StudentCard';
 class StudentList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      studentList: '',
-    };
   }
 
   componentDidMount() {
     this.props.studentList();
   }
+
   render() {
+    const studentList = this.props.studentListReducer.students.users
+
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
@@ -25,10 +25,11 @@ class StudentList extends Component {
             Students
           </h3>
           <div className="grid-col-3">
-            {this.state.studentList &&
-              this.state.studentList.map((student, i) => {
-                return <StudentCard key={i} student={student} />;
-              })}
+            {
+              studentList && studentList.map((student,i) => {
+                return <StudentCard key={i} student={student} />
+              })
+            }
           </div>
         </div>
       </div>

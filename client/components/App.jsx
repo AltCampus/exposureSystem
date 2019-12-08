@@ -11,7 +11,6 @@ import Page404 from './Page404';
 import AdminDashboard from './adminDashboard/AdminDashboard';
 import ContentList from './content/ContentList';
 import NewContentForm from './content/NewContentForm';
-import Students from './students/Students';
 import PendingApprovals from './adminDashboard/PendingApprovals';
 import ContentSubmission from './content/ContentSubmission';
 import Content from './content/Content';
@@ -19,12 +18,12 @@ import Onboarding from './auth/Onboarding';
 import StudentDashboard from './students/studentDashboard/StudentDashboard';
 import EditContent from './content/EditContent';
 import AdminFeed from './adminDashboard/AdminFeed';
+import StudentList from "./students/StudentList"
 
 function App() {
   return (
     <>
       <Router>
-        <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={RegisterUser} />
@@ -33,7 +32,7 @@ function App() {
           <Route exact path="/admin/feed" component={AdminFeed} />
           <Route exact path="/admin/content/list" component={ContentList} />
           <Route exact path="/admin/content/new" component={NewContentForm} />
-          <Route exact path="/admin/students/list" component={Students} />
+          <Route exact path="/admin/students/list" component={StudentList} />
           <Route
             exact
             path="/admin/pending-approvals"

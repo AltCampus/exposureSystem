@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../store/store';
 import { userLoggedIn } from '../actions/userAction';
+import Header from "../header/Header"
+
 class LoginUser extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       password: '',
-      user: '',
+      username: '',
     };
   }
 
@@ -24,22 +26,26 @@ class LoginUser extends Component {
   };
 
   postLoginData = e => {
-    var studentData = {
+    var userCredentials = {
       email: this.state.email,
       password: this.state.password,
-    };
-    this.props.userLoggedIn(studentData);
+    }; payload : {
+      isLoggedin : false
+    }
+    this.props.userLoggedIn(userCredentials);
     store.subscribe(() => {
       store.getState().userReducer.userLoginData.Token
         ? alert('user login sucessfull')
         : this.setState({ ...this.state, user: 'Invalid User!' });
     });
-
+    this.props.history.push("/");
   };
 
   render() {
+    // console.log(this.props);
     return (
       <div>
+        <Header />
         <div className="wrapper card text-center">
           <p>{this.state.user}</p>
           <h1 className="heading">Login</h1>
@@ -66,7 +72,7 @@ class LoginUser extends Component {
 
               <br />
 
-              <button className="button" onClick={this.handleSubmit}>
+              <button className="button" type="submit" onClick={this.handleSubmit}>
                 Submit
               </button>
             </div>

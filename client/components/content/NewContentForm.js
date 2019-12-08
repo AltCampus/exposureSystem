@@ -26,10 +26,11 @@ class NewContentForm extends Component {
       title: this.state.title,
       description: this.state.description,
     };
-    this.props.addContent(data);
+    this.props.newContent(data);
   };
 
   render() {
+    console.log(this.props)
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -81,7 +82,7 @@ class NewContentForm extends Component {
               value={this.state.description}
               onChange={this.handleChange}
             ></textarea>
-            <button className="button" onClick={this.handleSubmit}>
+            <button className="button" type="submit" onClick={this.handleSubmit}>
               Add Content
             </button>
           </form>
