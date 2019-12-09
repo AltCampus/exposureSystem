@@ -72,6 +72,7 @@ class RegisterUser extends Component {
               onChange={this.handleChange}
               value={this.state.email}
               required
+              pattern=".+@gmail\.com"
             />
             <br></br>
 
