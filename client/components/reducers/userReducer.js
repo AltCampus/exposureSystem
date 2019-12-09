@@ -4,7 +4,9 @@ const userState = {
   isLoggedIn: false
 };
 
+
 function userReducer(state = userState, action) {
+  // console.log(action,"action in user reducer");
   switch (action.type) {
     case 'USER_REGISTER_SUCCESSFULL':
       return {
@@ -21,6 +23,7 @@ function userReducer(state = userState, action) {
       return {
         ...state,
         isLoggedIn: false,
+        userLoginData: ""
       };
     default:
       return state;

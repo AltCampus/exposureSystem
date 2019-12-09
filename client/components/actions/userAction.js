@@ -1,4 +1,5 @@
-const userLoggedIn = userCredentials => {
+const userLoggedIn = (dispatch, userCredentials) => {
+  console.log("in login action")
   return dispatch => {
     fetch('/api/v1/users/login', {
       method: 'POST',
@@ -34,7 +35,9 @@ const userRegister = userCredentials => {
   };
 };
 
-const userLogout = userCredentials => {
+
+const userLogout = (dispatch,userCredentials) => {
+  console.log("in user logout in actions")
   return dispatch => {
     dispatch({
       type : 'USER_LOGOUT',

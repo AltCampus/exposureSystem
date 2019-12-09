@@ -1,27 +1,17 @@
 import React, { Component } from "react";
 import AdminSidebar from "../adminDashboard/AdminSidebar";
 import ContentCard from "./ContentCard";
+import { connect } from "react-redux";
+import { getContent } from "../actions/contentAction"
 
 
 class ContentList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      contentList: ""
-    };
+  constructor(props) {
+    super(props);
   }
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/content/list", {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(data => this.setState({ ...this.state, contentList: data }));
+    this.props.getContent()
   }
 
   render() {
@@ -45,4 +35,9 @@ class ContentList extends Component {
   }
 }
 
-export default ContentList;
+
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps, getContent)(ContentList) 

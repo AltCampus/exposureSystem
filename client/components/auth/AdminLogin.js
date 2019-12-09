@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../store/store';
 import { adminloggedIn, adminLogout } from '../actions/adminAction';
+// import Header from "../header/Header"
+
 class AdminLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      admin: '',
+      email: 'admin@altcampus.io',
+      password: 'drybar',
+      // admin: '',
     };
   }
 
@@ -19,6 +21,7 @@ class AdminLogin extends Component {
   };
 
   handleAdminLogin = e => {
+    console.log("inside handleAdmin Login")
     e.preventDefault();
     const adminCredentials = {
       email: this.state.email,
@@ -26,19 +29,22 @@ class AdminLogin extends Component {
     };
     this.props.adminloggedIn(adminCredentials);
     store.subscribe(() => {
+      console.log(store, "store")
       console.log(store.getState(), "in admin component");
       store.getState().adminReducer.adminData.Token
-        ? this.props.history.push('/admin/feed')
+        ?  alert('admin login sucessfull')
         : this.setState({
           ...this.state,
           admin: "Please Check Admin Credentials!"
-
         });
     });
+    this.props.history.push("/admin/feed")
   };
   render() {
     // console.log(this.props)
     return (
+      <>
+      {/* <Header /> */}
       <div className="wrapper text-center">
         <p>{this.state.admin}</p>
         <h1 className="heading">Admin-Login</h1>
@@ -68,6 +74,7 @@ class AdminLogin extends Component {
           </button>
         </div>
       </div>
+      </>
     );
   }
 }

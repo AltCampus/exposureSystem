@@ -8,9 +8,9 @@ class LoginUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      username: '',
+      email: "rocky123@gmil.com",
+      password: "rocky123",
+      username: 'rocy123',
     };
   }
 
@@ -21,6 +21,7 @@ class LoginUser extends Component {
   };
 
   handleSubmit = e => {
+    console.log("in handle submit")
     e.preventDefault();
     this.postLoginData();
   };
@@ -29,20 +30,25 @@ class LoginUser extends Component {
     var userCredentials = {
       email: this.state.email,
       password: this.state.password,
-    }; payload : {
-      isLoggedin : false
-    }
+      username: this.state.username,
+    };
+    // payload: {
+    //   isLoggedin: true
+    // }
+    
     this.props.userLoggedIn(userCredentials);
+    console.log(userCredentials, "ddgdggdgd")
     store.subscribe(() => {
+      // console.log(store,"store")
       store.getState().userReducer.userLoginData.Token
         ? alert('user login sucessfull')
         : this.setState({ ...this.state, user: 'Invalid User!' });
     });
-    this.props.history.push("/");
+    this.props.history.push("/")
   };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props,"props in render")
     return (
       <div>
         <Header />

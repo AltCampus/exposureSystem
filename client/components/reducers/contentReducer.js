@@ -1,6 +1,8 @@
 const contentState = {
   content: '',
 };
+
+
 function contentReducer(state = contentState, action) {
   switch (action.type) {
     case 'NEW_CONTENT_ADDED':
@@ -11,5 +13,6 @@ function contentReducer(state = contentState, action) {
       return state;
   }
 }
+
 
 export default contentReducer;

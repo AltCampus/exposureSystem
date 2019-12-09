@@ -9,8 +9,11 @@ class Header extends React.Component {
     super(props);
   }
 
-  handleLogout = () => {
+  handleLogout = (e) => {
+    console.log("inside handle logout")
     e.preventDefault()
+    this.props.userLogout()
+    this.props.adminLogout()
   }
 
   render() {
@@ -18,6 +21,7 @@ class Header extends React.Component {
     const isAdminLoggedIn = this.props.adminReducer.isLoggedIn;
     console.log(isUserLoggedIn, "user");
     console.log(isAdminLoggedIn, "admin")
+    console.log(this.props)
     return (
       <div className="wrapper header">
         <div className="flex-between">
@@ -27,23 +31,16 @@ class Header extends React.Component {
             </NavLink>
           </div>
 
-
           {
-
-            isAdminLoggedIn  ?
-              <NavLink onClick={this.handleLogout} style={{ color: "white", fontWeight: "600" }} className="head-links" activeClassName="active" to="/admin/login">Logout</NavLink>
+            isUserLoggedIn || isAdminLoggedIn  ?
+              <NavLink onClick={this.handleLogout} style={{ color: "white", fontWeight: "600" }} className="head-links" activeClassName="active" to="/">Logout</NavLink>
               :
 
               <nav>
                 <NavLink className="head-links" activeClassName="active" to="/register">Register</NavLink>
                 <NavLink className="head-links" activeClassName="active" to="/login">Login</NavLink>
               </nav>
-
           }
-
-
-
-
         </div>
       </div >
     );

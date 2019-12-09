@@ -20,6 +20,12 @@ import EditContent from './content/EditContent';
 import AdminFeed from './adminDashboard/AdminFeed';
 import StudentList from "./students/StudentList"
 
+
+// componentDidMount = () => {
+//   fetch("/api/v1/")
+
+// }
+
 function App() {
   return (
     <>

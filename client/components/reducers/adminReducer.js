@@ -2,9 +2,11 @@ const adminState = {
   adminData: '',
   isLoggedIn: false
 };
+
 function adminReducer(state = adminState, action) {
+  console.log(action, "action in admin reducer")
   switch (action.type) {
-    case 'ADMIN_LOGIN_SUCCESSFUL':
+    case 'ADMIN_LOGIN_SUCCESSFULL':
       return {
         ...state,
         adminData: action.payload,
@@ -13,7 +15,8 @@ function adminReducer(state = adminState, action) {
     case "ADMIN_LOGOUT":
       return {
         ...state,
-        isLoggedIn: false
+        isLoggedIn: false,
+        adminData: ""
       }
     default:
       return state;
