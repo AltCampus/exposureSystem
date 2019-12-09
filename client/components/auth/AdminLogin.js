@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import store from '../store/store';
-import { adminloggedIn, adminLogout } from '../actions/adminAction';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import store from "../store/store";
+import { adminloggedIn, adminLogout } from "../actions/adminAction";
 class AdminLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      admin: '',
+      email: "",
+      password: "",
+      admin: ""
     };
   }
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -22,19 +22,21 @@ class AdminLogin extends Component {
     e.preventDefault();
     const adminCredentials = {
       email: this.state.email,
-      password: this.state.password,
+      password: this.state.password
     };
-    this.props.adminloggedIn(adminCredentials);
-    store.subscribe(() => {
-      console.log(store.getState(), "in admin component");
-      store.getState().adminReducer.adminData.Token
-        ? this.props.history.push('/admin/feed')
-        : this.setState({
-          ...this.state,
-          admin: "Please Check Admin Credentials!"
-
-        });
-    });
+    if (!adminCredentials.email || !adminCredentials.password) {
+      return alert("PLEASE CHECK INPUT FIELDS!");
+    } else {
+      this.props.adminloggedIn(adminCredentials);
+      store.subscribe(() => {
+        store.getState().adminReducer.adminData.Token
+          ? this.props.history.push("/admin/feed")
+          : this.setState({
+              ...this.state,
+              admin: store.getState().adminReducer.adminData.admin
+            });
+      });
+    }
   };
   render() {
     // console.log(this.props)
@@ -63,7 +65,11 @@ class AdminLogin extends Component {
           />
           <br />
 
-          <button className="button" type="submit" onClick={this.handleAdminLogin}>
+          <button
+            className="button"
+            type="submit"
+            onClick={this.handleAdminLogin}
+          >
             Submit
           </button>
         </div>
@@ -74,4 +80,6 @@ class AdminLogin extends Component {
 const mapStateToProps = state => {
   return state;
 };
-export default connect(mapStateToProps, { adminloggedIn, adminLogout })(AdminLogin);
+export default connect(mapStateToProps, { adminloggedIn, adminLogout })(
+  AdminLogin
+);
