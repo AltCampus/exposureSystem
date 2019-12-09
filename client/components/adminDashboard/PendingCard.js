@@ -5,9 +5,23 @@ class Pending extends Component {
     super(props);
   }
 
+  // handleApproveStudent = () => {
+  //   console.log("inside handleApproveStudent")
+  //   fetch(`api/v1/admin/approved/${this.props.pendingStudent._id}`)
+  //     .then(res => res.json())
+  //     .then(approvedStudent => console.log(student))
+  // }
+
+  // handleRejectStudent = () => {
+  //   console.log("inside handleRejectStudent")
+  //   fetch(`api/v1/admin/approved/${this.props.pendingStudent._id}`)
+  //   .then(res => res.json())
+  //   .then(rejectedStudent => console.log(student))
+  // }
+
   render() {
-    const {username, email, isInCampus, createdAt } = this.props.pendingStudent
-    console.log(this.props)
+    const { username, email, createdAt } = this.props.pendingStudent
+    // console.log(this.props)
     return (
 
       <div className="student-card">
@@ -19,13 +33,13 @@ class Pending extends Component {
           <div>
             Details:
             {email}
-            {/* {createdAt} */}
+            {createdAt}
           </div>
 
         </div>
         <div className="pending-footer">
-          <button className="reject">X</button>
-          <button className="approve">✔</button>
+          <button onClick={this.handleRejectStudent} className="reject">X</button>
+          <button onClick={this.handleApproveStudent} className="approve">✔</button>
         </div>
       </div>
     );

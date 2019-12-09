@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
 import { studentList } from '../actions/studentListAction';
 import StudentCard from './StudentCard';
+import Header from "../header/Header"
+
 
 class StudentList extends Component {
   constructor(props) {
@@ -17,6 +19,8 @@ class StudentList extends Component {
     const studentList = this.props.studentListReducer.students.users
 
     return (
+      <>
+      <Header />
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
         <div>
@@ -32,6 +36,7 @@ class StudentList extends Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }

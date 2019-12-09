@@ -3,6 +3,7 @@ import AdminSidebar from "../adminDashboard/AdminSidebar";
 import ContentCard from "./ContentCard";
 import { connect } from "react-redux";
 import { getContent } from "../actions/contentAction"
+import Header from "../header/Header"
 
 
 class ContentList extends Component {
@@ -18,6 +19,8 @@ class ContentList extends Component {
     const contentList = this.props.contentReducer.content.contents
     // console.log(this.props.contentReducer.content.contents)
     return (
+      <>
+        <Header />
       <div className="wrapper grid-dashboard">
         <div>
           <AdminSidebar />
@@ -39,6 +42,7 @@ class ContentList extends Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }

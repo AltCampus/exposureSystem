@@ -4,6 +4,7 @@ import { newContent } from '../actions/contentAction';
 import { connect } from 'react-redux';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
 
+
 class NewContentForm extends Component {
   constructor() {
     super();
@@ -33,6 +34,7 @@ class NewContentForm extends Component {
     console.log(this.props)
     return (
       <>
+      <Header />
         <div className="wrapper grid-dashboard">
           <div>
             <AdminSidebar />

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import AdminSidebar from './AdminSidebar';
 import PendingCard from './PendingCard';
-import {connect} from "react-redux"
+import { connect } from "react-redux"
 import { pendingApprovals } from '../actions/adminAction'
+import Header from "../header/Header"
+
 
 class PendingApprovals extends Component {
   constructor(props) {
@@ -17,9 +19,10 @@ class PendingApprovals extends Component {
 
   render() {
     const pendingStudentList = this.props.adminReducer.pendingApprovals.users
-    console.log(pendingStudentList)
+    // console.log(pendingStudentList)
     return (
       <>
+        <Header />
         <div className="wrapper grid-dashboard">
           <div>
             <AdminSidebar />
@@ -33,12 +36,11 @@ class PendingApprovals extends Component {
                 pendingStudentList.map(pendingStudent => (
                   <PendingCard pendingStudentData={pendingStudent} />
                 ))} */}
-                {
-                  pendingStudentList && pendingStudentList.map(pendingStudent => {
-                    return console.log(pendingStudent),
-                    <PendingCard pendingStudent={pendingStudent}/>
-                  })
-                }
+              {
+                pendingStudentList && pendingStudentList.map(pendingStudent => {
+                  return <PendingCard pendingStudent={pendingStudent} />
+                })
+              }
               {/* <PendingCard /> */}
             </div>
           </div>

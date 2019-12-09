@@ -55,10 +55,10 @@ class Content extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return state
-// }
+const mapStateToProps = (state) => {
+  return state
+}
 
-// export default connect(mapStateToProps, { getContent })(Content) 
+export default connect(mapStateToProps, { getContent })(Content) 
 
-export default Content
+// export default Content
