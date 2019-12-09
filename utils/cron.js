@@ -1,7 +1,6 @@
 const cron = require('node-cron');
 const User = require('../models/userSchema');
 const Content = require('../models/contentSchema');
-// const Delivery = require('../controllers/deliveryController');
 const Delivery = require('../models/deliverySchema');
 const INDIVIDUAL = 'individual';
 const PAIR = 'pair';
@@ -30,6 +29,7 @@ cron.schedule('* * * * *', function(req, res, next) {
 });
 
 const determineDeliveryType = () => {
+  // TODO
   // var date = new Date();
   // determine day
   // if its monday return -> 'individual'
@@ -38,10 +38,30 @@ const determineDeliveryType = () => {
   return INDIVIDUAL;
 };
 
-const sendMail = (userId, contentId, deliveryId) => {
-  // actually send the mail.
-  console.log(deliveryId, 'inside sendmail');
+const sendMail = (user, content, delivery) => {
+  const userName = user.username;
+  const contentId = content._id;
+  const deliveryId = delivery.delivery.id;
+  // console.log(deliveryId, 'username');
+
+  const link = `http://localhost:3000/submission/${deliveryId}`;
+  console.log(link, 'link');
 };
+
+// const sendMail = delivery => {
+//   // console.log(delivery, 'username');
+//   const populate = Delivery.findById(delivery._id)
+//     .populate('content')
+//     .populate('user')
+//     .then(delivery => {
+//       return { delivery };
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+
+//   console.log(populate);
+// };
 
 const findNewContentPerStudentAndSendMail = () => {
   User.find({}).exec(function(err, users) {
@@ -77,6 +97,7 @@ const findNewContentPerStudentAndSendMail = () => {
       }
       const toSend = deliveryId(user, contentToSend);
       sendMail(user, contentToSend, toSend);
+      // sendMail(toSend);
     });
   });
 };
