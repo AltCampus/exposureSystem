@@ -38,6 +38,11 @@ const determineDeliveryType = () => {
   return INDIVIDUAL;
 };
 
+const sendMail = (userId, contentId, deliveryId) => {
+  // actually send the mail.
+  console.log(deliveryId, 'inside sendmail');
+};
+
 const findNewContentPerStudentAndSendMail = () => {
   User.find({}).exec(function(err, users) {
     users.forEach((user, i) => {
@@ -54,13 +59,6 @@ const findNewContentPerStudentAndSendMail = () => {
           Math.floor(Math.random() * contentNotSentList.length)
         ];
 
-      // create a new delivery.
-
-      //   const delivery = Delivery.newDelivery({
-      //     user: user._id,
-      //     content: contentToSend._id,
-      //   });
-
       function deliveryId(req, res) {
         const delivery = new Delivery({
           user: user.id,
@@ -70,24 +68,17 @@ const findNewContentPerStudentAndSendMail = () => {
         delivery
           .save()
           .then(data => {
-            const id = data.id;
-            // console.log(id, 'inside cron');
-            // return { id };
             return { data };
           })
           .catch(err => {
             console.log(err);
           });
-
-        console.log(delivery);
+        return { delivery };
       }
-      deliveryId(user, contentToSend);
-      // console.log(data, 'inside cron');
-      // sendMail(user._id, content._id, delivery._id)
+      const toSend = deliveryId(user, contentToSend);
+      sendMail(user, contentToSend, toSend);
     });
   });
 };
 
-const sendMail = (userId, contentId, deliveryId) => {
-  // actually send the mail.
-};
+// sendMail(user._id, contentToSend._id, delivery._id);
