@@ -12,10 +12,6 @@ Content.find({}).exec(function(err, contents) {
   contents.forEach(content => contentList.push(content));
 });
 cron.schedule('* * * * *', function(req, res, next) {
-  // console.log(allUsers, 'allusers.userStatus');
-  // require('./utils/allusers/users');
-  // allUsers();
-
   // find the type of email to be sent
   // 1. Individual mail i) send content
   // 2. pairMail -> i) makePairs ii) send content
@@ -67,25 +63,26 @@ const findNewContentPerStudentAndSendMail = () => {
 
       function deliveryId(req, res) {
         const delivery = new Delivery({
-          user: user._id,
-          content: contentToSend._id,
+          user: user.id,
+          content: contentToSend.id,
         });
 
         delivery
           .save()
           .then(data => {
-            // console.log(data, "content data")
-            // const id = data._id;
+            const id = data.id;
+            // console.log(id, 'inside cron');
             // return { id };
-
-            res.json({ data });
+            return { data };
           })
           .catch(err => {
             console.log(err);
           });
-      }
 
-      console.log(data, 'inside cron');
+        console.log(delivery);
+      }
+      deliveryId(user, contentToSend);
+      // console.log(data, 'inside cron');
       // sendMail(user._id, content._id, delivery._id)
     });
   });
