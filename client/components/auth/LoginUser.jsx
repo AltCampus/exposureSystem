@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../store/store';
-import { userLoggedIn } from '../actions/userAction';
+import store from '../redux/store/store';
+import { userLoggedIn } from '../redux/actions/userAction';
 import Header from "../header/Header"
 
 class LoginUser extends Component {

@@ -1,6 +1,6 @@
 const adminState = {
   adminData: '',
-  isLoggedIn: false
+  isLoggedIn: false,
 };
 function adminReducer(state = adminState, action) {
   switch (action.type) {
@@ -8,13 +8,13 @@ function adminReducer(state = adminState, action) {
       return {
         ...state,
         adminData: action.payload,
-        isLoggedIn: true
-      }
-    case "ADMIN_LOGOUT":
+        isLoggedIn: true,
+      };
+    case 'ADMIN_LOGOUT':
       return {
         ...state,
-        isLoggedIn: false
-      }
+        isLoggedIn: false,
+      };
     default:
       return state;
   }
