@@ -8,9 +8,9 @@ class AdminLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: 'admin@altcampus.io',
-      password: 'drybar',
-      // admin: '',
+      email: '',
+      password: '',
+      admin: ''
     };
   }
 
@@ -21,7 +21,7 @@ class AdminLogin extends Component {
   };
 
   handleAdminLogin = e => {
-    console.log("inside handleAdmin Login")
+    // console.log("inside handleAdminLogin")
     e.preventDefault();
     const adminCredentials = {
       email: this.state.email,
@@ -29,8 +29,8 @@ class AdminLogin extends Component {
     };
     this.props.adminloggedIn(adminCredentials);
     store.subscribe(() => {
-      console.log(store, "store")
-      console.log(store.getState(), "in admin component");
+      // console.log(store, "store")
+      // console.log(store.getState(), "in admin component");
       store.getState().adminReducer.adminData.Token
         ?  alert('admin login sucessfull')
         : this.setState({

@@ -7,22 +7,22 @@ class Pending extends Component {
 
   render() {
     // console.log(this.props.pendingStudentData)
-    const {
-      username, email, isActive, isInCampus, isAdmin, createdAt,
-    } = this.props.pendingStudentData;
+    // const {
+    //   username, email, isActive, isInCampus, isAdmin, createdAt,
+    // } = this.props.pendingStudentData;
 
     return (
 
       <div className="student-card">
-        <div className="card-heading flex-center">{username}</div>
+        <div className="card-heading flex-center">username</div>
         <div className="card-details">
           <div>
             <div className="student-pfp" />
           </div>
           <div>
 Details:
-            {email}
-            {isInCampus}
+            email
+            isInCampus
             {/* {createdAt} */}
           </div>
 

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom"
+import { getContent } from "../actions/contentAction"
+import { connect } from "react-redux";
 
 
 class Content extends Component {
@@ -16,6 +18,7 @@ class Content extends Component {
     console.log(this.props);
     // const {title, type, description,} = this.props.location.contentProps
     // console.log(this.props && this.props.location.contentProps.contentData, "inside content")
+    console.log(this.props.contentReducer)
     return (
       <>
       <div className="wrapper">
@@ -52,4 +55,10 @@ class Content extends Component {
   }
 }
 
-export default Content;
+// const mapStateToProps = (state) => {
+//   return state
+// }
+
+// export default connect(mapStateToProps, { getContent })(Content) 
+
+export default Content

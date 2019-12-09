@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
+
+
 class ContentCard extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +21,7 @@ class ContentCard extends Component {
         </div>
         {/* //TODO navlink should redirect to individual content piece by passing
         contentid from props */}
-        <NavLink
+        {/* <NavLink
           to={{
             pathname: "/content/:contentid",
             contentProps: { contentData: this.props.contentData }
@@ -27,7 +29,10 @@ class ContentCard extends Component {
           className="content-link"
         >
           Read More >>>
-        </NavLink>
+
+        </NavLink> */}
+
+        <NavLink to="/admin/content/:contentid" className="content-link">>>> Read more</NavLink>
       </div>
     );
   }

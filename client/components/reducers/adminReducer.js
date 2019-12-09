@@ -1,10 +1,11 @@
 const adminState = {
   adminData: '',
-  isLoggedIn: false
+  isLoggedIn: false,
+  pendingApprovals: ""
 };
 
 function adminReducer(state = adminState, action) {
-  console.log(action, "action in admin reducer")
+  // console.log(action, "action in admin reducer")
   switch (action.type) {
     case 'ADMIN_LOGIN_SUCCESSFULL':
       return {
@@ -17,6 +18,11 @@ function adminReducer(state = adminState, action) {
         ...state,
         isLoggedIn: false,
         adminData: ""
+      }
+    case "PENDING_APPROVALS":
+      return {
+        ...state,
+        pendingApprovals: action.payload
       }
     default:
       return state;

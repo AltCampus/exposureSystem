@@ -15,7 +15,8 @@ class ContentList extends Component {
   }
 
   render() {
-    console.log(this.props)
+    const contentList = this.props.contentReducer.content.contents
+    // console.log(this.props.contentReducer.content.contents)
     return (
       <div className="wrapper grid-dashboard">
         <div>
@@ -28,6 +29,13 @@ class ContentList extends Component {
               contentList.map(content => {
                 return <ContentCard key={content.id} content={content} />;
               })} */}
+
+              {
+                contentList && contentList.map(content => {
+                  // console.log(content)
+                  return <ContentCard content={content} />
+                })
+              }
           </div>
         </div>
       </div>
@@ -40,4 +48,4 @@ const mapStateToProps = (state) => {
   return state
 }
 
-export default connect(mapStateToProps, getContent)(ContentList) 
+export default connect(mapStateToProps, { getContent })(ContentList) 

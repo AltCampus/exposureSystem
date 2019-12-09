@@ -10,7 +10,7 @@ const userLoggedIn = (dispatch, userCredentials) => {
     })
       .then(res => res.json())
       .then(user => {
-        console.log(user, 'in user action');
+        // console.log(user, 'in user action');
         dispatch({ type: 'USER_LOGIN_SUCCESSFULL', payload: user });
         // localStorage.setItem("userToken", user.Token)
         // this.setState({email : user.user.email , username : user.user.username , isLoggedin: true })

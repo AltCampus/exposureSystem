@@ -12,6 +12,6 @@ router.put('/approved/:id', auth.verifyToken, admin.approveUser);
 router.delete('/remove/:id', auth.verifyToken, admin.removeUser);
 
 // Student Pending
-router.get('/pending-approvals', auth.verifyToken, admin.pendingUsers);
+router.get('/pending-approvals', admin.pendingUsers);
 
 module.exports = router;
