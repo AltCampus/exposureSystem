@@ -1,12 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Header from "../header/Header"
 
 class Home extends React.Component {
   render() {
     return (
       <>
-      <Header />
+      {/* <Header /> */}
       <div className="wrapper">
         <div className="text-center home-description flex-center">
           <p>An exciting new initiative to expose</p>
