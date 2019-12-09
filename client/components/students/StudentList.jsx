@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
-import { studentList } from '../actions/studentListAction';
+import { studentList } from '../redux/actions/studentListAction';
 
 import StudentCard from './StudentCard';
 

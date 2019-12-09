@@ -2,13 +2,11 @@
 import React from 'react';
 import '../assets/stylesheets/style.scss';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import Header from './header/Header';
 import Home from './home/Home';
 import RegisterUser from './auth/RegisterUser';
 import LoginUser from './auth/LoginUser';
 import AdminLogin from './auth/AdminLogin';
 import Page404 from './Page404';
-import AdminDashboard from './adminDashboard/AdminDashboard';
 import ContentList from './content/ContentList';
 import NewContentForm from './content/NewContentForm';
 import PendingApprovals from './adminDashboard/PendingApprovals';
@@ -18,7 +16,7 @@ import Onboarding from './auth/Onboarding';
 import StudentDashboard from './students/studentDashboard/StudentDashboard';
 import EditContent from './content/EditContent';
 import AdminFeed from './adminDashboard/AdminFeed';
-import StudentList from "./students/StudentList"
+import StudentList from "./students/StudentList";
 
 function App() {
   return (

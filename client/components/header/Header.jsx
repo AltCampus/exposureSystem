@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { userLoggedIn, userLogout } from "../actions/userAction";
-import { adminLogout } from "../actions/adminAction"
+import { userLoggedIn, userLogout } from "../redux/actions/userAction";
+import { adminLogout } from "../redux/actions/adminAction"
 
 class Header extends React.Component {
   constructor(props) {

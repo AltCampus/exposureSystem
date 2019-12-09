@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../store/store';
-import { adminloggedIn, adminLogout } from '../actions/adminAction';
+import store from '../redux/store/store';
+import { adminloggedIn, adminLogout } from '../redux/actions/adminAction';
 class AdminLogin extends Component {
   constructor(props) {
     super(props);

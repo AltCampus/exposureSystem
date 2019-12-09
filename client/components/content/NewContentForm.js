@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../header/Header';
-import { newContent } from '../actions/contentAction';
+import { newContent } from '../redux/actions/contentAction';
 import { connect } from 'react-redux';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
 
