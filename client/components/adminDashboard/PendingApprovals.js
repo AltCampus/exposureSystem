@@ -16,7 +16,8 @@ class PendingApprovals extends Component {
 
 
   render() {
-    console.log(this.props)
+    const pendingStudentList = this.props.adminReducer.pendingApprovals.users
+    console.log(pendingStudentList)
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -32,7 +33,13 @@ class PendingApprovals extends Component {
                 pendingStudentList.map(pendingStudent => (
                   <PendingCard pendingStudentData={pendingStudent} />
                 ))} */}
-              <PendingCard />
+                {
+                  pendingStudentList && pendingStudentList.map(pendingStudent => {
+                    return console.log(pendingStudent),
+                    <PendingCard pendingStudent={pendingStudent}/>
+                  })
+                }
+              {/* <PendingCard /> */}
             </div>
           </div>
         </div>

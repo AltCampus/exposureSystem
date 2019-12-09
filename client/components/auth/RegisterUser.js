@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import store from "../store/store";
 import { userRegister } from "../actions/userAction";
 import { connect } from "react-redux";
-import Header from '../header/Header';
+import Header from "../header/Header";
 
 class RegisterUser extends Component {
   constructor() {
@@ -18,7 +18,7 @@ class RegisterUser extends Component {
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    });
   };
 
   handleSubmit = event => {
@@ -31,13 +31,17 @@ class RegisterUser extends Component {
     if (
       !userCredentials.username ||
       !userCredentials.email ||
-      !userCredentials.password
+      !userCredentials.password ||
+      userCredentials.password.length < 6
     ) {
-      alert("check user details!");
+      alert("Check userCredentials!");
     } else {
       this.props.userRegister(userCredentials);
       store.subscribe(() => {
-        this.props.history.push("/login");
+        console.log(store.getState(), "in user action");
+        store.getState().userReducer.userRegisterData.User.email
+          ? this.props.history.push("/register/onboarding")
+          : alert(store.getState().userReducer.userRegisterData.User);
       });
     }
   };
@@ -53,9 +57,10 @@ class RegisterUser extends Component {
               className="input"
               type="text"
               name="username"
-              placeholder="Enter username"
+              placeholder="Enter Username"
               onChange={this.handleChange}
               value={this.state.username}
+              required
             />
             <br></br>
 
@@ -63,9 +68,11 @@ class RegisterUser extends Component {
               className="input"
               type="email"
               name="email"
-              placeholder="Enter email"
+              placeholder="Enter Email"
               onChange={this.handleChange}
               value={this.state.email}
+              required
+              pattern=".+@gmail\.com"
             />
             <br></br>
 
@@ -73,16 +80,22 @@ class RegisterUser extends Component {
               className="input"
               type="password"
               name="password"
-              placeholder="Enter password"
+              placeholder="Enter Password Min 6! "
               onChange={this.handleChange}
               value={this.state.password}
+              required
             />
             <br></br>
 
-            <NavLink to="/register/onboarding" className="button">Next</NavLink>
+            {/* <NavLink to="/register/onboarding" className="button">
+              Next
+            </NavLink> */}
+            <button className="button" type="submit">
+              Next
+            </button>
           </form>
         </div>
-        </>
+      </>
     );
   }
 }

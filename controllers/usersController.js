@@ -1,22 +1,18 @@
-const User = require('../models/userSchema');
-const auth = require('../utils/auth');
-const mail = require('../utils/mailer');
-
-// TODO
-// restructure controller
+const User = require("../models/userSchema");
+const auth = require("../utils/auth");
+// const mail = require('../utils/mailer');
 
 module.exports = {
   registerUser: (req, res, next) => {
     const { username, email, password } = req.body;
-    if (email.length < 10 && password.length < 6) {
-      return res.status(401).json('INVALID USER');
+    if (password.length < 6) {
+      return res.status(401).json({ error: "INVALID USER" });
     }
     if (!username || !email || !password) {
-      return res.status(401).json({ error: 'INVALID USER' });
+      return res.status(401).json({ User: "INVALID USER" });
     }
     User.create(req.body, (err, UserCreated) => {
-      if (err) return next(err);
-      console.log(UserCreated);
+      if (err) return res.status(401).json({ User: "User Already Taken!" });
       res.status(200).json({ User: UserCreated });
     });
   },
@@ -24,13 +20,13 @@ module.exports = {
   loginUser: (req, res, next) => {
     var { password, email } = req.body;
     if (!email || !password) {
-      return res.status(401).json({ error: 'INVALID USER' });
+      return res.status(401).json({ error: "INVALID USER" });
     }
     User.findOne({ email }, (err, user) => {
-      if (err) return next(err);
-      if (!user) return res.json({ user: 'User Not Found' });
+      if (err) return res.status(401).json({ user: "Invalid User!" });
+      if (!user) return res.json({ user: "User Not Found" });
       if (!user.confirmPassword(password))
-        return res.json({ user: 'Password Is Not Correct' });
+        return res.json({ user: "Password Is Not Correct" });
       var token = auth.generateToken(email);
       console.log(user);
       res.status(200).json({ user: user, Token: token });
@@ -42,19 +38,19 @@ module.exports = {
       .then(user => {
         if (!user) {
           return res.status(404).send({
-            message: 'User not found with id ' + req.params.userId,
+            message: "User not found with id " + req.params.userId
           });
         }
         res.json({ user });
       })
       .catch(err => {
-        if (err.kind === 'ObjectId') {
+        if (err.kind === "ObjectId") {
           return res.status(404).send({
-            message: 'User not found with id ' + req.params.userId,
+            message: "User not found with id " + req.params.userId
           });
         }
         return res.status(500).json({
-          message: 'Error retrieving user with id ' + req.params.userId,
+          message: "Error retrieving user with id " + req.params.userId
         });
       });
   },
@@ -64,5 +60,5 @@ module.exports = {
       if (err) return next(err);
       res.status(200).json({ users: Users });
     });
-  },
+  }
 };
