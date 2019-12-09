@@ -17,7 +17,7 @@ import StudentDashboard from './students/studentDashboard/StudentDashboard';
 import EditContent from './content/EditContent';
 import AdminFeed from './adminDashboard/AdminFeed';
 import StudentList from './students/StudentList';
-import WaitForApproval from './auth/WaitForApproval';
+// import WaitForApproval from './auth/WaitForApproval';
 
 function App() {
   return (

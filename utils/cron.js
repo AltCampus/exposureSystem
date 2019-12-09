@@ -10,6 +10,7 @@ const contentList = [];
 Content.find({}).exec(function(err, contents) {
   contents.forEach(content => contentList.push(content));
 });
+
 cron.schedule('* * * * *', function(req, res, next) {
   // find the type of email to be sent
   // 1. Individual mail i) send content
@@ -39,35 +40,18 @@ const determineDeliveryType = () => {
 };
 
 const sendMail = (user, content, delivery) => {
-  const userName = user.username;
-  const contentId = content._id;
+  const username = user.username;
   const deliveryId = delivery.delivery.id;
   // console.log(deliveryId, 'username');
-
   const link = `http://localhost:3000/submission/${deliveryId}`;
-  console.log(link, 'link');
+  // console.log(link, 'link');
+  return { username, link };
 };
 
-// const sendMail = delivery => {
-//   // console.log(delivery, 'username');
-//   const populate = Delivery.findById(delivery._id)
-//     .populate('content')
-//     .populate('user')
-//     .then(delivery => {
-//       return { delivery };
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-
-//   console.log(populate);
-// };
-
-const findNewContentPerStudentAndSendMail = () => {
+//Monday - Individual
+const findNewContentPerStudentAndSendMail = INDIVIDUAL => {
   User.find({}).exec(function(err, users) {
     users.forEach((user, i) => {
-      //   console.log(user, 'cron');
-      //   console.log(contentList);
       // find the content that has not been sent to this user. contentId
       const sentContent = user.sentContent;
       const contentNotSentList = contentList.reduce((acc, cv) => {
@@ -97,9 +81,6 @@ const findNewContentPerStudentAndSendMail = () => {
       }
       const toSend = deliveryId(user, contentToSend);
       sendMail(user, contentToSend, toSend);
-      // sendMail(toSend);
     });
   });
 };
-
-// sendMail(user._id, contentToSend._id, delivery._id);
