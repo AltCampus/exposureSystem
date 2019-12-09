@@ -9,14 +9,14 @@ class Pending extends Component {
   //   console.log("inside handleApproveStudent")
   //   fetch(`api/v1/admin/approved/${this.props.pendingStudent._id}`)
   //     .then(res => res.json())
-  //     .then(approvedStudent => console.log(student))
+  //     .then(approvedStudent => console.log(approvedstudent))
   // }
 
   // handleRejectStudent = () => {
   //   console.log("inside handleRejectStudent")
   //   fetch(`api/v1/admin/approved/${this.props.pendingStudent._id}`)
   //   .then(res => res.json())
-  //   .then(rejectedStudent => console.log(student))
+  //   .then(rejectedStudent => console.log(rejectedstudent))
   // }
 
   render() {
@@ -35,7 +35,6 @@ class Pending extends Component {
             {email}
             {createdAt}
           </div>
-
         </div>
         <div className="pending-footer">
           <button onClick={this.handleRejectStudent} className="reject">X</button>
