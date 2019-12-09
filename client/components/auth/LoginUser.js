@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import store from '../store/store';
-import { userLoggedIn } from '../actions/userAction';
-import Header from "../header/Header"
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import store from "../store/store";
+import { userLoggedIn } from "../actions/userAction";
+import Header from "../header/Header";
 
 class LoginUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      username: '',
+      email: "",
+      password: "",
+      username: ""
     };
   }
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -28,17 +28,21 @@ class LoginUser extends Component {
   postLoginData = e => {
     var userCredentials = {
       email: this.state.email,
-      password: this.state.password,
-    }; payload : {
-      isLoggedin : false
+      password: this.state.password
+    };
+    if (!userCredentials.email || !userCredentials.password) {
+      return alert("Please Fill All Credentials!");
+    } else {
+      this.props.userLoggedIn(userCredentials);
+      store.subscribe(() => {
+        store.getState().userReducer.userLoginData.Token
+          ? alert("user login sucessfull")
+          : this.setState({
+              ...this.state,
+              user: store.getState().userReducer.userLoginData.user
+            });
+      });
     }
-    this.props.userLoggedIn(userCredentials);
-    store.subscribe(() => {
-      store.getState().userReducer.userLoginData.Token
-        ? alert('user login sucessfull')
-        : this.setState({ ...this.state, user: 'Invalid User!' });
-    });
-    this.props.history.push("/");
   };
 
   render() {
@@ -72,7 +76,11 @@ class LoginUser extends Component {
 
               <br />
 
-              <button className="button" type="submit" onClick={this.handleSubmit}>
+              <button
+                className="button"
+                type="submit"
+                onClick={this.handleSubmit}
+              >
                 Submit
               </button>
             </div>

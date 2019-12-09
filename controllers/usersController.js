@@ -23,7 +23,7 @@ module.exports = {
       return res.status(401).json({ error: "INVALID USER" });
     }
     User.findOne({ email }, (err, user) => {
-      if (err) return next(err);
+      if (err) return res.status(401).json({ user: "Invalid User!" });
       if (!user) return res.json({ user: "User Not Found" });
       if (!user.confirmPassword(password))
         return res.json({ user: "Password Is Not Correct" });
