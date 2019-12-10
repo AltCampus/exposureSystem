@@ -35,7 +35,6 @@ class Header extends React.Component {
             isUserLoggedIn || isAdminLoggedIn ?
               <NavLink onClick={this.handleLogout} style={{ color: "white", fontWeight: "600" }} className="head-links" activeClassName="active" to="/">Logout</NavLink>
               :
-
               <nav>
                 <NavLink className="head-links" activeClassName="active" to="/register">Register</NavLink>
                 <NavLink className="head-links" activeClassName="active" to="/login">Login</NavLink>

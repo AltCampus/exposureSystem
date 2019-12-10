@@ -5,7 +5,6 @@ import { studentList } from '../actions/studentListAction';
 import StudentCard from './StudentCard';
 import Header from "../header/Header"
 
-
 class StudentList extends Component {
   constructor(props) {
     super(props);

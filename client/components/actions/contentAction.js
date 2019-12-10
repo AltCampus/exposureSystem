@@ -23,6 +23,7 @@ export const getContent = () => {
     })
     .then(res => res.json())
     .then(content => {
+      console.log(content, "in content")
       dispatch({type: 'GET_CONTENT', payload: content})
     })
   }

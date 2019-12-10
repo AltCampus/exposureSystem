@@ -17,7 +17,7 @@ class ContentList extends Component {
 
   render() {
     const contentList = this.props.contentReducer.content.contents
-    // console.log(this.props.contentReducer.content.contents)
+    console.log(contentList)
     return (
       <>
         <Header />

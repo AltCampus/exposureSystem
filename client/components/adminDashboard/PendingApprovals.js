@@ -19,7 +19,6 @@ class PendingApprovals extends Component {
 
   render() {
     const pendingStudentList = this.props.adminReducer.pendingApprovals.users
-    // console.log(pendingStudentList)
     return (
       <>
         <Header />

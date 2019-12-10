@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-
 class EditContent extends Component {
+    
     render() {
         return (
             <div style={{textAlign: "center"}} >

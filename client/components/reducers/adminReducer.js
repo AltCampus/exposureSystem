@@ -5,7 +5,7 @@ const adminState = {
 };
 
 function adminReducer(state = adminState, action) {
-  // console.log(action, "action in admin reducer")
+  console.log(action, "action in admin reducer")
   switch (action.type) {
     case 'ADMIN_LOGIN_SUCCESSFULL':
       return {

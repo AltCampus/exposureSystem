@@ -14,4 +14,5 @@ router.delete('/remove/:id', auth.verifyToken, admin.removeUser);
 // Student Pending
 router.get('/pending-approvals', admin.pendingUsers);
 
+
 module.exports = router;

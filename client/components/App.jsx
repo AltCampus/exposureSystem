@@ -22,7 +22,6 @@ import StudentList from "./students/StudentList"
 
 
 // componentDidMount = () => {
-//   fetch("/api/v1/")
 
 // }
 

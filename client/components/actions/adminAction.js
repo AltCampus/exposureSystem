@@ -1,4 +1,4 @@
-export const adminloggedIn = (dispatch, adminCredentials) => {
+export const adminloggedIn = (adminCredentials) => {
   console.log("in admin login action")
   return dispatch => {
     fetch('/api/v1/admin/login', {
