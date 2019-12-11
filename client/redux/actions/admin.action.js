@@ -11,7 +11,7 @@ const adminLogin = (adminCredentials) => (dispatch) => {
   })
     .then((res) => res.json())
     .then((admin) => {
-      localStorage.setItem('token', admin.Token);
+      localStorage.setItem('token', admin.token);
       dispatch({
         type: 'ADMIN_LOGIN_SUCCESSFUL',
         data: admin,

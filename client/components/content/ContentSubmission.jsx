@@ -14,15 +14,15 @@ class ContentSubmission extends Component {
   }
 
   componentDidMount() {
-    var deliveryId = window.location.href.split('/').pop();
+    const deliveryId = window.location.href.split('/').pop();
     console.log(deliveryId, 'deliveryId');
     fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         // console.log(data, 'data');
         this.setState({
           // ...data,
@@ -59,14 +59,14 @@ class ContentSubmission extends Component {
           className="article"
           src={`${this.state.contentUrl}`}
           target="_parent"
-        ></iframe>
+        />
         <div className="flex-center">
           <textarea
             minLength="300"
             maxLength="1000"
             className="summary input"
             placeholder="Summarize the above article in your words"
-          ></textarea>
+          />
         </div>
         <div
           style={{
