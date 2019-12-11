@@ -1,47 +1,45 @@
-var auth = require('../utils/auth');
-var User = require('../models/userSchema');
-var Admin = require('../models/adminSchema');
-
-//TODO
-//redo functions
+const auth = require('../utils/auth');
+const Student = require('../models/studentSchema');
+const Admin = require('../models/adminSchema');
 
 module.exports = {
   adminLogin: (req, res, next) => {
-    var { email, password } = req.body;
+    const { email, password } = req.body;
     if (email.length < 10 || password.length < 6) {
       return res.status(401).json({ error: 'INVALID PASSWORD' });
     }
     Admin.findOne({ email }, (err, admin) => {
       if (err) return next(err);
-      if (!admin) return res.status(401).json({ admin: 'NOT ADMIN' });
-      if (!admin.confirmPassword(password))
-        return res.json({ admin: 'Not Admin' });
-      var token = auth.generateToken(email);
-      res.status(200).json({ admin: admin, Token: token });
+      if (!admin) return res.status(401).json({ error: 'NOT ADMIN' });
+      if (!admin.confirmPassword(password)) {
+        return res.json({ error: 'Not Admin' });
+      }
+      const token = auth.generateToken(email);
+      return res.status(200).json({ admin, token });
     });
   },
 
-  approveUser: (req, res, err) => {
+  approveStudent: (req, res, next) => {
     req.body.isApproved = true;
-    const id = req.params.id;
-    User.findByIdAndUpdate(id, req.body, { new: true }, (err, users) => {
-      if (err) console.log(err);
-      return res.status(200).json({ user: users });
+    const { id } = req.params;
+    Student.findByIdAndUpdate(id, req.body, { new: true }, (error, student) => {
+      if (error) next(error);
+      return res.status(200).json({ student });
     });
   },
 
-  removeUser: (req, res, err) => {
-    const id = req.params.id;
-    User.findByIdAndDelete(id, (err, user) => {
-      if (err) return next(err);
-      return res.status(200).json({ user: users });
+  removeStudent: (req, res, next) => {
+    const { id } = req.params;
+    Student.findByIdAndDelete(id, (error, student) => {
+      if (error) return next(error);
+      return res.status(200).json({ student });
     });
   },
 
-  pendingUsers: (req, res, err) => {
-    User.find({ isApproved: false }, (err, users) => {
+  pendingStudents: (req, res, next) => {
+    Student.find({ isApproved: false }, (err, pendingStudents) => {
       if (err) return next(err);
-      res.json({ users: users });
+      return res.json({ pendingStudents });
     });
   },
 };

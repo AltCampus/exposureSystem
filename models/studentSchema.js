@@ -1,15 +1,10 @@
 /* eslint-disable comma-dangle */
-//Require Mongose
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-//Requring The Bcrypt
-const bcrypt = require("bcrypt");
+const { Schema } = mongoose;
 
-//Extracting Schema
-const Schema = mongoose.Schema;
-
-//Creating user schema
-const userSchema = new Schema(
+const studentSchema = new Schema(
   {
     username: {
       type: String,
@@ -28,7 +23,7 @@ const userSchema = new Schema(
     isActive: Boolean,
     isAdmin: false,
     isApproved: { type: Boolean, default: false },
-    sentContent: [{ type: Schema.Types.ObjectId, ref: "contentSchema" }]
+    sentContent: [{ type: Schema.Types.ObjectId, ref: 'contentSchema' }]
   },
   {
     timestamps: true
@@ -36,18 +31,17 @@ const userSchema = new Schema(
 );
 
 // Implementing The PreSave Function
-userSchema.pre("save", function(next) {
+studentSchema.pre('save', function (next) {
   if (this.password) {
     this.password = bcrypt.hashSync(this.password, 10);
     next();
   }
 });
 // Comparing The Hash Password With Plane Password
-userSchema.methods.confirmPassword = function(password) {
+studentSchema.methods.confirmPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-const User = mongoose.model("User", userSchema);
+const Student = mongoose.model('Student', studentSchema);
 
-//Exporting User Model
-module.exports = User;
+module.exports = Student;

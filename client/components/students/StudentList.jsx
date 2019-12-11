@@ -16,7 +16,7 @@ class StudentList extends Component {
 
   render() {
     const studentList = this.props.studentListReducer.students.users
-
+    console.log("inside student list component");
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />

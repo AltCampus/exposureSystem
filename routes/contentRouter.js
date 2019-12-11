@@ -1,16 +1,17 @@
-var express = require("express");
-var router = express.Router();
+const express = require('express');
 
-const content = require("../controllers/contentController.js");
+const router = express.Router();
 
-router.post("/new", content.newContent);
+const content = require('../controllers/contentController.js');
 
-router.get("/list", content.findAllContent);
+router.post('/new', content.newContent);
 
-router.get("/:contentId", content.findOneContent);
+router.get('/list', content.findAllContent);
 
-router.put("/:contentId", content.updateContent);
+router.get('/:contentId', content.findOneContent);
 
-router.delete("/:contentId", content.deleteContent);
+router.put('/:contentId/update', content.updateContent);
+
+router.delete('/:contentId/delete', content.deleteContent);
 
 module.exports = router;
