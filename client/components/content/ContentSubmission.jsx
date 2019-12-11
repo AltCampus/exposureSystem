@@ -15,7 +15,6 @@ class ContentSubmission extends Component {
 
   componentDidMount() {
     const deliveryId = window.location.href.split('/').pop();
-    console.log(deliveryId, 'deliveryId');
     fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
       headers: {
         'Content-Type': 'application/json',
@@ -23,9 +22,7 @@ class ContentSubmission extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data, 'data');
         this.setState({
-          // ...data,
           content: data.delivery.content[0],
           user: data.delivery.user[0],
           contentUrl: data.delivery.content[0].contentUrl,
@@ -35,8 +32,6 @@ class ContentSubmission extends Component {
   }
 
   render() {
-    // console.log(this.state, 'rndr');
-    console.log(this.state.user, 'username');
     return (
       <div className="wrapper">
         <div className="sidebar-heading flex-center">Title</div>
@@ -54,7 +49,6 @@ class ContentSubmission extends Component {
             <div>Due by:</div>
           </div>
         </div>
-
         <iframe
           className="article"
           src={`${this.state.contentUrl}`}
