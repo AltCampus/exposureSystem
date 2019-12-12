@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminSidebar from './AdminSidebar';
 import PendingCard from './PendingCard';
-
+import { fetchPendingApprovalsList } from '../../redux/actions/admin.action';
 
 class PendingApprovals extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pendingStudentList: null,
+      pendingStudentList: this.props.pendingStudentList ,
     };
   }
 
   componentDidMount() {
-    
+    fetchPendingApprovalsList();
   }
 
   render() {
