@@ -1,7 +1,6 @@
 const cron = require('node-cron');
 const User = require('../models/userSchema');
 const Content = require('../models/contentSchema');
-// const Delivery = require('../controllers/deliveryController');
 const Delivery = require('../models/deliverySchema');
 const INDIVIDUAL = 'individual';
 const PAIR = 'pair';
@@ -12,10 +11,6 @@ Content.find({}).exec(function(err, contents) {
   contents.forEach(content => contentList.push(content));
 });
 cron.schedule('* * * * *', function(req, res, next) {
-  // console.log(allUsers, 'allusers.userStatus');
-  // require('./utils/allusers/users');
-  // allUsers();
-
   // find the type of email to be sent
   // 1. Individual mail i) send content
   // 2. pairMail -> i) makePairs ii) send content
@@ -34,6 +29,7 @@ cron.schedule('* * * * *', function(req, res, next) {
 });
 
 const determineDeliveryType = () => {
+  // TODO
   // var date = new Date();
   // determine day
   // if its monday return -> 'individual'
@@ -41,6 +37,31 @@ const determineDeliveryType = () => {
   // if its saturday return -> 'group'
   return INDIVIDUAL;
 };
+
+const sendMail = (user, content, delivery) => {
+  const userName = user.username;
+  const contentId = content._id;
+  const deliveryId = delivery.delivery.id;
+  // console.log(deliveryId, 'username');
+
+  const link = `http://localhost:3000/submission/${deliveryId}`;
+  console.log(link, 'link');
+};
+
+// const sendMail = delivery => {
+//   // console.log(delivery, 'username');
+//   const populate = Delivery.findById(delivery._id)
+//     .populate('content')
+//     .populate('user')
+//     .then(delivery => {
+//       return { delivery };
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+
+//   console.log(populate);
+// };
 
 const findNewContentPerStudentAndSendMail = () => {
   User.find({}).exec(function(err, users) {
@@ -58,39 +79,27 @@ const findNewContentPerStudentAndSendMail = () => {
           Math.floor(Math.random() * contentNotSentList.length)
         ];
 
-      // create a new delivery.
-
-      //   const delivery = Delivery.newDelivery({
-      //     user: user._id,
-      //     content: contentToSend._id,
-      //   });
-
       function deliveryId(req, res) {
         const delivery = new Delivery({
-          user: user._id,
-          content: contentToSend._id,
+          user: user.id,
+          content: contentToSend.id,
         });
 
         delivery
           .save()
           .then(data => {
-            // console.log(data, "content data")
-            // const id = data._id;
-            // return { id };
-
-            res.json({ data });
+            return { data };
           })
           .catch(err => {
             console.log(err);
           });
+        return { delivery };
       }
-
-      console.log(data, 'inside cron');
-      // sendMail(user._id, content._id, delivery._id)
+      const toSend = deliveryId(user, contentToSend);
+      sendMail(user, contentToSend, toSend);
+      // sendMail(toSend);
     });
   });
 };
 
-const sendMail = (userId, contentId, deliveryId) => {
-  // actually send the mail.
-};
+// sendMail(user._id, contentToSend._id, delivery._id);

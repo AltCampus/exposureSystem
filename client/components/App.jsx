@@ -16,7 +16,8 @@ import Onboarding from './auth/Onboarding';
 import StudentDashboard from './students/studentDashboard/StudentDashboard';
 import EditContent from './content/EditContent';
 import AdminFeed from './adminDashboard/AdminFeed';
-import StudentList from "./students/StudentList";
+import StudentList from './students/StudentList';
+import WaitForApproval from './auth/WaitForApproval';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route exact path="/register/onboarding" component={Onboarding} />
           <Route exact path="/:username" component={StudentDashboard} />
           <Route path="/admin/editcontent" component={EditContent} />
+          {/* <Route path="/wait-for-approval" component={WaitForApproval} /> */}
           <Route component={Page404} />
         </Switch>
       </Router>

@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import {NavLink} from "react-router-dom";
-import store from "../redux/store/store";
-import { userRegister } from "../redux/actions/userAction";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import store from '../redux/store/store';
+import { userRegister } from '../redux/actions/userAction';
+import { connect } from 'react-redux';
 import Header from '../header/Header';
 
 class RegisterUser extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      email: "",
-      password: ""
+      username: '',
+      email: '',
+      password: '',
     };
   }
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   };
 
   handleSubmit = event => {
@@ -26,18 +26,18 @@ class RegisterUser extends Component {
     const userCredentials = {
       username: this.state.username,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
     if (
       !userCredentials.username ||
       !userCredentials.email ||
       !userCredentials.password
     ) {
-      alert("check user details!");
+      alert('check user details!');
     } else {
       this.props.userRegister(userCredentials);
       store.subscribe(() => {
-        this.props.history.push("/login");
+        this.props.history.push('/login');
       });
     }
   };
@@ -79,10 +79,13 @@ class RegisterUser extends Component {
             />
             <br></br>
 
-            <NavLink to="/register/onboarding" className="button">Next</NavLink>
+            {/* <NavLink to="/register/onboarding" className="button">Next</NavLink> */}
+            <button className="button" onClick={this.onSubmit}>
+              Next
+            </button>
           </form>
         </div>
-        </>
+      </>
     );
   }
 }
