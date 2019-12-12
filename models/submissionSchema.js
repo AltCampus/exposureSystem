@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const submissionSchema = new Schema(
   {
+    title: {
+      type: String,
+      required: true
+    },
     contentSummary: {
       type: String,
       required: true,
