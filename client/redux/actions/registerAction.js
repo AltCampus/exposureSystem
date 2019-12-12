@@ -1,4 +1,4 @@
-const registerStudent = ( studentData , cb ) => {
+const registerStudent = (studentData, cb) => {
   fetch('https://localhost:30000/api/v1/student/register', {
     method: 'POST',
     headers: {
@@ -8,3 +8,5 @@ const registerStudent = ( studentData , cb ) => {
   });
   cb();
 };
+
+module.exports = registerStudent;

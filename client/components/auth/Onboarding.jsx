@@ -16,7 +16,7 @@ class Onboarding extends Component {
     isActive: false,
   }
   cb () {
-    this.history.push('https://localhost:3000/')
+    this.history.push('https://localhost:3000/await-approval');
   }
   handleSubmit () {
     registerStudent( this.state , cb);
@@ -50,7 +50,12 @@ class Onboarding extends Component {
           </div>
         </div>
         <div className="flex-end">
-        <button type="submit" className="button">Register</button>
+        <button 
+        type="submit" 
+        onSubmit={this.handleSubmit} 
+        className="button"
+        >Register
+        </button>
         </div>
       </div>
   );
