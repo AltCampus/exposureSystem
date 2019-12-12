@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import AdminSidebar from './AdminSidebar';
 import PendingCard from './PendingCard';
 
+
 class PendingApprovals extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       pendingStudentList: null,
     };
   }
 
   componentDidMount() {
-    fetch('/api/v1/admin/pending-approvals', {
-      method: 'GET',
-      headers: {
-        // "Authorization": `Token ${localStorage.getItem('Admintoken')}`,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(data => this.setState({ pendingStudentList: data }));
+    
   }
 
   render() {
-    const pendingStudentList =
-      this.state.pendingStudentList && this.state.pendingStudentList.users;
+    const pendingStudentList =      this.state.pendingStudentList && this.state.pendingStudentList.users;
     console.log(pendingStudentList);
 
     return (
@@ -38,9 +31,9 @@ class PendingApprovals extends Component {
               Pending Approvals
             </h3>
             <div className="grid-col-3">
-              {pendingStudentList &&
-                pendingStudentList.map(pendingStudent => (
-                  <PendingCard pendingStudentData={pendingStudent} />
+              {pendingStudentList
+                && pendingStudentList.map((pendingStudent) => (
+                  <PendingCard />
                 ))}
             </div>
           </div>
@@ -50,4 +43,6 @@ class PendingApprovals extends Component {
   }
 }
 
-export default PendingApprovals;
+const mapStateToProps = (state) => state;
+
+export default connect(mapStateToProps)(PendingApprovals);
