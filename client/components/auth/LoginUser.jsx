@@ -1,53 +1,52 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../redux/store/store';
+import validator from 'validator';
 import { userLoggedIn } from '../redux/actions/userAction';
-import Header from "../header/Header"
+import Header from '../header/Header';
+import studentLogin from '../../redux/actions/studentAction';
 
-class LoginUser extends Component {
+class LoginStudent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
       password: '',
-      username: '',
     };
   }
 
-  handleChange = e => {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  };
+  }
 
-  handleSubmit = e => {
+  cb() {
+    this.history.push(`https://localhost:3000/student/${this.props.state.studentData.username}`);
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
-    this.postLoginData();
-  };
-
-  postLoginData = e => {
-    var userCredentials = {
-      email: this.state.email,
-      password: this.state.password,
-    }; payload : {
-      isLoggedin : false
+    const { email, password } = this.state;
+    if (!email || !password) {
+      return alert('Email and password are must.');
     }
-    this.props.userLoggedIn(userCredentials);
-    store.subscribe(() => {
-      store.getState().userReducer.userLoginData.Token
-        ? alert('user login sucessfull')
-        : this.setState({ ...this.state, user: 'Invalid User!' });
-    });
-    this.props.history.push("/");
-  };
+    if (!validator.isEmail(email)) {
+      return alert('Invalid email.');
+    }
+    if (password.length < 6) {
+      return alert('Password must be atleast 6 characters');
+    }
+    studentLogin( this.state , cb);
+  }
+
 
   render() {
     // console.log(this.props);
+    const { email, password } = this.state;
     return (
       <div>
         <Header />
         <div className="wrapper card text-center">
-          <p>{this.state.user}</p>
           <h1 className="heading">Login</h1>
           <div>
             <div>
@@ -60,7 +59,6 @@ class LoginUser extends Component {
                 value={this.state.email}
               />
               <br />
-
               <input
                 className="input"
                 type="password"
@@ -69,10 +67,12 @@ class LoginUser extends Component {
                 onChange={this.handleChange}
                 value={this.state.password}
               />
-
               <br />
-
-              <button className="button" type="submit" onClick={this.handleSubmit}>
+              <button
+                className="button"
+                type="submit"
+                onSubmit={this.handleSubmit}
+              >
                 Submit
               </button>
             </div>
@@ -82,8 +82,6 @@ class LoginUser extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return state;
-};
+const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps, { userLoggedIn })(LoginUser);
+export default connect(mapStateToProps, { userLoggedIn })(LoginStudent);
