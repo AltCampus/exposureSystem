@@ -2,8 +2,6 @@ const INITIAL_STATE = {
   adminData: '',
   isAdminLogginIn: false,
   isAdminLoggedIn: false,
-  submissionList: null,
-  isLoadingSubmissionList: false,
   content: null,
   isCreatingContent: false,
   contentList: null,
@@ -25,17 +23,6 @@ function adminReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isAdminLogginIn: false,
-      };
-    case 'FETCHING_SUBMISSION_LIST_START':
-      return {
-        ...state,
-        isLoadingSubmissionList: true,
-      };
-    case 'FETCHING_SUBMISSION_LIST_SUCCESS':
-      return {
-        ...state,
-        isLoadingSubmissionList: false,
-        submissionList: action.data,
       };
     case 'CREATE_CONTENT_START':
       return {
