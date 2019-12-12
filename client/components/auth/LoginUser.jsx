@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../redux/store/store';
+import store from '../../redux/store/store';
 import { userLoggedIn } from '../redux/actions/userAction';
-import Header from "../header/Header"
+import Header from '../header/Header';
 
 class LoginUser extends Component {
   constructor(props) {
@@ -29,8 +29,9 @@ class LoginUser extends Component {
     var userCredentials = {
       email: this.state.email,
       password: this.state.password,
-    }; payload : {
-      isLoggedin : false
+    };
+    payload: {
+      isLoggedin: false;
     }
     this.props.userLoggedIn(userCredentials);
     store.subscribe(() => {
@@ -38,7 +39,7 @@ class LoginUser extends Component {
         ? alert('user login sucessfull')
         : this.setState({ ...this.state, user: 'Invalid User!' });
     });
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   render() {
@@ -72,7 +73,11 @@ class LoginUser extends Component {
 
               <br />
 
-              <button className="button" type="submit" onClick={this.handleSubmit}>
+              <button
+                className="button"
+                type="submit"
+                onClick={this.handleSubmit}
+              >
                 Submit
               </button>
             </div>

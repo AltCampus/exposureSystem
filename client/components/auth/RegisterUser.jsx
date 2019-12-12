@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import store from '../redux/store/store';
+import store from '../../redux/store/store';
 import { userRegister } from '../redux/actions/userAction';
 import { connect } from 'react-redux';
 import Header from '../header/Header';
