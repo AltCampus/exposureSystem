@@ -10,8 +10,11 @@ class PendingStudent extends Component {
   render() {
     // console.log(this.props.pendingStudentData)
     const {
-      username, email, isActive, isInCampus, isAdmin, createdAt,
-    } = this.props.state.pendingStudentList;
+      username, email, isActive, isInCampus, isAdmin, createdAt
+    } = this.props.pendingStudent;
+
+    const id = this.props.pendingStudent._id;
+    const token = localStorage.getItem(token);
 
     return (
 
@@ -30,8 +33,8 @@ Details:
 
         </div>
         <div className="pending-footer">
-          <button onClick={removeStudent} className="reject">X</button>
-          <button onClick={approveStudent} className="approve">✔</button>
+          <button onClick={() =>removeStudent(id , token)} className="reject">X</button>
+          <button onClick={() => approveStudent(id , token)} className="approve">✔</button>
         </div>
       </div>
     );
