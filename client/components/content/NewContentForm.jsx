@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { newContent } from '../redux/actions/contentAction';
+import { createContent } from '../../redux/actions/contentAction';
 import { connect } from 'react-redux';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
 
@@ -25,7 +25,7 @@ class NewContentForm extends Component {
       title: this.state.title,
       description: this.state.description,
     };
-    this.props.newContent(data);
+    this.props.createContent(data);
   };
 
   render() {
@@ -98,4 +98,4 @@ class NewContentForm extends Component {
 const mapStateToProps = state => {
   return state;
 };
-export default connect(mapStateToProps, { newContent })(NewContentForm);
+export default connect(mapStateToProps, { createContent })(NewContentForm);
