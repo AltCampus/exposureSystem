@@ -19,8 +19,8 @@ const studentSchema = new Schema(
       type: String,
       required: true
     },
-    isInCampus: Boolean,
-    isActive: Boolean,
+    isInCampus: false,
+    isActive: false,
     isAdmin: false,
     isApproved: { type: Boolean, default: false },
     sentContent: [{ type: Schema.Types.ObjectId, ref: 'contentSchema' }]

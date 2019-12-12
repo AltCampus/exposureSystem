@@ -1,13 +1,15 @@
+/* eslint-disable no-alert */
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import store from '../../redux/store/store';
 import { userRegister } from '../redux/actions/userAction';
 import { connect } from 'react-redux';
+import validator from 'validator';
 import Header from '../header/Header';
 
 class RegisterUser extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: '',
       email: '',
@@ -15,34 +17,33 @@ class RegisterUser extends Component {
     };
   }
 
-  handleChange = e => {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  };
+  }
 
-  handleSubmit = event => {
+  handleSubmit(event) {
     event.preventDefault();
-    const userCredentials = {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password,
-    };
-    if (
-      !userCredentials.username ||
-      !userCredentials.email ||
-      !userCredentials.password
-    ) {
-      alert('check user details!');
-    } else {
-      this.props.userRegister(userCredentials);
-      store.subscribe(() => {
-        this.props.history.push('/login');
-      });
+    const { username, email, password } = this.state;
+    const { dispatch } = this.props;
+    if (!username || !email || !password) {
+      return alert('Email , password and username are must.');
     }
-  };
+    if (!validator.isEmail(email)) {
+      return alert('Invalid Email.');
+    }
+    if (password.length < 6) {
+      return alert('Password should be atleast 6 character.');
+    }
+    return dispatch({
+      type: 'REGISTER_PAGE_DATA',
+      data: this.state,
+    });
+  }
 
   render() {
+    const { username, email, password } = this.state;
     return (
       <>
         <Header />
@@ -55,9 +56,9 @@ class RegisterUser extends Component {
               name="username"
               placeholder="Enter username"
               onChange={this.handleChange}
-              value={this.state.username}
+              value={username}
             />
-            <br></br>
+            <br />
 
             <input
               className="input"
@@ -65,9 +66,9 @@ class RegisterUser extends Component {
               name="email"
               placeholder="Enter email"
               onChange={this.handleChange}
-              value={this.state.email}
+              value={email}
             />
-            <br></br>
+            <br />
 
             <input
               className="input"
@@ -75,14 +76,16 @@ class RegisterUser extends Component {
               name="password"
               placeholder="Enter password"
               onChange={this.handleChange}
-              value={this.state.password}
+              value={password}
             />
-            <br></br>
-
-            {/* <NavLink to="/register/onboarding" className="button">Next</NavLink> */}
-            <button className="button" onClick={this.onSubmit}>
+            <br />
+            <NavLink
+              to="/register/onboarding"
+              onSubmit={this.handleSubmit}
+              className="button"
+            >
               Next
-            </button>
+            </NavLink>
           </form>
         </div>
       </>
@@ -90,8 +93,6 @@ class RegisterUser extends Component {
   }
 }
 
-const mapstateToProps = state => {
-  return state;
-};
+const mapstateToProps = state => state;
 
-export default connect(mapstateToProps, { userRegister })(RegisterUser);
+export default connect(mapstateToProps)(RegisterUser);

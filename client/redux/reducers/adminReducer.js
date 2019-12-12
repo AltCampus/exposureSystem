@@ -1,4 +1,4 @@
-const ADMIN_STATE = {
+const INITIAL_STATE = {
   adminData: '',
   isAdminLogginIn: false,
   isAdminLoggedIn: false,
@@ -14,7 +14,7 @@ const ADMIN_STATE = {
   isLoadingPendingStudentList: false,
 };
 
-function adminReducer(state = ADMIN_STATE, action) {
+function adminReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'ADMIN_LOGIN_START':
       return {

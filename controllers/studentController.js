@@ -5,7 +5,7 @@ import auth from '../utils/auth';
 
 module.exports = {
   registerStudent: (req, res, next) => {
-    const { username, email, password } = req.body;
+    const { username, email, password ,  } = req.body;
     if (!email || !password || !username) {
       return res.json('Email and password are must.')
     }
