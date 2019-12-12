@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userLoggedIn, userLogout } from '../redux/actions/userAction';
-import { adminLogout } from '../../redux/actions/admin.action';
+import { adminLogout } from '../../redux/actions/adminAction';
 
 class Header extends React.Component {
   constructor(props) {
@@ -20,37 +20,38 @@ class Header extends React.Component {
               <h3>Exposure System</h3>
             </NavLink>
           </div>
-          {
-            isAdminLoggedIn
-              ? (
-                <button
-                  type="logout"
-                  className="head-links"
-                  onClick={adminLogout}
-                >
-                  Logout
-                </button>
-              )
-              : (
-                <nav>
-                  <NavLink
-                    className="head-links"
-                    activeClassName="active"
-                    to="/register"
-                  >
-                  Register
-                  </NavLink>
-                  <NavLink className="head-links" activeClassName="active" to="/login">Login</NavLink>
-                </nav>
-              )
-          }
+          {isAdminLoggedIn ? (
+            <button type="logout" className="head-links" onClick={adminLogout}>
+              Logout
+            </button>
+          ) : (
+            <nav>
+              <NavLink
+                className="head-links"
+                activeClassName="active"
+                to="/register"
+              >
+                Register
+              </NavLink>
+              <NavLink
+                className="head-links"
+                activeClassName="active"
+                to="/login"
+              >
+                Login
+              </NavLink>
+            </nav>
+          )}
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = state => state;
 
-
-export default connect(mapStateToProps, { userLoggedIn, userLogout, adminLogout })(Header);
+export default connect(mapStateToProps, {
+  userLoggedIn,
+  userLogout,
+  adminLogout,
+})(Header);

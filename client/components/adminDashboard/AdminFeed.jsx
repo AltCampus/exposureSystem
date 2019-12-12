@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import StudentSubmissionCard from '../students/studentDashboard/StudentSubmissionCard';
 import AdminSidebar from './AdminSidebar';
-import { fetchSubmissionList } from '../../redux/actions/submisson.action'
+import { fetchSubmissionList } from '../../redux/actions/submissonAction';
 
-
-class AdminFeed extends Component{
-  constructor (props) {
+class AdminFeed extends Component {
+  constructor(props) {
     super(props);
-  };
-  state = {
-    submissionList = this.props.submissionList;
   }
-  componentDidMount () {
+  state = {
+    submissionList: this.props.submissionList,
+  };
+  componentDidMount() {
     fetchSubmissionList();
   }
-  render () {
+  render() {
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -22,15 +21,15 @@ class AdminFeed extends Component{
             <AdminSidebar />
           </div>
           <div className="grid-col-1">
-           {this.state.submissionList.map((submission) => {
-             <StudentSubmissionCard submission={submission} />
-           })}
+            {this.state.submissionList.map(submission => {
+              <StudentSubmissionCard submission={submission} />;
+            })}
           </div>
         </div>
       </>
     );
   }
 }
-const mapStateToProps = (state) => state;
+const mapStateToProps = state => state;
 
 export default AdminFeed;

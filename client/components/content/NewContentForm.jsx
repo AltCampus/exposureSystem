@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../header/Header';
 import { newContent } from '../redux/actions/contentAction';
 import { connect } from 'react-redux';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
@@ -30,7 +29,7 @@ class NewContentForm extends Component {
   };
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -82,7 +81,11 @@ class NewContentForm extends Component {
               value={this.state.description}
               onChange={this.handleChange}
             ></textarea>
-            <button className="button" type="submit" onClick={this.handleSubmit}>
+            <button
+              className="button"
+              type="submit"
+              onClick={this.handleSubmit}
+            >
               Add Content
             </button>
           </form>
