@@ -17,9 +17,7 @@ class PendingApprovals extends Component {
   }
 
   render() {
-    const pendingStudentList =      this.state.pendingStudentList && this.state.pendingStudentList.users;
-    console.log(pendingStudentList);
-
+    const pendingStudentList = this.state.pendingStudentList && this.state.pendingStudentList.users;
     return (
       <>
         <div className="wrapper grid-dashboard">

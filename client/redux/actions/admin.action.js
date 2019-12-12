@@ -55,7 +55,7 @@ const approveStudent = ((id , token) , cb) => (dispatch) => {
   cb();
 };
 
-const removeStudent = ((id , token) , cb) => (dispatch) => {
+const removeStudent = (id , token , cb) => (dispatch) => {
   fetch('http://localhost:3000/api/v1/admin/pending-approvals/remove/:id', {
     method: 'DELETE',
     headers: {

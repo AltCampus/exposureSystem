@@ -6,6 +6,17 @@ class PendingStudent extends Component {
   constructor(props) {
     super(props);
   }
+  cb () {
+    this.history.push('https:/localhost:3000/admin/pending-approvals');
+  };
+
+  handleReject () {
+    removeStudent(id , token , cb);
+  };
+
+  handleApprove () {
+    approveStudent(id , token , cb);
+  };
 
   render() {
     // console.log(this.props.pendingStudentData)
@@ -33,7 +44,7 @@ Details:
 
         </div>
         <div className="pending-footer">
-          <button onClick={() =>removeStudent(id , token)} className="reject">X</button>
+          <button onClick={() =>} className="reject">X</button>
           <button onClick={() => approveStudent(id , token)} className="approve">✔</button>
         </div>
       </div>
