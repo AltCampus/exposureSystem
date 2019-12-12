@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../redux/store/store';
-import { adminloggedIn, adminLogout } from '../redux/actions/adminAction';
+import store from '../../redux/store/store';
+import { adminLogin } from '../../redux/actions/admin.action';
+import validator from 'validator';
+
 class AdminLogin extends Component {
   constructor(props) {
     super(props);
@@ -12,32 +14,32 @@ class AdminLogin extends Component {
     };
   }
 
-  handleChange = e => {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
 
-  handleAdminLogin = e => {
+  handleAdminLogin (e) {
     e.preventDefault();
-    const adminCredentials = {
-      email: this.state.email,
-      password: this.state.password,
-    };
-    this.props.adminloggedIn(adminCredentials);
-    store.subscribe(() => {
-      console.log(store.getState(), "in admin component");
-      store.getState().adminReducer.adminData.Token
-        ? this.props.history.push('/admin/feed')
-        : this.setState({
-          ...this.state,
-          admin: "Please Check Admin Credentials!"
+    const adminCredentials = { email , password } = this.state;
 
-        });
-    });
+    if(!email || !password) {
+      return res.json('Email and password are must.');
+    }
+    if(!validator.isEmail(email)) {
+      return res.json('Invalid email.');
+    }
+    if(password.length < 6) {
+      return res.json('Password must be atleast 6 characters.')
+    }
+
+    this.props.adminLogin(adminCredentials)
+    .then( this.props.history.push('http://localhost:3000/admin/feed'));
+  
   };
+
   render() {
-    // console.log(this.props)
     return (
       <div className="wrapper text-center">
         <p>{this.state.admin}</p>
@@ -70,8 +72,9 @@ class AdminLogin extends Component {
       </div>
     );
   }
-}
-const mapStateToProps = state => {
-  return state;
+
+mapStateToProps (store) {
+  return store;
 };
-export default connect(mapStateToProps, { adminloggedIn, adminLogout })(AdminLogin);
+
+export default connect(mapStateToProps, { adminLogin })(AdminLogin);

@@ -1,23 +1,17 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import { userLoggedIn, userLogout } from "../redux/actions/userAction";
-import { adminLogout } from "../redux/actions/adminAction"
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userLoggedIn, userLogout } from '../redux/actions/userAction';
+import { adminLogout } from '../../redux/actions/admin.action';
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  handleLogout = () => {
-    e.preventDefault()
-  }
-
   render() {
     const isUserLoggedIn = this.props.userReducer.isLoggedIn;
     const isAdminLoggedIn = this.props.adminReducer.isLoggedIn;
-    console.log(isUserLoggedIn, "user");
-    console.log(isAdminLoggedIn, "admin")
     return (
       <div className="wrapper header">
         <div className="flex-between">
@@ -26,117 +20,37 @@ class Header extends React.Component {
               <h3>Exposure System</h3>
             </NavLink>
           </div>
-
-
           {
-
-            isAdminLoggedIn  ?
-              <NavLink onClick={this.handleLogout} style={{ color: "white", fontWeight: "600" }} className="head-links" activeClassName="active" to="/admin/login">Logout</NavLink>
-              :
-
-              <nav>
-                <NavLink className="head-links" activeClassName="active" to="/register">Register</NavLink>
-                <NavLink className="head-links" activeClassName="active" to="/login">Login</NavLink>
-              </nav>
-
+            isAdminLoggedIn
+              ? (
+                <button
+                  type="logout"
+                  className="head-links"
+                  onClick={adminLogout}
+                >
+                  Logout
+                </button>
+              )
+              : (
+                <nav>
+                  <NavLink
+                    className="head-links"
+                    activeClassName="active"
+                    to="/register"
+                  >
+                  Register
+                  </NavLink>
+                  <NavLink className="head-links" activeClassName="active" to="/login">Login</NavLink>
+                </nav>
+              )
           }
-
-
-
-
         </div>
-      </div >
+      </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return state
-}
+const mapStateToProps = (state) => state;
 
 
 export default connect(mapStateToProps, { userLoggedIn, userLogout, adminLogout })(Header);
-
-// export default Header
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* {
-
-            window.location.pathname == "/admin/login"  ?
-            <div>
-            </div>
-            :
-            isAdminLoggedIn ?
-            <NavLink
-            className="head-links"
-            activeClassName="active"
-            to="/"
-          >
-            Logout
-            </NavLink>
-            :
-            
-            isUserLoggedIn ?
-              <nav>
-            <NavLink
-              className="head-links"
-              activeClassName="active"
-              onClick={userLogout}
-              to="/"
-            >
-              Logout
-              </NavLink>
-          </nav>
-          :
-              <nav>
-            <NavLink
-              className="head-links"
-              activeClassName="active"
-              to="/register"
-            >
-              Register
-            </NavLink>
-            <NavLink
-              className="head-links"
-              activeClassName="active"
-              to="/login"
-            >
-              Login
-            </NavLink>
-          </nav>
-
-          } */}

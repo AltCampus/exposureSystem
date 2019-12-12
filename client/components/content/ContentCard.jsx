@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 class ContentCard extends Component {
   constructor(props) {
@@ -21,8 +21,8 @@ class ContentCard extends Component {
         contentid from props */}
         <NavLink
           to={{
-            pathname: "/content/:contentid",
-            contentProps: { contentData: this.props.contentData }
+            pathname: '/content/:contentid',
+            contentProps: { contentData: this.props.contentData },
           }}
           className="content-link"
         >

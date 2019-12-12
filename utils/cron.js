@@ -1,11 +1,11 @@
-const cron = require('node-cron');
-const User = require('../models/userSchema');
-const Content = require('../models/contentSchema');
-const Delivery = require('../models/deliverySchema');
-const INDIVIDUAL = 'individual';
-const PAIR = 'pair';
-const GROUP = 'group';
-const contentList = [];
+// const cron = require('node-cron');
+// const User = require('../models/userSchema');
+// const Content = require('../models/contentSchema');
+// const Delivery = require('../models/deliverySchema');
+// const INDIVIDUAL = 'individual';
+// const PAIR = 'pair';
+// const GROUP = 'group';
+// const contentList = [];
 
 Content.find({}).exec(function(err, contents) {
   contents.forEach(content => contentList.push(content));
@@ -17,27 +17,27 @@ cron.schedule('* * * * *', function(req, res, next) {
   // 2. pairMail -> i) makePairs ii) send content
   // 3. groupMail -> i) makeGroups ii) send content
 
-  var mailType = determineDeliveryType();
+//   var mailType = determineDeliveryType();
 
-  switch (mailType) {
-    case INDIVIDUAL:
-      findNewContentPerStudentAndSendMail();
-    case PAIR:
-      findNewContentPerStudentAndSendMail();
-    case GROUP:
-      findNewContentPerStudentAndSendMail();
-  }
-});
+//   switch (mailType) {
+//     case INDIVIDUAL:
+//       findNewContentPerStudentAndSendMail();
+//     case PAIR:
+//       findNewContentPerStudentAndSendMail();
+//     case GROUP:
+//       findNewContentPerStudentAndSendMail();
+//   }
+// });
 
-const determineDeliveryType = () => {
-  // TODO
-  // var date = new Date();
-  // determine day
-  // if its monday return -> 'individual'
-  // if its wednesday return -> 'pair'
-  // if its saturday return -> 'group'
-  return INDIVIDUAL;
-};
+// const determineDeliveryType = () => {
+//   // TODO
+//   // var date = new Date();
+//   // determine day
+//   // if its monday return -> 'individual'
+//   // if its wednesday return -> 'pair'
+//   // if its saturday return -> 'group'
+//   return INDIVIDUAL;
+// };
 
 const sendMail = (user, content, delivery) => {
   const username = user.username;
@@ -63,11 +63,11 @@ const findNewContentPerStudentAndSendMail = INDIVIDUAL => {
           Math.floor(Math.random() * contentNotSentList.length)
         ];
 
-      function deliveryId(req, res) {
-        const delivery = new Delivery({
-          user: user.id,
-          content: contentToSend.id,
-        });
+//       function deliveryId(req, res) {
+//         const delivery = new Delivery({
+//           user: user.id,
+//           content: contentToSend.id,
+//         });
 
         delivery
           .save()

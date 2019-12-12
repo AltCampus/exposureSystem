@@ -7,10 +7,10 @@ module.exports = {
 
     submission
       .save()
-      .then(data => {
+      .then((data) => {
         res.status(200).json({ data });
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(500).json({
           message:
             err.message || 'Some error occurred while creating submission',
@@ -20,11 +20,11 @@ module.exports = {
 
   findAllSubmission: (req, res) => {
     Submission.find()
-      .then(submissions => {
+      .then((submissions) => {
         console.log(submissions, 'submissionController');
         res.json({ submissions });
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(500).json({
           message:
             err.message || 'Some error occurred while retrieving submissions.',
@@ -33,26 +33,26 @@ module.exports = {
   },
 
   getOneSubmission: (req, res) => {
-    const id = req.params.id;
+    const {id} = req.params;
 
     Submission.findById(id)
-      .then(submission => {
+      .then((submission) => {
         if (!submission) {
           return res.status(404).send({
-            message: 'Submission not found with id ' + req.params.submissionId,
+            message: `Submission not found with id ${  req.params.submissionId}`,
           });
         }
         res.json({ submission });
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.kind === 'ObjectId') {
           return res.status(404).send({
-            message: 'Submission not found with id ' + req.params.submissionId,
+            message: `Submission not found with id ${  req.params.submissionId}`,
           });
         }
         return res.status(500).json({
           message:
-            'Error retrieving Submission with id ' + req.params.submissionId,
+            `Error retrieving Submission with id ${  req.params.submissionId}`,
         });
       });
   },

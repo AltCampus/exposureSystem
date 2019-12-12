@@ -30,7 +30,7 @@ function AdminSidebar() {
         <NavLink
           className="dash-link"
           activeClassName="active"
-          to="/admin/students/list"
+          to="/admin/student/list"
         >
             Student List
         </NavLink>

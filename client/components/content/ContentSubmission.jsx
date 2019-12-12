@@ -14,18 +14,15 @@ class ContentSubmission extends Component {
   }
 
   componentDidMount() {
-    var deliveryId = window.location.href.split('/').pop();
-    console.log(deliveryId, 'deliveryId');
+    const deliveryId = window.location.href.split('/').pop();
     fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then(res => res.json())
-      .then(data => {
-        // console.log(data, 'data');
+      .then((res) => res.json())
+      .then((data) => {
         this.setState({
-          // ...data,
           content: data.delivery.content[0],
           user: data.delivery.user[0],
           contentUrl: data.delivery.content[0].contentUrl,
@@ -35,8 +32,6 @@ class ContentSubmission extends Component {
   }
 
   render() {
-    // console.log(this.state, 'rndr');
-    console.log(this.state.user, 'username');
     return (
       <div className="wrapper">
         <div className="sidebar-heading flex-center">Title</div>
@@ -54,19 +49,18 @@ class ContentSubmission extends Component {
             <div>Due by:</div>
           </div>
         </div>
-
         <iframe
           className="article"
           src={`${this.state.contentUrl}`}
           target="_parent"
-        ></iframe>
+        />
         <div className="flex-center">
           <textarea
             minLength="300"
             maxLength="1000"
             className="summary input"
             placeholder="Summarize the above article in your words"
-          ></textarea>
+          />
         </div>
         <div
           style={{
