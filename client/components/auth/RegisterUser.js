@@ -38,7 +38,6 @@ class RegisterUser extends Component {
     } else {
       this.props.userRegister(userCredentials);
       store.subscribe(() => {
-        console.log(store.getState(), "in user action");
         store.getState().userReducer.userRegisterData.User.email
           ? this.props.history.push("/register/onboarding")
           : alert(store.getState().userReducer.userRegisterData.User);
