@@ -4,12 +4,12 @@ const auth = require('../utils/auth');
 
 const router = express.Router();
 
-router.post('/register', studentController.registerUser);
+router.post('/register', studentController.registerStudent);
 
-router.post('/login', studentController.loginUser);
+router.post('/login', studentController.loginStudent);
 
-router.get('/:userId', studentController.findUser);
+router.get('/:userId', studentController.findStudent);
 
-router.get('/status/list', auth.verifyToken, studentController.userStatus);
+router.get('/status/list', auth.verifyToken, studentController.studentList);
 
 module.exports = router;
