@@ -43,6 +43,30 @@ const fetchPendingApprovalList = () => (dispatch) => {
     }));
 };
 
+const approveStudent = ((id , token) , cb) => (dispatch) => {
+  fetch('http://localhost:3000/api/v1/admin/pending-approvals/approved/:id', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `localStorage.getItem(${token})`,
+    },
+    body: {id},
+  });
+  cb();
+};
+
+const removeStudent = ((id , token) , cb) => (dispatch) => {
+  fetch('http://localhost:3000/api/v1/admin/pending-approvals/remove/:id', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `localStorage.getItem(${token})`,
+    },
+    body: {id},
+  });
+  cb();
+};
+
 const adminLogout = () => (dispatch) => {
   dispatch({ type: 'ADMIN_LOGOUT' });
 };
@@ -51,5 +75,7 @@ module.exports = {
   adminLogin,
   fetchStudentList,
   fetchPendingApprovalList,
+  approveStudent,
+  removeStudent,
   adminLogout,
 };

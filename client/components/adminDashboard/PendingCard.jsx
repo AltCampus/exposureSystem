@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { approveStudent , removeStudent } from '../../redux/actions/admin.action';
+import { connect } from 'react-redux';
 
-class Pending extends Component {
+class PendingStudent extends Component {
   constructor(props) {
     super(props);
   }
@@ -9,7 +11,7 @@ class Pending extends Component {
     // console.log(this.props.pendingStudentData)
     const {
       username, email, isActive, isInCampus, isAdmin, createdAt,
-    } = this.props.pendingStudentData;
+    } = this.props.state.pendingStudentList;
 
     return (
 
@@ -28,12 +30,14 @@ Details:
 
         </div>
         <div className="pending-footer">
-          <button className="reject">X</button>
-          <button className="approve">✔</button>
+          <button onClick={removeStudent} className="reject">X</button>
+          <button onClick={approveStudent} className="approve">✔</button>
         </div>
       </div>
     );
   }
-}
+};
 
-export default Pending;
+const mapStateToProps = (state) => state;
+
+export default connect(mapStateToProps , { approveStudent , removeStudent })(PendingStudent);

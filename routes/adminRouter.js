@@ -6,10 +6,13 @@ const auth = require('../utils/auth');
 
 router.post('/login', admin.adminLogin);
 
-router.put('/approved/:id', auth.verifyToken, admin.approveStudent);
+// student approved
+router.put('/pending-approvals/approved/:id', auth.verifyToken, admin.approveStudent);
 
-router.delete('/remove/:id', auth.verifyToken, admin.removeStudent);
+// Student Rejected
+router.delete('/pending-approvals/remove/:id', auth.verifyToken, admin.removeStudent);
 
-router.get('/pending-approvals', auth.verifyToken, admin.pendingStudents);
+// Student Pending
+router.get('/pending-approvals', auth.verifyToken, admin.pendingStudent);
 
 module.exports = router;
