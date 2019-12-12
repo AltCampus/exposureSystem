@@ -1,8 +1,8 @@
 /* eslint-disable no-alert */
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import store from '../../redux/store/store';
-import { userRegister } from '../redux/actions/userAction';
+// import store from '../../redux/store/store';
+// import { userRegister } from '../redux/actions/userAction';
 import { connect } from 'react-redux';
 import validator from 'validator';
 import Header from '../header/Header';

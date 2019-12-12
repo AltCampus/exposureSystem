@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminSidebar from './AdminSidebar';
 import PendingCard from './PendingCard';
-import { fetchPendingApprovalsList } from '../../redux/actions/admin.action';
+import { fetchPendingApprovalsList } from '../../redux/actions/adminAction';
 
 class PendingApprovals extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pendingStudentList: this.props.pendingStudentList ,
+      pendingStudentList: this.props.pendingStudentList,
     };
   }
 
@@ -17,7 +17,8 @@ class PendingApprovals extends Component {
   }
 
   render() {
-    const pendingStudentList = this.state.pendingStudentList && this.state.pendingStudentList.users;
+    const pendingStudentList =
+      this.state.pendingStudentList && this.state.pendingStudentList.users;
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -29,10 +30,8 @@ class PendingApprovals extends Component {
               Pending Approvals
             </h3>
             <div className="grid-col-3">
-              {pendingStudentList
-                && pendingStudentList.map((pendingStudent) => (
-                  <PendingCard />
-                ))}
+              {pendingStudentList &&
+                pendingStudentList.map(pendingStudent => <PendingCard />)}
             </div>
           </div>
         </div>
@@ -41,6 +40,6 @@ class PendingApprovals extends Component {
   }
 }
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(PendingApprovals);

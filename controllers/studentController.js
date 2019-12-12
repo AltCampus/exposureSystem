@@ -1,13 +1,13 @@
-import validator from 'validator';
-import Student from '../models/studentSchema';
+const validator = require('validator');
+const Student = require('../models/studentSchema');
 
-import auth from '../utils/auth';
+const auth = require('../utils/auth');
 
 module.exports = {
   registerStudent: (req, res, next) => {
-    const { username, email, password ,  } = req.body;
+    const { username, email, password } = req.body;
     if (!email || !password || !username) {
-      return res.json('Email and password are must.')
+      return res.json('Email and password are must.');
     }
     if (!validator.isEmail(email)) {
       return res.json('Invalid email');
@@ -39,7 +39,7 @@ module.exports = {
 
   findStudent: (req, res) => {
     Student.findById(req.params.userId)
-      .then((student) => {
+      .then(student => {
         if (!student) {
           return res.status(404).send({
             message: 'Student not found',
@@ -47,7 +47,7 @@ module.exports = {
         }
         res.json({ student });
       })
-      .catch((err) => {
+      .catch(err => {
         if (err.kind === 'ObjectId') {
           return res.status(404).send({
             message: 'Student not found',
