@@ -2,24 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminSidebar from './AdminSidebar';
 import PendingCard from './PendingCard';
-
+import { fetchPendingApprovalsList } from '../../redux/actions/admin.action';
 
 class PendingApprovals extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pendingStudentList: null,
+      pendingStudentList: this.props.pendingStudentList ,
     };
   }
 
   componentDidMount() {
-    
+    fetchPendingApprovalsList();
   }
 
   render() {
-    const pendingStudentList =      this.state.pendingStudentList && this.state.pendingStudentList.users;
-    console.log(pendingStudentList);
-
+    const pendingStudentList = this.state.pendingStudentList && this.state.pendingStudentList.users;
     return (
       <>
         <div className="wrapper grid-dashboard">

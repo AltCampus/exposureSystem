@@ -1,18 +1,23 @@
-const Student = require('../models/studentSchema');
-const auth = require('../utils/auth');
+import validator from 'validator';
+import Student from '../models/studentSchema';
+
+import auth from '../utils/auth';
 
 module.exports = {
   registerStudent: (req, res, next) => {
     const { username, email, password } = req.body;
-    if (email.length < 10 && password.length < 6) {
-      return res.status(401).json('INVALID USER');
+    if (!email || !password || !username) {
+      return res.json('Email and password are must.')
     }
-    if (!username || !email || !password) {
-      return res.status(401).json({ error: 'INVALID USER' });
+    if (!validator.isEmail(email)) {
+      return res.json('Invalid email');
+    }
+    if (password.length < 6) {
+      return res.status(401).json('Password should be atleast 6 characters.');
     }
     Student.create(req.body, (err, createdStudent) => {
       if (err) return next(err);
-      res.status(200).json({ Student: createdStudent });
+      return res.status(200).json({ Student: createdStudent });
     });
   },
 
@@ -57,7 +62,7 @@ module.exports = {
   studentList: (req, res, next) => {
     Student.find({}, (err, students) => {
       if (err) return next(err);
-      res.status(200).json({ students });
+      return res.status(200).json({ students });
     });
   },
 };
