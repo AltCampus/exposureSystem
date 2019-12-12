@@ -16,7 +16,7 @@ class Onboarding extends Component {
     isActive: false,
   }
   cb () {
-    this.history.push('https://localhost')
+    this.history.push('https://localhost:3000/')
   }
   handleSubmit () {
     registerStudent( this.state , cb);
