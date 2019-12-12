@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
-import { studentList } from '../redux/actions/studentListAction';
+// import { studentList } from '../redux/actions/studentListAction';
 
 import StudentCard from './StudentCard';
 
@@ -11,12 +11,12 @@ class StudentList extends Component {
   }
 
   componentDidMount() {
-    this.props.studentList();
+    // this.props.studentList();
   }
 
   render() {
-    const studentList = this.props.studentListReducer.students.users
-    console.log("inside student list component");
+    const studentList = this.props.studentListReducer.students.users;
+    console.log('inside student list component');
     return (
       <div className="wrapper grid-dashboard">
         <AdminSidebar />
@@ -25,11 +25,10 @@ class StudentList extends Component {
             Students
           </h3>
           <div className="grid-col-3">
-            {
-              studentList && studentList.map((student,i) => {
-                return <StudentCard key={i} student={student} />
-              })
-            }
+            {studentList &&
+              studentList.map((student, i) => {
+                return <StudentCard key={i} student={student} />;
+              })}
           </div>
         </div>
       </div>

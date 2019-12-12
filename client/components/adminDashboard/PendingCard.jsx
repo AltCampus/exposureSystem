@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { approveStudent , removeStudent } from '../../redux/actions/admin.action';
+import { approveStudent, removeStudent } from '../../redux/actions/adminAction';
 import { connect } from 'react-redux';
 
 class PendingStudent extends Component {
@@ -27,8 +27,8 @@ class PendingStudent extends Component {
     const id = this.props.pendingStudent._id;
     const token = localStorage.getItem(token);
 
-    return (
 
+    return (
       <div className="student-card">
         <div className="card-heading flex-center">{username}</div>
         <div className="card-details">
@@ -36,22 +36,27 @@ class PendingStudent extends Component {
             <div className="student-pfp" />
           </div>
           <div>
-Details:
+            Details:
             {email}
             {isInCampus}
             {/* {createdAt} */}
           </div>
-
         </div>
         <div className="pending-footer">
-          <button onClick={() =>} className="reject">X</button>
-          <button onClick={() => approveStudent(id , token)} className="approve">✔</button>
+          <button onClick={removeStudent} className="reject">
+            X
+          </button>
+          <button onClick={approveStudent} className="approve">
+            ✔
+          </button>
         </div>
       </div>
     );
   }
-};
+}
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = state => state;
 
-export default connect(mapStateToProps , { approveStudent , removeStudent })(PendingStudent);
+export default connect(mapStateToProps, { approveStudent, removeStudent })(
+  PendingStudent,
+);

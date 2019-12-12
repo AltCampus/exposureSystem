@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import validator from 'validator';
-import { userLoggedIn } from '../redux/actions/userAction';
 import Header from '../header/Header';
 import studentLogin from '../../redux/actions/studentAction';
+
 
 class LoginStudent extends Component {
   constructor(props) {
@@ -38,7 +38,6 @@ class LoginStudent extends Component {
     }
     studentLogin( this.state , cb);
   }
-
 
   render() {
     // console.log(this.props);
