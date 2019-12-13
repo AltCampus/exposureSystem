@@ -1,31 +1,30 @@
 .grid-dashboard {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-  }
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
 
-.sidebar{
-  width: 100%;
+.sidebar {
+  width: 15rem;
   box-sizing: border-box;
-  box-shadow: $shadow ;
+  box-shadow: $shadow;
   border-radius: 15px;
   padding-bottom: 0.5rem;
 }
 
-.dash-link{
+.dash-link {
   text-decoration: none;
   color: $textPrimary;
   padding: 0.5rem;
 }
 
-.input-select{
+.input-select {
   background: none;
   outline: none;
   color: $textPrimary;
   text-decoration: none;
 }
 
-.card{
+.card {
   width: 80%;
   margin: 0 auto;
 }
-

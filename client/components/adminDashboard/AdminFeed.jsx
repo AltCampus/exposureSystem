@@ -9,7 +9,7 @@ class AdminFeed extends Component {
     super(props);
   }
   state = {
-    submissionList: this.props.submissionReducer.submissionList,
+    // submissionList: this.props.submissionReducer.submissionList,
   };
   componentDidMount() {
     this.props.fetchSubmissionList();
