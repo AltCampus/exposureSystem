@@ -53,7 +53,7 @@ const fetchStudentList = () => {
   };
 };
 
-const fetchPendingApprovalList = cb => dispatch => {
+const fetchPendingApprovalList = () => dispatch => {
   dispatch({
     type: 'FETCHING_PENDING_APPROVALS_START',
   });
@@ -68,10 +68,9 @@ const fetchPendingApprovalList = cb => dispatch => {
       dispatch(
         {
           type: 'FETCHING_PENDING_APPROVALS_SUCCESS',
-          data: JSON.stringify(pendingApprovals),
+          data: pendingApprovals,
         },
         // console.log(pendingApprovals),
-        cb(),
       ),
     );
 };

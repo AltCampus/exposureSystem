@@ -8,29 +8,31 @@ class PendingApprovals extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pendingStudentList: this.props.adminReducer.pendingStudentList.value,
+      // pendingStudentList: this.props.adminReducer.pendingStudentList.value,
     };
   }
 
   componentDidMount() {
-    this.props.fetchPendingApprovalList(this.cb);
+    this.props.fetchPendingApprovalList();
     // this.cb();
     // this.setState({
     //   pendingStudentList: this.props.adminReducer.pendingStudentList,
     // });
   }
 
-  cb = () => {
-    console.log('inside cb');
-    this.setState({
-      pendingStudentList: this.props.adminReducer.pendingStudentList,
-    });
-  };
+  // cb = () => {
+  //   console.log('inside cb');
+  //   this.setState({
+  //     pendingStudentList: this.props.adminReducer.pendingStudentList,
+  //   });
+  // };
   render() {
-    console.log(this.state, 'state');
     console.log(this.props.adminReducer.pendingStudentList, 'props');
-    const pendingStudentList =
-      this.state.pendingStudentList && this.state.pendingStudentList.users;
+    // const something = this.props.adminReducer.pendingStudentList;
+    // console.log(something, 'some');
+    const StudentList = this.props.adminReducer.pendingStudentList;
+    console.log(StudentList);
+
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -42,8 +44,11 @@ class PendingApprovals extends Component {
               Pending Approvals
             </h3>
             <div className="grid-col-3">
-              {pendingStudentList &&
-                pendingStudentList.map(pendingStudent => <PendingCard />)}
+              {StudentList &&
+                StudentList.pendingStudents &&
+                StudentList.pendingStudents.map(Student => (
+                  <PendingCard pendingStudent={Student} />
+                ))}
             </div>
           </div>
         </div>
