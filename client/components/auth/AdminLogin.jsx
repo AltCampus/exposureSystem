@@ -14,30 +14,37 @@ class AdminLogin extends Component {
     };
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
-  handleAdminLogin(e) {
+  cb = () => {
+    this.props.history.push('/admin/feed');
+  };
+
+  handleAdminLogin = e => {
     e.preventDefault();
-    const adminCredentials = ({ email, password } = this.state);
+    const adminCredentials = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    console.log(adminCredentials, 'adminCredentials');
 
-    if (!email || !password) {
+    if (!adminCredentials.email || !adminCredentials.password) {
       return res.json('Email and password are must.');
     }
-    if (!validator.isEmail(email)) {
+    if (!validator.isEmail(adminCredentials.email)) {
       return res.json('Invalid email.');
     }
-    if (password.length < 6) {
+    if (adminCredentials.password.length < 6) {
       return res.json('Password must be atleast 6 characters.');
     }
 
-    this.props
-      .adminLogin(adminCredentials)
-      .then(this.props.history.push('http://localhost:3000/admin/feed'));
-  }
+    adminLogin(adminCredentials, this.cb);
+    // .then(this.props.history.push('http://localhost:3000/admin/feed'));
+  };
 
   render() {
     return (

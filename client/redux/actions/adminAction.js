@@ -1,13 +1,14 @@
-const adminLogin = adminCredentials => dispatch => {
+const adminLogin = (adminCredentials, cb) => {
   dispatch({
     type: 'ADMIN_LOGIN_START',
   });
+  console.log('inside adminaction');
   fetch('http://localhost:3000/api/v1/admin/login', {
     method: 'POST',
+    body: JSON.stringify(adminCredentials),
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(adminCredentials),
   })
     .then(res => res.json())
     .then(admin => {
@@ -16,7 +17,9 @@ const adminLogin = adminCredentials => dispatch => {
         type: 'ADMIN_LOGIN_SUCCESSFUL',
         data: admin,
       });
+      console.log('post complete');
     });
+  cb();
 };
 
 const fetchStudentList = () => dispatch => {
