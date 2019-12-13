@@ -42,7 +42,7 @@ class AdminLogin extends Component {
       return res.json('Password must be atleast 6 characters.');
     }
 
-    adminLogin(adminCredentials, this.cb);
+    this.props.adminLogin(adminCredentials, this.cb);
     // .then(this.props.history.push('http://localhost:3000/admin/feed'));
   };
 

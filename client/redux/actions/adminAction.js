@@ -1,25 +1,30 @@
 const adminLogin = (adminCredentials, cb) => {
-  dispatch({
-    type: 'ADMIN_LOGIN_START',
-  });
-  console.log('inside adminaction');
-  fetch('http://localhost:3000/api/v1/admin/login', {
-    method: 'POST',
-    body: JSON.stringify(adminCredentials),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then(res => res.json())
-    .then(admin => {
-      localStorage.setItem('token', admin.token);
-      dispatch({
-        type: 'ADMIN_LOGIN_SUCCESSFUL',
-        data: admin,
-      });
-      console.log('post complete');
+  return dispatch => {
+    dispatch({
+      type: 'ADMIN_LOGIN_START',
     });
-  cb();
+    console.log('inside adminaction');
+    fetch('http://localhost:3000/api/v1/admin/login', {
+      method: 'POST',
+      body: JSON.stringify(adminCredentials),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(admin => {
+        localStorage.setItem('token', admin.token);
+        dispatch(
+          {
+            type: 'ADMIN_LOGIN_SUCCESSFUL',
+            data: admin,
+          },
+          console.log('post complete'),
+        );
+        console.log('post complete');
+        cb();
+      });
+  };
 };
 
 const fetchStudentList = () => dispatch => {
