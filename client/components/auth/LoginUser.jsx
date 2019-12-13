@@ -19,11 +19,10 @@ class LoginStudent extends Component {
     });
   };
 
-  cb() {
-    this.history.push(
-      `https://localhost:3000/student/${this.props.state.studentData.username}`,
-    );
-  }
+  cb = () => {
+    const username = this.props.studentReducer.studentData.student.username;
+    this.props.history.push(`dashboard/${username}`);
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -37,11 +36,11 @@ class LoginStudent extends Component {
     if (password.length < 6) {
       return alert('Password must be atleast 6 characters');
     }
-    studentLogin(this.state, cb);
+    this.props.studentLogin(this.state, this.cb);
   };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { email, password } = this.state;
     return (
       <div>
@@ -71,7 +70,7 @@ class LoginStudent extends Component {
               <button
                 className="button"
                 type="submit"
-                onSubmit={this.handleSubmit}
+                onClick={this.handleSubmit}
               >
                 Submit
               </button>

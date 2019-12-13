@@ -54,7 +54,7 @@ class RegisterUser extends Component {
 
   render() {
     const { username, email, password } = this.state;
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <>
         <Header />
