@@ -8,7 +8,7 @@ const INITIAL_STATE = {
   isLoadingContentList: false,
   studentList: null,
   isLoadingStudentList: false,
-  pendingStudentList: null,
+  pendingStudentList: {},
   isLoadingPendingStudentList: false,
 };
 
@@ -97,6 +97,5 @@ function adminReducer(state = INITIAL_STATE, action) {
       return state;
   }
 }
-
 
 export default adminReducer;

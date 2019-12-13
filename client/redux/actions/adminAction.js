@@ -3,7 +3,7 @@ const adminLogin = (adminCredentials, cb) => {
     dispatch({
       type: 'ADMIN_LOGIN_START',
     });
-    console.log('inside adminaction');
+    // console.log('inside adminaction');
     fetch('http://localhost:3000/api/v1/admin/login', {
       method: 'POST',
       body: JSON.stringify(adminCredentials),
@@ -14,44 +14,65 @@ const adminLogin = (adminCredentials, cb) => {
       .then(res => res.json())
       .then(admin => {
         localStorage.setItem('token', admin.token);
-        dispatch(
-          {
-            type: 'ADMIN_LOGIN_SUCCESSFUL',
-            data: admin,
-          },
-          console.log('post complete'),
-        );
-        console.log('post complete');
+        dispatch({
+          type: 'ADMIN_LOGIN_SUCCESSFUL',
+          data: admin,
+        });
         cb();
       });
   };
 };
 
-const fetchStudentList = () => dispatch => {
-  dispatch({
-    type: 'FETCHING_STUDENT_LIST_START',
-  });
-  fetch('http://localhost:3000/api/v1/student/list')
-    .then(res => res.json())
-    .then(studentList =>
-      dispatch({
-        type: 'FETCHING_STUDENT_LIST_SUCCESS',
-        data: studentList,
-      }),
-    );
+// const fetchStudentList = () => dispatch => {
+//   dispatch({
+//     type: 'FETCHING_STUDENT_LIST_START',
+//   });
+//   fetch('http://localhost:3000/api/v1/student/list')
+//     .then(res => res.json())
+//     .then(studentList =>
+//       dispatch({
+//         type: 'FETCHING_STUDENT_LIST_SUCCESS',
+//         data: studentList,
+//       }),
+//     );
+// };
+
+const fetchStudentList = () => {
+  return dispatch => {
+    dispatch({
+      type: 'FETCHING_STUDENT_LIST_START',
+    });
+    fetch('http://localhost:3000/api/v1/student/list')
+      .then(res => res.json())
+      .then(studentList =>
+        dispatch({
+          type: 'FETCHING_STUDENT_LIST_SUCCESS',
+          data: studentList,
+        }),
+      );
+  };
 };
 
-const fetchPendingApprovalList = () => dispatch => {
+const fetchPendingApprovalList = cb => dispatch => {
   dispatch({
     type: 'FETCHING_PENDING_APPROVALS_START',
   });
-  fetch('http://localhost:3000/api/v1/admin/pending-approvals')
+  fetch('http://localhost:3000/api/v1/admin/pending-approvals', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('token'),
+    },
+  })
     .then(res => res.json())
     .then(pendingApprovals =>
-      dispatch({
-        type: 'FETCHING_PENDING_APPROVALS_SUCCESS',
-        data: pendingApprovals,
-      }),
+      dispatch(
+        {
+          type: 'FETCHING_PENDING_APPROVALS_SUCCESS',
+          data: JSON.stringify(pendingApprovals),
+        },
+        // console.log(pendingApprovals),
+        cb(),
+      ),
     );
 };
 

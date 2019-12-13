@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StudentSubmissionCard from '../students/studentDashboard/StudentSubmissionCard';
 import AdminSidebar from './AdminSidebar';
+import { connect } from 'react-redux';
 import { fetchSubmissionList } from '../../redux/actions/submissonAction';
 
 class AdminFeed extends Component {
@@ -8,10 +9,10 @@ class AdminFeed extends Component {
     super(props);
   }
   state = {
-    submissionList: this.props.submissionList,
+    submissionList: this.props.submissionReducer.submissionList,
   };
   componentDidMount() {
-    fetchSubmissionList();
+    this.props.fetchSubmissionList();
   }
   render() {
     return (
@@ -21,15 +22,19 @@ class AdminFeed extends Component {
             <AdminSidebar />
           </div>
           <div className="grid-col-1">
-            {this.state.submissionList.map(submission => {
-              <StudentSubmissionCard submission={submission} />;
-            })}
+            {this.state.submissionList &&
+              this.state.submissionList.map(submission => {
+                <StudentSubmissionCard submission={submission} />;
+              })}
           </div>
         </div>
       </>
     );
   }
 }
-const mapStateToProps = state => state;
 
-export default AdminFeed;
+const mapStateToProps = store => {
+  return store;
+};
+
+export default connect(mapStateToProps, { fetchSubmissionList })(AdminFeed);

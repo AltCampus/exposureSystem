@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
-import { studentList } from '../../redux/actions/studentAction';
+import { connect } from 'react-redux';
+import { fetchStudentList } from '../../redux/actions/studentAction';
 
 import StudentCard from './StudentCard';
 
@@ -9,13 +9,16 @@ class StudentList extends Component {
   constructor(props) {
     super(props);
   }
+  state = {
+    studentList: this.props.adminReducer.studentList,
+  };
 
   componentDidMount() {
-    // this.props.studentList();
+    this.props.fetchStudentList();
   }
 
   render() {
-    const studentList = this.props.studentListReducer.students.users;
+    const studentList = this.state.studentList;
     console.log('inside student list component');
     return (
       <div className="wrapper grid-dashboard">
@@ -38,4 +41,4 @@ class StudentList extends Component {
 const mapStateToProps = state => {
   return state;
 };
-export default connect(mapStateToProps, { studentList })(StudentList);
+export default connect(mapStateToProps, { fetchStudentList })(StudentList);
