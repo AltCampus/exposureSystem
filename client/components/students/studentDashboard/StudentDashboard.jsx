@@ -10,7 +10,7 @@ class StudentDashboard extends Component {
   }
 
   state = {
-    submissionList: this.props.state.submissionList,
+    submissionList: this.props.submissionReducer.submissionList,
   };
 
   componentDidMount() {
@@ -22,9 +22,10 @@ class StudentDashboard extends Component {
       <div className="wrapper grid-dashboard">
         <StudentSidebar />
         <div>
-          {this.state.submissionList.map(submission => {
-            <StudentSubmissionCard submission={submission} />;
-          })}
+          {this.state.submissionList &&
+            this.state.submissionList.map(submission => {
+              <StudentSubmissionCard submission={submission} />;
+            })}
         </div>
       </div>
     );

@@ -21,9 +21,17 @@ class RegisterUser extends Component {
     });
   };
 
-  handleSubmit(event) {
+  cb = () => {
+    this.props.history.push('/register/onboarding');
+  };
+
+  handleSubmit = (event, cb) => {
     event.preventDefault();
-    const { username, email, password } = this.state;
+    const username = this.state.username;
+    const email = this.state.email;
+    const password = this.state.password;
+    console.log(this.state);
+    // const { username, email, password } = this.state;
     const { dispatch } = this.props;
     if (!username || !email || !password) {
       return alert('Email , password and username are must.');
@@ -34,15 +42,19 @@ class RegisterUser extends Component {
     if (password.length < 6) {
       return alert('Password should be atleast 6 character.');
     }
-    console.log('inside handleSubmit RegisterUser');
-    return dispatch({
-      type: 'REGISTER_PAGE_DATA',
-      data: this.state,
-    });
-  }
+    // console.log('inside handleSubmit RegisterUser');
+    return dispatch(
+      {
+        type: 'REGISTER_PAGE_DATA',
+        data: this.state,
+      },
+      this.cb(),
+    );
+  };
 
   render() {
     const { username, email, password } = this.state;
+    console.log(this.state);
     return (
       <>
         <Header />
@@ -78,13 +90,13 @@ class RegisterUser extends Component {
               value={password}
             />
             <br />
-            <NavLink
+            <button
               to="/register/onboarding"
               onSubmit={this.handleSubmit}
               className="button"
             >
               Next
-            </NavLink>
+            </button>
           </form>
         </div>
       </>

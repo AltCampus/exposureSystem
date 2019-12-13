@@ -13,11 +13,11 @@ class LoginStudent extends Component {
     };
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
   cb() {
     this.history.push(
@@ -25,7 +25,7 @@ class LoginStudent extends Component {
     );
   }
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
     if (!email || !password) {
@@ -38,7 +38,7 @@ class LoginStudent extends Component {
       return alert('Password must be atleast 6 characters');
     }
     studentLogin(this.state, cb);
-  }
+  };
 
   render() {
     // console.log(this.props);
