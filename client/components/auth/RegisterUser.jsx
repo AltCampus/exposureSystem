@@ -1,8 +1,8 @@
 /* eslint-disable no-alert */
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-// import store from '../../redux/store/store';
-// import { userRegister } from '../redux/actions/userAction';
+import store from '../../redux/store/store';
+import { userRegister } from '../../redux/actions/studentAction';
 import { connect } from 'react-redux';
 import validator from 'validator';
 import Header from '../header/Header';
@@ -17,11 +17,11 @@ class RegisterUser extends Component {
     };
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -36,6 +36,7 @@ class RegisterUser extends Component {
     if (password.length < 6) {
       return alert('Password should be atleast 6 character.');
     }
+    console.log('inside handleSubmit RegisterUser');
     return dispatch({
       type: 'REGISTER_PAGE_DATA',
       data: this.state,

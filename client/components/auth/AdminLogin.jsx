@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../../redux/store/store';
-import { adminLogin } from '../../redux/actions/admin.action';
+import { adminLogin } from '../../redux/actions/adminAction';
 import validator from 'validator';
 
 class AdminLogin extends Component {
@@ -18,26 +18,26 @@ class AdminLogin extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  };
+  }
 
-  handleAdminLogin (e) {
+  handleAdminLogin(e) {
     e.preventDefault();
-    const adminCredentials = { email , password } = this.state;
+    const adminCredentials = ({ email, password } = this.state);
 
-    if(!email || !password) {
+    if (!email || !password) {
       return res.json('Email and password are must.');
     }
-    if(!validator.isEmail(email)) {
+    if (!validator.isEmail(email)) {
       return res.json('Invalid email.');
     }
-    if(password.length < 6) {
-      return res.json('Password must be atleast 6 characters.')
+    if (password.length < 6) {
+      return res.json('Password must be atleast 6 characters.');
     }
 
-    this.props.adminLogin(adminCredentials)
-    .then( this.props.history.push('http://localhost:3000/admin/feed'));
-  
-  };
+    this.props
+      .adminLogin(adminCredentials)
+      .then(this.props.history.push('http://localhost:3000/admin/feed'));
+  }
 
   render() {
     return (
@@ -65,15 +65,20 @@ class AdminLogin extends Component {
           />
           <br />
 
-          <button className="button" type="submit" onClick={this.handleAdminLogin}>
+          <button
+            className="button"
+            type="submit"
+            onClick={this.handleAdminLogin}
+          >
             Submit
           </button>
         </div>
       </div>
     );
   }
+}
 
-mapStateToProps (store) {
+const mapStateToProps = store => {
   return store;
 };
 
