@@ -17,6 +17,10 @@ class NewContentForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  cb = () => {
+    this.props.history.push('/admin/content/list');
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     const data = {
@@ -25,7 +29,7 @@ class NewContentForm extends Component {
       title: this.state.title,
       description: this.state.description,
     };
-    this.props.createContent(data);
+    this.props.createContent(data, this.cb);
   };
 
   render() {

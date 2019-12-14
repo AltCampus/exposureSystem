@@ -1,4 +1,4 @@
-const createContent = data => dispatch => {
+const createContent = (data, cb) => dispatch => {
   console.log(data, 'whats data');
   dispatch({
     type: 'CREATE_CONTENT_START',
@@ -17,6 +17,8 @@ const createContent = data => dispatch => {
         type: 'CREATE_CONTENT_SUCCESS',
         data: content,
       });
+      alert(`New content ${content.title} added`);
+      cb();
     });
 };
 
