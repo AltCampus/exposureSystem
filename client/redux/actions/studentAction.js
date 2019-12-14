@@ -20,7 +20,7 @@ const studentLogin = (loginData, cb) => {
           type: 'STUDENT_LOGIN_SUCCESS',
           data: studentData,
         }),
-          cb();
+          cb(studentData.student.isApproved);
       });
   };
 };

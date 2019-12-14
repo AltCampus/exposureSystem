@@ -19,11 +19,10 @@ class LoginStudent extends Component {
     });
   };
   cb = status => {
-    const isVerified = this.props.studentReducer.studentData.student.isVerified;
-    if (isVerified) {
+    if (status == true) {
       const username = this.props.studentReducer.studentData.student.username;
       this.props.history.push(`dashboard/${username}`);
-    } else {
+    } else if (status == false) {
       this.props.history.push('/await-approval');
     }
   };

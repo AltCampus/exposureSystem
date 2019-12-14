@@ -19,11 +19,13 @@ import AdminFeed from './adminDashboard/AdminFeed';
 import StudentList from './students/StudentList';
 // import WaitForApproval from './auth/WaitForApproval';
 import RegisterVerification from './registerVerfication/RegisterVerification';
+import Header from './header/Header';
 
 function App() {
   return (
     <>
       <Router>
+        {/* <Header /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={RegisterUser} />
