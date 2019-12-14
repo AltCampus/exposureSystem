@@ -23,20 +23,6 @@ const adminLogin = (adminCredentials, cb) => {
   };
 };
 
-// const fetchStudentList = () => dispatch => {
-//   dispatch({
-//     type: 'FETCHING_STUDENT_LIST_START',
-//   });
-//   fetch('http://localhost:3000/api/v1/student/list')
-//     .then(res => res.json())
-//     .then(studentList =>
-//       dispatch({
-//         type: 'FETCHING_STUDENT_LIST_SUCCESS',
-//         data: studentList,
-//       }),
-//     );
-// };
-
 const fetchStudentList = () => {
   return dispatch => {
     dispatch({
