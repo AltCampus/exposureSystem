@@ -23,20 +23,6 @@ const adminLogin = (adminCredentials, cb) => {
   };
 };
 
-// const fetchStudentList = () => dispatch => {
-//   dispatch({
-//     type: 'FETCHING_STUDENT_LIST_START',
-//   });
-//   fetch('http://localhost:3000/api/v1/student/list')
-//     .then(res => res.json())
-//     .then(studentList =>
-//       dispatch({
-//         type: 'FETCHING_STUDENT_LIST_SUCCESS',
-//         data: studentList,
-//       }),
-//     );
-// };
-
 const fetchStudentList = () => {
   return dispatch => {
     dispatch({
@@ -75,28 +61,32 @@ const fetchPendingApprovalList = () => dispatch => {
     );
 };
 
-const approveStudent = (id, token, cb) => dispatch => {
-  fetch('http://localhost:3000/api/v1/admin/pending-approvals/approved/:id', {
+const approveStudent = (id, cb) => dispatch => {
+  // const id = id;
+  // console.log(id, token, 'inApprove');
+  const url = `/api/v1/admin/pending-approvals/approved/${id}`;
+  // console.log(url, 'url');
+  fetch(url, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `localStorage.getItem(${token})`,
+      Authorization: localStorage.getItem('token'),
     },
-    body: { id },
+  }).then(approvedStudent => {
+    alert('Student Approved'), cb();
   });
-  cb();
 };
 
-const removeStudent = (id, token, cb) => dispatch => {
-  fetch('http://localhost:3000/api/v1/admin/pending-approvals/remove/:id', {
+const removeStudent = (id, cb) => dispatch => {
+  fetch(`/api/v1/admin/pending-approvals/remove/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `localStorage.getItem(${token})`,
+      Authorization: localStorage.getItem('token'),
     },
-    body: { id },
+  }).then(removedStudent => {
+    alert('Student Removed'), cb();
   });
-  cb();
 };
 
 const adminLogout = () => dispatch => {

@@ -10,11 +10,11 @@ class StudentDashboard extends Component {
   }
 
   state = {
-    submissionList: this.props.submissionReducer.submissionList,
+    // submissionList: this.props.submissionReducer.submissionList,
   };
 
   componentDidMount() {
-    fetchSubmissionList();
+    // this.props.fetchSubmissionList();
   }
 
   render() {
@@ -22,16 +22,22 @@ class StudentDashboard extends Component {
       <div className="wrapper grid-dashboard">
         <StudentSidebar />
         <div>
-          {this.state.submissionList &&
+          {/* {this.state.submissionList &&
             this.state.submissionList.map(submission => {
               <StudentSubmissionCard submission={submission} />;
-            })}
+            })} */}
+          <StudentSubmissionCard />
+          <StudentSubmissionCard />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = store => {
+  return store;
+};
 
-export default connect(mapStateToProps)(StudentDashboard);
+export default connect(mapStateToProps, { fetchSubmissionList })(
+  StudentDashboard,
+);

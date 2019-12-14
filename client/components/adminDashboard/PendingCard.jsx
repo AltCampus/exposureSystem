@@ -6,20 +6,22 @@ class PendingStudent extends Component {
   constructor(props) {
     super(props);
   }
-  cb() {
-    this.history.push('https:/localhost:3000/admin/pending-approvals');
-  }
+  cb = () => {
+    this.props.history.push('/admin/pending-approvals');
+    console.log('in cb');
+  };
 
-  handleReject() {
-    removeStudent(id, token, cb);
-  }
+  handleReject = id => {
+    this.props.removeStudent(id, this.cb);
+  };
 
-  handleApprove() {
-    approveStudent(id, token, cb);
-  }
+  handleApprove = id => {
+    console.log(id, 'inhandleaprrove');
+    this.props.approveStudent(id, this.cb);
+  };
 
   render() {
-    // console.log(this.props.pendingStudentData)
+    console.log(this.props);
     const {
       username,
       email,
@@ -30,27 +32,28 @@ class PendingStudent extends Component {
     } = this.props.pendingStudent;
 
     const id = this.props.pendingStudent._id;
-    const token = localStorage.getItem(token);
+    console.log(id, 'id');
+    const token = localStorage.getItem('token');
 
     return (
       <div className="student-card">
-        <div className="card-heading flex-center">{username}</div>
+        <div className="card-heading flex-center">Username: {username}</div>
         <div className="card-details">
-          <div>
+          {/* <div>
             <div className="student-pfp" />
-          </div>
+          </div> */}
           <div>
-            Details:
-            {email}
-            {isInCampus}
+            <span>Email: {email}</span>
+            <br></br>
+            <span>In Campus: {isInCampus}</span>
             {/* {createdAt} */}
           </div>
         </div>
         <div className="pending-footer">
-          <button onClick={this.handleReject} className="reject">
+          <button onClick={() => this.handleReject(id)} className="reject">
             X
           </button>
-          <button onClick={this.handleApprove} className="approve">
+          <button onClick={() => this.handleApprove(id)} className="approve">
             ✔
           </button>
         </div>
@@ -59,7 +62,7 @@ class PendingStudent extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = store => store;
 
 export default connect(mapStateToProps, { approveStudent, removeStudent })(
   PendingStudent,

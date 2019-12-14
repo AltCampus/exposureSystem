@@ -27,7 +27,7 @@ class PendingApprovals extends Component {
   //   });
   // };
   render() {
-    console.log(this.props.adminReducer.pendingStudentList, 'props');
+    // console.log(this.props.adminReducer.pendingStudentList, 'props');
     // const something = this.props.adminReducer.pendingStudentList;
     // console.log(something, 'some');
     const StudentList = this.props.adminReducer.pendingStudentList;
