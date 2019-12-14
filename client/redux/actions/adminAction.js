@@ -62,15 +62,19 @@ const fetchPendingApprovalList = () => dispatch => {
 };
 
 const approveStudent = (id, token, cb) => dispatch => {
-  fetch('http://localhost:3000/api/v1/admin/pending-approvals/approved/:id', {
+  // const id = id;
+  // console.log(id, token, 'inApprove');
+  const url = `/api/v1/admin/pending-approvals/approved/${id}`;
+  // console.log(url, 'url');
+  fetch(url, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `localStorage.getItem(${token})`,
+      Authorization: localStorage.getItem('token'),
     },
-    body: { id },
+  }).then(approvedStudent => {
+    alert('Student Approved'), cb();
   });
-  cb();
 };
 
 const removeStudent = (id, token, cb) => dispatch => {
