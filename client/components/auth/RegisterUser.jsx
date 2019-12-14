@@ -77,7 +77,10 @@ class RegisterUser extends Component {
               value={password}
             />
             <br />
-            <NavLink to="/register/onboarding" onSubmit={this.handleSubmit} className="button">Next</NavLink>
+            <NavLink 
+            to="/register/onboarding" 
+            onSubmit={this.handleSubmit} 
+            className="button">Next</NavLink>
           </form>
         </div>
       </>
