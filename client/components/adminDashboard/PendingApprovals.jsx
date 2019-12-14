@@ -2,22 +2,37 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminSidebar from './AdminSidebar';
 import PendingCard from './PendingCard';
-import { fetchPendingApprovalsList } from '../../redux/actions/admin.action';
+import { fetchPendingApprovalList } from '../../redux/actions/adminAction';
 
 class PendingApprovals extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pendingStudentList: this.props.pendingStudentList ,
+      // pendingStudentList: this.props.adminReducer.pendingStudentList.value,
     };
   }
 
   componentDidMount() {
-    fetchPendingApprovalsList();
+    this.props.fetchPendingApprovalList();
+    // this.cb();
+    // this.setState({
+    //   pendingStudentList: this.props.adminReducer.pendingStudentList,
+    // });
   }
 
+  // cb = () => {
+  //   console.log('inside cb');
+  //   this.setState({
+  //     pendingStudentList: this.props.adminReducer.pendingStudentList,
+  //   });
+  // };
   render() {
-    const pendingStudentList = this.state.pendingStudentList && this.state.pendingStudentList.users;
+    console.log(this.props.adminReducer.pendingStudentList, 'props');
+    // const something = this.props.adminReducer.pendingStudentList;
+    // console.log(something, 'some');
+    const StudentList = this.props.adminReducer.pendingStudentList;
+    console.log(StudentList);
+
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -29,9 +44,10 @@ class PendingApprovals extends Component {
               Pending Approvals
             </h3>
             <div className="grid-col-3">
-              {pendingStudentList
-                && pendingStudentList.map((pendingStudent) => (
-                  <PendingCard />
+              {StudentList &&
+                StudentList.pendingStudents &&
+                StudentList.pendingStudents.map(Student => (
+                  <PendingCard pendingStudent={Student} />
                 ))}
             </div>
           </div>
@@ -41,6 +57,8 @@ class PendingApprovals extends Component {
   }
 }
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(PendingApprovals);
+export default connect(mapStateToProps, { fetchPendingApprovalList })(
+  PendingApprovals,
+);

@@ -15,15 +15,23 @@ class RegisterUser extends Component {
     };
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
-  handleSubmit(event) {
+  cb = () => {
+    this.props.history.push('/register/onboarding');
+  };
+
+  handleSubmit = (event, cb) => {
     event.preventDefault();
-    const { username, email, password } = this.state;
+    const username = this.state.username;
+    const email = this.state.email;
+    const password = this.state.password;
+    console.log(this.state);
+    // const { username, email, password } = this.state;
     const { dispatch } = this.props;
     if (!username || !email || !password) {
       return alert('Email , password and username are must.');
@@ -34,14 +42,19 @@ class RegisterUser extends Component {
     if (password.length < 6) {
       return alert('Password should be atleast 6 character.');
     }
-    return dispatch({
-      type: 'REGISTER_PAGE_DATA',
-      data: this.state,
-    });
-  }
+    // console.log('inside handleSubmit RegisterUser');
+    return dispatch(
+      {
+        type: 'REGISTER_PAGE_DATA',
+        data: this.state,
+      },
+      this.cb(),
+    );
+  };
 
   render() {
     const { username, email, password } = this.state;
+    // console.log(this.state);
     return (
       <>
         <Header />
@@ -77,10 +90,13 @@ class RegisterUser extends Component {
               value={password}
             />
             <br />
-            <NavLink 
-            to="/register/onboarding" 
-            onSubmit={this.handleSubmit} 
-            className="button">Next</NavLink>
+            <button
+              to="/register/onboarding"
+              onSubmit={this.handleSubmit}
+              className="button"
+            >
+              Next
+            </button>
           </form>
         </div>
       </>
@@ -88,6 +104,6 @@ class RegisterUser extends Component {
   }
 }
 
-const mapstateToProps = (state) => state;
+const mapstateToProps = state => state;
 
 export default connect(mapstateToProps)(RegisterUser);

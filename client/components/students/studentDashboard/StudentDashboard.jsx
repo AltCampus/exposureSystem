@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StudentSidebar from './StudentSidebar';
 import StudentSubmissionCard from './StudentSubmissionCard';
-import fetchSubmissionList from '../../../redux/actions/submissonAction'
+import fetchSubmissionList from '../../../redux/actions/submissonAction';
 
 class StudentDashboard extends Component {
   constructor(props) {
@@ -10,8 +10,8 @@ class StudentDashboard extends Component {
   }
 
   state = {
-    submissionList: this.props.state.submissionList;
-  }
+    submissionList: this.props.submissionReducer.submissionList,
+  };
 
   componentDidMount() {
     fetchSubmissionList();
@@ -22,17 +22,16 @@ class StudentDashboard extends Component {
       <div className="wrapper grid-dashboard">
         <StudentSidebar />
         <div>
-          {
-            this.state.submissionList.map((submission) => {
-              <StudentSubmissionCard submission={submission}/>
-            })
-          }
+          {this.state.submissionList &&
+            this.state.submissionList.map(submission => {
+              <StudentSubmissionCard submission={submission} />;
+            })}
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(StudentDashboard);

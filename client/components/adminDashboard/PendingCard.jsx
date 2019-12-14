@@ -6,27 +6,31 @@ class PendingStudent extends Component {
   constructor(props) {
     super(props);
   }
-  cb () {
+  cb() {
     this.history.push('https:/localhost:3000/admin/pending-approvals');
-  };
+  }
 
-  handleReject () {
-    removeStudent(id , token , cb);
-  };
+  handleReject() {
+    removeStudent(id, token, cb);
+  }
 
-  handleApprove () {
-    approveStudent(id , token , cb);
-  };
+  handleApprove() {
+    approveStudent(id, token, cb);
+  }
 
   render() {
     // console.log(this.props.pendingStudentData)
     const {
-      username, email, isActive, isInCampus, isAdmin, createdAt
+      username,
+      email,
+      isActive,
+      isInCampus,
+      isAdmin,
+      createdAt,
     } = this.props.pendingStudent;
 
     const id = this.props.pendingStudent._id;
     const token = localStorage.getItem(token);
-
 
     return (
       <div className="student-card">
@@ -43,10 +47,10 @@ class PendingStudent extends Component {
           </div>
         </div>
         <div className="pending-footer">
-          <button onClick={removeStudent} className="reject">
+          <button onClick={this.handleReject} className="reject">
             X
           </button>
-          <button onClick={approveStudent} className="approve">
+          <button onClick={this.handleApprove} className="approve">
             ✔
           </button>
         </div>

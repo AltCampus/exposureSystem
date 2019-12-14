@@ -21,4 +21,4 @@ const studentReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-module.exports = studentReducer;
+export default studentReducer;

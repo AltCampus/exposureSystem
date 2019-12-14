@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userLoggedIn, userLogout } from '../redux/actions/userAction';
 import { adminLogout } from '../../redux/actions/adminAction';
 
 class Header extends React.Component {
@@ -10,7 +9,6 @@ class Header extends React.Component {
   }
 
   render() {
-    const isUserLoggedIn = this.props.userReducer.isLoggedIn;
     const isAdminLoggedIn = this.props.adminReducer.isLoggedIn;
     return (
       <div className="wrapper header">
@@ -51,7 +49,5 @@ class Header extends React.Component {
 const mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {
-  userLoggedIn,
-  userLogout,
   adminLogout,
 })(Header);

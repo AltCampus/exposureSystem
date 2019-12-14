@@ -21,4 +21,4 @@ const submissionReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-module.exports = submissionReducer;
+export default submissionReducer;

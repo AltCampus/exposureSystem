@@ -4,7 +4,6 @@ import validator from 'validator';
 import Header from '../header/Header';
 import studentLogin from '../../redux/actions/studentAction';
 
-
 class LoginStudent extends Component {
   constructor(props) {
     super(props);
@@ -14,17 +13,18 @@ class LoginStudent extends Component {
     };
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
-  cb() {
-    this.history.push(`https://localhost:3000/student/${this.props.state.studentData.username}`);
-  }
+  cb = () => {
+    const username = this.props.studentReducer.studentData.student.username;
+    this.props.history.push(`dashboard/${username}`);
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
     if (!email || !password) {
@@ -36,11 +36,11 @@ class LoginStudent extends Component {
     if (password.length < 6) {
       return alert('Password must be atleast 6 characters');
     }
-    studentLogin( this.state , cb);
-  }
+    this.props.studentLogin(this.state, this.cb);
+  };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { email, password } = this.state;
     return (
       <div>
@@ -70,7 +70,7 @@ class LoginStudent extends Component {
               <button
                 className="button"
                 type="submit"
-                onSubmit={this.handleSubmit}
+                onClick={this.handleSubmit}
               >
                 Submit
               </button>
@@ -81,6 +81,6 @@ class LoginStudent extends Component {
     );
   }
 }
-const mapStateToProps = (state) => state;
+const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { userLoggedIn })(LoginStudent);
+export default connect(mapStateToProps, { studentLogin })(LoginStudent);

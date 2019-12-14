@@ -18,4 +18,5 @@ const registerFormReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-module.exports = registerFormReducer;
+export default registerFormReducer;
+// module.exports = registerFormReducer;

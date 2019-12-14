@@ -27,11 +27,11 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={RegisterUser} />
-          <Route
+          {/* <Route
             exact
             path="/register/verification"
             component={RegisterVerification}
-          />
+          /> */}
           <Route path="/login" component={LoginUser} />
           <Route exact path="/admin/login" component={AdminLogin} />
           <Route exact path="/admin/feed" component={AdminFeed} />
@@ -46,9 +46,13 @@ function App() {
           <Route exact path="/admin/content/:contentid" component={Content} />
           <Route path="/submission/:deliveryid" component={ContentSubmission} />
           <Route exact path="/register/onboarding" component={Onboarding} />
-          <Route exact path="/:username" component={StudentDashboard} />
+          <Route
+            exact
+            path="/dashboard/:username"
+            component={StudentDashboard}
+          />
           <Route path="/admin/editcontent" component={EditContent} />
-          {/* <Route path="/wait-for-approval" component={WaitForApproval} /> */}
+          <Route path="/await-approval" component={RegisterVerification} />
           <Route component={Page404} />
         </Switch>
       </Router>
