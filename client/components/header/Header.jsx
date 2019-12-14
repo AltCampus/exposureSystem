@@ -8,8 +8,13 @@ class Header extends React.Component {
     super(props);
   }
 
+  cb = () => {
+    this.props.history.push('/');
+  }
+
+  handleLogout = 
   render() {
-    const isAdminLoggedIn = this.props.adminReducer.isLoggedIn;
+    const isAdminLoggedIn = this.props.adminReducer.isAdminLoggedIn;
     return (
       <div className="wrapper header">
         <div className="flex-between">
@@ -19,7 +24,7 @@ class Header extends React.Component {
             </NavLink>
           </div>
           {isAdminLoggedIn ? (
-            <button type="logout" className="head-links" onClick={adminLogout}>
+            <button type="logout" className="head-links" onClick={this.handleLogout}>
               Logout
             </button>
           ) : (

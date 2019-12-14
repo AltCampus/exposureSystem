@@ -11,7 +11,7 @@ class LoginStudent extends Component {
       email: '',
       password: '',
     };
-  }
+  };
 
   handleChange = e => {
     this.setState({
