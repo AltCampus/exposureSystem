@@ -18,6 +18,15 @@ class LoginStudent extends Component {
       [e.target.name]: e.target.value,
     });
   };
+  // cb = status => {
+  //   const isVerified = this.props.studentReducer.studentData.student.isVerified;
+  //   if (isVerified) {
+  //     const username = this.props.studentReducer.studentData.student.username;
+  //     this.props.history.push(`dashboard/${username}`);
+  //   } else {
+  //     this.props.history.push('/await-approval');
+  //   }
+  // };
 
   cb = () => {
     const username = this.props.studentReducer.studentData.student.username;
@@ -40,7 +49,7 @@ class LoginStudent extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { email, password } = this.state;
     return (
       <div>

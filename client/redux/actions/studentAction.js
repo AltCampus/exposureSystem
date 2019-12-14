@@ -1,10 +1,9 @@
 const studentLogin = (loginData, cb) => {
-  console.log('insideAAA');
   return dispatch => {
     dispatch({
       type: 'STUDENT_LOGIN_START',
     });
-    console.log('dispatch sent');
+    // console.log('dispatch sent');
     fetch('http://localhost:3000/api/v1/student/login', {
       method: 'POST',
       headers: {
@@ -14,7 +13,9 @@ const studentLogin = (loginData, cb) => {
     })
       .then(res => res.json())
       .then(studentData => {
-        console.log('inside action');
+        console.log(studentData, 'studentdata');
+        // console.log('inside action');
+
         dispatch({
           type: 'STUDENT_LOGIN_SUCCESS',
           data: studentData,
