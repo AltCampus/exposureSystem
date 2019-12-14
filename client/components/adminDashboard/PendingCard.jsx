@@ -7,17 +7,17 @@ class PendingStudent extends Component {
     super(props);
   }
   cb = () => {
-    // this.props.history.push('/admin/pending-approvals');
+    this.props.history.push('/admin/pending-approvals');
     console.log('in cb');
   };
 
-  handleReject() {
-    this.props.removeStudent(id, token, cb);
-  }
+  handleReject = id => {
+    this.props.removeStudent(id, this.cb);
+  };
 
-  handleApprove = (id, token) => {
+  handleApprove = id => {
     console.log(id, 'inhandleaprrove');
-    this.props.approveStudent(id, token, this.cb);
+    this.props.approveStudent(id, this.cb);
   };
 
   render() {
@@ -50,13 +50,10 @@ class PendingStudent extends Component {
           </div>
         </div>
         <div className="pending-footer">
-          <button onClick={() => this.handleReject()} className="reject">
+          <button onClick={() => this.handleReject(id)} className="reject">
             X
           </button>
-          <button
-            onClick={() => this.handleApprove(id, token)}
-            className="approve"
-          >
+          <button onClick={() => this.handleApprove(id)} className="approve">
             ✔
           </button>
         </div>

@@ -61,7 +61,7 @@ const fetchPendingApprovalList = () => dispatch => {
     );
 };
 
-const approveStudent = (id, token, cb) => dispatch => {
+const approveStudent = (id, cb) => dispatch => {
   // const id = id;
   // console.log(id, token, 'inApprove');
   const url = `/api/v1/admin/pending-approvals/approved/${id}`;
@@ -77,16 +77,16 @@ const approveStudent = (id, token, cb) => dispatch => {
   });
 };
 
-const removeStudent = (id, token, cb) => dispatch => {
-  fetch('http://localhost:3000/api/v1/admin/pending-approvals/remove/:id', {
+const removeStudent = (id, cb) => dispatch => {
+  fetch(`/api/v1/admin/pending-approvals/remove/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `localStorage.getItem(${token})`,
+      Authorization: localStorage.getItem('token'),
     },
-    body: { id },
+  }).then(removedStudent => {
+    alert('Student Removed'), cb();
   });
-  cb();
 };
 
 const adminLogout = () => dispatch => {
