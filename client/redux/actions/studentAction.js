@@ -1,6 +1,6 @@
 const studentLogin = (loginData, cb) => {
   console.log('insideAAA');
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: 'STUDENT_LOGIN_START',
     });
@@ -12,16 +12,20 @@ const studentLogin = (loginData, cb) => {
       },
       body: JSON.stringify(loginData),
     })
-      .then(res => res.json())
-      .then(studentData => {
+      .then((res) => res.json())
+      .then((studentData) => {
         console.log('inside action');
         dispatch({
           type: 'STUDENT_LOGIN_SUCCESS',
           data: studentData,
         }),
-          cb();
+        cb();
       });
   };
 };
 
-module.exports = studentLogin;
+const studentLogout = (cb) => (dispatch) => ({
+  type: 'STUDENT_LOGOUT',
+}, cb());
+
+module.exports = { studentLogin, studentLogout };

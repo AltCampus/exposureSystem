@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   studentData: null,
-  isLoggingIn: false,
+  isStudentLoggingIn: false,
+  isStudentLoggedIn: false,
 };
 
 const studentReducer = (state = INITIAL_STATE, action) => {
@@ -8,13 +9,21 @@ const studentReducer = (state = INITIAL_STATE, action) => {
     case 'STUDENT_LOGIN_START':
       return {
         ...state,
-        isLoggingIn: true,
+        isStudentLoggingIn: true,
       };
     case 'STUDENT_LOGIN_SUCCESS':
       return {
         ...state,
-        isLoggingIn: false,
+        isStudentLoggingIn: false,
         studentData: action.data,
+        isStudentLoggedIn: true,
+      };
+    case 'STUDENT_LOGOUT':
+      return {
+        ...state,
+        studentData: null,
+        isStudentLoggingIn: false,
+        isStudentLoggedIn: false,
       };
     default:
       return state;

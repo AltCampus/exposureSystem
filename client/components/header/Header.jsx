@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { adminLogout } from '../../redux/actions/adminAction';
+import { studentLogout } from '../../redux/actions/studentAction';
 
 class Header extends React.Component {
   constructor(props) {
@@ -12,9 +13,17 @@ class Header extends React.Component {
     this.props.history.push('/');
   }
 
-  handleLogout = 
+  handleLogout = () => {
+    if(this.props.adminReducer.isAdminLoggedIn) {
+      this.props.adminLogout(this.cb);
+    }
+    if(this.props.studentReducer.isStudentLoggedIn) {
+      this.props.studentLogout(this.cb)
+    }
+  }
+
   render() {
-    const isAdminLoggedIn = this.props.adminReducer.isAdminLoggedIn;
+    const isLoggedIn = this.props.adminReducer.isAdminLoggedIn || this.props.studentReducer.isStudentLoggedIn;
     return (
       <div className="wrapper header">
         <div className="flex-between">
@@ -23,7 +32,7 @@ class Header extends React.Component {
               <h3>Exposure System</h3>
             </NavLink>
           </div>
-          {isAdminLoggedIn ? (
+          {isLoggedIn ? (
             <button type="logout" className="head-links" onClick={this.handleLogout}>
               Logout
             </button>
@@ -55,4 +64,5 @@ const mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {
   adminLogout,
+  studentLogout
 })(Header);
