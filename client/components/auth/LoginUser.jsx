@@ -18,20 +18,20 @@ class LoginStudent extends Component {
       [e.target.name]: e.target.value,
     });
   };
-  // cb = status => {
-  //   const isVerified = this.props.studentReducer.studentData.student.isVerified;
-  //   if (isVerified) {
-  //     const username = this.props.studentReducer.studentData.student.username;
-  //     this.props.history.push(`dashboard/${username}`);
-  //   } else {
-  //     this.props.history.push('/await-approval');
-  //   }
-  // };
-
-  cb = () => {
-    const username = this.props.studentReducer.studentData.student.username;
-    this.props.history.push(`dashboard/${username}`);
+  cb = status => {
+    const isVerified = this.props.studentReducer.studentData.student.isVerified;
+    if (isVerified) {
+      const username = this.props.studentReducer.studentData.student.username;
+      this.props.history.push(`dashboard/${username}`);
+    } else {
+      this.props.history.push('/await-approval');
+    }
   };
+
+  // cb = () => {
+  //   const username = this.props.studentReducer.studentData.student.username;
+  //   this.props.history.push(`dashboard/${username}`);
+  // };
 
   handleSubmit = e => {
     e.preventDefault();
