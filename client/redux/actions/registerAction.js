@@ -1,5 +1,5 @@
 const registerStudent = (studentData, cb) => {
-  console.log(studentData, 'studentdata');
+  // console.log(studentData, 'studentdata');
   // fetch('http://localhost:3000/api/v1/student/register', {
   //   method: 'POST',
   //   headers: {

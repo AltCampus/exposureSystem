@@ -10,6 +10,6 @@ router.post('/login', studentController.loginStudent);
 
 router.get('/:userId', studentController.findStudent);
 
-router.get('/status/list', auth.verifyToken, studentController.studentList);
+router.get('/status/list', studentController.studentList);
 
 module.exports = router;

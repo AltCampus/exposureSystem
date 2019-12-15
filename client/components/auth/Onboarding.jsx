@@ -36,7 +36,7 @@ class Onboarding extends Component {
     registerStudent(studentData, this.cb);
   };
   render() {
-    console.log(this.state, 'onboarding');
+    // console.log(this.state, 'onboarding');
     return (
       <div className="wrapper card flex-column">
         <div className="grid-col-2 onboardingCard">

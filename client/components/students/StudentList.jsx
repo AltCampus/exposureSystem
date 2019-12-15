@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
 import { connect } from 'react-redux';
-import { fetchStudentList } from '../../redux/actions/studentAction';
+import { fetchStudentList } from '../../redux/actions/adminAction';
 
 import StudentCard from './StudentCard';
 
 class StudentList extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      studentList: this.props.adminReducer.studentList,
+    };
   }
-  state = {
-    studentList: this.props.adminReducer.studentList,
-  };
 
   componentDidMount() {
     this.props.fetchStudentList();
   }
 
   render() {
-    const studentList = this.state.studentList;
-    console.log('inside student list component');
+    const studentList =
+      this.props.adminReducer.studentList &&
+      this.props.adminReducer.studentList.students;
+    console.log(studentList, 'inside student list component');
     return (
       <div className="wrapper grid-dashboard">
-        <AdminSidebar />
+        <div>
+          <AdminSidebar />
+        </div>
         <div>
           <h3 className="flex-center" style={{ color: 'rgb(59, 57, 57)' }}>
             Students
@@ -38,7 +42,7 @@ class StudentList extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return state;
+const mapStateToProps = store => {
+  return store;
 };
 export default connect(mapStateToProps, { fetchStudentList })(StudentList);

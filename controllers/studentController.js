@@ -29,11 +29,15 @@ module.exports = {
       return res.status(401).json({ error: 'INVALID USER' });
     }
     Student.findOne({ email }, (err, student) => {
+      console.log(student, 'aaaa');
       if (err) return next(err);
       if (!student) return res.json({ student: 'student Not Found' });
       if (!student.confirmPassword(password)) {
         return res.json({ error: 'Password Is Not Correct' });
       }
+      if (student.isApproved === false)
+        return res.json({ student, error: 'Not verified' });
+
       const token = auth.generateToken(email);
       return res.status(200).json({ student, token });
     });
@@ -67,4 +71,16 @@ module.exports = {
       return res.status(200).json({ students });
     });
   },
+
+  // checkVerified: (req, res, next) => {
+  //   const { email } = req.body;
+
+  //   Student.findOne({ email }, (err, student) => {
+  //     if (err) return next(err);
+  //     if (student.isApproved === false)
+  //       return res.json({ mesasge: 'Not verified' });
+  //     next();
+  //     if (student.isApproved === true) return res.json({ message: 'verified' });
+  //   });
+  // },
 };
