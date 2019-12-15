@@ -14,16 +14,17 @@ class Header extends React.Component {
   }
 
   handleLogout = () => {
-    if(this.props.adminReducer.isAdminLoggedIn) {
+    if(this.props.adminReducer.isAdminLoggedIn == true) {
       this.props.adminLogout(this.cb);
     }
-    if(this.props.studentReducer.isStudentLoggedIn) {
+    if(this.props.studentReducer.isStudentLoggedIn == true) {
       this.props.studentLogout(this.cb)
     }
   }
 
   render() {
     const isLoggedIn = this.props.adminReducer.isAdminLoggedIn || this.props.studentReducer.isStudentLoggedIn;
+    console.log(isLoggedIn);
     return (
       <div className="wrapper header">
         <div className="flex-between">
@@ -32,28 +33,32 @@ class Header extends React.Component {
               <h3>Exposure System</h3>
             </NavLink>
           </div>
-          {isLoggedIn ? (
+          {if (isLoggedIn == true){
+            return (
             <button type="logout" className="head-links" onClick={this.handleLogout}>
               Logout
             </button>
-          ) : (
+              )
+             } else {
+            return (
             <nav>
-              <NavLink
-                className="head-links"
-                activeClassName="active"
-                to="/register"
-              >
-                Register
-              </NavLink>
-              <NavLink
-                className="head-links"
-                activeClassName="active"
-                to="/login"
-              >
-                Login
-              </NavLink>
+             <NavLink
+               className="head-links"
+               activeClassName="active"
+               to="/register"
+             >
+               Register
+             </NavLink>
+             <NavLink
+               className="head-links"
+               activeClassName="active"
+               to="/login"
+             >
+               Login
+             </NavLink>
             </nav>
-          )}
+           )}
+            }
         </div>
       </div>
     );

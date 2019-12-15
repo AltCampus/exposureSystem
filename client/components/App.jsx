@@ -2,6 +2,7 @@
 import React from 'react';
 import '../assets/stylesheets/style.scss';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Home from './home/Home';
 import RegisterUser from './auth/RegisterUser';
 import LoginUser from './auth/LoginUser';
@@ -17,21 +18,17 @@ import StudentDashboard from './students/studentDashboard/StudentDashboard';
 import EditContent from './content/EditContent';
 import AdminFeed from './adminDashboard/AdminFeed';
 import StudentList from './students/StudentList';
-// import WaitForApproval from './auth/WaitForApproval';
 import RegisterVerification from './registerVerfication/RegisterVerification';
+import Header from './header/Header';
 
 function App() {
   return (
     <>
       <Router>
+        {/* <Header /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={RegisterUser} />
-          {/* <Route
-            exact
-            path="/register/verification"
-            component={RegisterVerification}
-          /> */}
           <Route path="/login" component={LoginUser} />
           <Route exact path="/admin/login" component={AdminLogin} />
           <Route exact path="/admin/feed" component={AdminFeed} />
@@ -59,5 +56,6 @@ function App() {
     </>
   );
 }
+const mapStateToProps = (store) => store;
 
-export default App;
+export default connect (mapStateToProps)(App);

@@ -18,10 +18,13 @@ class LoginStudent extends Component {
       [e.target.name]: e.target.value,
     });
   };
-
-  cb = () => {
-    const username = this.props.studentReducer.studentData.student.username;
-    this.props.history.push(`dashboard/${username}`);
+  cb = status => {
+    if (status == true) {
+      const username = this.props.studentReducer.studentData.student.username;
+      this.props.history.push(`dashboard/${username}`);
+    } else if (status == false) {
+      this.props.history.push('/await-approval');
+    }
   };
 
   handleSubmit = e => {
@@ -40,7 +43,6 @@ class LoginStudent extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { email, password } = this.state;
     return (
       <div>

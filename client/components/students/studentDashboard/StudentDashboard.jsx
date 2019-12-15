@@ -2,22 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StudentSidebar from './StudentSidebar';
 import StudentSubmissionCard from './StudentSubmissionCard';
-import fetchSubmissionList from '../../../redux/actions/submissonAction';
+import { fetchSubmissionList } from '../../../redux/actions/submissonAction';
 
 class StudentDashboard extends Component {
   constructor(props) {
     super(props);
   }
 
-  state = {
-    // submissionList: this.props.submissionReducer.submissionList,
-  };
-
   componentDidMount() {
-    // this.props.fetchSubmissionList();
+    this.props.fetchSubmissionList();
   }
 
   render() {
+    const submissionList
     return (
       <div className="wrapper grid-dashboard">
         <StudentSidebar />
@@ -34,10 +31,6 @@ class StudentDashboard extends Component {
   }
 }
 
-const mapStateToProps = store => {
-  return store;
-};
+const mapStateToProps = (store) => store;
 
-export default connect(mapStateToProps, { fetchSubmissionList })(
-  StudentDashboard,
-);
+export default connect(mapStateToProps, { fetchSubmissionList })(StudentDashboard);

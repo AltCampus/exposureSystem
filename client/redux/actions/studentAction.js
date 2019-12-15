@@ -1,10 +1,8 @@
 const studentLogin = (loginData, cb) => {
-  console.log('insideAAA');
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: 'STUDENT_LOGIN_START',
     });
-    console.log('dispatch sent');
     fetch('http://localhost:3000/api/v1/student/login', {
       method: 'POST',
       headers: {
@@ -12,19 +10,18 @@ const studentLogin = (loginData, cb) => {
       },
       body: JSON.stringify(loginData),
     })
-      .then((res) => res.json())
-      .then((studentData) => {
-        console.log('inside action');
+      .then(res => res.json())
+      .then(studentData => {
         dispatch({
           type: 'STUDENT_LOGIN_SUCCESS',
           data: studentData,
         }),
-        cb();
+        cb(studentData.student.isApproved);
       });
   };
 };
 
-const studentLogout = (cb) => (dispatch) => ({
+const studentLogout = (cb) => (dispatch)({
   type: 'STUDENT_LOGOUT',
 }, cb());
 
