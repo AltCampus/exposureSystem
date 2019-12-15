@@ -27,11 +27,6 @@ class LoginStudent extends Component {
     }
   };
 
-  // cb = () => {
-  //   const username = this.props.studentReducer.studentData.student.username;
-  //   this.props.history.push(`dashboard/${username}`);
-  // };
-
   handleSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
@@ -48,7 +43,6 @@ class LoginStudent extends Component {
   };
 
   render() {
-    // console.log(this.props);
     const { email, password } = this.state;
     return (
       <div>
