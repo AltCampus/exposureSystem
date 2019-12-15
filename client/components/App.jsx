@@ -17,7 +17,6 @@ import StudentDashboard from './students/studentDashboard/StudentDashboard';
 import EditContent from './content/EditContent';
 import AdminFeed from './adminDashboard/AdminFeed';
 import StudentList from './students/StudentList';
-// import WaitForApproval from './auth/WaitForApproval';
 import RegisterVerification from './registerVerfication/RegisterVerification';
 
 function App() {
@@ -27,11 +26,6 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={RegisterUser} />
-          {/* <Route
-            exact
-            path="/register/verification"
-            component={RegisterVerification}
-          /> */}
           <Route path="/login" component={LoginUser} />
           <Route exact path="/admin/login" component={AdminLogin} />
           <Route exact path="/admin/feed" component={AdminFeed} />
