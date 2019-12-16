@@ -175,26 +175,28 @@ exports.mail = function(toAddress, studentName, deliveryLink) {
     toAddress,
     studentName,
     deliveryLink,
-    process.env.accountId,
-    process.env.oAuthToken,
+    // process.env.accountId,
+    // process.env.oAuthToken,
+    'inside mailer',
   );
-  try {
-    axios.post(
-      `https://mail.zoho.com/api/accounts/${process.env.accountId}/messages`,
-      {
-        fromAddress: 'prashant@altcampus.io',
-        toAddress: toAddress,
-        subject: 'AltCampus Application',
-        content: `${getApplicationContent(studentName, deliveryLink)}`,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Zoho-authtoken ${process.env.oAuthToken}`,
-        },
-      },
-    );
-  } catch (error) {
-    console.log(error);
-  }
 };
+//   try {
+//     axios.post(
+//       `https://mail.zoho.com/api/accounts/${process.env.accountId}/messages`,
+//       {
+//         fromAddress: 'prashant@altcampus.io',
+//         toAddress: toAddress,
+//         subject: 'AltCampus Application',
+//         content: `${getApplicationContent(studentName, deliveryLink)}`,
+//       },
+//       {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Authorization: `Zoho-authtoken ${process.env.oAuthToken}`,
+//         },
+//       },
+//     );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
