@@ -71,104 +71,104 @@
 //   console.log("group", updatePoints(users, "group"));
 
 
-const increasePoints = (user, type) => {
-    switch(type) {
-        case 'individual':
-            return { ...user, points: user.points + 0.5 };
-        case 'pair':
-            return { ...user, points: user.points + 1 };
-        case 'group':
-            return { ...user, points: user.points + 2 };
-        default:
-            return null;
-    }
-  }
-  
-  const decreasePoints = (user, type) => {
-    switch(type) {
-        case 'individual':
-            return { ...user, points: user.points - 1 };
-        case 'pair':
-            return { ...user, points: user.points - 1 };
-        case 'group':
-            return { ...user, points: user.points - 2 };
-        default:
-            return null;
-    }
-  }
-  
-  
-  
-  const updatePoints = (users, type) => {
-    switch (type) {
-      case "individual":
-        // submits: 0.5; if not: -1 for the user.
-  
+// const increasePoints = (user, type) => {
+//   switch(type) {
+//       case 'individual':
+//           return { ...user, points: user.points + 0.5 };
+//       case 'pair':
+//           return { ...user, points: user.points + 1 };
+//       case 'group':
+//           return { ...user, points: user.points + 2 };
+//       default:
+//           return null;
+//   }
+// }
+
+// const decreasePoints = (user, type) => {
+//   switch(type) {
+//       case 'individual':
+//           return { ...user, points: user.points - 1 };
+//       case 'pair':
+//           return { ...user, points: user.points - 1 };
+//       case 'group':
+//           return { ...user, points: user.points - 2 };
+//       default:
+//           return null;
+//   }
+// }
+
+
+
+const updatePoints = (users, type) => {
+  switch (type) {
+    case "individual":
+      // submits: 0.5; if not: -1 for the user.
+
+      return users.map(user => {
+        return { ...user, points: user.points + user.hasSubmitted ? 0.5 : -1 };
+      });
+    case "pair":
+      //  submits: 1; if not: -1 to the user who has not submitted.
+      return users.map(user => {
+        return { ...user, points: user.points + user.hasSubmitted ? 1 : -1 };
+      });
+    case "group":
+      const atLeastOneUserSubmitted =
+        users.findIndex(user => user.hasSubmitted === true) > -1;
+
+      if (atLeastOneUserSubmitted) {
+        // if one user doesn't submit, -1 for that user and the whole group gets 0.
         return users.map(user => {
-          return { ...user, points: user.points + user.hasSubmitted ? 0.5 : -1 };
+          return { ...user, points: user.hasSubmitted ? 0 : -1 };
         });
-      case "pair":
-        //  submits: 1; if not: -1 to the user who has not submitted.
-        return users.map(user => {
-          return { ...user, points: user.points + user.hasSubmitted ? 1 : -1 };
-        });
-      case "group":
-        const atLeastOneUserSubmitted =
-          users.findIndex(user => user.hasSubmitted === true) > -1;
-  
-        if (atLeastOneUserSubmitted) {
-          // if one user doesn't submit, -1 for that user and the whole group gets 0.
-          return users.map(user => {
-            return { ...user, points: user.hasSubmitted ? 0 : -1 };
-          });
-        }
-  
-        //  if no one submits, -2 for everybody,
-        return users.map(user => {
-          return { ...user, points: user.points - 2 };
-        });
-  
-      default:
-        throw new Error("missing case");
-    }
-  };
-  
-  class User {
-    constructor(name, points = 0, hasSubmitted = false) {
-      this.name = name;
-      this.points = points;
-      this.hasSubmitted = hasSubmitted;
-    }
+      }
+
+      //  if no one submits, -2 for everybody,
+      return users.map(user => {
+        return { ...user, points: user.points - 2 };
+      });
+
+    default:
+      throw new Error("missing case");
   }
-  
-  const users = [
-    new User("Rick", 0, true),
-    new User("Jane", 0, false),
-    new User("Jamie", 0, true)
-  ];
-  
-  const pair = [
-    new User("Jane", 0, false),
-    new User("Jamie", 0, true)
-  ]
-  
-  const group = [
-    new User("Rick", 0, true),
-    new User("Jane", 0, false),
-    new User("Jamie", 0, true)
-  ]
-  
-  const individual = [
-    new User("Rick", 0, true)
-  ]
-  
-  console.log("individual", updatePoints(individual, "individual"));
-  console.log("pair", updatePoints(pair, "pair"));
-  console.log("group", updatePoints(group, "group"));
-  
-  
-  
-  
-  
-  
+};
+
+class User {
+  constructor(name, points = 0, hasSubmitted = false) {
+    this.name = name;
+    this.points = points;
+    this.hasSubmitted = hasSubmitted;
+  }
+}
+
+const users = [
+  new User("Rick", 0, true),
+  new User("Jane", 0, false),
+  new User("Jamie", 0, true)
+];
+
+const pair = [
+  new User("Jane", 0, false),
+  new User("Jamie", 0, true)
+]
+
+const group = [
+  new User("Rick", 0, true),
+  new User("Jane", 0, false),
+  new User("Jamie", 0, true)
+]
+
+const individual = [
+  new User("Rick", 0, true)
+]
+
+console.log("individual", updatePoints(individual, "individual"));
+console.log("pair", updatePoints(pair, "pair"));
+console.log("group", updatePoints(group, "group"));
+
+
+
+
+
+
   
