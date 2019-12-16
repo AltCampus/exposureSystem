@@ -10,7 +10,7 @@ const GROUP = 'group';
 const contentList = [];
 
 Content.find({}).exec(function(err, contents) {
-  contents.forEach(content => contentList.push(content));
+  contents.forEach(content => contentList.push(content._id));
 });
 
 cron.schedule('* * * * *', function(req, res, next) {
@@ -27,7 +27,7 @@ cron.schedule('* * * * *', function(req, res, next) {
     case PAIR:
       findNewContentPerPairAndSendMail();
     case GROUP:
-      findNewContentPerStudentAndSendMail();
+      findNewContentPerGroupAndSendMail();
   }
 });
 
@@ -42,16 +42,33 @@ const determineDeliveryType = () => {
   return PAIR;
 };
 
-const sendMail = (user, delivery) => {
+const generateLinkAndSendMail = (user, delivery) => {
   const studentName = user.username;
   const studentEmail = user.email;
   const deliveryId = delivery.delivery.id;
 
   const link = `http://localhost:3000/submission/${deliveryId}`;
-  // console.log(link, 'link');
+  console.log(link, 'link');
 
   // const mail = Mailer.mail(studentEmail, studentName, link);
 };
+
+function deliveryId(user, contentToSend) {
+  const delivery = new Delivery({
+    user: user.id,
+    content: contentToSend.id,
+  });
+  console.log('delivery done');
+  delivery
+    .save()
+    .then(data => {
+      return { data };
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  return { delivery };
+}
 
 const findNewContentPerStudentAndSendMail = () => {
   User.find({}).exec(function(err, users) {
@@ -67,33 +84,49 @@ const findNewContentPerStudentAndSendMail = () => {
           Math.floor(Math.random() * contentNotSentList.length)
         ];
 
-      function deliveryId(req, res) {
-        const delivery = new Delivery({
-          user: user.id,
-          content: contentToSend.id,
-        });
-
-        delivery
-          .save()
-          .then(data => {
-            return { data };
-          })
-          .catch(err => {
-            console.log(err);
-          });
-        return { delivery };
-      }
-      const toSend = deliveryId(user, contentToSend);
-      sendMail(user, toSend);
+      //get new Delivery
+      var toSend = deliveryId(user, contentToSend);
+      //use delivery and user info to generate link and send mail
+      generateLinkAndSendMail(user, toSend);
     });
   });
 };
 
+// const checkSentContentToUsers = pairedUserArray => {
+//   return pairedUserArray.map((usersArray, i) => {
+//     return usersArray.reduce((acc, userObj) => {
+//       userObj.sentContent.forEach(val => {
+//         if (!acc.includes(val)) {
+//           acc.push(val);
+//         }
+//       });
+//       // console.log(acc, 'acc');
+//       return acc;
+//     }, []);
+//   });
+// };
+
 const findNewContentPerPairAndSendMail = () => {
   User.find({}).exec(function(err, users) {
-    console.log('in find');
-    // console.log(studentArray, 'studentArray done');
-    const findPair = pairedArray(users);
-    console.log(findPair, 'paired');
+    var findPair = pairedArray(users);
+
+    xyz(findPair);
+  });
+  function xyz(arrays) {
+    arrays.map(array => {
+      array.map(student => {
+        var contentToSend = [Math.floor(Math.random() * contentList.length)];
+        var toSend = deliveryId(student, contentToSend);
+        generateLinkAndSendMail(student, toSend);
+      });
+    });
+  }
+};
+
+const findNewContentPerGroupAndSendMail = () => {
+  User.find({}).exec(function(err, users) {
+    const findGroup = groupArray(users);
+    // console.log(findGroup, 'grouped');
+    // findPair.map(() => {});
   });
 };

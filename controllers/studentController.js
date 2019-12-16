@@ -72,15 +72,22 @@ module.exports = {
     });
   },
 
-  // checkVerified: (req, res, next) => {
-  //   const { email } = req.body;
-
-  //   Student.findOne({ email }, (err, student) => {
-  //     if (err) return next(err);
-  //     if (student.isApproved === false)
-  //       return res.json({ mesasge: 'Not verified' });
-  //     next();
-  //     if (student.isApproved === true) return res.json({ message: 'verified' });
-  //   });
-  // },
+  updateStudent: (req, res, next) => {
+    let { username, email, id } = req.body;
+    let sentContent = [];
+    Student.findById(req.body.id).then(student => {
+      sentContent.push(...student.sentContent, req.body.sentContent);
+    });
+    Student.findByIdAndUpdate(
+      id,
+      {
+        username,
+        email,
+        sentContent,
+      },
+      (err, updatedStudent) => {
+        err ? res.json(err) : res.json(updatedStudent);
+      },
+    );
+  },
 };
