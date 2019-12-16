@@ -15,10 +15,10 @@ const adminLogin = (adminCredentials, cb) => {
       .then(admin => {
         localStorage.setItem('token', admin.token);
         dispatch({
-          type: 'ADMIN_LOGIN_SUCCESSFUL',
+          type: 'ADMIN_LOGIN_SUCCESS',
           data: admin,
         });
-        cb();
+        cb()
       });
   };
 };
@@ -89,8 +89,10 @@ const removeStudent = (id, cb) => dispatch => {
   });
 };
 
-const adminLogout = () => dispatch => {
+const adminLogout = (cb) => dispatch => {
+  localStorage.clear();
   dispatch({ type: 'ADMIN_LOGOUT' });
+  cb();
 };
 
 module.exports = {

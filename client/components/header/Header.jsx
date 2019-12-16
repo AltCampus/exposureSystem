@@ -1,25 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { studentLogin , studentLogout } from "../../redux/actions/studentAction";
-import { adminLogout } from "../../redux/actions/studentAction";
+import { withRouter } from 'react-router-dom';
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  cb = () => {
-    this.props.history.push('http://localhost:3000/');
-  }
 
-  handleLogout = (e) => { 
-    e.preventDefault();
-    this.props.studentLogout(this.cb);
-    this.props.adminLogout(this.cb);
-  }
 
   render() {
+
     return (
       <div className="header">
         <div className="flex-between">
@@ -29,7 +21,7 @@ class Header extends React.Component {
             </NavLink>
           </div>
           <button 
-            onClick={this.handleLogout} 
+            onClick={this.props.handleLogout} 
             className="head-links"
             >
               Logout
@@ -45,4 +37,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { studentLogin , studentLogout , adminLogout })(Header);
+export default connect(mapStateToProps)(withRouter(Header));

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import validator from 'validator';
-import Header from '../header/Header';
-import studentLogin from '../../redux/actions/studentAction';
+import {studentLogin} from '../../redux/actions/studentAction';
 
 class LoginStudent extends Component {
   constructor(props) {
@@ -46,7 +45,6 @@ class LoginStudent extends Component {
     const { email, password } = this.state;
     return (
       <div>
-        <Header />
         <div className="wrapper card text-center">
           <h1 className="heading">Login</h1>
           <div>

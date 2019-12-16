@@ -12,6 +12,7 @@ const studentLogin = (loginData, cb) => {
     })
       .then(res => res.json())
       .then(studentData => {
+        localStorage.setItem('token', studentData.token);
         dispatch({
           type: 'STUDENT_LOGIN_SUCCESS',
           data: studentData,

@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import React, { Component } from 'react';
 import '../assets/stylesheets/style.scss';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { withRouter , Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from './home/Home';
 import RegisterUser from './auth/RegisterUser';
@@ -20,16 +20,71 @@ import AdminFeed from './adminDashboard/AdminFeed';
 import StudentList from './students/StudentList';
 import RegisterVerification from './registerVerfication/RegisterVerification';
 import Header from './header/Header';
+import { studentLogin , studentLogout } from "../redux/actions/studentAction";
+import { adminLogout } from "../redux/actions/adminAction";
 
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.state={
+      user: null
+    }
+  } 
+
+  componentDidMount(){
+    this.loginUser()
+  }
+
+  loginUser=()=>{
+        //TODO Store user/dmin in reducer
+        fetch('http://localhost:3000/api/v1/admin/me',{
+          method:"GET",
+          headers:{
+            authorization: localStorage.token,
+            'content-Type': 'application/json'
+          }
+        })
+        .then(res=>res.json())
+        .then(res=>{
+          if(res){
+            this.setState({
+              user:res
+             })
+          }else {
+            fetch('http://localhost:3000/api/v1/student/me',{
+              method:"GET",
+              headers:{
+                authorization: localStorage.token,
+                'content-Type': 'application/json'
+              }
+            })
+              .then(res=>res.json())
+              .then(res=>{
+                this.setState({
+                  user:res
+               })
+          console.log(res , 'inside loginUser')
+            })
+        }})
+  }
+
+  cb = () => {
+    this.setState({user:null},()=>{
+      this.props.history.push('/');
+    })
+  }
+
+  handleLogout = (e) => { 
+    e.preventDefault();
+    this.props.studentLogout(this.cb);
+    this.props.adminLogout(this.cb);   
   }
 
   protectedAdminRoutes = () => {
     return (
-      <Router>
-      <Header />
+      <>
+      <Header handleLogout={this.handleLogout} />
         <Switch>
           <Route exact path="/admin/feed" component={AdminFeed} />
           <Route exact path="/admin/content/list" component={ContentList} />
@@ -44,51 +99,55 @@ class App extends Component {
           />
           <Route component={Page404} />
         </Switch>
-      </Router>
+      </>
     )
   }
 
   protectedStudentRoutes = () => {
+    console.log('protected std')
     return (
-      <Router>
-      <Header />
+      <>
+      <Header handleLogout={this.handleLogout} />
         <Switch>
           <Route exact path="/submission/:deliveryid" component={ContentSubmission} />
           <Route exact path="/await-approval" component={RegisterVerification} />
           <Route
-            exact
             path="/dashboard/:username"
             component={StudentDashboard}
           />
           <Route component={Page404} />
         </Switch>
-      </Router>
+      </>
     )
   }
 
   nonProtectedRoutes = () => {
     return (
-      <Router>
+      <>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={RegisterUser} />
           <Route exact path="/login" component={LoginUser} />
           <Route exact path="/admin/login" component={AdminLogin} />
           <Route exact path="/register/onboarding" component={Onboarding} />
+          <Route exact path="/await-approval" component={RegisterVerification} />
           <Route component={Page404} />
         </Switch>
-      </Router>
+      </>
     )
   }
 
   render() {
+    if(!this.state.user && localStorage.token) this.loginUser()
+
+    console.log(this.state.user,localStorage.token)
     return (
       <>
-        {localStorage.token ? this.protectedAdminRoutes() : this.nonProtectedRoutes()}
+        {this.state.user ?(this.state.user.isAdmin == true ? this.protectedAdminRoutes() : this.protectedStudentRoutes()) : this.nonProtectedRoutes()}
       </>
     );
   }
 }
 const mapStateToProps = (store) => store;
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps , { studentLogin , studentLogout , adminLogout })(withRouter(App));

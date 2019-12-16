@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   adminData: '',
   isAdminLogginIn: false,
+  
   isAdminLoggedIn: false,
   content: null,
   isCreatingContent: false,
@@ -20,9 +21,12 @@ function adminReducer(state = INITIAL_STATE, action) {
         isAdminLogginIn: true,
       };
     case 'ADMIN_LOGIN_SUCCESS':
+      console.log('INSIDE REDUCER', action)
       return {
         ...state,
         isAdminLogginIn: false,
+        isAdminLoggedIn: true,
+        adminData: action.data.admin,
       };
     case 'CREATE_CONTENT_START':
       return {

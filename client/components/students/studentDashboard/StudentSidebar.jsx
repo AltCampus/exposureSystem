@@ -14,13 +14,13 @@ function StudentSidebar() {
         >
         Feed
         </NavLink>
-        <NavLink
+        {/* <NavLink
           className="dash-link"
           activeClassName="active"
-          to="/content/new"
+          to="/:username/edit"
         >
         Edit Profile
-        </NavLink>
+        </NavLink> */}
       </div>
     </div>
   );
