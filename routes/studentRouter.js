@@ -26,6 +26,6 @@ router.get("/:userId", studentController.findStudent);
 
 router.get("/status/list", studentController.studentList);
 
-router.put("/update", studentController.updateStudent);
+router.put("/update/:id", studentController.updateStudent);
 
 module.exports = router;
