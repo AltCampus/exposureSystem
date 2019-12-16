@@ -12,10 +12,4 @@ const fetchSubmissionList = () => dispatch => {
     );
 };
 
-const submitSubmission = () => dispatch => {
-  dispatch({
-    type: 'SUBMISSION_SUBMIT_START',
-  });
-};
-
 module.exports = { fetchSubmissionList };

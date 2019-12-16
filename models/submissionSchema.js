@@ -5,7 +5,7 @@ const submissionSchema = new Schema(
   {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     contentSummary: {
       type: String,
@@ -13,6 +13,7 @@ const submissionSchema = new Schema(
     },
     userid: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     contentid: [{ type: Schema.Types.ObjectId, ref: 'Content' }],
+    pointsAwarded: Number,
   },
   { timestamps: true },
 );

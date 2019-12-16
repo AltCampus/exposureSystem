@@ -13,33 +13,46 @@ Content.find({}).exec(function(err, contents) {
   contents.forEach(content => contentList.push(content._id));
 });
 
-cron.schedule('* * * * *', function(req, res, next) {
-  //   // find the type of email to be sent
-  //   // 1. Individual mail i) send content
-  //   // 2. pairMail -> i) makePairs ii) send content
-  //   // 3. groupMail -> i) makeGroups ii) send content
+// cron.schedule('* * * * *', function(req, res, next) {
+//   //   // find the type of email to be sent
+//   //   // 1. Individual mail i) send content
+//   //   // 2. pairMail -> i) makePairs ii) send content
+//   //   // 3. groupMail -> i) makeGroups ii) send content
 
-  var mailType = determineDeliveryType();
+//   var mailType = determineDeliveryType();
 
-  switch (mailType) {
-    case INDIVIDUAL:
-      findNewContentPerStudentAndSendMail();
-    case PAIR:
-      findNewContentPerPairAndSendMail();
-    case GROUP:
-      findNewContentPerGroupAndSendMail();
-  }
-});
+//   switch (mailType) {
+//     case INDIVIDUAL:
+//       findNewContentPerStudentAndSendMail();
+//     case PAIR:
+//       findNewContentPerPairAndSendMail();
+//     case GROUP:
+//       findNewContentPerGroupAndSendMail();
+//   }
+// });
 
 const determineDeliveryType = () => {
   // TODO
-  // var date = new Date();
+  var date = new Date();
+  var day = date.getDay();
+  console.log(day, 'day');
   // determine day
+
+  if (day == 1) {
+    console.log('INDIVIDUAL');
+    // return INDIVIDUAL;
+  }
+  if (day == 3) {
+    return PAIR;
+  }
+  if (day === 6) {
+    return GROUP;
+  }
   // if its monday return -> 'individual'
   // if its wednesday return -> 'pair'
   // if its saturday return -> 'group'
   // return INDIVIDUAL;
-  return PAIR;
+  // return PAIR;
 };
 
 const generateLinkAndSendMail = (user, delivery) => {
@@ -126,7 +139,15 @@ const findNewContentPerPairAndSendMail = () => {
 const findNewContentPerGroupAndSendMail = () => {
   User.find({}).exec(function(err, users) {
     const findGroup = groupArray(users);
-    // console.log(findGroup, 'grouped');
-    // findPair.map(() => {});
+    xyz(findPair);
   });
+  function xyz(arrays) {
+    arrays.map(array => {
+      array.map(student => {
+        var contentToSend = [Math.floor(Math.random() * contentList.length)];
+        var toSend = deliveryId(student, contentToSend);
+        generateLinkAndSendMail(student, toSend);
+      });
+    });
+  }
 };

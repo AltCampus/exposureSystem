@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+const { updateIndividualPoints } = require('../../../utils/pointsSystem');
 
 // TODO
 // change from contentSubmission to contentSubmit
@@ -20,8 +22,8 @@ class ContentSubmission extends Component {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         this.setState({
           content: data.delivery.content[0],
           user: data.delivery.user[0],
@@ -30,6 +32,10 @@ class ContentSubmission extends Component {
         // this.setState({ contentUrl: data.delivery.content[0].contentUrl });
       });
   }
+
+  onSubmit = () => {
+    updateIndividualPoints(user, true);
+  };
 
   render() {
     return (
@@ -69,11 +75,17 @@ class ContentSubmission extends Component {
             marginRight: '14rem',
           }}
         >
-          <button className="button" type="submit">Submit</button>
+          <button className="button" type="submit">
+            Submit
+          </button>
         </div>
       </div>
     );
   }
 }
 
-export default ContentSubmission;
+mapStateToProps = store => store;
+
+export default connect(mapStateToProps, { updateIndividualPoints })(
+  ContentSubmission,
+);
