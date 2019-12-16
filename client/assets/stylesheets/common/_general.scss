@@ -1,5 +1,6 @@
 .wrapper {
   max-width: 1200px;
+  height: 98vh;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -30,6 +31,12 @@
   color: $white;
   border-radius: 10px;
   margin-top: 1.5rem;
+  cursor: pointer;
+}
+
+.logout {
+  color: $white;
+  font-weight: 600;
   cursor: pointer;
 }
 

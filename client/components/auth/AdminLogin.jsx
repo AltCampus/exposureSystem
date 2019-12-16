@@ -10,7 +10,6 @@ class AdminLogin extends Component {
     this.state = {
       email: '',
       password: '',
-      admin: '',
     };
   }
 
@@ -42,14 +41,15 @@ class AdminLogin extends Component {
       return res.json('Password must be atleast 6 characters.');
     }
 
-    this.props.adminLogin(adminCredentials, this.cb);
-    // .then(this.props.history.push('http://localhost:3000/admin/feed'));
+    this.props.dispatch(adminLogin(adminCredentials, this.cb));
+
   };
 
   render() {
+    console.log(this.props, adminLogin)
+    const { email , password } = this.state;
     return (
       <div className="wrapper text-center">
-        <p>{this.state.admin}</p>
         <h1 className="heading">Admin-Login</h1>
         <div>
           <input
@@ -58,7 +58,7 @@ class AdminLogin extends Component {
             name="email"
             placeholder="Enter email"
             onChange={this.handleChange}
-            value={this.state.email}
+            value={email}
           />
           <br />
 
@@ -68,7 +68,7 @@ class AdminLogin extends Component {
             name="password"
             placeholder="Enter password"
             onChange={this.handleChange}
-            value={this.state.password}
+            value={password}
           />
           <br />
 
@@ -89,4 +89,4 @@ const mapStateToProps = store => {
   return store;
 };
 
-export default connect(mapStateToProps, { adminLogin })(AdminLogin);
+export default connect(mapStateToProps)(AdminLogin);

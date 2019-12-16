@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import StudentSubmissionCard from '../students/studentDashboard/StudentSubmissionCard';
 import AdminSidebar from './AdminSidebar';
-// import Header from '../header/Header';
-import { connect } from 'react-redux';
 import { fetchSubmissionList } from '../../redux/actions/submissonAction';
 
 class AdminFeed extends Component {
   constructor(props) {
     super(props);
   }
-  state = {
-    // submissionList: this.props.submissionReducer.submissionList,
-  };
+
   componentDidMount() {
     this.props.fetchSubmissionList();
   }
+
   render() {
     return (
       <>
-        {/* <Header /> */}
         <div className="wrapper grid-dashboard">
           <div>
             <AdminSidebar />
@@ -38,8 +35,6 @@ class AdminFeed extends Component {
   }
 }
 
-const mapStateToProps = store => {
-  return store;
-};
+const mapStateToProps = (store) => store;
 
 export default connect(mapStateToProps, { fetchSubmissionList })(AdminFeed);

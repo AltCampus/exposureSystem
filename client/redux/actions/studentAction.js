@@ -3,7 +3,6 @@ const studentLogin = (loginData, cb) => {
     dispatch({
       type: 'STUDENT_LOGIN_START',
     });
-    // console.log('dispatch sent');
     fetch('http://localhost:3000/api/v1/student/login', {
       method: 'POST',
       headers: {
@@ -13,16 +12,18 @@ const studentLogin = (loginData, cb) => {
     })
       .then(res => res.json())
       .then(studentData => {
-        console.log(studentData, 'studentdata');
-        // console.log('inside action');
-
+        localStorage.setItem('token', studentData.token);
         dispatch({
           type: 'STUDENT_LOGIN_SUCCESS',
           data: studentData,
         }),
-          cb(studentData.student.isApproved);
+        cb(studentData.student.isApproved);
       });
   };
 };
 
-module.exports = studentLogin;
+const studentLogout = (cb) => (dispatch) => ({
+  type: 'STUDENT_LOGOUT',
+}, cb());
+
+module.exports = { studentLogin, studentLogout };

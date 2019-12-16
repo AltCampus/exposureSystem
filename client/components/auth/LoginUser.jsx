@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import validator from 'validator';
-import Header from '../header/Header';
-import studentLogin from '../../redux/actions/studentAction';
+import {studentLogin} from '../../redux/actions/studentAction';
 
 class LoginStudent extends Component {
   constructor(props) {
@@ -11,7 +10,7 @@ class LoginStudent extends Component {
       email: '',
       password: '',
     };
-  }
+  };
 
   handleChange = e => {
     this.setState({
@@ -26,11 +25,6 @@ class LoginStudent extends Component {
       this.props.history.push('/await-approval');
     }
   };
-
-  // cb = () => {
-  //   const username = this.props.studentReducer.studentData.student.username;
-  //   this.props.history.push(`dashboard/${username}`);
-  // };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -48,11 +42,9 @@ class LoginStudent extends Component {
   };
 
   render() {
-    // console.log(this.props);
     const { email, password } = this.state;
     return (
       <div>
-        <Header />
         <div className="wrapper card text-center">
           <h1 className="heading">Login</h1>
           <div>
