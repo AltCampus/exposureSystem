@@ -21,7 +21,7 @@ const studentLogin = (loginData, cb) => {
   };
 };
 
-const studentLogout = (cb) => (dispatch)({
+const studentLogout = (cb) => (dispatch) => ({
   type: 'STUDENT_LOGOUT',
 }, cb());
 

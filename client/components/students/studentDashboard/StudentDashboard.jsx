@@ -14,7 +14,7 @@ class StudentDashboard extends Component {
   }
 
   render() {
-    const submissionList
+    // const submissionList
     return (
       <div className="wrapper grid-dashboard">
         <StudentSidebar />

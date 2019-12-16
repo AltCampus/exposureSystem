@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StudentSubmissionCard from '../students/studentDashboard/StudentSubmissionCard';
 import AdminSidebar from './AdminSidebar';
-// import Header from '../header/Header';
+import Header from '../header/Header';
 import { fetchSubmissionList } from '../../redux/actions/submissonAction';
 
 class AdminFeed extends Component {

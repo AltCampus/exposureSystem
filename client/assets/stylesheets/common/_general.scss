@@ -34,6 +34,12 @@
   cursor: pointer;
 }
 
+.logout {
+  color: $white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .active{
   color: $secondary !important;
   text-shadow: 1px 1px 6px $secondary !important;
