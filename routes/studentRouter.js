@@ -1,30 +1,31 @@
-const express = require('express');
-const studentController = require('../controllers/studentController');
-const auth = require('../utils/auth');
-const Student = require('../models/studentSchema');
-const jwt = require('jsonwebtoken');
+const express = require("express");
+const studentController = require("../controllers/studentController");
+const auth = require("../utils/auth");
+const Student = require("../models/studentSchema");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
-router.get('/me' , (req , res , next) => {  
-    console.log('fffffffffffff')
-    console.log(req.headers);
-    const token = req.headers.authorization;
-    const email = jwt.verify(token,'abcdef')
-    console.log(email , token , 'ffff')
-    Student.findOne({email} , (err , student) =>{
-        console.log(err,student,'jj')
-      return err ? res.json(err) : res.json(student);
-    }
-    )
-  })
-  
-router.post('/register', studentController.registerStudent);
+router.get("/me", (req, res, next) => {
+  console.log("fffffffffffff");
+  console.log(req.headers);
+  const token = req.headers.authorization;
+  const email = jwt.verify(token, "abcdef");
+  console.log(email, token, "ffff");
+  Student.findOne({ email }, (err, student) => {
+    console.log(err, student, "jj");
+    return err ? res.json(err) : res.json(student);
+  });
+});
 
-router.post('/login', studentController.loginStudent);
+router.post("/register", studentController.registerStudent);
 
-router.get('/:userId', studentController.findStudent);
+router.post("/login", studentController.loginStudent);
 
-router.get('/status/list', studentController.studentList);
+router.get("/:userId", studentController.findStudent);
+
+router.get("/status/list", studentController.studentList);
+
+router.put("/update/:id", studentController.updateStudent);
 
 module.exports = router;

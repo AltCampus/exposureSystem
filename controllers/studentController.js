@@ -1,24 +1,24 @@
-const validator = require('validator');
-const Student = require('../models/studentSchema');
+const validator = require("validator");
+const Student = require("../models/studentSchema");
 
-const auth = require('../utils/auth');
+const auth = require("../utils/auth");
 
 module.exports = {
   registerStudent: (req, res, next) => {
     const { username, email, password } = req.body;
-    console.log(req.body, 'in controller');
+    console.log(req.body, "in controller");
     if (!email || !password || !username) {
-      return res.json('Email and password are must.');
+      return res.json("Email and password are must.");
     }
     if (!validator.isEmail(email)) {
-      return res.json('Invalid email');
+      return res.json("Invalid email");
     }
     if (password.length < 6) {
-      return res.status(401).json('Password should be atleast 6 characters.');
+      return res.status(401).json("Password should be atleast 6 characters.");
     }
     Student.create(req.body, (err, createdStudent) => {
       if (err) return next(err);
-      console.log(createdStudent, 'inside controller');
+      console.log(createdStudent, "inside controller");
       return res.status(200).json({ Student: createdStudent });
     });
   },
@@ -26,17 +26,17 @@ module.exports = {
   loginStudent: (req, res, next) => {
     const { password, email } = req.body;
     if (!email || !password) {
-      return res.status(401).json({ error: 'INVALID USER' });
+      return res.status(401).json({ error: "INVALID USER" });
     }
     Student.findOne({ email }, (err, student) => {
-      console.log(student, 'aaaa');
+      console.log(student, "aaaa");
       if (err) return next(err);
-      if (!student) return res.json({ student: 'student Not Found' });
+      if (!student) return res.json({ student: "student Not Found" });
       if (!student.confirmPassword(password)) {
-        return res.json({ error: 'Password Is Not Correct' });
+        return res.json({ error: "Password Is Not Correct" });
       }
       if (student.isApproved === false)
-        return res.json({ student, error: 'Not verified' });
+        return res.json({ student, error: "Not verified" });
 
       const token = auth.generateToken(email);
       return res.status(200).json({ student, token });
@@ -48,19 +48,19 @@ module.exports = {
       .then(student => {
         if (!student) {
           return res.status(404).send({
-            message: 'Student not found',
+            message: "Student not found"
           });
         }
         res.json({ student });
       })
       .catch(err => {
-        if (err.kind === 'ObjectId') {
+        if (err.kind === "ObjectId") {
           return res.status(404).send({
-            message: 'Student not found',
+            message: "Student not found"
           });
         }
         return res.status(500).json({
-          message: 'Error retrieving student',
+          message: "Error retrieving student"
         });
       });
   },
@@ -72,22 +72,29 @@ module.exports = {
     });
   },
 
+  //   updateStudent: (req, res, next) => {
+  //     let { username, email, id } = req.body;
+  //     let sentContent = [];
+  //     Student.findById(req.body.id).then(student => {
+  //       sentContent.push(...student.sentContent, req.body.sentContent);
+  //     });
+  //     Student.findByIdAndUpdate(
+  //       id,
+  //       {
+  //         username,
+  //         email,
+  //         sentContent,
+  //       },
+  //       (err, updatedStudent) => {
+  //         err ? res.json(err) : res.json(updatedStudent);
+  //       },
+  //     );
+  //   },
   updateStudent: (req, res, next) => {
-    let { username, email, id } = req.body;
-    let sentContent = [];
-    Student.findById(req.body.id).then(student => {
-      sentContent.push(...student.sentContent, req.body.sentContent);
+    const id = req.body.id;
+    Student.findByIdAndUpdate(id, req.body, (err, student) => {
+      if (err) return next(err);
+      return res.status.json({ student });
     });
-    Student.findByIdAndUpdate(
-      id,
-      {
-        username,
-        email,
-        sentContent,
-      },
-      (err, updatedStudent) => {
-        err ? res.json(err) : res.json(updatedStudent);
-      },
-    );
-  },
+  }
 };
