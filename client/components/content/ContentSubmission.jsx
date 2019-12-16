@@ -84,7 +84,7 @@ class ContentSubmission extends Component {
   }
 }
 
-mapStateToProps = store => store;
+const mapStateToProps = store => store;
 
 export default connect(mapStateToProps, { updateIndividualPoints })(
   ContentSubmission,

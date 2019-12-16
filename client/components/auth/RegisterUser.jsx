@@ -57,7 +57,7 @@ class RegisterUser extends Component {
     // console.log(this.state);
     return (
       <>
-        <Header />
+        {/* <Header /> */}
         <div className="wrapper card text-center">
           <h1 className="heading">Register</h1>
           <form onSubmit={this.handleSubmit}>
