@@ -7,8 +7,8 @@ class PendingStudent extends Component {
     super(props);
   }
   cb = () => {
-    this.props.history.push('/admin/pending-approvals');
-    console.log('in cb');
+    // this.props.history.push('/admin/pending-approvals');
+    // console.log('in cb');
   };
 
   handleReject = id => {
@@ -16,12 +16,12 @@ class PendingStudent extends Component {
   };
 
   handleApprove = id => {
-    console.log(id, 'inhandleaprrove');
+    // console.log(id, 'inhandleaprrove');
     this.props.approveStudent(id, this.cb);
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const {
       username,
       email,
@@ -32,7 +32,7 @@ class PendingStudent extends Component {
     } = this.props.pendingStudent;
 
     const id = this.props.pendingStudent._id;
-    console.log(id, 'id');
+    // console.log(id, 'id');
     const token = localStorage.getItem('token');
 
     return (

@@ -69,7 +69,7 @@ class App extends Component {
               this.setState({
                 user: res,
               });
-              console.log(res, 'inside loginUser');
+              // console.log(res, 'inside loginUser');
             });
         }
       });
@@ -110,7 +110,7 @@ class App extends Component {
   };
 
   protectedStudentRoutes = () => {
-    console.log('protected std');
+    // console.log('protected std');
     return (
       <>
         <Header handleLogout={this.handleLogout} />

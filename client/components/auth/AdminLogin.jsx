@@ -29,7 +29,7 @@ class AdminLogin extends Component {
       email: this.state.email,
       password: this.state.password,
     };
-    console.log(adminCredentials, 'adminCredentials');
+    // console.log(adminCredentials, 'adminCredentials');
 
     if (!adminCredentials.email || !adminCredentials.password) {
       return res.json('Email and password are must.');
@@ -42,12 +42,11 @@ class AdminLogin extends Component {
     }
 
     this.props.dispatch(adminLogin(adminCredentials, this.cb));
-
   };
 
   render() {
-    console.log(this.props, adminLogin)
-    const { email , password } = this.state;
+    // console.log(this.props, adminLogin);
+    const { email, password } = this.state;
     return (
       <div className="wrapper text-center">
         <h1 className="heading">Admin-Login</h1>
