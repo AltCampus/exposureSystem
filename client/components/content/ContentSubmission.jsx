@@ -34,7 +34,7 @@ class ContentSubmission extends Component {
   }
 
   onSubmit = () => {
-    updatePoints(user, type)
+    // updatePoints(user, type)
   };
 
   render() {

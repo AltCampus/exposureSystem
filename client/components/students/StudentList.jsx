@@ -22,6 +22,7 @@ class StudentList extends Component {
       this.props.adminReducer.studentList &&
       this.props.adminReducer.studentList.students;
     console.log(studentList, 'inside student list component');
+    console.log(studentList && studentList.reverse())
     return (
       <div className="wrapper grid-dashboard">
         <div>

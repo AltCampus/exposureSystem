@@ -21,7 +21,21 @@ class PendingStudent extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props.pendingStudent)
+    // const sortedPendingStudentList = this.props.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    // console.log(sortedPendingStudentList)
+
+
+
+    // console.log(sortedPendingStudentList)a
+    // // console.log(this.props.adminReducer.pendingStudentList.pendingStudents);
+    // const studentList = this.props.adminReducer.pendingStudentList.pendingStudents
+    // const sortedStudentList = studentList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    // console.log(sortedStudentList)
+    // // console.log(sortedStudentList)
+    // const sortedStudents = sortedStudentList.reduce((acc, cv) => cv)
+    // console.log(sortedStudents)
+
     const {
       username,
       email,
@@ -32,7 +46,7 @@ class PendingStudent extends Component {
     } = this.props.pendingStudent;
 
     const id = this.props.pendingStudent._id;
-    console.log(id, 'id');
+    // console.log(id, 'id');
     const token = localStorage.getItem('token');
 
     return (

@@ -27,6 +27,7 @@ class ContentList extends Component {
       this.props.adminReducer.contentList &&
       this.props.adminReducer.contentList.contents;
     console.log(contentList, 'cc');
+    console.log(contentList && contentList.reverse())
     return (
       <div className="wrapper grid-dashboard">
         <div>
