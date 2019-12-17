@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   loginUser = () => {
-    //TODO Store user/dmin in reducer
+    //TODO Store user/admin in reducer
     fetch('http://localhost:3000/api/v1/admin/me', {
       method: 'GET',
       headers: {
