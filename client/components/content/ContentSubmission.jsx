@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-const { updateIndividualPoints } = require('../../../utils/pointsSystem');
+const { updatePoints } = require('../../../utils/pointsSystem');
 
 // TODO
 // change from contentSubmission to contentSubmit
@@ -34,7 +34,7 @@ class ContentSubmission extends Component {
   }
 
   onSubmit = () => {
-    updateIndividualPoints(user, true);
+    updatePoints(user, type)
   };
 
   render() {
@@ -86,6 +86,6 @@ class ContentSubmission extends Component {
 
 const mapStateToProps = store => store;
 
-export default connect(mapStateToProps, { updateIndividualPoints })(
+export default connect(mapStateToProps, { updatePoints })(
   ContentSubmission,
 );

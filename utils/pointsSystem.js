@@ -4,7 +4,7 @@
 //     // so even if you remove the default error case below, the function wouldnt crash
 //     // when you add a new type
 //     let callback = user => user;
-  
+
 //     // in each known case, we overwrite above callback with a function specific for this case
 //     switch (type) {
 //       case "individual":
@@ -30,7 +30,7 @@
 //         // so index > -1 is only true if it found a dataset
 //         const atLeastOneUserSubmitted =
 //           users.findIndex(user => user.hasSubmitted === true) > -1;
-  
+
 //         if (atLeastOneUserSubmitted) {
 //           callback = user => ({
 //             ...user,
@@ -40,18 +40,18 @@
 //           });
 //           break;
 //         }
-  
+
 //         // always subtract 2 from the previous points since nobody submitted
 //         callback = user => ({ ...user, points: user.points - 2 });
 //         break;
 //       default:
 //         throw new Error("missing case");
 //     }
-  
+
 //     // callback will be executed for every element within users
 //     return users.map(callback);
 //   };
-  
+
 //   class User {
 //     constructor(name, points=0, hasSubmitted = false) {
 //       this.name = name;
@@ -59,13 +59,13 @@
 //       this.hasSubmitted = hasSubmitted;
 //     }
 //   }
-  
+
 //   const users = [
 //     new User("Rick", 0, true),
 //     new User("Jane", 0, false),
 //     new User("Jamie", 0, true)
 //   ];
-  
+
 //   console.log("individual", updatePoints([users[0]], "individual"));
 //   console.log("pair", updatePoints([users[0], users[1]], "pair"));
 //   console.log("group", updatePoints(users, "group"));
@@ -166,9 +166,8 @@ console.log("individual", updatePoints(individual, "individual"));
 console.log("pair", updatePoints(pair, "pair"));
 console.log("group", updatePoints(group, "group"));
 
+export { updatePoints }
 
 
 
 
-
-  
