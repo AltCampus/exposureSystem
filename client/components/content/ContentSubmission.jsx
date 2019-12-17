@@ -12,17 +12,16 @@ const { updatePoints } = require('../../../utils/pointsSystem');
 class ContentSubmission extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   content: '',
-    //   contentUrl: '',
-    //   student: this.props.submissionReducer.deliveryData.student,
-    // };
+    this.state = {
+      content: null,
+      student: null,
+      summary: '',
+    };
   }
 
   componentDidMount() {
     const deliveryId = window.location.href.split('/').pop();
     this.props.fetchDeliveryData(deliveryId);
-
     // this.setState({ contentUrl: data.delivery.content[0].contentUrl });
   }
 
@@ -30,9 +29,15 @@ class ContentSubmission extends Component {
     this.props.createSubmission();
     updatePoints(user, type);
   };
-
+  handleChange = e => {
+    this.setState({
+      content: this.props.submissionReducer.deliveryData.content,
+      student: this.props.submissionReducer.deliveryData.student,
+      [e.target.name]: [e.target.value],
+    });
+  };
   render() {
-    // console.log(this.props.submissionReducer);
+    console.log(this.state);
     const content =
       this.props.submissionReducer.deliveryData &&
       this.props.submissionReducer.deliveryData.content;
@@ -68,6 +73,9 @@ class ContentSubmission extends Component {
             maxLength="1000"
             className="summary input"
             placeholder="Summarize the above article in your words"
+            onChange={this.handleChange}
+            value={this.state.summary}
+            name="summary"
           />
         </div>
         <div
