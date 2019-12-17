@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchDeliveryData } from '../../redux/actions/submissonAction';
 const { updatePoints } = require('../../../utils/pointsSystem');
 
 // TODO
 // change from contentSubmission to contentSubmit
 
 class ContentSubmission extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      content: null,
+      content: ,
       contentUrl: '',
       user: null,
     };
@@ -17,24 +18,13 @@ class ContentSubmission extends Component {
 
   componentDidMount() {
     const deliveryId = window.location.href.split('/').pop();
-    fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          content: data.delivery.content[0],
-          user: data.delivery.user[0],
-          contentUrl: data.delivery.content[0].contentUrl,
-        });
-        // this.setState({ contentUrl: data.delivery.content[0].contentUrl });
-      });
+    this.props.fetchDeliveryData(deliveryId);
+
+    // this.setState({ contentUrl: data.delivery.content[0].contentUrl });
   }
 
   onSubmit = () => {
-    updatePoints(user, type)
+    updatePoints(user, type);
   };
 
   render() {
@@ -86,6 +76,6 @@ class ContentSubmission extends Component {
 
 const mapStateToProps = store => store;
 
-export default connect(mapStateToProps, { updatePoints })(
+export default connect(mapStateToProps, { updatePoints, fetchDeliveryData })(
   ContentSubmission,
 );

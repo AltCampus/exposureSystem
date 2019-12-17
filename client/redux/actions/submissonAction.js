@@ -1,4 +1,20 @@
-// const fetchDeliveryData
+const fetchDeliveryData = deliveryId => dispatch => {
+  dispatch({
+    type: 'FETCHING_DELIVERY_DATA_START',
+  });
+  fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(res => res.json())
+    .then(deliveryData =>
+      dispatch({
+        type: 'FETCHING_DELIVERY_DATA_SUCCESS',
+        data: deliveryData,
+      }),
+    );
+};
 
 const createSubmission = (submissionData, cb) => dispatch => {
   dispatch({
@@ -35,4 +51,4 @@ const fetchSubmissionList = () => dispatch => {
     );
 };
 
-module.exports = { fetchSubmissionList };
+module.exports = { fetchSubmissionList, fetchDeliveryData, createSubmission };
