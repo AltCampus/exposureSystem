@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchDeliveryData } from '../../redux/actions/submissonAction';
+import {
+  fetchDeliveryData,
+  createSubmission,
+} from '../../redux/actions/submissonAction';
 const { updatePoints } = require('../../../utils/pointsSystem');
 
 // TODO
@@ -10,9 +13,9 @@ class ContentSubmission extends Component {
   constructor(props) {
     super(props);
     // this.state = {
-    //   content: ,
-    //   contentUrl: ,
-    //   user: null,
+    //   content: '',
+    //   contentUrl: '',
+    //   student: this.props.submissionReducer.deliveryData.student,
     // };
   }
 
@@ -24,11 +27,19 @@ class ContentSubmission extends Component {
   }
 
   onSubmit = () => {
+    this.props.createSubmission();
     updatePoints(user, type);
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props.submissionReducer);
+    const content =
+      this.props.submissionReducer.deliveryData &&
+      this.props.submissionReducer.deliveryData.content;
+    const student =
+      this.props.submissionReducer.deliveryData &&
+      this.props.submissionReducer.deliveryData.student;
+    console.log(content, student);
     return (
       <div className="wrapper">
         <div className="sidebar-heading flex-center">Title</div>
@@ -77,6 +88,8 @@ class ContentSubmission extends Component {
 
 const mapStateToProps = store => store;
 
-export default connect(mapStateToProps, { updatePoints, fetchDeliveryData })(
-  ContentSubmission,
-);
+export default connect(mapStateToProps, {
+  updatePoints,
+  fetchDeliveryData,
+  createSubmission,
+})(ContentSubmission);

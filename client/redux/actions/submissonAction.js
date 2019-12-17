@@ -1,3 +1,5 @@
+const { updatePoints } = require('../../../utils/pointsSystem');
+
 const fetchDeliveryData = deliveryId => dispatch => {
   const url = `http://localhost:3000/api/v1/delivery/${deliveryId}`;
   dispatch({
@@ -11,7 +13,6 @@ const fetchDeliveryData = deliveryId => dispatch => {
     .then(res => res.json())
     .then(deliveryData => {
       console.log(deliveryData.delivery, 'deliverdata'),
-        // (delivery = deliveryData && deliveryData.delivery),
         dispatch({
           type: 'FETCHING_DELIVERY_DATA_SUCCESS',
           data: deliveryData.delivery,
@@ -31,7 +32,7 @@ const createSubmission = (submissionData, cb) => dispatch => {
     body: submissionData,
   })
     .then(res => res.json())
-    .then(submission => {
+    .then(submissionData => {
       dispatch({
         type: 'NEW_SUBMISSION_CREATED_SUCCESSFULLY',
         data: submissionData,

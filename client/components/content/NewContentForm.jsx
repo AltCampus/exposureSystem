@@ -25,7 +25,7 @@ class NewContentForm extends Component {
     event.preventDefault();
     const data = {
       type: this.state.type,
-      url: this.state.url,
+      contentUrl: this.state.url,
       title: this.state.title,
       description: this.state.description,
     };
@@ -33,7 +33,8 @@ class NewContentForm extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
+    // console.log(this.state, 'state');
     return (
       <>
         <div className="wrapper grid-dashboard">
@@ -66,7 +67,7 @@ class NewContentForm extends Component {
               className="input"
               type="text"
               placeholder="Content Url"
-              value={this.state.url}
+              value={this.state.contentUrl}
               onChange={this.handleChange}
             ></input>
             <input
