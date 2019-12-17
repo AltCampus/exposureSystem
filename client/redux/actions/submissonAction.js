@@ -1,19 +1,22 @@
 const fetchDeliveryData = deliveryId => dispatch => {
+  const url = `http://localhost:3000/api/v1/delivery/${deliveryId}`;
   dispatch({
     type: 'FETCHING_DELIVERY_DATA_START',
   });
-  fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
+  fetch(url, {
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then(res => res.json())
-    .then(deliveryData =>
-      dispatch({
-        type: 'FETCHING_DELIVERY_DATA_SUCCESS',
-        data: deliveryData,
-      }),
-    );
+    .then(deliveryData => {
+      console.log(deliveryData.delivery, 'deliverdata'),
+        // (delivery = deliveryData && deliveryData.delivery),
+        dispatch({
+          type: 'FETCHING_DELIVERY_DATA_SUCCESS',
+          data: deliveryData.delivery,
+        });
+    });
 };
 
 const createSubmission = (submissionData, cb) => dispatch => {

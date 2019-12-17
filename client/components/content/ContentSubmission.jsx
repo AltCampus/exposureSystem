@@ -9,11 +9,11 @@ const { updatePoints } = require('../../../utils/pointsSystem');
 class ContentSubmission extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      content: ,
-      contentUrl: '',
-      user: null,
-    };
+    // this.state = {
+    //   content: ,
+    //   contentUrl: ,
+    //   user: null,
+    // };
   }
 
   componentDidMount() {
@@ -28,6 +28,7 @@ class ContentSubmission extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="wrapper">
         <div className="sidebar-heading flex-center">Title</div>
@@ -47,7 +48,7 @@ class ContentSubmission extends Component {
         </div>
         <iframe
           className="article"
-          src={`${this.state.contentUrl}`}
+          // src={`${this.state.contentUrl}`}
           target="_parent"
         />
         <div className="flex-center">

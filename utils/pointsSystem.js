@@ -1,4 +1,3 @@
-
 // const updatePoints = (users, type) => {
 //     // define a callback that doesnt change our data
 //     // so even if you remove the default error case below, the function wouldnt crash
@@ -70,7 +69,6 @@
 //   console.log("pair", updatePoints([users[0], users[1]], "pair"));
 //   console.log("group", updatePoints(users, "group"));
 
-
 // const increasePoints = (user, type) => {
 //   switch(type) {
 //       case 'individual':
@@ -97,22 +95,20 @@
 //   }
 // }
 
-
-
 const updatePoints = (users, type) => {
   switch (type) {
-    case "individual":
+    case 'individual':
       // submits: 0.5; if not: -1 for the user.
 
       return users.map(user => {
         return { ...user, points: user.points + user.hasSubmitted ? 0.5 : -1 };
       });
-    case "pair":
+    case 'pair':
       //  submits: 1; if not: -1 to the user who has not submitted.
       return users.map(user => {
         return { ...user, points: user.points + user.hasSubmitted ? 1 : -1 };
       });
-    case "group":
+    case 'group':
       const atLeastOneUserSubmitted =
         users.findIndex(user => user.hasSubmitted === true) > -1;
 
@@ -129,7 +125,7 @@ const updatePoints = (users, type) => {
       });
 
     default:
-      throw new Error("missing case");
+      throw new Error('missing case');
   }
 };
 
@@ -147,27 +143,18 @@ class User {
 //   new User("Jamie", 0, true)
 // ];
 
-const pair = [
-  new User("Jane", 0, false),
-  new User("Jamie", 0, true)
-]
+const pair = [new User('Jane', 0, false), new User('Jamie', 0, true)];
 
 const group = [
-  new User("Rick", 0, true),
-  new User("Jane", 0, false),
-  new User("Jamie", 0, true)
-]
+  new User('Rick', 0, true),
+  new User('Jane', 0, false),
+  new User('Jamie', 0, true),
+];
 
-const individual = [
-  new User("Rick", 0, true)
-]
+const individual = [new User('Rick', 0, true)];
 
-console.log("individual", updatePoints(individual, "individual"));
-console.log("pair", updatePoints(pair, "pair"));
-console.log("group", updatePoints(group, "group"));
+// console.log("individual", updatePoints(individual, "individual"));
+// console.log("pair", updatePoints(pair, "pair"));
+// console.log("group", updatePoints(group, "group"));
 
-export { updatePoints }
-
-
-
-
+export { updatePoints };

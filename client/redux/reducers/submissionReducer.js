@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 };
 
 const submissionReducer = (state = INITIAL_STATE, action) => {
-  switch (action) {
+  switch (action.type) {
     case 'FETCHING_SUBMISSION_LIST_START':
       return {
         ...state,
