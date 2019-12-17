@@ -25,7 +25,8 @@ class ContentSubmission extends Component {
     // this.setState({ contentUrl: data.delivery.content[0].contentUrl });
   }
 
-  onSubmit = () => {
+  onSubmit = e => {
+    e.preventDefault();
     this.props.createSubmission();
     updatePoints(user, type);
   };
@@ -37,14 +38,14 @@ class ContentSubmission extends Component {
     });
   };
   render() {
-    console.log(this.state);
+    console.log(this.state, 'state');
     const content =
       this.props.submissionReducer.deliveryData &&
       this.props.submissionReducer.deliveryData.content;
     const student =
       this.props.submissionReducer.deliveryData &&
       this.props.submissionReducer.deliveryData.student;
-    console.log(content, student);
+    console.log(content, 'content', student, 'student');
     return (
       <div className="wrapper">
         <div className="sidebar-heading flex-center">Title</div>
@@ -57,8 +58,8 @@ class ContentSubmission extends Component {
               <span>Assigned to:</span>
               {/* {this.state.user.username} */}
             </div>
-            {/* <div>Paired with:</div>
-            <div>Type:</div> */}
+            <div>Paired with:</div>
+            <div>Type:</div>
             <div>Due by:</div>
           </div>
         </div>
@@ -67,28 +68,30 @@ class ContentSubmission extends Component {
           // src={`${this.state.contentUrl}`}
           target="_parent"
         />
-        <div className="flex-center">
-          <textarea
-            minLength="300"
-            maxLength="1000"
-            className="summary input"
-            placeholder="Summarize the above article in your words"
-            onChange={this.handleChange}
-            value={this.state.summary}
-            name="summary"
-          />
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            marginRight: '14rem',
-          }}
-        >
-          <button className="button" type="submit">
-            Submit
-          </button>
-        </div>
+        <form>
+          <div className="flex-center">
+            <textarea
+              minLength="300"
+              maxLength="1000"
+              className="summary input"
+              placeholder="Summarize the above article in your words"
+              onChange={this.handleChange}
+              value={this.state.summary}
+              name="summary"
+            />
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              marginRight: '14rem',
+            }}
+          >
+            <button className="button" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     );
   }
