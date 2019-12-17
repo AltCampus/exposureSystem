@@ -119,7 +119,7 @@ const updatePoints = (users, type) => {
       if (atLeastOneUserSubmitted) {
         // if one user doesn't submit, -1 for that user and the whole group gets 0.
         return users.map(user => {
-          return { ...user, points: user.hasSubmitted ? 0 : -1 };
+          return { ...user, points: user.points + user.hasSubmitted ? 0 : -1 };
         });
       }
 
@@ -141,11 +141,11 @@ class User {
   }
 }
 
-const users = [
-  new User("Rick", 0, true),
-  new User("Jane", 0, false),
-  new User("Jamie", 0, true)
-];
+// const users = [
+//   new User("Rick", 0, true),
+//   new User("Jane", 0, false),
+//   new User("Jamie", 0, true)
+// ];
 
 const pair = [
   new User("Jane", 0, false),
