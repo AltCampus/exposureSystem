@@ -21,8 +21,8 @@ cron.schedule('* * * * *', function(req, res, next) {
       findNewContentPerStudentAndSendMail();
     case PAIR:
       findNewContentPerPairAndSendMail();
-    // case GROUP:
-    //   findNewContentPerGroupAndSendMail();
+    case GROUP:
+      findNewContentPerGroupAndSendMail();
   }
 });
 
@@ -41,7 +41,7 @@ const determineDeliveryType = () => {
   // if (day === 6) {
   //   return GROUP;
   // }
-  return PAIR;
+  return GROUP;
 };
 
 const generateLinkAndSendMail = (student, delivery) => {
@@ -76,7 +76,6 @@ const deliveryId = (student, contentToSend) => {
 const findNewContentPerStudentAndSendMail = () => {
   Student.find({}).exec(function(err, students) {
     students.forEach((student, i) => {
-      // console.log(student, 'student');
       // find the content that has not been sent to this user. contentId
       const sentContent = student.sentContent;
       const contentNotSentList = contentList.reduce((acc, cv) => {
@@ -87,8 +86,6 @@ const findNewContentPerStudentAndSendMail = () => {
         contentNotSentList[
           Math.floor(Math.random() * contentNotSentList.length)
         ];
-      // console.log(student, contentToSend, 'contentToSend');
-
       const toSend = deliveryId(student, contentToSend);
       generateLinkAndSendMail(student, toSend);
     });
@@ -121,7 +118,26 @@ const findNewContentPerPairAndSendMail = () => {
         contentList[Math.floor(Math.random() * contentList.length)];
 
       pairArray.forEach((student, i) => {
-        // console.log(contentToSend, pair, 'pair');
+        const toSend = deliveryId(student, contentToSend);
+        generateLinkAndSendMail(student, toSend);
+      });
+    });
+  });
+};
+
+const findNewContentPerGroupAndSendMail = () => {
+  Student.find({}).exec(function(err, students) {
+    const allGroups = groupArray(students);
+    allGroups.map(groupArray => {
+      // console.log(groupArray, 'groupArray');
+      // const contentNotSentList = contentList.reduce((acc, cv) => {
+      //   sentContent.includes(cv._id) ? acc : acc.push(cv);
+      //   return acc;
+      // }, []);
+      const contentToSend =
+        contentList[Math.floor(Math.random() * contentList.length)];
+
+      groupArray.forEach((student, i) => {
         const toSend = deliveryId(student, contentToSend);
         generateLinkAndSendMail(student, toSend);
       });
