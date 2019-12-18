@@ -38,7 +38,8 @@ class RegisterUser extends Component {
         title: "Sorry",
         text: "Username, Email and Password are must",
         icon: "error",
-        button: "Go Back"
+        button: "Go Back",
+        timer: 1000
       });
     }
 

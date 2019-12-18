@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-indent */
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import registerStudent from '../../redux/actions/registerAction';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import registerStudent from "../../redux/actions/registerAction";
+import swal from "sweetalert";
 
 class Onboarding extends Component {
   constructor(props) {
@@ -12,29 +13,41 @@ class Onboarding extends Component {
     email: this.props.registerFormReducer.studentEmail,
     password: this.props.registerFormReducer.studentPassword,
     isInCampus: false,
-    isActive: false,
+    isActive: false
   };
   cb = () => {
-    this.props.history.push('/await-approval');
+    this.props.history.push("/await-approval");
   };
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   handleSubmit = () => {
-    console.log('submit called', this.state);
+    console.log("submit called", this.state);
     const studentData = {
       username: this.state.username,
       password: this.state.password,
       email: this.state.email,
       isInCampus: this.state.isInCampus,
-      isActive: this.state.isActive,
+      isActive: this.state.isActive
     };
     registerStudent(studentData, this.cb);
+
+
+    swal({
+      title: "Good Job",
+      text: "Please wait for your email verification. Meanwhile, you will be directed to the home page.",
+      icon: "success",
+      timer: 3000
+    }).then(
+      function() {
+        window.location = "/";
+      });
   };
+
   render() {
     // console.log(this.state, 'onboarding');
     return (
@@ -43,17 +56,22 @@ class Onboarding extends Component {
           <div class="field">
             <label class="label">Are you on campus currently?</label>
             <div class="control">
-              <div class="select">  
+              <div class="select">
                 <select>
-                  <option 
+                  <option
                     name="isInCampus"
                     value="true"
-                    onChange={this.handleChange}>Yes</option>
+                    onChange={this.handleChange}
+                  >
+                    Yes
+                  </option>
                   <option
-                  name="isInCampus"
+                    name="isInCampus"
                     value="false"
                     onChange={this.handleChange}
-                  >No</option>
+                  >
+                    No
+                  </option>
                 </select>
               </div>
             </div>
@@ -63,20 +81,31 @@ class Onboarding extends Component {
             <div class="control">
               <div class="select">
                 <select>
-                  <option 
+                  <option
                     name="isActive"
                     value="true"
-                    onChange={this.handleChange}>Yes</option>
+                    onChange={this.handleChange}
+                  >
+                    Yes
+                  </option>
                   <option
-                  name="isActive"
+                    name="isActive"
                     value="false"
                     onChange={this.handleChange}
-                  >No</option>
+                  >
+                    No
+                  </option>
                 </select>
               </div>
             </div>
           </div>
-          <button type="submit" onClick={this.handleSubmit} className="button is-primary is-right">Register</button>
+          <button
+            type="submit"
+            onClick={this.handleSubmit}
+            className="button is-primary is-right"
+          >
+            Register
+          </button>
         </form>
       </div>
       // <div className="wrapper">
