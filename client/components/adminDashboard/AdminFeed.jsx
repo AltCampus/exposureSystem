@@ -4,6 +4,9 @@ import StudentSubmissionCard from '../students/studentDashboard/StudentSubmissio
 import AdminSidebar from './AdminSidebar';
 import { fetchSubmissionList } from '../../redux/actions/submissonAction';
 
+import { Layout, Menu, Icon } from 'antd';
+const { Header, Content, Footer, Sider } = Layout;
+
 class AdminFeed extends Component {
   constructor(props) {
     super(props);
@@ -16,25 +19,25 @@ class AdminFeed extends Component {
   render() {
     return (
       <>
-        <div className="wrapper grid-dashboard">
+        {/* <div className='wrapper grid-dashboard'>
           <div>
             <AdminSidebar />
           </div>
-          <div className="grid-col-1">
-            {/* {this.state.submissionList &&
+          <div className='grid-col-1'> */}
+        {/* {this.state.submissionList &&
               this.state.submissionList.map(submission => {
                 <StudentSubmissionCard submission={submission} />;
               })} */}
-            <StudentSubmissionCard />
+        {/* <StudentSubmissionCard />
             <StudentSubmissionCard />
             <StudentSubmissionCard />
           </div>
-        </div>
+        </div> */}
       </>
     );
   }
 }
 
-const mapStateToProps = (store) => store;
+const mapStateToProps = store => store;
 
 export default connect(mapStateToProps, { fetchSubmissionList })(AdminFeed);
