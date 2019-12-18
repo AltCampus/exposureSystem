@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import registerStudent from '../../redux/actions/registerAction';
+import { Button } from 'antd';
 
 class Onboarding extends Component {
   constructor(props) {
@@ -38,45 +39,63 @@ class Onboarding extends Component {
   render() {
     // console.log(this.state, 'onboarding');
     return (
-      <div className="container wrapper">
-        <form className="notification ">
-          <div class="field">
-            <label class="label">Are you on campus currently?</label>
-            <div class="control">
-              <div class="select">  
+      <div className='container card flex-center'>
+        <form className='notification text-center'>
+          <label class='label'>Are you in campus currently?</label>
+          <div class='control'>
+            <div class='select'>
+              <select>
+                <option
+                  name='isInCampus'
+                  value='true'
+                  onChange={this.handleChange}
+                >
+                  Yes
+                </option>
+                <option
+                  name='isInCampus'
+                  value='false'
+                  onChange={this.handleChange}
+                >
+                  No
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class='field'>
+            <label class='label'>
+              Do you consent to receiving emails from us?
+            </label>
+            <div class='control'>
+              <div class='select'>
                 <select>
-                  <option 
-                    name="isInCampus"
-                    value="true"
-                    onChange={this.handleChange}>Yes</option>
                   <option
-                  name="isInCampus"
-                    value="false"
+                    name='isActive'
+                    value='true'
                     onChange={this.handleChange}
-                  >No</option>
+                  >
+                    Yes
+                  </option>
+                  <option
+                    name='isActive'
+                    value='false'
+                    onChange={this.handleChange}
+                  >
+                    No
+                  </option>
                 </select>
               </div>
             </div>
           </div>
-          <div class="field">
-            <label class="label">Subject</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option 
-                    name="isActive"
-                    value="true"
-                    onChange={this.handleChange}>Yes</option>
-                  <option
-                  name="isActive"
-                    value="false"
-                    onChange={this.handleChange}
-                  >No</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <button type="submit" onClick={this.handleSubmit} className="button is-primary is-right">Register</button>
+
+          <Button
+            className='button'
+            type='primary'
+            // size="large"
+            onClick={this.handleSubmit}
+          >
+            Register
+          </Button>
         </form>
       </div>
       // <div className="wrapper">

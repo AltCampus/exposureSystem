@@ -50,44 +50,40 @@ class AdminLogin extends Component {
     // console.log(this.props, adminLogin);
     const { email, password } = this.state;
     return (
-      <section className="columns">
-        <div className="container card flex-center is-grouped">
-          <div className="notification text-center">
-            <h1 className="heading">Admin Login</h1>
-            <form>
-              <div className="control">
-                <input
-                  className="input"
-                  type="text"
-                  name="email"
-                  placeholder="Enter email"
-                  onChange={this.handleChange}
-                  value={email}
-                />
-                <input
-                  className="input"
-                  type="password"
-                  name="password"
-                  placeholder="Enter password"
-                  onChange={this.handleChange}
-                  value={password}
-                />
-                <br></br>
-                <div>
-                  <Button
-                    className="button"
-                    type="primary"
-                    // size="large"
-                    onClick={this.handleAdminLogin}
-                  >
-                    Submit
-                  </Button>
-                </div>
-              </div>
-            </form>
-          </div>
+      <div className='container card flex-center is-grouped'>
+        <div className='notification text-center'>
+          <h1 className='heading'>Admin Login</h1>
+          <form>
+            <div className='control'>
+              <input
+                className='input'
+                type='text'
+                name='email'
+                placeholder='Enter email'
+                onChange={this.handleChange}
+                value={email}
+              />
+              <input
+                className='input'
+                type='password'
+                name='password'
+                placeholder='Enter password'
+                onChange={this.handleChange}
+                value={password}
+              />
+              <br></br>
+              <Button
+                className='button'
+                type='primary'
+                // size="large"
+                onClick={this.handleAdminLogin}
+              >
+                Submit
+              </Button>
+            </div>
+          </form>
         </div>
-      </section>
+      </div>
     );
   }
 }

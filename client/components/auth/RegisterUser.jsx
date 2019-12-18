@@ -35,13 +35,13 @@ class RegisterUser extends Component {
     // const { username, email, password } = this.state;
     const { dispatch } = this.props;
     if (!username || !email || !password) {
-      return alert('Email , password and username are must.');
+      return alert('Username, email and password are missing!');
     }
     if (!validator.isEmail(email)) {
-      return alert('Invalid Email.');
+      return alert('Invalid Email  -__-');
     }
     if (password.length < 6) {
-      return alert('Password should be atleast 6 character.');
+      return alert('Password should be atleast 6 characters.');
     }
     // console.log('inside handleSubmit RegisterUser');
     return dispatch(
@@ -57,52 +57,50 @@ class RegisterUser extends Component {
     const { username, email, password } = this.state;
     return (
       <>
-        <section className="columns">
-          <div className="container card flex-center is-grouped">
-            <div className="notification text-center">
-              <h1 className="heading">Register</h1>
-              <form>
-                <div className="control">
-                  <input
-                    className="input"
-                    type="text"
-                    name="username"
-                    placeholder="Enter username"
-                    onChange={this.handleChange}
-                    value={username}
-                  />
-                  <input
-                    className="input"
-                    type="text"
-                    name="email"
-                    placeholder="Enter email"
-                    onChange={this.handleChange}
-                    value={email}
-                  />
-                  <input
-                    className="input"
-                    type="password"
-                    name="password"
-                    placeholder="Enter password"
-                    onChange={this.handleChange}
-                    value={password}
-                  />
-                  <br></br>
-                  <NavLink to="/register/onboarding">
-                    <Button
-                      className="button"
-                      type="primary"
-                      size="large"
-                      onClick={this.handleSubmit}
-                    >
-                      Next
-                    </Button>
-                  </NavLink>
-                </div>
-              </form>
-            </div>
+        <div className='container card flex-center is-grouped'>
+          <div className='notification text-center'>
+            <h1 className='heading'>Register</h1>
+            <form>
+              <div className='control'>
+                <input
+                  className='input'
+                  type='text'
+                  name='username'
+                  placeholder='Enter username'
+                  onChange={this.handleChange}
+                  value={username}
+                />
+                <input
+                  className='input'
+                  type='text'
+                  name='email'
+                  placeholder='Enter email'
+                  onChange={this.handleChange}
+                  value={email}
+                />
+                <input
+                  className='input'
+                  type='password'
+                  name='password'
+                  placeholder='Enter password'
+                  onChange={this.handleChange}
+                  value={password}
+                />
+                <br></br>
+                <NavLink to='/register/onboarding'>
+                  <Button
+                    className='button'
+                    type='primary'
+                    size='large'
+                    onClick={this.handleSubmit}
+                  >
+                    Next
+                  </Button>
+                </NavLink>
+              </div>
+            </form>
           </div>
-        </section>
+        </div>
       </>
     );
   }
