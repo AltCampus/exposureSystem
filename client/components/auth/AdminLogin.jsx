@@ -48,38 +48,72 @@ class AdminLogin extends Component {
     // console.log(this.props, adminLogin);
     const { email, password } = this.state;
     return (
-      <div className="wrapper text-center">
-        <h1 className="heading">Admin-Login</h1>
-        <div>
-          <input
-            className="input"
-            type="text"
-            name="email"
-            placeholder="Enter email"
-            onChange={this.handleChange}
-            value={email}
-          />
-          <br />
+      // <div className="wrapper container">
+      //   <div className="notification">
+      //     <h1 className="heading">Admin-Login</h1>
+      //     <div className="control">
+      //       <input
+      //         className="input"
+      //         type="text"
+      //         name="email"
+      //         placeholder="Enter email"
+      //         onChange={this.handleChange}
+      //         value={email}
+      //       />
+      //       <br />
 
-          <input
-            className="input"
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            onChange={this.handleChange}
-            value={password}
-          />
-          <br />
+      //       <input
+      //         className="input"
+      //         type="password"
+      //         name="password"
+      //         placeholder="Enter password"
+      //         onChange={this.handleChange}
+      //         value={password}
+      //       />
+      //       <br />
 
-          <button
-            className="button"
-            type="submit"
-            onClick={this.handleAdminLogin}
-          >
-            Submit
-          </button>
+      //       <button
+      //         className="button is-primary "
+      //         type="submit"
+      //         onClick={this.handleAdminLogin}
+      //       >
+      //         Submit
+      //       </button>
+      //     </div>
+      //   </div>
+      // </div>
+      <section className="columns is-half">
+        <div className="container field is-grouped">
+          <div className="notification">
+            <h2>Admin Login</h2>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name="email"
+                placeholder="Enter email"
+                onChange={this.handleChange}
+                value={email}
+              />
+              <input
+                className="input"
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                onChange={this.handleChange}
+                value={password}
+              />
+              <button
+                className="button is-primary  "
+                type="submit"
+                onClick={this.handleAdminLogin}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     );
   }
 }
