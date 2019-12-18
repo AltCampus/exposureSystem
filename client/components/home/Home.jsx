@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Button } from 'antd';
 
 class Home extends React.Component {
   render() {
@@ -16,11 +17,13 @@ class Home extends React.Component {
               />
             </div>
             <p>to various ideas and opinions other than just programming</p>
-            <NavLink className="button is-primary" to="/register">
-              Register
+            <NavLink to="/register">
+              <Button type="primary" className="button">
+                Register
+              </Button>
             </NavLink>
-            <NavLink className="button is-primary" to="/login">
-              Login
+            <NavLink to="/login">
+              <Button type="primary">Login</Button>
             </NavLink>
           </div>
         </div>
