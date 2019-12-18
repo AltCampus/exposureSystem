@@ -4,7 +4,7 @@ import store from '../../redux/store/store';
 import { adminLogin } from '../../redux/actions/adminAction';
 import validator from 'validator';
 import { Button } from 'antd';
-import swal from "sweetalert"
+import swal from 'sweetalert'
 
 class AdminLogin extends Component {
   constructor(props) {
@@ -37,26 +37,26 @@ class AdminLogin extends Component {
 
     if (!adminCredentials.email || !adminCredentials.password) {
       return swal({
-        title: "Sorry",
+        title: 'Sorry',
         text: "Email and Password are must",
         icon: "error",
-        button: "Go Back"
+        button: 'Go Back'
       });
     }
     if (!validator.isEmail(adminCredentials.email)) {
       return swal({
-        title: "Sorry",
-        text: "Email is invalid",
+        title: 'Sorry',
+        text: 'Email is invalid',
         icon: "error",
-        button: "Go Back"
+        button: 'Go Back'
       });
     }
     if (adminCredentials.password.length < 6) {
       return swal({
-        title: "Sorry",
+        title: 'Sorry',
         text: "Password should be at least 6 characters long",
         icon: "error",
-        button: "Go Back"
+        button: 'Go Back'
       });
     }
 

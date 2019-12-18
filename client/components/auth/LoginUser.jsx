@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import validator from "validator";
 import { studentLogin } from "../../redux/actions/studentAction";
-import swal from "sweetalert";
+import swal from 'sweetalert';
 
 class LoginStudent extends Component {
   constructor(props) {
@@ -37,27 +37,27 @@ class LoginStudent extends Component {
 
     if (!email || !password) {
       return swal({
-        title: "Sorry",
+        title: 'Sorry',
         text: "Email and Password are must",
-        icon: "error",
-        button: "Go Back"
+        icon: 'error',
+        button: 'Go Back'
       });
     }
 
     if (!validator.isEmail(email)) {
       return swal({
-        title: "Sorry",
-        text: "Email is invalid",
-        icon: "error",
-        button: "Go Back"
+        title: 'Sorry',
+        text: 'Email is invalid',
+        icon: 'error',
+        button: 'Go Back'
       });
     }
     if (password.length < 6) {
       return swal({
-        title: "Sorry",
+        title: 'Sorry',
         text: "Password should be atleast 6 characters long",
-        icon: "error",
-        button: "Go Back"
+        icon: 'error',
+        button: 'Go Back'
       });
     }
 

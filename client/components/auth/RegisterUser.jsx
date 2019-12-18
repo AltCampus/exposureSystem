@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import validator from "validator";
 import Header from "../header/Header";
-import swal from "sweetalert";
+import swal from 'sweetalert';
 
 class RegisterUser extends Component {
   constructor(props) {
@@ -35,37 +35,37 @@ class RegisterUser extends Component {
     const { dispatch } = this.props;
     if (!username || !email || !password) {
       return swal({
-        title: "Sorry",
+        title: 'Sorry',
         text: "Username, Email and Password are must",
         icon: "error",
-        button: "Go Back",
+        button: 'Go Back',
         width: "10px"
       });
     }
 
     if (!validator.isEmail(email)) {
       return swal({
-        title: "Sorry",
-        text: "Email is invalid",
+        title: 'Sorry',
+        text: 'Email is invalid',
         icon: "error",
-        button: "Go Back",
+        button: 'Go Back',
       });
     }
 
     if (password.length < 6) {
       return swal({
-        title: "Sorry",
+        title: 'Sorry',
         text: "Password should be atleast 6 characters long",
         icon: "error",
-        button: "Go Back"
+        button: 'Go Back'
       });
     }
 
     swal({
-      title: "Good job!",
-      text: "Head For Onboarding",
-      icon: "success",
-      button: "Go ahead"
+      title: 'Good job!',
+      text: 'Head For Onboarding',
+      icon: 'success',
+      button: 'Go ahead'
     });
 
     return dispatch(

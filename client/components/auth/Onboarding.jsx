@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import registerStudent from "../../redux/actions/registerAction";
-import swal from "sweetalert";
+import swal from 'sweetalert';
 
 class Onboarding extends Component {
   constructor(props) {
