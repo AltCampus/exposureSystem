@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import store from '../../redux/store/store';
 import { adminLogin } from '../../redux/actions/adminAction';
 import validator from 'validator';
+import { Button } from 'antd';
 
 class AdminLogin extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class AdminLogin extends Component {
 
   handleAdminLogin = e => {
     e.preventDefault();
+
     const adminCredentials = {
       email: this.state.email,
       password: this.state.password,
@@ -48,43 +50,9 @@ class AdminLogin extends Component {
     // console.log(this.props, adminLogin);
     const { email, password } = this.state;
     return (
-      // <div className="wrapper container">
-      //   <div className="notification">
-      //     <h1 className="heading">Admin-Login</h1>
-      //     <div className="control">
-      //       <input
-      //         className="input"
-      //         type="text"
-      //         name="email"
-      //         placeholder="Enter email"
-      //         onChange={this.handleChange}
-      //         value={email}
-      //       />
-      //       <br />
-
-      //       <input
-      //         className="input"
-      //         type="password"
-      //         name="password"
-      //         placeholder="Enter password"
-      //         onChange={this.handleChange}
-      //         value={password}
-      //       />
-      //       <br />
-
-      //       <button
-      //         className="button is-primary "
-      //         type="submit"
-      //         onClick={this.handleAdminLogin}
-      //       >
-      //         Submit
-      //       </button>
-      //     </div>
-      //   </div>
-      // </div>
       <section className="columns">
         <div className="container flex-center is-grouped">
-          <div className="notification">
+          <div className="notification text-center">
             <h2>Admin Login</h2>
             <div className="control">
               <input
@@ -103,13 +71,17 @@ class AdminLogin extends Component {
                 onChange={this.handleChange}
                 value={password}
               />
-              <button
-                className="button is-primary  "
-                type="submit"
-                onClick={this.handleAdminLogin}
-              >
-                Submit
-              </button>
+              <br></br>
+              <div>
+                <Button
+                  className="button"
+                  type="primary"
+                  // size="large"
+                  onClick={this.handleAdminLogin}
+                >
+                  Submit
+                </Button>
+              </div>
             </div>
           </div>
         </div>
