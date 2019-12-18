@@ -17,8 +17,11 @@ const createContent = (data, cb) => dispatch => {
         type: 'CREATE_CONTENT_SUCCESS',
         data: content,
       });
-      alert(`New content ${content.title} added`);
-      cb();
+      swal({
+        title: `${content.title}`,
+        text: `of type ${content.type} created`,
+        icon: 'success'
+      }), cb();
     });
 };
 

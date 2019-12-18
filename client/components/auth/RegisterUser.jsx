@@ -39,7 +39,7 @@ class RegisterUser extends Component {
         text: "Username, Email and Password are must",
         icon: "error",
         button: "Go Back",
-        timer: 1000
+        width: "10px"
       });
     }
 
@@ -48,7 +48,7 @@ class RegisterUser extends Component {
         title: "Sorry",
         text: "Email is invalid",
         icon: "error",
-        button: "Go Back"
+        button: "Go Back",
       });
     }
 

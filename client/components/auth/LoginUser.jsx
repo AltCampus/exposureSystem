@@ -22,6 +22,10 @@ class LoginStudent extends Component {
     if (status == true) {
       const username = this.props.studentReducer.studentData.student.username;
       this.props.history.push(`dashboard/${username}`);
+      swal({
+        title: 'You are successfully logged in',
+        icon: 'success'
+      }) 
     } else if (status == false) {
       this.props.history.push("/await-approval");
     }

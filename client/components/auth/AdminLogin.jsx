@@ -23,6 +23,7 @@ class AdminLogin extends Component {
 
   cb = () => {
     this.props.history.push('/admin/feed');
+    // swal('Admin logged in', 'hello', 'success')
   };
 
   handleAdminLogin = e => {

@@ -49,7 +49,6 @@ class Onboarding extends Component {
   };
 
   render() {
-    // console.log(this.state, 'onboarding');
     return (
       <div className="container wrapper">
         <form className="notification ">
