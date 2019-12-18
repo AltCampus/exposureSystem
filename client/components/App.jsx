@@ -17,7 +17,7 @@ import ContentList from './content/ContentList';
 import NewContentForm from './content/NewContentForm';
 import PendingApprovals from './adminDashboard/PendingApprovals';
 import ContentSubmission from './content/ContentSubmission';
-import Content from './content/Content';
+import SingleContent from './content/SingleContent';
 import Onboarding from './auth/Onboarding';
 import StudentDashboard from './students/studentDashboard/StudentDashboard';
 import EditContent from './content/EditContent';
@@ -96,7 +96,11 @@ class App extends Component {
           <Route exact path="/admin/content/list" component={ContentList} />
           <Route exact path="/admin/content/new" component={NewContentForm} />
           <Route exact path="/admin/student/list" component={StudentList} />
-          <Route exact path="/admin/content/:contentid" component={Content} />
+          <Route
+            exact
+            path="/admin/content/:contentid"
+            component={SingleContent}
+          />
           <Route path="/admin/editcontent" component={EditContent} />
           <Route
             exact
