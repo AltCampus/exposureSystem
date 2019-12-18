@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import validator from 'validator';
 import Header from '../header/Header';
+import { Button } from 'antd';
 
 class RegisterUser extends Component {
   constructor(props) {
@@ -56,12 +57,12 @@ class RegisterUser extends Component {
     const { username, email, password } = this.state;
     return (
       <>
-        <div className="container wrapper">
-          <div className="notification">
-            <h1 className="heading">Register</h1>
-            <form onSubmit={this.handleSubmit}>
-              <div className="field">
-                <div>
+        <section className="columns">
+          <div className="container card flex-center is-grouped">
+            <div className="notification text-center">
+              <h1 className="heading">Register</h1>
+              <form>
+                <div className="control">
                   <input
                     className="input"
                     type="text"
@@ -70,22 +71,14 @@ class RegisterUser extends Component {
                     onChange={this.handleChange}
                     value={username}
                   />
-                </div>
-              </div>
-              <div className="field">
-                <div>
                   <input
                     className="input"
-                    type="email"
+                    type="text"
                     name="email"
                     placeholder="Enter email"
                     onChange={this.handleChange}
                     value={email}
                   />
-                </div>
-              </div>
-              <div className="field">
-                <div>
                   <input
                     className="input"
                     type="password"
@@ -94,18 +87,22 @@ class RegisterUser extends Component {
                     onChange={this.handleChange}
                     value={password}
                   />
+                  <br></br>
+                  <NavLink to="/register/onboarding">
+                    <Button
+                      className="button"
+                      type="primary"
+                      size="large"
+                      onClick={this.handleSubmit}
+                    >
+                      Next
+                    </Button>
+                  </NavLink>
                 </div>
-              </div>
-              <button
-                to="/register/onboarding"
-                onSubmit={this.handleSubmit}
-                className="button is-primary is-normal is-right"
-              >
-                Next
-              </button>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
+        </section>
       </>
     );
   }
