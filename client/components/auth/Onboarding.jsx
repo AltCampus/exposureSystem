@@ -38,58 +38,99 @@ class Onboarding extends Component {
   render() {
     // console.log(this.state, 'onboarding');
     return (
-      <div className="wrapper card flex-column">
-        <div className="grid-col-2 onboardingCard">
-          <div>
-            <h5>Are you on campus currently?</h5>
-            <br></br>
-            <h5>Do you wish to recieve emails from AltCampus?</h5>
-          </div>
-          <div className="grid-col-2">
-            <div className="flex-end">
-              <input
-                type="radio"
-                name="isInCampus"
-                value="true"
-                onChange={this.handleChange}
-              />
-              <p>Yes</p>
-            </div>
-            <div className="flex-end">
-              <input
-                type="radio"
-                name="isInCampus"
-                value="false"
-                onChange={this.handleChange}
-              />
-              <p>No</p>
-            </div>
-            <div className="flex-end">
-              <input
-                type="radio"
-                name="isActive"
-                value="true"
-                onChange={this.handleChange}
-              />
-              <p>Yes</p>
-            </div>
-            <div className="flex-end">
-              <input
-                type="radio"
-                name="isActive"
-                value="true"
-                onChange={this.handleChange}
-              />
-              <p>No</p>
+      <div className="container wrapper">
+        <form className="notification ">
+          <div class="field">
+            <label class="label">Are you on campus currently?</label>
+            <div class="control">
+              <div class="select">  
+                <select>
+                  <option 
+                    name="isInCampus"
+                    value="true"
+                    onChange={this.handleChange}>Yes</option>
+                  <option
+                  name="isInCampus"
+                    value="false"
+                    onChange={this.handleChange}
+                  >No</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="flex-end">
-          <button type="submit" onClick={this.handleSubmit} className="button">
-            Register
-          </button>
-        </div>
+          <div class="field">
+            <label class="label">Subject</label>
+            <div class="control">
+              <div class="select">
+                <select>
+                  <option 
+                    name="isActive"
+                    value="true"
+                    onChange={this.handleChange}>Yes</option>
+                  <option
+                  name="isActive"
+                    value="false"
+                    onChange={this.handleChange}
+                  >No</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button type="submit" onClick={this.handleSubmit} className="button is-primary is-right">Register</button>
+        </form>
       </div>
+      // <div className="wrapper">
+      //   <div className="grid-col-2 onboardingCard">
+      //     <div>
+      //       <h5>Are you on campus currently?</h5>
+      //       <br></br>
+      //       <h5>Do you wish to recieve emails from AltCampus?</h5>
+      //     </div>
+      //     <div className="grid-col-2">
+      //       <div className="flex-end">
+      //         <input
+      //           type="radio"
+      //           name="isInCampus"
+      //           value="true"
+      //           onChange={this.handleChange}
+      //         />
+      //         <p>Yes</p>
+      //       </div>
+      //       <div className="flex-end">
+      //         <input
+      //           type="radio"
+      //           name="isInCampus"
+      //           value="false"
+      //           onChange={this.handleChange}
+      //         />
+      //         <p>No</p>
+      //       </div>
+      //       <div className="flex-end">
+      //         <input
+      //           type="radio"
+      //           name="isActive"
+      //           value="true"
+      //           onChange={this.handleChange}
+      //         />
+      //         <p>Yes</p>
+      //       </div>
+      //       <div className="flex-end">
+      //         <input
+      //           type="radio"
+      //           name="isActive"
+      //           value="true"
+      //           onChange={this.handleChange}
+      //         />
+      //         <p>No</p>
+      //       </div>
+      //     </div>
+      //   </div>
+      //   <div className="flex-end">
+      //     <button type="submit" onClick={this.handleSubmit} className="button is-primary is-normal is-right">
+      //       Register
+      //     </button>
+      //   </div>
+      // </div>
     );
   }
 }

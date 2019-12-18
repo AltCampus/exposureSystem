@@ -54,50 +54,57 @@ class RegisterUser extends Component {
 
   render() {
     const { username, email, password } = this.state;
-    // console.log(this.state);
     return (
       <>
-        {/* <Header /> */}
-        <div className="wrapper card text-center">
-          <h1 className="heading">Register</h1>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              className="input"
-              type="text"
-              name="username"
-              placeholder="Enter username"
-              onChange={this.handleChange}
-              value={username}
-            />
-            <br />
-
-            <input
-              className="input"
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              onChange={this.handleChange}
-              value={email}
-            />
-            <br />
-
-            <input
-              className="input"
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              onChange={this.handleChange}
-              value={password}
-            />
-            <br />
-            <button
-              to="/register/onboarding"
-              onSubmit={this.handleSubmit}
-              className="button"
-            >
-              Next
-            </button>
-          </form>
+        <div className="container wrapper">
+          <div className="notification">
+            <h1 className="heading">Register</h1>
+            <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <div>
+                  <input
+                    className="input"
+                    type="text"
+                    name="username"
+                    placeholder="Enter username"
+                    onChange={this.handleChange}
+                    value={username}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <div>
+                  <input
+                    className="input"
+                    type="email"
+                    name="email"
+                    placeholder="Enter email"
+                    onChange={this.handleChange}
+                    value={email}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <div>
+                  <input
+                    className="input"
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    onChange={this.handleChange}
+                    value={password}
+                  />
+                </div>
+              </div>
+              <button
+                to="/register/onboarding"
+                onSubmit={this.handleSubmit}
+                className="button is-primary is-normal is-right"
+              >
+                Next
+              </button>
+            </form>
+          </div>
         </div>
       </>
     );
