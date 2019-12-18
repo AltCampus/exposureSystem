@@ -8,9 +8,7 @@ class Home extends React.Component {
         <div className="text-center home-description flex-center">
           <p>An exciting new initiative to expose</p>
           <div className="flex">
-            <h4>
-            Humans of
-          </h4>
+            <h4>Humans of</h4>
             <img
               className="alt-image"
               src="https://altcampus.io/images/logo.png"
