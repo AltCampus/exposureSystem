@@ -35,7 +35,8 @@ class LoginStudent extends Component {
       return swal({
         title: "Sorry",
         text: "Email and Password are must",
-        icon: "error"
+        icon: "error",
+        button: "Go Back"
       });
     }
 
@@ -43,14 +44,16 @@ class LoginStudent extends Component {
       return swal({
         title: "Sorry",
         text: "Email is invalid",
-        icon: "error"
+        icon: "error",
+        button: "Go Back"
       });
     }
     if (password.length < 6) {
       return swal({
         title: "Sorry",
         text: "Password should be atleast 6 characters long",
-        icon: "error"
+        icon: "error",
+        button: "Go Back"
       });
     }
 
