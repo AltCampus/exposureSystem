@@ -1,29 +1,29 @@
 /* eslint-disable no-alert */
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import validator from 'validator';
-import Header from '../header/Header';
-import { Button } from 'antd';
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import validator from "validator";
+import Header from "../header/Header";
+import swal from "sweetalert";
 
 class RegisterUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      email: '',
-      password: '',
+      username: "",
+      email: "",
+      password: ""
     };
   }
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   cb = () => {
-    this.props.history.push('/register/onboarding');
+    this.props.history.push("/register/onboarding");
   };
 
   handleSubmit = (event, cb) => {
@@ -32,24 +32,47 @@ class RegisterUser extends Component {
     const email = this.state.email;
     const password = this.state.password;
     console.log(this.state);
-    // const { username, email, password } = this.state;
     const { dispatch } = this.props;
     if (!username || !email || !password) {
-      return alert('Email , password and username are must.');
+      return swal({
+        title: "Sorry",
+        text: "Username, Email and Password are must",
+        icon: "error",
+        button: "Go Back"
+      });
     }
+
     if (!validator.isEmail(email)) {
-      return alert('Invalid Email.');
+      return swal({
+        title: "Sorry",
+        text: "Email is invalid",
+        icon: "error",
+        button: "Go Back"
+      });
     }
+
     if (password.length < 6) {
-      return alert('Password should be atleast 6 character.');
+      return swal({
+        title: "Sorry",
+        text: "Password should be atleast 6 characters long",
+        icon: "error",
+        button: "Go Back"
+      });
     }
-    // console.log('inside handleSubmit RegisterUser');
+
+    swal({
+      title: "Good job!",
+      text: "Head For Onboarding",
+      icon: "success",
+      button: "Go ahead"
+    });
+
     return dispatch(
       {
-        type: 'REGISTER_PAGE_DATA',
-        data: this.state,
+        type: "REGISTER_PAGE_DATA",
+        data: this.state
       },
-      this.cb(),
+      this.cb()
     );
   };
 
@@ -57,12 +80,12 @@ class RegisterUser extends Component {
     const { username, email, password } = this.state;
     return (
       <>
-        <section className="columns">
-          <div className="container card flex-center is-grouped">
-            <div className="notification text-center">
-              <h1 className="heading">Register</h1>
-              <form>
-                <div className="control">
+        <div className="container wrapper">
+          <div className="notification">
+            <h1 className="heading">Register</h1>
+            <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <div>
                   <input
                     className="input"
                     type="text"
@@ -71,14 +94,22 @@ class RegisterUser extends Component {
                     onChange={this.handleChange}
                     value={username}
                   />
+                </div>
+              </div>
+              <div className="field">
+                <div>
                   <input
                     className="input"
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Enter email"
                     onChange={this.handleChange}
                     value={email}
                   />
+                </div>
+              </div>
+              <div className="field">
+                <div>
                   <input
                     className="input"
                     type="password"
@@ -87,22 +118,18 @@ class RegisterUser extends Component {
                     onChange={this.handleChange}
                     value={password}
                   />
-                  <br></br>
-                  <NavLink to="/register/onboarding">
-                    <Button
-                      className="button"
-                      type="primary"
-                      size="large"
-                      onClick={this.handleSubmit}
-                    >
-                      Next
-                    </Button>
-                  </NavLink>
                 </div>
-              </form>
-            </div>
+              </div>
+              <button
+                to="/register/onboarding"
+                onSubmit={this.handleSubmit}
+                className="button is-primary is-normal is-right"
+              >
+                Next
+              </button>
+            </form>
           </div>
-        </section>
+        </div>
       </>
     );
   }
