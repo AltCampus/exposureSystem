@@ -82,8 +82,8 @@ class AdminLogin extends Component {
       //     </div>
       //   </div>
       // </div>
-      <section className="columns is-half">
-        <div className="container field is-grouped">
+      <section className="columns">
+        <div className="container flex-center is-grouped">
           <div className="notification">
             <h2>Admin Login</h2>
             <div className="control">
