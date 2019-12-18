@@ -92,7 +92,7 @@ class App extends Component {
       <>
         <Header handleLogout={this.handleLogout} />
         <Switch>
-          <Route exact path="/admin/feed" component={AdminFeed} />
+          {/* <Route exact path="/admin/feed" component={AdminFeed} />
           <Route exact path="/admin/content/list" component={ContentList} />
           <Route exact path="/admin/content/new" component={NewContentForm} />
           <Route exact path="/admin/student/list" component={StudentList} />
@@ -105,9 +105,8 @@ class App extends Component {
           <Route
             exact
             path="/admin/pending-approvals"
-            component={PendingApprovals}
+            component={PendingApprovals} */}
           />
-          <Route component={Page404} />
         </Switch>
       </>
     );
@@ -121,15 +120,15 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/submission/:deliveryid"
+            path='/submission/:deliveryid'
             component={ContentSubmission}
           />
           <Route
             exact
-            path="/await-approval"
+            path='/await-approval'
             component={RegisterVerification}
           />
-          <Route path="/dashboard/:username" component={StudentDashboard} />
+          <Route path='/dashboard/:username' component={StudentDashboard} />
           <Route component={Page404} />
         </Switch>
       </>
@@ -140,15 +139,30 @@ class App extends Component {
     return (
       <>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/register" component={RegisterUser} />
-          <Route exact path="/login" component={LoginUser} />
-          <Route exact path="/admin/login" component={AdminLogin} />
-          <Route exact path="/register/onboarding" component={Onboarding} />
+          <Route exact path='/' component={Home} />
+          <Route exact path='/register' component={RegisterUser} />
+          <Route exact path='/login' component={LoginUser} />
+          <Route exact path='/admin/login' component={AdminLogin} />
+          <Route exact path='/register/onboarding' component={Onboarding} />
           <Route
             exact
-            path="/await-approval"
+            path='/await-approval'
             component={RegisterVerification}
+          />
+          <Route exact path='/admin/feed' component={AdminFeed} />
+          <Route exact path='/admin/content/list' component={ContentList} />
+          <Route exact path='/admin/content/new' component={NewContentForm} />
+          <Route exact path='/admin/student/list' component={StudentList} />
+          <Route
+            exact
+            path='/admin/content/:contentid'
+            component={SingleContent}
+          />
+          <Route path='/admin/editcontent' component={EditContent} />
+          <Route
+            exact
+            path='/admin/pending-approvals'
+            component={PendingApprovals}
           />
           <Route component={Page404} />
         </Switch>
