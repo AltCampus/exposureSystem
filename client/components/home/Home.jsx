@@ -18,12 +18,14 @@ class Home extends React.Component {
             </div>
             <p>to various ideas and opinions other than just programming</p>
             <NavLink to="/register">
-              <Button type="primary" className="button">
+              <Button type="primary" size="large" className="button">
                 Register
               </Button>
             </NavLink>
             <NavLink to="/login">
-              <Button type="primary">Login</Button>
+              <Button className="button" type="primary" size="large">
+                Login
+              </Button>
             </NavLink>
           </div>
         </div>

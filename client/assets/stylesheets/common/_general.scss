@@ -24,12 +24,12 @@
 }
 
 .button {
-  width: 20%;
-  padding: 0.5rem;
+  min-width: 10rem;
+  padding: 5rem;
   background: $primary;
   font-size: 1rem;
   color: $white;
-  border-radius: 10px;
+  // border-radius: 10px;
   margin-top: 1.5rem;
   cursor: pointer;
 }
