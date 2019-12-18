@@ -1,75 +1,76 @@
 /* eslint-disable quotes */
-import React, { Component } from 'react';
-import '../assets/stylesheets/style.scss';
+import React, { Component } from "react";
+import "../assets/stylesheets/style.scss";
 import {
   withRouter,
   Route,
   Switch,
-  BrowserRouter as Router,
-} from 'react-router-dom';
-import { connect } from 'react-redux';
-import Home from './home/Home';
-import RegisterUser from './auth/RegisterUser';
-import LoginUser from './auth/LoginUser';
-import AdminLogin from './auth/AdminLogin';
-import Page404 from './Page404';
-import ContentList from './content/ContentList';
-import NewContentForm from './content/NewContentForm';
-import PendingApprovals from './adminDashboard/PendingApprovals';
-import ContentSubmission from './content/ContentSubmission';
-import Content from './content/Content';
-import Onboarding from './auth/Onboarding';
-import StudentDashboard from './students/studentDashboard/StudentDashboard';
-import EditContent from './content/EditContent';
-import AdminFeed from './adminDashboard/AdminFeed';
-import StudentList from './students/StudentList';
-import RegisterVerification from './registerVerfication/RegisterVerification';
-import Header from './header/Header';
-import { studentLogin, studentLogout } from '../redux/actions/studentAction';
-import { adminLogout } from '../redux/actions/adminAction';
+  BrowserRouter as Router
+} from "react-router-dom";
+import { connect } from "react-redux";
+import Home from "./home/Home";
+import RegisterUser from "./auth/RegisterUser";
+import LoginUser from "./auth/LoginUser";
+import AdminLogin from "./auth/AdminLogin";
+import Page404 from "./Page404";
+import ContentList from "./content/ContentList";
+import NewContentForm from "./content/NewContentForm";
+import PendingApprovals from "./adminDashboard/PendingApprovals";
+import ContentSubmission from "./content/ContentSubmission";
+import Content from "./content/Content";
+import Onboarding from "./auth/Onboarding";
+import StudentDashboard from "./students/studentDashboard/StudentDashboard";
+import EditContent from "./content/EditContent";
+import AdminFeed from "./adminDashboard/AdminFeed";
+import StudentList from "./students/StudentList";
+import RegisterVerification from "./registerVerfication/RegisterVerification";
+import Header from "./header/Header";
+import { studentLogin, studentLogout } from "../redux/actions/studentAction";
+import { adminLogout } from "../redux/actions/adminAction";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: null,
+      user: null
     };
   }
 
   componentDidMount() {
-    this.loginUser();
+    if (localStorage.token) {
+      this.loginUser();
+    }
   }
 
   loginUser = () => {
     //TODO Store user/dmin in reducer
-    fetch('http://localhost:3000/api/v1/admin/me', {
-      method: 'GET',
+    fetch("http://localhost:3000/api/v1/admin/me", {
+      method: "GET",
       headers: {
         authorization: localStorage.token,
-        'content-Type': 'application/json',
-      },
+        "content-Type": "application/json"
+      }
     })
       .then(res => res.json())
       .then(res => {
         if (res) {
           this.setState({
-            user: res,
+            user: res
           });
         } else {
-          fetch('http://localhost:3000/api/v1/student/me', {
-            method: 'GET',
+          fetch("http://localhost:3000/api/v1/student/me", {
+            method: "GET",
             headers: {
               authorization: localStorage.token,
-              'content-Type': 'application/json',
-            },
+              "content-Type": "application/json"
+            }
           })
             .then(res => res.json())
             .then(res => {
               this.setState({
-                user: res,
+                user: res
               });
-              console.log(res, 'inside loginUser');
             });
         }
       });
@@ -77,9 +78,10 @@ class App extends Component {
 
   cb = () => {
     this.setState({ user: null }, () => {
-      this.props.history.push('/');
+      this.props.history.push("/");
     });
   };
+  // console.log(this.state.user,localStorage.token)
 
   handleLogout = e => {
     e.preventDefault();
@@ -110,7 +112,7 @@ class App extends Component {
   };
 
   protectedStudentRoutes = () => {
-    console.log('protected std');
+    console.log("protected std");
     return (
       <>
         <Header handleLogout={this.handleLogout} />
@@ -154,8 +156,6 @@ class App extends Component {
 
   render() {
     if (!this.state.user && localStorage.token) this.loginUser();
-
-    // console.log(this.state.user,localStorage.token)
     return (
       <>
         {this.state.user
@@ -172,5 +172,5 @@ const mapStateToProps = store => store;
 export default connect(mapStateToProps, {
   studentLogin,
   studentLogout,
-  adminLogout,
+  adminLogout
 })(withRouter(App));
