@@ -17,13 +17,16 @@ const studentLogin = (loginData, cb) => {
           type: 'STUDENT_LOGIN_SUCCESS',
           data: studentData,
         }),
-        cb(studentData.student.isApproved);
+          cb(studentData.student.isApproved);
       });
   };
 };
 
-const studentLogout = (cb) => (dispatch) => ({
-  type: 'STUDENT_LOGOUT',
-}, cb());
+const studentLogout = cb => dispatch => (
+  {
+    type: 'STUDENT_LOGOUT',
+  },
+  cb()
+);
 
 module.exports = { studentLogin, studentLogout };

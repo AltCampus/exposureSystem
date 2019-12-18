@@ -44,9 +44,9 @@ class App extends Component {
   }
 
   loginUser = () => {
-    //TODO Store user/dmin in reducer
-    fetch("http://localhost:3000/api/v1/admin/me", {
-      method: "GET",
+    //TODO Store user/admin in reducer
+    fetch('http://localhost:3000/api/v1/admin/me', {
+      method: 'GET',
       headers: {
         authorization: localStorage.token,
         "content-Type": "application/json"
@@ -71,7 +71,7 @@ class App extends Component {
               this.setState({
                 user: res
               });
-            });
+           });
         }
       });
   };
@@ -112,7 +112,6 @@ class App extends Component {
   };
 
   protectedStudentRoutes = () => {
-    console.log("protected std");
     return (
       <>
         <Header handleLogout={this.handleLogout} />

@@ -31,7 +31,7 @@ class PendingApprovals extends Component {
     // const something = this.props.adminReducer.pendingStudentList;
     // console.log(something, 'some');
     const StudentList = this.props.adminReducer.pendingStudentList;
-    console.log(StudentList);
+    // console.log(StudentList);
 
     return (
       <>
@@ -46,8 +46,8 @@ class PendingApprovals extends Component {
             <div className="grid-col-3">
               {StudentList &&
                 StudentList.pendingStudents &&
-                StudentList.pendingStudents.map(Student => (
-                  <PendingCard pendingStudent={Student} />
+                StudentList.pendingStudents.map((Student, i) => (
+                  <PendingCard key={i} pendingStudent={Student} />
                 ))}
             </div>
           </div>

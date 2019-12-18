@@ -1,43 +1,51 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-const { updateIndividualPoints } = require('../../../utils/pointsSystem');
+import {
+  fetchDeliveryData,
+  createSubmission,
+} from '../../redux/actions/submissonAction';
+const { updatePoints } = require('../../../utils/pointsSystem');
 
 // TODO
 // change from contentSubmission to contentSubmit
 
 class ContentSubmission extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       content: null,
-      contentUrl: '',
-      user: null,
+      student: null,
+      summary: '',
     };
   }
 
   componentDidMount() {
     const deliveryId = window.location.href.split('/').pop();
-    fetch(`http://localhost:3000/api/v1/delivery/${deliveryId}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          content: data.delivery.content[0],
-          user: data.delivery.user[0],
-          contentUrl: data.delivery.content[0].contentUrl,
-        });
-        // this.setState({ contentUrl: data.delivery.content[0].contentUrl });
-      });
+    this.props.fetchDeliveryData(deliveryId);
+    // this.setState({ contentUrl: data.delivery.content[0].contentUrl });
   }
 
-  onSubmit = () => {
-    updateIndividualPoints(user, true);
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.createSubmission();
+    updatePoints(user, type);
   };
-
+  handleChange = e => {
+    this.setState({
+      content: this.props.submissionReducer.deliveryData.content,
+      student: this.props.submissionReducer.deliveryData.student,
+      [e.target.name]: [e.target.value],
+    });
+  };
   render() {
+    console.log(this.state, 'state');
+    const content =
+      this.props.submissionReducer.deliveryData &&
+      this.props.submissionReducer.deliveryData.content;
+    const student =
+      this.props.submissionReducer.deliveryData &&
+      this.props.submissionReducer.deliveryData.student;
+    console.log(content, 'content', student, 'student');
     return (
       <div className="wrapper">
         <div className="sidebar-heading flex-center">Title</div>
@@ -50,35 +58,40 @@ class ContentSubmission extends Component {
               <span>Assigned to:</span>
               {/* {this.state.user.username} */}
             </div>
-            {/* <div>Paired with:</div>
-            <div>Type:</div> */}
+            <div>Paired with:</div>
+            <div>Type:</div>
             <div>Due by:</div>
           </div>
         </div>
         <iframe
           className="article"
-          src={`${this.state.contentUrl}`}
+          // src={`${this.state.contentUrl}`}
           target="_parent"
         />
-        <div className="flex-center">
-          <textarea
-            minLength="300"
-            maxLength="1000"
-            className="summary input"
-            placeholder="Summarize the above article in your words"
-          />
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            marginRight: '14rem',
-          }}
-        >
-          <button className="button" type="submit">
-            Submit
-          </button>
-        </div>
+        <form>
+          <div className="flex-center">
+            <textarea
+              minLength="300"
+              maxLength="1000"
+              className="summary input"
+              placeholder="Summarize the above article in your words"
+              onChange={this.handleChange}
+              value={this.state.summary}
+              name="summary"
+            />
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              marginRight: '14rem',
+            }}
+          >
+            <button className="button" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     );
   }
@@ -86,6 +99,8 @@ class ContentSubmission extends Component {
 
 const mapStateToProps = store => store;
 
-export default connect(mapStateToProps, { updateIndividualPoints })(
-  ContentSubmission,
-);
+export default connect(mapStateToProps, {
+  updatePoints,
+  fetchDeliveryData,
+  createSubmission,
+})(ContentSubmission);
