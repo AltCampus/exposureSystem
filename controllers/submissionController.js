@@ -2,7 +2,14 @@ const Submission = require('../models/submissionSchema');
 
 module.exports = {
   newSubmission: (req, res) => {
-    const submission = new Submission(req.body);
+    let points = ((new Date(req.body.createdAt).valueOf() + 172800*1000 > Date.now()) ? 1 : -1);
+    const submission = new Submission({
+      title: req.body.title,
+      contentSummary: req.body.contentSummary,
+      userid:req.body.userid,
+      contentid: req.body.contentid,
+      pointsAwarded: points,
+    });
     console.log(req.body, 'inside submission');
 
     submission

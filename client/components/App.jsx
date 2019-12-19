@@ -42,6 +42,15 @@ class App extends Component {
       this.loginUser();
     }
   }
+  // handleRoute = () => {
+  //   (this.state.user) ? 
+  //     (this.state.user.isAdmin == true) ? 
+  //       this.props.history.push('/admin/feed')
+  //       :
+  //       this.props.history.push('/feed')
+  //     :
+  //     this.props.history.push('/')
+  // };
 
   loginUser = () => {
     //TODO Store user/admin in reducer
@@ -73,15 +82,16 @@ class App extends Component {
               });
            });
         }
-      });
+      })
+      // .then(() => this.handleRoute())
   };
 
   cb = () => {
-    this.setState({ user: null }, () => {
+    this.setState({ user: null }, 
+      () => {
       this.props.history.push("/");
     });
   };
-  // console.log(this.state.user,localStorage.token)
 
   handleLogout = e => {
     e.preventDefault();
@@ -90,10 +100,12 @@ class App extends Component {
   };
 
   protectedAdminRoutes = () => {
+    console.log('called in protected route')
+    // this.props.history.push('/admin/feed')
     return (
       <>
         <Header handleLogout={this.handleLogout} />
-        <Switch>
+        <Switch>          
           <Route exact path="/admin/feed" component={AdminFeed} />
           <Route exact path="/admin/content/list" component={ContentList} />
           <Route exact path="/admin/content/new" component={NewContentForm} />
@@ -105,7 +117,7 @@ class App extends Component {
             path="/admin/pending-approvals"
             component={PendingApprovals}
           />
-          <Route component={Page404} />
+          <Route component={AdminFeed} />
         </Switch>
       </>
     );
@@ -126,8 +138,8 @@ class App extends Component {
             path="/await-approval"
             component={RegisterVerification}
           />
-          <Route path="/dashboard/:username" component={StudentDashboard} />
-          <Route component={Page404} />
+          <Route exact path="/feed" component={StudentDashboard} />
+          <Route component={StudentDashboard} />
         </Switch>
       </>
     );
@@ -155,13 +167,18 @@ class App extends Component {
 
   render() {
     if (!this.state.user && localStorage.token) this.loginUser();
+    console.log("app render...",this.state.user)
     return (
       <>
-        {this.state.user
-          ? this.state.user.isAdmin == true
-            ? this.protectedAdminRoutes()
-            : this.protectedStudentRoutes()
-          : this.nonProtectedRoutes()}
+        {
+          this.state.user ?
+           this.state.user.isAdmin ? 
+            this.protectedAdminRoutes()
+             : 
+            this.protectedStudentRoutes()
+          :
+          this.nonProtectedRoutes()
+        }
       </>
     );
   }
