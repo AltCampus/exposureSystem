@@ -30,20 +30,22 @@ class PendingApprovals extends Component {
     // console.log(this.props.adminReducer.pendingStudentList, 'props');
     // const something = this.props.adminReducer.pendingStudentList;
     // console.log(something, 'some');
-    const StudentList = this.props.adminReducer.pendingStudentList;
+    const StudentList =
+      this.props.adminReducer.pendingStudentList &&
+      this.props.adminReducer.pendingStudentList.reverse();
     // console.log(StudentList);
 
     return (
       <>
-        <div className="wrapper grid-dashboard">
+        <div className='wrapper'>
           <div>
             <AdminSidebar />
           </div>
           <div>
-            <h3 className="flex-center" style={{ color: 'rgb(59, 57, 57)' }}>
+            <h3 className='flex-center' style={{ color: 'rgb(59, 57, 57)' }}>
               Pending Approvals
             </h3>
-            <div className="grid-col-3">
+            <div className='grid-col-3'>
               {StudentList &&
                 StudentList.pendingStudents &&
                 StudentList.pendingStudents.map((Student, i) => (

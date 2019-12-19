@@ -28,14 +28,16 @@ class ContentList extends Component {
     console.log(this.props);
     const contentList =
       this.props.adminReducer.contentList &&
-      this.props.adminReducer.contentList.contents;
+      this.props.adminReducer.contentList.contents.reverse();
     console.log(contentList, 'cc');
+    // console.log(contentList.reverse(), 'reversd');
+
     return (
-      <div className='wrapper grid-dashboard'>
+      <div className='wrapper'>
         <div>
           <AdminSidebar />
         </div>
-        <div>
+        {/* <div>
           <h3 className='flex-center' style={{ color: 'rgb(59, 57, 57)' }}>
             Content List
           </h3>
@@ -45,6 +47,33 @@ class ContentList extends Component {
                 return <ContentCard key={i} content={content} />;
               })}
           </div>
+        </div> */}
+        <div>
+          <h2 className='heading text-center'>Content List</h2>
+          <Table bordered dataSource={contentList}>
+            <ColumnGroup>
+              <Column title='Title' dataIndex='title' key='title' />
+              <Column
+                title='Description'
+                dataIndex='description'
+                key='description'
+              />
+              <Column title='Type' dataIndex='type' key='type' />
+
+              <Column
+                style={{ width: '10rem' }}
+                title='Action'
+                key='action'
+                render={(text, record) => (
+                  <span>
+                    <a href={record.contentUrl}>View </a>
+                    <Divider type='vertical' />
+                    <a>Delete</a>
+                  </span>
+                )}
+              />
+            </ColumnGroup>
+          </Table>
         </div>
       </div>
     );
