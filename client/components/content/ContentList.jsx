@@ -30,7 +30,6 @@ class ContentList extends Component {
       this.props.adminReducer.contentList &&
       this.props.adminReducer.contentList.contents.reverse();
     console.log(contentList, 'cc');
-    // console.log(contentList.reverse(), 'reversd');
 
     return (
       <div className='wrapper'>

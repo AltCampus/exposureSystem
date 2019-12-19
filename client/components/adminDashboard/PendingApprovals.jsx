@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import AdminSidebar from './AdminSidebar';
 import PendingCard from './PendingCard';
 import { fetchPendingApprovalList } from '../../redux/actions/adminAction';
+import { approveStudent, removeStudent } from '../../redux/actions/adminAction';
+
+import { Table, Divider } from 'antd';
+const { Column, ColumnGroup } = Table;
 
 class PendingApprovals extends Component {
   constructor(props) {
@@ -11,6 +15,15 @@ class PendingApprovals extends Component {
       // pendingStudentList: this.props.adminReducer.pendingStudentList.value,
     };
   }
+
+  handleReject = id => {
+    this.props.removeStudent(id, this.cb);
+  };
+
+  handleApprove = id => {
+    // console.log(id, 'inhandleaprrove');
+    this.props.approveStudent(id, this.cb);
+  };
 
   componentDidMount() {
     this.props.fetchPendingApprovalList();
@@ -25,15 +38,20 @@ class PendingApprovals extends Component {
   //   this.setState({
   //     pendingStudentList: this.props.adminReducer.pendingStudentList,
   //   });
+  // this.props.history.push('/admin/pending-approvals');
+
   // };
   render() {
-    // console.log(this.props.adminReducer.pendingStudentList, 'props');
-    // const something = this.props.adminReducer.pendingStudentList;
-    // console.log(something, 'some');
-    const StudentList =
+    const pendingStudentList =
       this.props.adminReducer.pendingStudentList &&
-      this.props.adminReducer.pendingStudentList.reverse();
-    // console.log(StudentList);
+      this.props.adminReducer.pendingStudentList.pendingStudents;
+    console.log(this.props);
+    console.log(pendingStudentList, 'psl');
+
+    const id =
+      this.props.adminReducer.pendingStudentList.pendingStudents &&
+      this.props.adminReducer.pendingStudentList.pendingStudents.id;
+    console.log(id, 'id');
 
     return (
       <>
@@ -42,16 +60,52 @@ class PendingApprovals extends Component {
             <AdminSidebar />
           </div>
           <div>
-            <h3 className='flex-center' style={{ color: 'rgb(59, 57, 57)' }}>
-              Pending Approvals
-            </h3>
-            <div className='grid-col-3'>
-              {StudentList &&
-                StudentList.pendingStudents &&
-                StudentList.pendingStudents.map((Student, i) => (
+            <h3 className='flex-center heading'>Pending Approvals</h3>
+            {/* <div className='grid-col-3'>
+              {studentList &&
+                studentList.pendingStudents &&
+                studentList.pendingStudents.map((Student, i) => (
                   <PendingCard key={i} pendingStudent={Student} />
                 ))}
-            </div>
+            </div> */}
+            <Table bordered dataSource={pendingStudentList}>
+              <ColumnGroup>
+                <Column
+                  width='20%'
+                  title='Username'
+                  dataIndex='username'
+                  key='username'
+                />
+                <Column
+                  width='55%'
+                  title='Email'
+                  dataIndex='email'
+                  key='email'
+                />
+                {/* <Column
+                  width='10%'
+                  title='Is in Campus'
+                  dataIndex='isInCampus'
+                  key='isInCampus'
+                /> */}
+
+                <Column
+                  title='Action'
+                  key='action'
+                  render={(text, record) => (
+                    <span>
+                      <a onClick={() => this.handleApprove(record._id)}>
+                        Approve
+                      </a>
+                      <Divider type='vertical' />
+                      <a onClick={() => this.handleReject(record._id)}>
+                        Reject
+                      </a>
+                    </span>
+                  )}
+                />
+              </ColumnGroup>
+            </Table>
           </div>
         </div>
       </>
@@ -61,6 +115,8 @@ class PendingApprovals extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { fetchPendingApprovalList })(
-  PendingApprovals,
-);
+export default connect(mapStateToProps, {
+  fetchPendingApprovalList,
+  approveStudent,
+  removeStudent,
+})(PendingApprovals);

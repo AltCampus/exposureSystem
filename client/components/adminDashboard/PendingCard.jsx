@@ -36,9 +36,9 @@ class PendingStudent extends Component {
     const token = localStorage.getItem('token');
 
     return (
-      <div className="student-card">
-        <div className="card-heading flex-center">Username: {username}</div>
-        <div className="card-details">
+      <div className='student-card'>
+        <div className='card-heading flex-center'>Username: {username}</div>
+        <div className='card-details'>
           {/* <div>
             <div className="student-pfp" />
           </div> */}
@@ -49,11 +49,11 @@ class PendingStudent extends Component {
             {/* {createdAt} */}
           </div>
         </div>
-        <div className="pending-footer">
-          <button onClick={() => this.handleReject(id)} className="reject">
+        <div className='pending-footer'>
+          <button onClick={() => this.handleReject(id)} className='reject'>
             X
           </button>
-          <button onClick={() => this.handleApprove(id)} className="approve">
+          <button onClick={() => this.handleApprove(id)} className='approve'>
             ✔
           </button>
         </div>

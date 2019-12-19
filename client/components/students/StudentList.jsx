@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
 import { connect } from 'react-redux';
 import { fetchStudentList } from '../../redux/actions/adminAction';
+import { removeStudent } from '../../redux/actions/adminAction';
 
 import StudentCard from './StudentCard';
 
@@ -15,6 +16,9 @@ class StudentList extends Component {
       studentList: this.props.adminReducer.studentList,
     };
   }
+  handleReject = id => {
+    this.props.removeStudent(id, this.cb);
+  };
 
   componentDidMount() {
     this.props.fetchStudentList();
@@ -66,7 +70,7 @@ class StudentList extends Component {
                   <span>
                     {/* <a target='_blank' href={record.contentUrl}></a>
                     <Divider type='vertical' /> */}
-                    <a>Delete</a>
+                    <a onClick={() => this.handleReject(record._id)}>Delete</a>
                   </span>
                 )}
               />
@@ -81,4 +85,6 @@ class StudentList extends Component {
 const mapStateToProps = store => {
   return store;
 };
-export default connect(mapStateToProps, { fetchStudentList })(StudentList);
+export default connect(mapStateToProps, { fetchStudentList, removeStudent })(
+  StudentList,
+);
