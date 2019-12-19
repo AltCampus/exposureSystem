@@ -82,12 +82,16 @@ class PendingApprovals extends Component {
                   dataIndex='email'
                   key='email'
                 />
-                {/* <Column
+                <Column
                   width='10%'
-                  title='Is in Campus'
+                  title='Is In Campus'
                   dataIndex='isInCampus'
                   key='isInCampus'
-                /> */}
+                  render={(text, record) => {
+                    return console.log(text);
+                    <span>{text ? 'Yes' : 'No'}</span>;
+                  }}
+                />
 
                 <Column
                   title='Action'
