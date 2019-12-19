@@ -40,7 +40,24 @@ const fetchContentList = () => dispatch => {
     );
 };
 
-const deleteContent = () => {
-  fetch('http://localhost:3000/api/v1/')
+const updateContent = (id , cb) => {
+  fetch('https://localhost:3000/api/v1/content/update'), {
+    method: 'POST',
+    body: id,
+    headers: {
+      'Content-Type': 'application/json',
+    }
 }
-module.exports = { createContent, fetchContentList };
+
+const deleteContent = (id , cb) => {
+  fetch('http://localhost:3000/api/v1/content/delete', {
+    method: 'POST',
+    body: id,
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+  cb();
+};
+
+module.exports = { createContent, fetchContentList , deleteContent };
