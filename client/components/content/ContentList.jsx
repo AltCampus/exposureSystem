@@ -4,7 +4,7 @@ import ContentCard from './ContentCard';
 import { connect } from 'react-redux';
 
 import { fetchContentList } from '../../redux/actions/contentAction';
-
+import NewContentModal from './NewContentModal';
 import { Table, Divider } from 'antd';
 const { Column, ColumnGroup } = Table;
 
@@ -49,10 +49,14 @@ class ContentList extends Component {
           </div>
         </div> */}
         <div>
-          <h2 className='heading text-center'>Content List</h2>
+          <div className='text-center'>
+            <h2 className='heading'>Content List</h2>
+            <NewContentModal />
+            <br></br>
+          </div>
           <Table bordered dataSource={contentList}>
             <ColumnGroup>
-              <Column width='25%' title='Title' dataIndex='title' key='title' />
+              <Column width='20%' title='Title' dataIndex='title' key='title' />
               <Column
                 width='55%'
                 title='Description'
