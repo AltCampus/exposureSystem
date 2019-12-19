@@ -103,26 +103,26 @@
 //       return users.map(user => {
 //         return { ...user, points: user.points + user.hasSubmitted ? 0.5 : -1 };
 //       });
-    // case 'pair':
-    //   //  submits: 1; if not: -1 to the user who has not submitted.
-    //   return users.map(user => {
-    //     return { ...user, points: user.points + user.hasSubmitted ? 1 : -1 };
-    //   });
-    // case 'group':
-    //   const atLeastOneUserSubmitted =
-    //     users.findIndex(user => user.hasSubmitted === true) > -1;
+// case 'pair':
+//   //  submits: 1; if not: -1 to the user who has not submitted.
+//   return users.map(user => {
+//     return { ...user, points: user.points + user.hasSubmitted ? 1 : -1 };
+//   });
+// case 'group':
+//   const atLeastOneUserSubmitted =
+//     users.findIndex(user => user.hasSubmitted === true) > -1;
 
-    //   if (atLeastOneUserSubmitted) {
-    //     // if one user doesn't submit, -1 for that user and the whole group gets 0.
-    //     return users.map(user => {
-    //       return { ...user, points: user.points + user.hasSubmitted ? 0 : -1 };
-    //     });
-    //   }
+//   if (atLeastOneUserSubmitted) {
+//     // if one user doesn't submit, -1 for that user and the whole group gets 0.
+//     return users.map(user => {
+//       return { ...user, points: user.points + user.hasSubmitted ? 0 : -1 };
+//     });
+//   }
 
-    //   //  if no one submits, -2 for everybody,
-    //   return users.map(user => {
-    //     return { ...user, points: user.points - 2 };
-    //   });
+//   //  if no one submits, -2 for everybody,
+//   return users.map(user => {
+//     return { ...user, points: user.points - 2 };
+//   });
 
 //     default:
 //       throw new Error('missing case');
@@ -171,17 +171,6 @@
 //     }
 //   }
 
-  
-  // console.log(updatePoints(individual, "individual"))
+// console.log(updatePoints(individual, "individual"))
 
-
-  // export {updatePoints}
-
-
-
-
-
-
-
-
-
+// export {updatePoints}

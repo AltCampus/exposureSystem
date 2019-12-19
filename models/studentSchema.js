@@ -25,7 +25,6 @@ const studentSchema = new Schema(
     isApproved: { type: Boolean, default: false },
     sentContent: [{ type: Schema.Types.ObjectId, ref: 'contentSchema' }],
     points: 0,
-    hasSubmitted: false
   },
   {
     timestamps: true,

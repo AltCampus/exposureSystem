@@ -58,42 +58,42 @@ class RegisterUser extends Component {
     return (
       <>
         {/* <Header /> */}
-        <div className="wrapper card text-center">
-          <h1 className="heading">Register</h1>
+        <div className='wrapper card text-center'>
+          <h1 className='heading'>Register</h1>
           <form onSubmit={this.handleSubmit}>
             <input
-              className="input"
-              type="text"
-              name="username"
-              placeholder="Enter username"
+              className='input'
+              type='text'
+              name='username'
+              placeholder='Enter username'
               onChange={this.handleChange}
               value={username}
             />
             <br />
 
             <input
-              className="input"
-              type="email"
-              name="email"
-              placeholder="Enter email"
+              className='input'
+              type='email'
+              name='email'
+              placeholder='Enter email'
               onChange={this.handleChange}
               value={email}
             />
             <br />
 
             <input
-              className="input"
-              type="password"
-              name="password"
-              placeholder="Enter password"
+              className='input'
+              type='password'
+              name='password'
+              placeholder='Enter password'
               onChange={this.handleChange}
               value={password}
             />
             <br />
             <button
-              to="/register/onboarding"
+              to='/register/onboarding'
               onSubmit={this.handleSubmit}
-              className="button"
+              className='button'
             >
               Next
             </button>
