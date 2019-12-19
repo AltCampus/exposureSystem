@@ -42,15 +42,15 @@ class App extends Component {
       this.loginUser();
     }
   }
-  handleRoute = () => {
-    (this.state.user) ? 
-      (this.state.user.isAdmin == true) ? 
-        this.props.history.push('/admin/feed')
-        :
-        this.props.history.push('/feed')
-      :
-      this.props.history.push('/')
-  };
+  // handleRoute = () => {
+  //   (this.state.user) ? 
+  //     (this.state.user.isAdmin == true) ? 
+  //       this.props.history.push('/admin/feed')
+  //       :
+  //       this.props.history.push('/feed')
+  //     :
+  //     this.props.history.push('/')
+  // };
 
   loginUser = () => {
     //TODO Store user/admin in reducer
@@ -82,7 +82,8 @@ class App extends Component {
               });
            });
         }
-      }).then(() => this.handleRoute())
+      })
+      // .then(() => this.handleRoute())
   };
 
   cb = () => {
@@ -116,7 +117,7 @@ class App extends Component {
             path="/admin/pending-approvals"
             component={PendingApprovals}
           />
-          <Route component={Page404} />
+          <Route component={AdminFeed} />
         </Switch>
       </>
     );
@@ -138,7 +139,7 @@ class App extends Component {
             component={RegisterVerification}
           />
           <Route exact path="/feed" component={StudentDashboard} />
-          <Route component={Page404} />
+          <Route component={StudentDashboard} />
         </Switch>
       </>
     );
