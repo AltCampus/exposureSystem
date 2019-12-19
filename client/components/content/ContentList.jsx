@@ -52,21 +52,22 @@ class ContentList extends Component {
           <h2 className='heading text-center'>Content List</h2>
           <Table bordered dataSource={contentList}>
             <ColumnGroup>
-              <Column title='Title' dataIndex='title' key='title' />
+              <Column width='25%' title='Title' dataIndex='title' key='title' />
               <Column
+                width='55%'
                 title='Description'
                 dataIndex='description'
                 key='description'
               />
-              <Column title='Type' dataIndex='type' key='type' />
+              <Column width='10%' title='Type' dataIndex='type' key='type' />
+              {/* <Column width='10%' title='ContentID' dataIndex='_id' key='_id' /> */}
 
               <Column
-                style={{ width: '10rem' }}
                 title='Action'
                 key='action'
                 render={(text, record) => (
                   <span>
-                    <a href={record.contentUrl}>View </a>
+                    <a target='_blank' href={record.contentUrl}></a>
                     <Divider type='vertical' />
                     <a>Delete</a>
                   </span>
