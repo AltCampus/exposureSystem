@@ -18,12 +18,11 @@ class StudentList extends Component {
   }
 
   cb = () => {
-    console.log('cb called');
-    this.props.history.push('/admin/student/list');
-  };
+
+    this.componentDidMount();
+  }
 
   handleReject = id => {
-    console.log('handleReject called');
     this.props.removeStudent(id, this.cb);
   };
 
@@ -41,17 +40,6 @@ class StudentList extends Component {
         <div>
           <AdminSidebar />
         </div>
-        {/* <div>
-          <h3 className='flex-center' style={{ color: 'rgb(59, 57, 57)' }}>
-            Students
-          </h3>
-          <div className='grid-col-3'>
-            {studentList &&
-              studentList.map((student, i) => {
-                return <StudentCard key={i} student={student} />;
-              })}
-          </div>
-        </div> */}
         <div className='text-center'>
           <h2 className='heading text-center'>Student List</h2>
           <Table bordered dataSource={studentList}>

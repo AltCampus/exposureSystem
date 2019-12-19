@@ -11,9 +11,6 @@ const { Column, ColumnGroup } = Table;
 class PendingApprovals extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // pendingStudentList: this.props.adminReducer.pendingStudentList.value,
-    };
   }
 
   handleReject = id => {
@@ -21,33 +18,25 @@ class PendingApprovals extends Component {
   };
 
   handleApprove = id => {
-    // console.log(id, 'inhandleaprrove');
     this.props.approveStudent(id, this.cb);
   };
 
   componentDidMount() {
     this.props.fetchPendingApprovalList();
-    // this.cb();
-    // this.setState({
-    //   pendingStudentList: this.props.adminReducer.pendingStudentList,
-    // });
   }
 
-  cb = () => {
-    this.props.history.push('/admin/pending-approvals');
+  cb = () => { 
+    this.componentDidMount();
   };
 
   render() {
     const pendingStudentList =
       this.props.adminReducer.pendingStudentList &&
       this.props.adminReducer.pendingStudentList.pendingStudents;
-    console.log(this.props);
-    console.log(pendingStudentList, 'psl');
-
+       
     const id =
       this.props.adminReducer.pendingStudentList.pendingStudents &&
       this.props.adminReducer.pendingStudentList.pendingStudents.id;
-    // console.log(id, 'id');
 
     return (
       <>
@@ -57,13 +46,6 @@ class PendingApprovals extends Component {
           </div>
           <div>
             <h3 className='flex-center heading'>Pending Approvals</h3>
-            {/* <div className='grid-col-3'>
-              {studentList &&
-                studentList.pendingStudents &&
-                studentList.pendingStudents.map((Student, i) => (
-                  <PendingCard key={i} pendingStudent={Student} />
-                ))}
-            </div> */}
             <Table bordered dataSource={pendingStudentList}>
               <ColumnGroup title='Student List'>
                 <Column
@@ -96,7 +78,6 @@ class PendingApprovals extends Component {
                     return <span>{record.isActive ? 'Yes' : 'No'}</span>;
                   }}
                 />
-
                 <Column
                   title='Action'
                   key='action'

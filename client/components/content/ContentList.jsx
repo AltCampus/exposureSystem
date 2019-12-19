@@ -16,6 +16,9 @@ class ContentList extends Component {
     };
   }
 
+  cb = () => {
+    this.componentDidMount();
+  }
   componentDidMount() {
     this.props.fetchContentList();
   }
