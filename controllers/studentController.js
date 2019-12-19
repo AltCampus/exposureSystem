@@ -49,7 +49,7 @@ module.exports = {
         if (!student) {
           return res.status(404).send({
             message: "Student not found"
-          });
+          });student
         }
         res.json({ student });
       })
@@ -72,24 +72,27 @@ module.exports = {
     });
   },
 
-  //   updateStudent: (req, res, next) => {
-  //     let { username, email, id } = req.body;
-  //     let sentContent = [];
-  //     Student.findById(req.body.id).then(student => {
-  //       sentContent.push(...student.sentContent, req.body.sentContent);
-  //     });
-  //     Student.findByIdAndUpdate(
-  //       id,
-  //       {
-  //         username,
-  //         email,
-  //         sentContent,
-  //       },
-  //       (err, updatedStudent) => {
-  //         err ? res.json(err) : res.json(updatedStudent);
-  //       },
-  //     );
-  //   },
+    updateStudentPoints: (req, res, next) => {
+      let { username, id } = req.body;
+      let sentContent = [];
+      let points = ((new Date(req.body.createdAt).valueOf() + 172800*1000 > Date.now()) ? 1 : -1);
+      Student.fintypedById(req.body.id).then(student => {
+        sentContent.push(...student.sentContent, req.body.sentContent);
+      });
+      Student.findByIdAndUpdate(
+        id,
+        {
+          username,
+          email,
+          sentContent,
+          points
+        },
+        (err, updatedStudent) => {
+          err ? res.json(err) : res.json(updatedStudent);
+        },
+      );
+    },
+    
   updateStudent: (req, res, next) => {
     const id = req.body.id;
     Student.findByIdAndUpdate(id, req.body, (err, student) => {
@@ -97,4 +100,13 @@ module.exports = {
       return res.status.json({ student });
     });
   }
-};
+
+  // updatePoints : (req, res, next) => {
+  //        const id = req.body.id;
+  //        Student.findById(req.params.id)
+  //        if (err) return next(err);
+  //        return res.status.json()({ ...student, points: student.points + student.hasSubmitted ? 0.5 : -1 });
+  //    }
+}
+  
+

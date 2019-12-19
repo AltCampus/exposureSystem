@@ -13,18 +13,18 @@ Content.find({}).exec(function(err, contents) {
   contents.forEach(content => contentList.push(content));
 });
 
-cron.schedule('* * * * *', function(req, res, next) {
-  var mailType = determineDeliveryType();
+// cron.schedule('* * * * *', function(req, res, next) {
+//   var mailType = determineDeliveryType();
 
-  switch (mailType) {
-    case INDIVIDUAL:
-      findNewContentPerStudentAndSendMail();
-    case PAIR:
-      findNewContentPerPairAndSendMail();
-    case GROUP:
-      findNewContentPerGroupAndSendMail();
-  }
-});
+//   switch (mailType) {
+//     case INDIVIDUAL:
+//       findNewContentPerStudentAndSendMail();
+//     case PAIR:
+//       findNewContentPerPairAndSendMail();
+//     case GROUP:
+//       findNewContentPerGroupAndSendMail();
+//   }
+// });
 
 const determineDeliveryType = () => {
   var date = new Date();
