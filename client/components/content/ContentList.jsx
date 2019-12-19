@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
 import ContentCard from './ContentCard';
 import { connect } from 'react-redux';
-
 import { fetchContentList } from '../../redux/actions/contentAction';
 import NewContentModal from './NewContentModal';
+
 import { Table, Divider } from 'antd';
 const { Column, ColumnGroup } = Table;
 

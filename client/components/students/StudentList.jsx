@@ -5,6 +5,9 @@ import { fetchStudentList } from '../../redux/actions/adminAction';
 
 import StudentCard from './StudentCard';
 
+import { Table, Divider } from 'antd';
+const { Column, ColumnGroup } = Table;
+
 class StudentList extends Component {
   constructor(props) {
     super(props);
@@ -23,11 +26,11 @@ class StudentList extends Component {
       this.props.adminReducer.studentList.students.reverse();
     console.log(studentList, 'inside student list component');
     return (
-      <div className='wrapper grid-dashboard'>
+      <div className='wrapper'>
         <div>
           <AdminSidebar />
         </div>
-        <div>
+        {/* <div>
           <h3 className='flex-center' style={{ color: 'rgb(59, 57, 57)' }}>
             Students
           </h3>
@@ -37,11 +40,44 @@ class StudentList extends Component {
                 return <StudentCard key={i} student={student} />;
               })}
           </div>
+        </div> */}
+        <div className='text-center'>
+          <h2 className='heading text-center'>Student List</h2>
+          <Table bordered dataSource={studentList}>
+            <ColumnGroup>
+              <Column
+                width='20%'
+                title='Username'
+                dataIndex='username'
+                key='username'
+              />
+              <Column width='55%' title='Email' dataIndex='email' key='email' />
+              {/* <Column
+                width='10%'
+                title='Approval Status'
+                dataIndex='isApproved'
+                key='isApproved'
+              /> */}
+
+              <Column
+                title='Action'
+                key='action'
+                render={(text, record) => (
+                  <span>
+                    {/* <a target='_blank' href={record.contentUrl}></a>
+                    <Divider type='vertical' /> */}
+                    <a>Delete</a>
+                  </span>
+                )}
+              />
+            </ColumnGroup>
+          </Table>
         </div>
       </div>
     );
   }
 }
+
 const mapStateToProps = store => {
   return store;
 };
