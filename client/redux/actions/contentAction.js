@@ -48,6 +48,7 @@ const updateContent = (id , cb) => {
       'Content-Type': 'application/json',
     }
 }
+}
 
 const deleteContent = (id , cb) => {
   fetch('http://localhost:3000/api/v1/content/delete', {
@@ -60,4 +61,4 @@ const deleteContent = (id , cb) => {
   cb();
 };
 
-module.exports = { createContent, fetchContentList , deleteContent };
+module.exports = { createContent, fetchContentList , deleteContent , updateContent };
