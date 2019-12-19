@@ -95,47 +95,47 @@
 //   }
 // }
 
-const updatePoints = (users, type) => {
-  switch (type) {
-    case 'individual':
-      // submits: 0.5; if not: -1 for the user.
+// const updatePoints = (users, type) => {
+//   switch (type) {
+//     case 'individual':
+//       // submits: 0.5; if not: -1 for the user.
 
-      return users.map(user => {
-        return { ...user, points: user.points + user.hasSubmitted ? 0.5 : -1 };
-      });
-    case 'pair':
-      //  submits: 1; if not: -1 to the user who has not submitted.
-      return users.map(user => {
-        return { ...user, points: user.points + user.hasSubmitted ? 1 : -1 };
-      });
-    case 'group':
-      const atLeastOneUserSubmitted =
-        users.findIndex(user => user.hasSubmitted === true) > -1;
+//       return users.map(user => {
+//         return { ...user, points: user.points + user.hasSubmitted ? 0.5 : -1 };
+//       });
+// case 'pair':
+//   //  submits: 1; if not: -1 to the user who has not submitted.
+//   return users.map(user => {
+//     return { ...user, points: user.points + user.hasSubmitted ? 1 : -1 };
+//   });
+// case 'group':
+//   const atLeastOneUserSubmitted =
+//     users.findIndex(user => user.hasSubmitted === true) > -1;
 
-      if (atLeastOneUserSubmitted) {
-        // if one user doesn't submit, -1 for that user and the whole group gets 0.
-        return users.map(user => {
-          return { ...user, points: user.points + user.hasSubmitted ? 0 : -1 };
-        });
-      }
+//   if (atLeastOneUserSubmitted) {
+//     // if one user doesn't submit, -1 for that user and the whole group gets 0.
+//     return users.map(user => {
+//       return { ...user, points: user.points + user.hasSubmitted ? 0 : -1 };
+//     });
+//   }
 
-      //  if no one submits, -2 for everybody,
-      return users.map(user => {
-        return { ...user, points: user.points - 2 };
-      });
+//   //  if no one submits, -2 for everybody,
+//   return users.map(user => {
+//     return { ...user, points: user.points - 2 };
+//   });
 
-    default:
-      throw new Error('missing case');
-  }
-};
+//     default:
+//       throw new Error('missing case');
+//   }
+// };
 
-class User {
-  constructor(name, points = 0, hasSubmitted = false) {
-    this.name = name;
-    this.points = points;
-    this.hasSubmitted = hasSubmitted;
-  }
-}
+// class User {
+//   constructor(name, points = 0, hasSubmitted = false) {
+//     this.name = name;
+//     this.points = points;
+//     this.hasSubmitted = hasSubmitted;
+//   }
+// }
 
 // const users = [
 //   new User("Rick", 0, true),
@@ -143,18 +143,34 @@ class User {
 //   new User("Jamie", 0, true)
 // ];
 
-const pair = [new User('Jane', 0, false), new User('Jamie', 0, true)];
+// const pair = [new User('Jane', 0, false), new User('Jamie', 0, true)];
 
-const group = [
-  new User('Rick', 0, true),
-  new User('Jane', 0, false),
-  new User('Jamie', 0, true),
-];
+// const group = [
+//   new User('Rick', 0, true),
+//   new User('Jane', 0, false),
+//   new User('Jamie', 0, true),
+// ];
 
-const individual = [new User('Rick', 0, true)];
+// const individual = [new User('Rick', 0, true)];
 
 // console.log("individual", updatePoints(individual, "individual"));
 // console.log("pair", updatePoints(pair, "pair"));
 // console.log("group", updatePoints(group, "group"));
 
-export { updatePoints };
+// export { updatePoints };
+
+// const Student = require('../models/studentSchema')
+
+// const updatePoints = (student, type, req, res) => {
+//   switch (type) {
+//     case 'individual':
+//         Student.findById(req.params.userId)
+//         return res.status(200).json()({ ...student, points: student.points + student.hasSubmitted ? 0.5 : -1 });
+//       default:
+//         res.json({msg: "Error"});
+//     }
+//   }
+
+// console.log(updatePoints(individual, "individual"))
+
+// export {updatePoints}

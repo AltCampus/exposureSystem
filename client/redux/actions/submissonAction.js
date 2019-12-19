@@ -1,6 +1,6 @@
 const { updatePoints } = require('../../../utils/pointsSystem');
 
-const fetchDeliveryData = deliveryId => dispatch => {
+const fetchDeliveryData = (deliveryId, cb) => dispatch => {
   const url = `http://localhost:3000/api/v1/delivery/${deliveryId}`;
   dispatch({
     type: 'FETCHING_DELIVERY_DATA_START',
@@ -17,6 +17,7 @@ const fetchDeliveryData = deliveryId => dispatch => {
           type: 'FETCHING_DELIVERY_DATA_SUCCESS',
           data: deliveryData.delivery,
         });
+      cb();
     });
 };
 

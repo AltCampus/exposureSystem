@@ -38,8 +38,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.loginUser();
+    if (localStorage.token) {
+      this.loginUser();
+    }
   }
+  // handleRoute = () => {
+  //   (this.state.user) ?
+  //     (this.state.user.isAdmin == true) ?
+  //       this.props.history.push('/admin/feed')
+  //       :
+  //       this.props.history.push('/feed')
+  //     :
+  //     this.props.history.push('/')
+  // };
 
   loginUser = () => {
     //TODO Store user/admin in reducer
@@ -69,10 +80,10 @@ class App extends Component {
               this.setState({
                 user: res,
               });
-              // console.log(res, 'inside loginUser');
             });
         }
       });
+    // .then(() => this.handleRoute())
   };
 
   cb = () => {
@@ -88,6 +99,8 @@ class App extends Component {
   };
 
   protectedAdminRoutes = () => {
+    console.log('called in protected route');
+    // this.props.history.push('/admin/feed')
     return (
       <>
         <Header handleLogout={this.handleLogout} />
@@ -107,13 +120,13 @@ class App extends Component {
             path='/admin/pending-approvals'
             component={PendingApprovals}
           />
+          <Route component={AdminFeed} />
         </Switch>
       </>
     );
   };
 
   protectedStudentRoutes = () => {
-    // console.log('protected std');
     return (
       <>
         <Header handleLogout={this.handleLogout} />
@@ -128,7 +141,9 @@ class App extends Component {
             path='/await-approval'
             component={RegisterVerification}
           />
-          <Route path='/dashboard/:username' component={StudentDashboard} />
+          {/* <Route path='/dashboard/:username' component={StudentDashboard} /> */}
+          <Route exact path='/feed' component={StudentDashboard} />
+          <Route component={StudentDashboard} />
           <Route component={Page404} />
         </Switch>
       </>
@@ -158,12 +173,11 @@ class App extends Component {
 
   render() {
     if (!this.state.user && localStorage.token) this.loginUser();
-
-    // console.log(this.state.user,localStorage.token)
+    // console.log('app render...', this.state.user);
     return (
       <>
         {this.state.user
-          ? this.state.user.isAdmin == true
+          ? this.state.user.isAdmin
             ? this.protectedAdminRoutes()
             : this.protectedStudentRoutes()
           : this.nonProtectedRoutes()}

@@ -22,7 +22,8 @@ class LoginStudent extends Component {
   cb = status => {
     if (status == true) {
       const username = this.props.studentReducer.studentData.student.username;
-      this.props.history.push(`dashboard/${username}`);
+      // this.props.history.push(`dashboard/${username}`);
+      this.props.history.push('/feed');
       swal({
         title: 'You are successfully logged in',
         icon: 'success',

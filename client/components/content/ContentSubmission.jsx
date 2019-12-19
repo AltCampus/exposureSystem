@@ -13,27 +13,38 @@ class ContentSubmission extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: null,
-      student: null,
-      summary: '',
+      title: null,
+      userid: null,
+      contentid: null,
+      contentSummary: null,
+      createdAt: null,
     };
   }
 
+  cbSetState = () => {
+    this.setState({
+      title: this.props.submissionReducer.deliveryData.content.title,
+      userid: this.props.submissionReducer.deliveryData.student._id,
+      contentid: this.props.submissionReducer.deliveryData.content._id,
+      createdAt: this.props.submissionReducer.deliveryData.createdAt,
+    });
+  };
   componentDidMount() {
     const deliveryId = window.location.href.split('/').pop();
-    this.props.fetchDeliveryData(deliveryId);
-    // this.setState({ contentUrl: data.delivery.content[0].contentUrl });
+    this.props.fetchDeliveryData(deliveryId, this.cbSetState);
   }
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.createSubmission();
-    updatePoints(user, type);
+    if (this.state.contentSummary[0].split(' ').length < 500) {
+      return alert('Summary should have atleast 500 words.');
+    } else {
+      this.props.createSubmission(this.state);
+    }
+    // updatePoints(student);
   };
   handleChange = e => {
     this.setState({
-      content: this.props.submissionReducer.deliveryData.content,
-      student: this.props.submissionReducer.deliveryData.student,
       [e.target.name]: [e.target.value],
     });
   };
@@ -47,16 +58,16 @@ class ContentSubmission extends Component {
       this.props.submissionReducer.deliveryData.student;
     console.log(content, 'content', student, 'student');
     return (
-      <div className="wrapper">
-        <div className="sidebar-heading flex-center">Title</div>
-        <div className="grid-col-2">
-          <div className="submission-head flex-center">
+      <div className='wrapper'>
+        <div className='sidebar-heading flex-center'>Title</div>
+        <div className='grid-col-2'>
+          <div className='submission-head flex-center'>
             <div>Description:</div>
           </div>
-          <div className="submission-head flex-center">
+          <div className='submission-head flex-center'>
             <div>
               <span>Assigned to:</span>
-              {/* {this.state.user.username} */}
+              {student && student.username}
             </div>
             <div>Paired with:</div>
             <div>Type:</div>
@@ -64,20 +75,20 @@ class ContentSubmission extends Component {
           </div>
         </div>
         <iframe
-          className="article"
+          className='article'
           // src={`${this.state.contentUrl}`}
-          target="_parent"
+          target='_parent'
         />
         <form>
-          <div className="flex-center">
+          <div className='flex-center'>
             <textarea
-              minLength="300"
-              maxLength="1000"
-              className="summary input"
-              placeholder="Summarize the above article in your words"
+              minLength='300'
+              maxLength='1000'
+              className='summary input'
+              placeholder='Summarize the above article in your words'
               onChange={this.handleChange}
               value={this.state.summary}
-              name="summary"
+              name='contentSummary'
             />
           </div>
           <div
@@ -87,7 +98,7 @@ class ContentSubmission extends Component {
               marginRight: '14rem',
             }}
           >
-            <button className="button" type="submit">
+            <button className='button' type='submit'>
               Submit
             </button>
           </div>
