@@ -44,7 +44,6 @@ class App extends Component {
   }
   
   loginUser = () => {
-
       //TODO Store user/admin in reducer
       fetch('http://localhost:3000/api/v1/admin/me', {
         method: 'GET',
@@ -90,8 +89,6 @@ class App extends Component {
   };
 
   protectedAdminRoutes = () => {
-    console.log('called in protected route');
-    // this.props.history.push('/admin/feed')
     return (
       <>
         <Header handleLogout={this.handleLogout} />

@@ -3,6 +3,8 @@ const INITIAL_STATE = {
   isLoadingSubmissionList: false,
   deliveryData: null,
   isFetchingDeliveryData: false,
+  singleSubmission: null,
+  isLoadingSingleSubmission: false,
 };
 
 const submissionReducer = (state = INITIAL_STATE, action) => {
@@ -28,6 +30,17 @@ const submissionReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetchingDeliveryData: false,
         deliveryData: action.data,
+      };
+    case 'FETCH_SINGLE_SUBMISSION_START':
+      return {
+        ...state,
+        isLoadingSingleSubmission: true,
+      };
+    case 'FETCH_SINGLE_SUBMISSION_SUCCESS':
+      return {
+        ...state,
+        isLoadingSingleSubmission: false,
+        singleSubmission: action.data,
       };
     default:
       return state;
