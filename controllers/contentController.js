@@ -54,19 +54,13 @@ module.exports = {
   },
 
   updateContent: (req, res) => {
-    // Validate Request
-    //   if (!req.body.description) {
-    //     return res.status(400).send({
-    //       message: "Description content can not be empty"
-    //     });
-    //   }
 
     Content.findByIdAndUpdate(
-      req.params.contentId,
+      req.body.id,
       {
         type: req.body.type,
         contentUrl: req.body.contentUrl,
-        title: req.body.title || 'Untitled',
+        title: req.body.title,
         description: req.body.description,
       },
       { new: true },
@@ -91,7 +85,7 @@ module.exports = {
   },
 
   deleteContent: (req, res) => {
-    Content.findByIdAndRemove(req.params.contentId)
+    Content.findByIdAndRemove(req.body.id)
       .then(content => {
         if (!content) {
           return res.status(404).json({

@@ -1,7 +1,6 @@
 const INITIAL_STATE = {
   adminData: '',
   isAdminLogginIn: false,
-  
   isAdminLoggedIn: false,
   content: null,
   isCreatingContent: false,
@@ -71,14 +70,6 @@ function adminReducer(state = INITIAL_STATE, action) {
         ...state,
         isLoadingPendingStudentList: false,
         pendingStudentList: action.data,
-      };
-    case 'APPROVE_STUDENT':
-      return {
-        ...state,
-      };
-    case 'REMOVE_STUDENT':
-      return {
-        ...state,
       };
     case 'ADMIN_LOGOUT':
       return {

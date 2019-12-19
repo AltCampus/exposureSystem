@@ -37,9 +37,21 @@ const createSubmission = (submissionData, cb) => dispatch => {
       dispatch({
         type: 'NEW_SUBMISSION_CREATED_SUCCESSFULLY',
         data: submissionData,
-      }),
-        cb();
-    });
+      })
+    })
+    .then(
+      fetch('http://localhost:3000/api/v1/student/update/points' , {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: {
+          userid: submissionData.userid,
+          contentid: submissionData.contentid,
+        }
+      })
+      .then(() => cb())
+    );
 };
 
 const fetchSubmissionList = () => dispatch => {
@@ -63,4 +75,16 @@ const fetchSubmissionList = () => dispatch => {
     });
 };
 
-module.exports = { fetchSubmissionList, fetchDeliveryData, createSubmission };
+const fetchSingleSubmission = (id) => dispatch => {
+  dispatch({
+    type: 'FETCH_SINGLE_SUBMISSION_START',
+  });
+  fetch(`http://localhost:3000/api/v1/submission/${id}`)
+  .then(res => res.json())
+  .then(submission => dispatch({
+    type: 'FETCH_SINGLE_SUBMISSION_SUCCESS',
+    data: submission,
+  }))
+}
+
+module.exports = { fetchSubmissionList, fetchDeliveryData, createSubmission, fetchSingleSubmission };

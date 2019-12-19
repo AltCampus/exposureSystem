@@ -10,8 +10,8 @@ router.get('/list', content.findAllContent);
 
 router.get('/:contentId', content.findOneContent);
 
-router.put('/:contentId/update', content.updateContent);
+router.put('/update', content.updateContent);
 
-router.delete('/:contentId/delete', content.deleteContent);
+router.delete('/delete', content.deleteContent);
 
 module.exports = router;

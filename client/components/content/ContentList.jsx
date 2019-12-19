@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
-import ContentCard from './ContentCard';
 import { connect } from 'react-redux';
-import { fetchContentList } from '../../redux/actions/contentAction';
+import { fetchContentList , deleteContent } from '../../redux/actions/contentAction';
 import NewContentModal from './NewContentModal';
-
 import { Table, Divider } from 'antd';
+
 const { Column, ColumnGroup } = Table;
 
 class ContentList extends Component {
@@ -16,6 +15,9 @@ class ContentList extends Component {
     };
   }
 
+  cb = () => {
+    this.componentDidMount();
+  }
   componentDidMount() {
     this.props.fetchContentList();
   }
@@ -36,17 +38,11 @@ class ContentList extends Component {
         <div>
           <AdminSidebar />
         </div>
-        {/* <div>
-          <h3 className='flex-center' style={{ color: 'rgb(59, 57, 57)' }}>
-            Content List
-          </h3>
-          <div className='grid-col-3'>
-            {contentList &&
-              contentList.map((content, i) => {
-                return <ContentCard key={i} content={content} />;
-              })}
-          </div>
-        </div> */}
+        {
+          this.props.adminReducer.isLoadingContentList ?
+          <Loader />
+          :
+
         <div>
           <div className='text-center'>
             <h2 className='heading'>Content List</h2>
@@ -82,6 +78,7 @@ class ContentList extends Component {
             </ColumnGroup>
           </Table>
         </div>
+        }
       </div>
     );
   }
@@ -90,4 +87,5 @@ class ContentList extends Component {
 const mapStateToProps = store => {
   return store;
 };
+
 export default connect(mapStateToProps, { fetchContentList })(ContentList);
