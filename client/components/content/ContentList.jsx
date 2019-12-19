@@ -66,13 +66,16 @@ class ContentList extends Component {
               {/* <Column width='10%' title='ContentID' dataIndex='_id' key='_id' /> */}
 
               <Column
+                width='8%'
                 title='Action'
                 key='action'
                 render={(text, record) => (
                   <span>
-                    <a target='_blank' href={record.contentUrl}></a>
-                    <Divider type='vertical' />
-                    <a>Delete</a>
+                    <a target='_blank' href={record.contentUrl}>
+                      Link
+                    </a>
+                    {/* <Divider type='vertical' />
+                    <a>Delete</a> */}
                   </span>
                 )}
               />

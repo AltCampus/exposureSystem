@@ -69,7 +69,7 @@ class PendingApprovals extends Component {
                 ))}
             </div> */}
             <Table bordered dataSource={pendingStudentList}>
-              <ColumnGroup>
+              <ColumnGroup title='Student List'>
                 <Column
                   width='20%'
                   title='Username'
@@ -77,7 +77,7 @@ class PendingApprovals extends Component {
                   key='username'
                 />
                 <Column
-                  width='55%'
+                  width='40%'
                   title='Email'
                   dataIndex='email'
                   key='email'
@@ -89,6 +89,15 @@ class PendingApprovals extends Component {
                   key='isInCampus'
                   render={(text, record) => {
                     return <span>{record.isInCampus ? 'Yes' : 'No'}</span>;
+                  }}
+                />
+                <Column
+                  width='10%'
+                  title='Is Active'
+                  dataIndex='isActive'
+                  key='isActive'
+                  render={(text, record) => {
+                    return <span>{record.isActive ? 'Yes' : 'No'}</span>;
                   }}
                 />
 

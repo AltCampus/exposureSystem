@@ -55,15 +55,34 @@ class StudentList extends Component {
                 dataIndex='username'
                 key='username'
               />
-              <Column width='55%' title='Email' dataIndex='email' key='email' />
+              <Column width='40%' title='Email' dataIndex='email' key='email' />
               {/* <Column
                 width='10%'
                 title='Approval Status'
                 dataIndex='isApproved'
                 key='isApproved'
               /> */}
+              <Column
+                width='10%'
+                title='Is In Campus'
+                dataIndex='isInCampus'
+                key='isInCampus'
+                render={(text, record) => {
+                  return <span>{record.isInCampus ? 'Yes' : 'No'}</span>;
+                }}
+              />
+              <Column
+                width='10%'
+                title='Is Active'
+                dataIndex='isActive'
+                key='isActive'
+                render={(text, record) => {
+                  return <span>{record.isActive ? 'Yes' : 'No'}</span>;
+                }}
+              />
 
               <Column
+                width='10%'
                 title='Action'
                 key='action'
                 render={(text, record) => (

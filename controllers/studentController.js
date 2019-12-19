@@ -80,7 +80,6 @@ module.exports = {
       new Date(req.body.createdAt).valueOf() + 172800 * 1000 > Date.now()
         ? 1
         : -1;
-    // Student.fintypedById(req.body.id).then(student => {
     Student.findById(req.body.id).then(student => {
       sentContent.push(...student.sentContent, req.body.sentContent);
     });

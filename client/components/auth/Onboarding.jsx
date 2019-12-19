@@ -27,9 +27,15 @@ class Onboarding extends Component {
     });
   };
 
-  onCheckChange = e => {
+  onCheckChange1 = e => {
     this.setState({
       isInCampus: e.target.checked,
+    });
+  };
+
+  onCheckChange2 = e => {
+    this.setState({
+      isActive: e.target.checked,
     });
   };
   handleSubmit = e => {
@@ -45,8 +51,7 @@ class Onboarding extends Component {
     registerStudent(studentData, this.cb);
 
     swal({
-      title: 'Good Job',
-      text: 'Please wait for your email verification!',
+      title: 'Registered! ',
       icon: 'success',
       timer: 3000,
     });
@@ -65,7 +70,7 @@ class Onboarding extends Component {
             <div className='select'>
               <Checkbox
                 name='isInCampus'
-                onChange={this.onCheckChange}
+                onChange={this.onCheckChange1}
                 defaultChecked={false}
                 // checked={true}
               >
@@ -79,22 +84,14 @@ class Onboarding extends Component {
             </label>
             <div className='control'>
               <div className='select'>
-                <select>
-                  <option
-                    name='isActive'
-                    value='true'
-                    onChange={this.handleChange}
-                  >
-                    Yes
-                  </option>
-                  <option
-                    name='isActive'
-                    value='false'
-                    onChange={this.handleChange}
-                  >
-                    No
-                  </option>
-                </select>
+                <Checkbox
+                  name='isActive'
+                  onChange={this.onCheckChange2}
+                  defaultChecked={false}
+                  // checked={true}
+                >
+                  In Campus
+                </Checkbox>
               </div>
             </div>
           </div>
