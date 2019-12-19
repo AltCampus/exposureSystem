@@ -40,4 +40,7 @@ const fetchContentList = () => dispatch => {
     );
 };
 
+const deleteContent = () => {
+  fetch('http://localhost:3000/api/v1/')
+}
 module.exports = { createContent, fetchContentList };
