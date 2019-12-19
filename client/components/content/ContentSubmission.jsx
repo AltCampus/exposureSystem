@@ -6,8 +6,8 @@ import {
 } from '../../redux/actions/submissonAction';
 const { updatePoints } = require('../../../utils/pointsSystem');
 
-// TODO
-// change from contentSubmission to contentSubmit
+import { Input, Button } from 'antd';
+const { TextArea } = Input;
 
 class ContentSubmission extends Component {
   constructor(props) {
@@ -25,6 +25,7 @@ class ContentSubmission extends Component {
     this.setState({
       title: this.props.submissionReducer.deliveryData.content.title,
       userid: this.props.submissionReducer.deliveryData.student._id,
+      content: this.props.submissionReducer.deliveryData.content,
       contentid: this.props.submissionReducer.deliveryData.content._id,
       createdAt: this.props.submissionReducer.deliveryData.createdAt,
     });
@@ -56,22 +57,28 @@ class ContentSubmission extends Component {
     const student =
       this.props.submissionReducer.deliveryData &&
       this.props.submissionReducer.deliveryData.student;
-    console.log(content, 'content', student, 'student');
+    // const points = new Date(
+    //   this.state.createdAt.valueOf() + 172800 * 1000 > Date.now(),
+    // );
+    // console.log(points, 'points');
+    console.log(content, 'content');
     return (
       <div className='wrapper'>
-        <div className='sidebar-heading flex-center'>Title</div>
+        <h2 className='heading text-center'>{this.state.title}</h2>
         <div className='grid-col-2'>
           <div className='submission-head flex-center'>
-            <div>Description:</div>
+            <div className='submission-description'>
+              {content && content.description}
+            </div>
           </div>
           <div className='submission-head flex-center'>
             <div>
               <span>Assigned to:</span>
               {student && student.username}
             </div>
-            <div>Paired with:</div>
-            <div>Type:</div>
-            <div>Due by:</div>
+            {/* <div>Paired with:</div> */}
+            <div>Type: {content && content.type}</div>
+            {/* <div>Due by:</div> */}
           </div>
         </div>
         <iframe
@@ -79,17 +86,21 @@ class ContentSubmission extends Component {
           // src={`${this.state.contentUrl}`}
           target='_parent'
         />
+        <div className='submission-card'>
+
         <form>
           <div className='flex-center'>
             <textarea
+            width='100%'
               minLength='300'
               maxLength='1000'
               className='summary input'
-              placeholder='Summarize the above article in your words'
+              placeholder='What are your takeaways from this article?'
               onChange={this.handleChange}
               value={this.state.summary}
               name='contentSummary'
             />
+            {/* <TextArea width='50%' rows={8} minLength='300' maxLength='1000' defaultValue= 'Summarize the above article in your words' /> */}
           </div>
           <div
             style={{
@@ -98,11 +109,12 @@ class ContentSubmission extends Component {
               marginRight: '14rem',
             }}
           >
-            <button className='button' type='submit'>
+            <Button className='button' type='primary'>
               Submit
-            </button>
+            </Button>
           </div>
         </form>
+        </div>
       </div>
     );
   }
