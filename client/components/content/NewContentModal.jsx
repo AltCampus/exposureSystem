@@ -3,6 +3,7 @@ import { createContent } from '../../redux/actions/contentAction';
 import { connect } from 'react-redux';
 
 import { Button, Modal, Form, Input, Radio } from 'antd';
+const { TextArea } = Input;
 
 const ContentCreateForm = Form.create({ name: 'form_in_modal' })(
   // eslint-disable-next-line
@@ -13,7 +14,7 @@ const ContentCreateForm = Form.create({ name: 'form_in_modal' })(
       return (
         <Modal
           visible={visible}
-          title='Add new Content'
+          title='Add New Content'
           okText='Add'
           onCancel={onCancel}
           onOk={onCreate}
@@ -31,7 +32,7 @@ const ContentCreateForm = Form.create({ name: 'form_in_modal' })(
             </Form.Item>
             <Form.Item label='Description'>
               {getFieldDecorator('description')(
-                <Input type='textarea' size='large' />,
+                <TextArea rows={4} size='large' />,
               )}
             </Form.Item>
             <Form.Item label='URL'>
@@ -106,7 +107,7 @@ class NewContentModal extends React.Component {
       <div>
         {/* <a onClick={this.showModal}>New Collection</a> */}
         <Button type='primary' onClick={this.showModal}>
-          New Content
+          Add New Content
         </Button>
         <ContentCreateForm
           wrappedComponentRef={this.saveFormRef}

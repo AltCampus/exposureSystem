@@ -59,7 +59,7 @@ function AdminSidebar() {
           </div>
           <Menu theme='dark' mode='inline' defaultSelectedKeys={['1']}>
             <Menu.Item key='1'>
-              <NavLink to='#'>
+              <NavLink to='/admin/feed'>
                 <Icon type='user' />
                 <span className='nav-text'>Home</span>
                 {/* <span className='nav-text'>Home (Stats)</span> */}
