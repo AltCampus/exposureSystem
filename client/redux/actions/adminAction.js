@@ -28,8 +28,10 @@ const fetchStudentList = () => {
     dispatch({
       type: 'FETCHING_STUDENT_LIST_START',
     });
-    fetch('http://localhost:3000/api/v1/student/status/list')
-      .then(res => res.json())
+    fetch('http://localhost:3000/api/v1/student/status/list', {
+      method: 'GET',
+    })
+      .then(res => res.json(), console.log(res))
       .then(studentList =>
         dispatch({
           type: 'FETCHING_STUDENT_LIST_SUCCESS',

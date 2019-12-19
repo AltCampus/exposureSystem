@@ -1,12 +1,19 @@
-import React from "react"
+import React from 'react';
+import { Result, Button } from 'antd';
 
 function Page404() {
-    return (
-        <div className="text-center">
-            <h1>404! Page not found!</h1>
-        </div>
-
-    )
+  return (
+    <Result
+      status='404'
+      title='404'
+      subTitle='Sorry, the page you visited does not exist.'
+      extra={
+        <Button type='primary' href='/'>
+          Back Home
+        </Button>
+      }
+    />
+  );
 }
 
-export default Page404
+export default Page404;

@@ -55,15 +55,16 @@ class PendingApprovals extends Component {
           <div>
             <AdminSidebar />
           </div>
-          <div>
-            <h3 className='flex-center heading'>Pending Approvals</h3>
-            {/* <div className='grid-col-3'>
+          {/* <div className='grid-col-3'>
               {studentList &&
                 studentList.pendingStudents &&
                 studentList.pendingStudents.map((Student, i) => (
                   <PendingCard key={i} pendingStudent={Student} />
                 ))}
             </div> */}
+          <div>
+            <h3 className='flex-center heading'>Pending Approvals</h3>
+
             <Table bordered dataSource={pendingStudentList}>
               <ColumnGroup title='Student List'>
                 <Column

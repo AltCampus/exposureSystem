@@ -46,14 +46,21 @@ const fetchSubmissionList = () => dispatch => {
   dispatch({
     type: 'FETCHING_SUBMISSION_LIST_START',
   });
-  fetch('http://localhost:3000/api/v1/submission/list')
-    .then(res => res.json())
-    .then(submissionList =>
+  fetch('http://localhost:3000/api/v1/submission/list', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('token'),
+    },
+  })
+    .then(res => console.log(res.json(), 'res in fetchsubmission'))
+    .then(submissionList => {
+      console.log(submissionList, 'list I want');
       dispatch({
         type: 'FETCHING_SUBMISSION_LIST_SUCCESS',
         data: submissionList,
-      }),
-    );
+      });
+    });
 };
 
 module.exports = { fetchSubmissionList, fetchDeliveryData, createSubmission };

@@ -6,7 +6,8 @@ import {
 } from '../../redux/actions/submissonAction';
 const { updatePoints } = require('../../../utils/pointsSystem');
 
-import { Input, Button } from 'antd';
+import { Input, Result, Button } from 'antd';
+
 const { TextArea } = Input;
 
 class ContentSubmission extends Component {
@@ -111,7 +112,11 @@ class ContentSubmission extends Component {
                   marginRight: '14rem',
                 }}
               >
-                <Button className='button' type='primary'>
+                <Button
+                  className='button'
+                  type='primary'
+                  onClick={this.onSubmit}
+                >
                   Submit
                 </Button>
               </div>
@@ -120,7 +125,19 @@ class ContentSubmission extends Component {
         </div>
       );
     } else {
-      return <h2 className='heading'>Oops! Something went wrong there!</h2>;
+      // return <h2 className='heading'>Oops! Something went wrong there!</h2>;
+      return (
+        <Result
+          status='403'
+          title='403'
+          subTitle='Sorry, you are not authorized to access this page.'
+          extra={
+            <Button type='primary' href='/'>
+              Back Home
+            </Button>
+          }
+        />
+      );
     }
   }
 }

@@ -18,19 +18,50 @@ class AdminFeed extends Component {
   }
 
   render() {
+    // const submissionFeed =
+    console.log(this.props);
     return (
       <>
         <div className='wrapper '>
           <AdminSidebar />
 
-          <div className='grid-col-1'>
-            {/* {this.state.submissionList &&
+          {/* <div className='grid-col-1'>
+            {this.state.submissionList &&
               this.state.submissionList.map(submission => {
                 <StudentSubmissionCard submission={submission} />;
-              })} */}
-            <StudentSubmissionCard />
-            <StudentSubmissionCard />
-            <StudentSubmissionCard />
+              })}
+          </div> */}
+          <div>
+            <h3 className='flex-center heading'>Submission List</h3>
+
+            <Table bordered dataSource={submissionList}>
+              <ColumnGroup title='Submission List'>
+                <Column
+                  width='10%'
+                  title='Username'
+                  dataIndex='username'
+                  key='username'
+                />
+                <Column
+                  width='30%'
+                  title='Title'
+                  dataIndex='title'
+                  key='title'
+                />
+                <Column
+                  width='50%'
+                  title='Summary'
+                  dataIndex='contentSummary'
+                  key='contentSummary'
+                />
+                <Column
+                  width='10%'
+                  title='Points Awarded'
+                  dataIndex='pointsAwarded'
+                  key='pointsAwarded'
+                />
+              </ColumnGroup>
+            </Table>
           </div>
         </div>
       </>
