@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import validator from 'validator';
 import { studentLogin } from '../../redux/actions/studentAction';
-import { Button } from 'antd';
+import swal from 'sweetalert';
 
 class LoginStudent extends Component {
   constructor(props) {
@@ -22,6 +22,10 @@ class LoginStudent extends Component {
     if (status == true) {
       const username = this.props.studentReducer.studentData.student.username;
       this.props.history.push(`dashboard/${username}`);
+      swal({
+        title: 'You are successfully logged in',
+        icon: 'success',
+      });
     } else if (status == false) {
       this.props.history.push('/await-approval');
     }
@@ -30,15 +34,33 @@ class LoginStudent extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
+
     if (!email || !password) {
-      return alert('Email and password are must.');
+      return swal({
+        title: 'Sorry',
+        text: 'Email and Password are must',
+        icon: 'error',
+        button: 'Go Back',
+      });
     }
+
     if (!validator.isEmail(email)) {
-      return alert('Invalid email.');
+      return swal({
+        title: 'Sorry',
+        text: 'Email is invalid',
+        icon: 'error',
+        button: 'Go Back',
+      });
     }
     if (password.length < 6) {
-      return alert('Password must be atleast 6 characters');
+      return swal({
+        title: 'Sorry',
+        text: 'Password should be atleast 6 characters long',
+        icon: 'error',
+        button: 'Go Back',
+      });
     }
+
     this.props.studentLogin(this.state, this.cb);
   };
 

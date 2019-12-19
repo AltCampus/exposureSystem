@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import validator from 'validator';
 import Header from '../header/Header';
-import { Button } from 'antd';
+import swal from 'sweetalert';
 
 class RegisterUser extends Component {
   constructor(props) {
@@ -32,18 +32,42 @@ class RegisterUser extends Component {
     const email = this.state.email;
     const password = this.state.password;
     console.log(this.state);
-    // const { username, email, password } = this.state;
     const { dispatch } = this.props;
     if (!username || !email || !password) {
-      return alert('Username, email and password are missing!');
+      return swal({
+        title: 'Sorry',
+        text: 'Username, Email and Password are must',
+        icon: 'error',
+        button: 'Go Back',
+        width: '10px',
+      });
     }
+
     if (!validator.isEmail(email)) {
-      return alert('Invalid Email  -__-');
+      return swal({
+        title: 'Sorry',
+        text: 'Email is invalid',
+        icon: 'error',
+        button: 'Go Back',
+      });
     }
+
     if (password.length < 6) {
-      return alert('Password should be atleast 6 characters.');
+      return swal({
+        title: 'Sorry',
+        text: 'Password should be atleast 6 characters long',
+        icon: 'error',
+        button: 'Go Back',
+      });
     }
-    // console.log('inside handleSubmit RegisterUser');
+
+    swal({
+      title: 'Good job!',
+      text: 'Head For Onboarding',
+      icon: 'success',
+      button: 'Go ahead',
+    });
+
     return dispatch(
       {
         type: 'REGISTER_PAGE_DATA',

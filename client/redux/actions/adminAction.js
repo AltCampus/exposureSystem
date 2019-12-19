@@ -73,7 +73,10 @@ const approveStudent = (id, cb) => dispatch => {
       Authorization: localStorage.getItem('token'),
     },
   }).then(approvedStudent => {
-    alert('Student Approved'), cb();
+    swal({
+      title: 'Student Approved',
+      icon: 'success'
+    }), cb();
   });
 };
 
@@ -85,7 +88,10 @@ const removeStudent = (id, cb) => dispatch => {
       Authorization: localStorage.getItem('token'),
     },
   }).then(removedStudent => {
-    alert('Student Removed'), cb();
+    swal({
+      title: 'Student Removed',
+      icon: 'success'
+    }), cb();
   });
 };
 

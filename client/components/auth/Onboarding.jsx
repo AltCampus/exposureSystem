@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import registerStudent from '../../redux/actions/registerAction';
 import { Button, Checkbox } from 'antd';
 
+import swal from 'sweetalert';
+
 class Onboarding extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +43,18 @@ class Onboarding extends Component {
       isActive: this.state.isActive,
     };
     registerStudent(studentData, this.cb);
+
+    swal({
+      title: 'Good Job',
+      text:
+        'Please wait for your email verification. Meanwhile, you will be directed to the home page.',
+      icon: 'success',
+      timer: 3000,
+    }).then(function() {
+      window.location = '/';
+    });
   };
+
   render() {
     console.log(this.state, 'onboarding');
     return (
