@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import registerStudent from '../../redux/actions/registerAction';
-import { Button } from 'antd';
+import { Button, Checkbox } from 'antd';
 
 class Onboarding extends Component {
   constructor(props) {
@@ -25,7 +25,13 @@ class Onboarding extends Component {
     });
   };
 
-  handleSubmit = () => {
+  onCheckChange = e => {
+    this.setState({
+      isInCampus: e.target.checked,
+    });
+  };
+  handleSubmit = e => {
+    e.preventDefault();
     console.log('submit called', this.state);
     const studentData = {
       username: this.state.username,
@@ -37,37 +43,29 @@ class Onboarding extends Component {
     registerStudent(studentData, this.cb);
   };
   render() {
-    // console.log(this.state, 'onboarding');
+    console.log(this.state, 'onboarding');
     return (
       <div className='container card flex-center'>
         <form className='notification text-center'>
-          <label class='label'>Are you in campus currently?</label>
-          <div class='control'>
-            <div class='select'>
-              <select>
-                <option
-                  name='isInCampus'
-                  value='true'
-                  onChange={this.handleChange}
-                >
-                  Yes
-                </option>
-                <option
-                  name='isInCampus'
-                  value='false'
-                  onChange={this.handleChange}
-                >
-                  No
-                </option>
-              </select>
+          <label className='label'>Are you in campus currently?</label>
+          <div className='control'>
+            <div className='select'>
+              <Checkbox
+                name='isInCampus'
+                onChange={this.onCheckChange}
+                defaultChecked={false}
+                // checked={true}
+              >
+                In Campus
+              </Checkbox>
             </div>
           </div>
-          <div class='field'>
-            <label class='label'>
+          <div className='field'>
+            <label className='label'>
               Do you consent to receiving emails from us?
             </label>
-            <div class='control'>
-              <div class='select'>
+            <div className='control'>
+              <div className='select'>
                 <select>
                   <option
                     name='isActive'

@@ -51,7 +51,7 @@ class PendingApprovals extends Component {
     const id =
       this.props.adminReducer.pendingStudentList.pendingStudents &&
       this.props.adminReducer.pendingStudentList.pendingStudents.id;
-    console.log(id, 'id');
+    // console.log(id, 'id');
 
     return (
       <>
@@ -88,8 +88,7 @@ class PendingApprovals extends Component {
                   dataIndex='isInCampus'
                   key='isInCampus'
                   render={(text, record) => {
-                    return console.log(text);
-                    <span>{text ? 'Yes' : 'No'}</span>;
+                    return <span>{record.isInCampus ? 'Yes' : 'No'}</span>;
                   }}
                 />
 

@@ -61,7 +61,8 @@ function AdminSidebar() {
             <Menu.Item key='1'>
               <NavLink to='#'>
                 <Icon type='user' />
-                <span className='nav-text'>Home (Stats)</span>
+                <span className='nav-text'>Home</span>
+                {/* <span className='nav-text'>Home (Stats)</span> */}
               </NavLink>
             </Menu.Item>
             <Menu.Item key='2'>
