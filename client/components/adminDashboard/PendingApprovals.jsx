@@ -102,7 +102,7 @@ class PendingApprovals extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = store => store;
 
 export default connect(mapStateToProps, {
   fetchPendingApprovalList,

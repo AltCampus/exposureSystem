@@ -54,7 +54,6 @@ module.exports = {
   },
 
   updateContent: (req, res) => {
-
     Content.findByIdAndUpdate(
       req.body.id,
       {
@@ -85,6 +84,7 @@ module.exports = {
   },
 
   deleteContent: (req, res) => {
+    console.log(req.body, 'in delete controller');
     Content.findByIdAndRemove(req.body.id)
       .then(content => {
         if (!content) {

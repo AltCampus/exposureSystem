@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import AdminSidebar from '../adminDashboard/AdminSidebar';
 import { connect } from 'react-redux';
-import { fetchContentList , deleteContent } from '../../redux/actions/contentAction';
+import {
+  fetchContentList,
+  deleteContent,
+} from '../../redux/actions/contentAction';
 import NewContentModal from './NewContentModal';
 import { Table, Divider } from 'antd';
 
@@ -17,7 +20,8 @@ class ContentList extends Component {
 
   cb = () => {
     this.componentDidMount();
-  }
+  };
+
   componentDidMount() {
     this.props.fetchContentList();
   }
@@ -26,8 +30,13 @@ class ContentList extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  handleDelete = id => {
+    console.log('delete called');
+    this.props.deleteContent(id, this.cb);
+  };
+
   render() {
-    console.log(this.props);
+    console.log(this.props, 'cl');
     const contentList =
       this.props.adminReducer.contentList &&
       this.props.adminReducer.contentList.contents.reverse();
@@ -38,11 +47,9 @@ class ContentList extends Component {
         <div>
           <AdminSidebar />
         </div>
-        {
-          this.props.adminReducer.isLoadingContentList ?
+        {/* {this.props.adminReducer.isLoadingContentList ? (
           <Loader />
-          :
-
+        ) : ( */}
         <div>
           <div className='text-center'>
             <h2 className='heading'>Content List</h2>
@@ -70,15 +77,14 @@ class ContentList extends Component {
                     <a target='_blank' href={record.contentUrl}>
                       Link
                     </a>
-                    {/* <Divider type='vertical' />
-                    <a>Delete</a> */}
+                    <Divider type='vertical' />
+                    <a onClick={() => this.handleDelete(record._id)}>Delete</a>
                   </span>
                 )}
               />
             </ColumnGroup>
           </Table>
         </div>
-        }
       </div>
     );
   }
@@ -88,4 +94,6 @@ const mapStateToProps = store => {
   return store;
 };
 
-export default connect(mapStateToProps, { fetchContentList })(ContentList);
+export default connect(mapStateToProps, { fetchContentList, deleteContent })(
+  ContentList,
+);

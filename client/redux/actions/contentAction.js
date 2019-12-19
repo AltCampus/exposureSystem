@@ -40,25 +40,32 @@ const fetchContentList = () => dispatch => {
     );
 };
 
-const updateContent = (id , cb) => {
-  fetch('https://localhost:3000/api/v1/content/update'), {
-    method: 'POST',
-    body: id,
-    headers: {
-      'Content-Type': 'application/json',
-    }
-}
-}
+const updateContent = (id, cb) => {
+  fetch('https://localhost:3000/api/v1/content/update'),
+    {
+      method: 'POST',
+      body: id,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+};
 
-const deleteContent = (id , cb) => {
+const deleteContent = (id, cb) => {
+  console.log(id, 'in action');
   fetch('http://localhost:3000/api/v1/content/delete', {
-    method: 'POST',
+    method: 'DELETE',
     body: id,
     headers: {
       'Content-Type': 'application/json',
-    }
+    },
   });
   cb();
 };
 
-module.exports = { createContent, fetchContentList , deleteContent , updateContent };
+module.exports = {
+  createContent,
+  fetchContentList,
+  deleteContent,
+  updateContent,
+};
