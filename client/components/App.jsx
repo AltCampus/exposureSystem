@@ -42,48 +42,39 @@ class App extends Component {
       this.loginUser();
     }
   }
-  // handleRoute = () => {
-  //   (this.state.user) ?
-  //     (this.state.user.isAdmin == true) ?
-  //       this.props.history.push('/admin/feed')
-  //       :
-  //       this.props.history.push('/feed')
-  //     :
-  //     this.props.history.push('/')
-  // };
-
+  
   loginUser = () => {
-    //TODO Store user/admin in reducer
-    fetch('http://localhost:3000/api/v1/admin/me', {
-      method: 'GET',
-      headers: {
-        authorization: localStorage.token,
-        'content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res) {
-          this.setState({
-            user: res,
-          });
-        } else {
-          fetch('http://localhost:3000/api/v1/student/me', {
-            method: 'GET',
-            headers: {
-              authorization: localStorage.token,
-              'content-Type': 'application/json',
-            },
-          })
-            .then(res => res.json())
-            .then(res => {
-              this.setState({
-                user: res,
-              });
+
+      //TODO Store user/admin in reducer
+      fetch('http://localhost:3000/api/v1/admin/me', {
+        method: 'GET',
+        headers: {
+          authorization: localStorage.token,
+          'content-Type': 'application/json',
+        },
+      })
+        .then(res => res.json())
+        .then(admin => {
+          if (admin) {
+            this.setState({
+              user: admin,
             });
-        }
-      });
-    // .then(() => this.handleRoute())
+          } else {
+            fetch('http://localhost:3000/api/v1/student/me', {
+              method: 'GET',
+              headers: {
+                authorization: localStorage.token,
+                'content-Type': 'application/json',
+              },
+            })
+              .then(res => res.json())
+              .then(student => {
+                this.setState({
+                  user: student,
+                });
+              });
+          }
+        });
   };
 
   cb = () => {
@@ -134,7 +125,7 @@ class App extends Component {
           <Route
             exact
             path='/submission/:deliveryid'
-            component={ContentSubmission}
+            render={() => <ContentSubmission state={this.state} isAuthed={true} /> }
           />
           <Route
             exact
@@ -173,7 +164,6 @@ class App extends Component {
 
   render() {
     if (!this.state.user && localStorage.token) this.loginUser();
-    // console.log('app render...', this.state.user);
     return (
       <>
         {this.state.user

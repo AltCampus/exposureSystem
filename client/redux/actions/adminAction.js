@@ -91,8 +91,8 @@ const removeStudent = (id, cb) => dispatch => {
     swal({
       title: 'Student Removed',
       icon: 'success'
-    }), cb();
-  });
+    })
+  }).then(() => cb())
 };
 
 const adminLogout = (cb) => dispatch => {

@@ -2,8 +2,9 @@ const Submission = require('../models/submissionSchema');
 
 module.exports = {
   newSubmission: (req, res) => {
+    
     let points =
-      new Date(req.body.createdAt).valueOf() + 172800 * 1000 > Date.now()
+      (new Date(req.body.createdAt).valueOf() + 172800 * 1000 > Date.now())
         ? 1
         : -1;
     const submission = new Submission({

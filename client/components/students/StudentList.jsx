@@ -16,6 +16,11 @@ class StudentList extends Component {
       studentList: this.props.adminReducer.studentList,
     };
   }
+
+  cb = () => {
+    this.props.history.push('/admin/student/list');
+  }
+
   handleReject = id => {
     this.props.removeStudent(id, this.cb);
   };

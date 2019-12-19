@@ -18,6 +18,7 @@ class ContentSubmission extends Component {
       contentid: null,
       contentSummary: null,
       createdAt: null,
+      email: null,
     };
   }
 
@@ -27,6 +28,7 @@ class ContentSubmission extends Component {
       userid: this.props.submissionReducer.deliveryData.student._id,
       contentid: this.props.submissionReducer.deliveryData.content._id,
       createdAt: this.props.submissionReducer.deliveryData.createdAt,
+      email: this.props.submissionReducer.deliveryData.student.email,
     });
   };
   componentDidMount() {
@@ -48,63 +50,68 @@ class ContentSubmission extends Component {
       [e.target.name]: [e.target.value],
     });
   };
+
   render() {
-    console.log(this.state, 'state');
     const content =
       this.props.submissionReducer.deliveryData &&
       this.props.submissionReducer.deliveryData.content;
     const student =
       this.props.submissionReducer.deliveryData &&
       this.props.submissionReducer.deliveryData.student;
-    console.log(content, 'content', student, 'student');
-    return (
-      <div className='wrapper'>
-        <div className='sidebar-heading flex-center'>Title</div>
-        <div className='grid-col-2'>
-          <div className='submission-head flex-center'>
-            <div>Description:</div>
-          </div>
-          <div className='submission-head flex-center'>
-            <div>
-              <span>Assigned to:</span>
-              {student && student.username}
+    if (this.props.state.user.email == this.state.email) {
+
+      return (
+        <div className='wrapper'>
+          <div className='sidebar-heading flex-center'>Title</div>
+          <div className='grid-col-2'>
+            <div className='submission-head flex-center'>
+              <div>Description:</div>
             </div>
-            <div>Paired with:</div>
-            <div>Type:</div>
-            <div>Due by:</div>
+            <div className='submission-head flex-center'>
+              <div>
+                <span>Assigned to:</span>
+                {student && student.username}
+              </div>
+              <div>Paired with:</div>
+              <div>Type:</div>
+              <div>Due by:</div>
+            </div>
           </div>
+          <iframe
+            className='article'
+            // src={`${this.state.contentUrl}`}
+            target='_parent'
+          />
+          <form>
+            <div className='flex-center'>
+              <textarea
+                minLength='300'
+                maxLength='1000'
+                className='summary input'
+                placeholder='Summarize the above article in your words'
+                onChange={this.handleChange}
+                value={this.state.summary}
+                name='contentSummary'
+              />
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                marginRight: '14rem',
+              }}
+            >
+              <button className='button' type='submit'>
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
-        <iframe
-          className='article'
-          // src={`${this.state.contentUrl}`}
-          target='_parent'
-        />
-        <form>
-          <div className='flex-center'>
-            <textarea
-              minLength='300'
-              maxLength='1000'
-              className='summary input'
-              placeholder='Summarize the above article in your words'
-              onChange={this.handleChange}
-              value={this.state.summary}
-              name='contentSummary'
-            />
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              marginRight: '14rem',
-            }}
-          >
-            <button className='button' type='submit'>
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    );
+      );
+    }
+    return (
+      <h1>You are not authorized</h1>
+    )
   }
 }
 

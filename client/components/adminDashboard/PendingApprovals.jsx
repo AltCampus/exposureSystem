@@ -33,14 +33,12 @@ class PendingApprovals extends Component {
     // });
   }
 
-  // cb = () => {
-  //   console.log('inside cb');
-  //   this.setState({
-  //     pendingStudentList: this.props.adminReducer.pendingStudentList,
-  //   });
-  // this.props.history.push('/admin/pending-approvals');
+  cb = () => {
+  
+  this.props.history.push('/admin/pending-approvals');
 
-  // };
+  };
+  
   render() {
     const pendingStudentList =
       this.props.adminReducer.pendingStudentList &&

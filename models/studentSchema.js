@@ -21,7 +21,6 @@ const studentSchema = new Schema(
     },
     isInCampus: false,
     isActive: false,
-    isAdmin: false,
     isApproved: { type: Boolean, default: false },
     sentContent: [{ type: Schema.Types.ObjectId, ref: 'contentSchema' }],
     points: 0,
