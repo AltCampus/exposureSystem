@@ -62,10 +62,7 @@ const fetchPendingApprovalList = () => dispatch => {
 };
 
 const approveStudent = (id, cb) => dispatch => {
-  // const id = id;
-  // console.log(id, token, 'inApprove');
   const url = `/api/v1/admin/pending-approvals/approved/${id}`;
-  // console.log(url, 'url');
   fetch(url, {
     method: 'PUT',
     headers: {
@@ -76,8 +73,9 @@ const approveStudent = (id, cb) => dispatch => {
     swal({
       title: 'Student Approved',
       icon: 'success'
-    }), cb();
+    })
   });
+  cb();
 };
 
 const removeStudent = (id, cb) => dispatch => {
@@ -92,7 +90,8 @@ const removeStudent = (id, cb) => dispatch => {
       title: 'Student Removed',
       icon: 'success'
     })
-  }).then(() => cb())
+  });
+  cb();
 };
 
 const adminLogout = (cb) => dispatch => {

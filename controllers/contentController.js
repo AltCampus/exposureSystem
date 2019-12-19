@@ -54,12 +54,6 @@ module.exports = {
   },
 
   updateContent: (req, res) => {
-    // Validate Request
-    //   if (!req.body.description) {
-    //     return res.status(400).send({
-    //       message: "Description content can not be empty"
-    //     });
-    //   }
 
     Content.findByIdAndUpdate(
       req.params.contentId,

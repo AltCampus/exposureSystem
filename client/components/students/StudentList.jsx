@@ -18,7 +18,7 @@ class StudentList extends Component {
   }
 
   cb = () => {
-    this.props.history.push('/admin/student/list');
+    this.componentDidMount();
   }
 
   handleReject = id => {

@@ -11,9 +11,6 @@ const { Column, ColumnGroup } = Table;
 class PendingApprovals extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // pendingStudentList: this.props.adminReducer.pendingStudentList.value,
-    };
   }
 
   handleReject = id => {
@@ -21,22 +18,15 @@ class PendingApprovals extends Component {
   };
 
   handleApprove = id => {
-    // console.log(id, 'inhandleaprrove');
     this.props.approveStudent(id, this.cb);
   };
 
   componentDidMount() {
     this.props.fetchPendingApprovalList();
-    // this.cb();
-    // this.setState({
-    //   pendingStudentList: this.props.adminReducer.pendingStudentList,
-    // });
   }
 
-  cb = () => {
-  
-  this.props.history.push('/admin/pending-approvals');
-
+  cb = () => { 
+    this.componentDidMount();
   };
   
   render() {
@@ -49,7 +39,6 @@ class PendingApprovals extends Component {
     const id =
       this.props.adminReducer.pendingStudentList.pendingStudents &&
       this.props.adminReducer.pendingStudentList.pendingStudents.id;
-    // console.log(id, 'id');
 
     return (
       <>
