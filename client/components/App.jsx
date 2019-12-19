@@ -42,18 +42,8 @@ class App extends Component {
       this.loginUser();
     }
   }
-  // handleRoute = () => {
-  //   (this.state.user) ?
-  //     (this.state.user.isAdmin == true) ?
-  //       this.props.history.push('/admin/feed')
-  //       :
-  //       this.props.history.push('/feed')
-  //     :
-  //     this.props.history.push('/')
-  // };
 
   loginUser = () => {
-    //TODO Store user/admin in reducer
     fetch('http://localhost:3000/api/v1/admin/me', {
       method: 'GET',
       headers: {
@@ -62,10 +52,10 @@ class App extends Component {
       },
     })
       .then(res => res.json())
-      .then(res => {
-        if (res) {
+      .then(admin => {
+        if (admin) {
           this.setState({
-            user: res,
+            user: admin,
           });
         } else {
           fetch('http://localhost:3000/api/v1/student/me', {
@@ -76,14 +66,13 @@ class App extends Component {
             },
           })
             .then(res => res.json())
-            .then(res => {
+            .then(student => {
               this.setState({
-                user: res,
+                user: student,
               });
             });
         }
       });
-    // .then(() => this.handleRoute())
   };
 
   cb = () => {
@@ -134,7 +123,9 @@ class App extends Component {
           <Route
             exact
             path='/submission/:deliveryid'
-            component={ContentSubmission}
+            render={() => (
+              <ContentSubmission state={this.state} isAuthed={true} />
+            )}
           />
           <Route
             exact

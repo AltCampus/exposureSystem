@@ -18,6 +18,7 @@ class ContentSubmission extends Component {
       contentid: null,
       contentSummary: null,
       createdAt: null,
+      email: null,
     };
   }
 
@@ -28,6 +29,7 @@ class ContentSubmission extends Component {
       content: this.props.submissionReducer.deliveryData.content,
       contentid: this.props.submissionReducer.deliveryData.content._id,
       createdAt: this.props.submissionReducer.deliveryData.createdAt,
+      email: this.props.submissionReducer.deliveryData.student.email,
     });
   };
   componentDidMount() {
@@ -49,6 +51,7 @@ class ContentSubmission extends Component {
       [e.target.name]: [e.target.value],
     });
   };
+
   render() {
     console.log(this.state, 'state');
     const content =
@@ -62,61 +65,63 @@ class ContentSubmission extends Component {
     // );
     // console.log(points, 'points');
     console.log(content, 'content');
-    return (
-      <div className='wrapper'>
-        <h2 className='heading text-center'>{this.state.title}</h2>
-        <div className='grid-col-2'>
-          <div className='submission-head flex-center'>
-            <div className='submission-description'>
-              {content && content.description}
+    if (this.props.state.user.email == this.state.email) {
+      return (
+        <div className='wrapper'>
+          <h2 className='heading text-center'>{this.state.title}</h2>
+          <div className='grid-col-2'>
+            <div className='submission-head flex-center'>
+              <div className='submission-description'>
+                {content && content.description}
+              </div>
+            </div>
+            <div className='submission-head flex-center'>
+              <div>
+                <span>Assigned to:</span>
+                {student && student.username}
+              </div>
+              {/* <div>Paired with:</div> */}
+              <div>Type: {content && content.type}</div>
+              {/* <div>Due by:</div> */}
             </div>
           </div>
-          <div className='submission-head flex-center'>
-            <div>
-              <span>Assigned to:</span>
-              {student && student.username}
-            </div>
-            {/* <div>Paired with:</div> */}
-            <div>Type: {content && content.type}</div>
-            {/* <div>Due by:</div> */}
+          <iframe
+            className='article'
+            // src={`${this.state.contentUrl}`}
+            target='_parent'
+          />
+          <div className='submission-card'>
+            <form>
+              <div className='flex-center'>
+                <textarea
+                  width='100%'
+                  minLength='300'
+                  maxLength='1000'
+                  className='summary input'
+                  placeholder='What are your takeaways from this article?'
+                  onChange={this.handleChange}
+                  value={this.state.summary}
+                  name='contentSummary'
+                />
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  marginRight: '14rem',
+                }}
+              >
+                <Button className='button' type='primary'>
+                  Submit
+                </Button>
+              </div>
+            </form>
           </div>
         </div>
-        <iframe
-          className='article'
-          // src={`${this.state.contentUrl}`}
-          target='_parent'
-        />
-        <div className='submission-card'>
-
-        <form>
-          <div className='flex-center'>
-            <textarea
-            width='100%'
-              minLength='300'
-              maxLength='1000'
-              className='summary input'
-              placeholder='What are your takeaways from this article?'
-              onChange={this.handleChange}
-              value={this.state.summary}
-              name='contentSummary'
-            />
-            {/* <TextArea width='50%' rows={8} minLength='300' maxLength='1000' defaultValue= 'Summarize the above article in your words' /> */}
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              marginRight: '14rem',
-            }}
-          >
-            <Button className='button' type='primary'>
-              Submit
-            </Button>
-          </div>
-        </form>
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return <h2 className='heading'>Oops! Something went wrong there!</h2>;
+    }
   }
 }
 

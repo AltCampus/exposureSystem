@@ -18,7 +18,7 @@ const adminLogin = (adminCredentials, cb) => {
           type: 'ADMIN_LOGIN_SUCCESS',
           data: admin,
         });
-        cb()
+        cb();
       });
   };
 };
@@ -75,8 +75,9 @@ const approveStudent = (id, cb) => dispatch => {
   }).then(approvedStudent => {
     swal({
       title: 'Student Approved',
-      icon: 'success'
-    }), cb();
+      icon: 'success',
+    }),
+      cb();
   });
 };
 
@@ -90,12 +91,14 @@ const removeStudent = (id, cb) => dispatch => {
   }).then(removedStudent => {
     swal({
       title: 'Student Removed',
-      icon: 'success'
-    }), cb();
+      icon: 'success',
+    });
+    cb();
   });
+  // .then(() => cb());
 };
 
-const adminLogout = (cb) => dispatch => {
+const adminLogout = cb => dispatch => {
   localStorage.clear();
   dispatch({ type: 'ADMIN_LOGOUT' });
   cb();
