@@ -37,58 +37,58 @@ class NewContentForm extends Component {
     // console.log(this.state, 'state');
     return (
       <>
-        <div className="wrapper grid-dashboard">
+        <div className='wrapper grid-dashboard'>
           <div>
             <AdminSidebar />
           </div>
           <form
-            className="flex-column flex-center"
+            className='flex-column flex-center'
             // onSubmit={this.handleSubmit}
           >
             <select
-              name="type"
-              className="input input-select"
+              name='type'
+              className='input input-select'
               onClick={this.handleChange}
               defaultValue={'DEFAULT'}
             >
-              <option value="DEFAULT" disabled>
+              <option value='DEFAULT' disabled>
                 Type
               </option>
-              <option className="input" value="resource">
+              <option className='input' value='resource'>
                 Resource
               </option>
-              <option className="input" value="challenge">
+              <option className='input' value='challenge'>
                 Challenge
               </option>
             </select>
 
             <input
-              name="url"
-              className="input"
-              type="text"
-              placeholder="Content Url"
+              name='url'
+              className='input'
+              type='text'
+              placeholder='Content Url'
               value={this.state.contentUrl}
               onChange={this.handleChange}
             ></input>
             <input
-              name="title"
-              className="input"
-              type="text"
-              placeholder="Title"
+              name='title'
+              className='input'
+              type='text'
+              placeholder='Title'
               value={this.state.title}
               onChange={this.handleChange}
             ></input>
             <textarea
-              name="description"
-              className="input"
-              type="text"
-              placeholder="Description"
+              name='description'
+              className='input'
+              type='text'
+              placeholder='Description'
               value={this.state.description}
               onChange={this.handleChange}
             ></textarea>
             <button
-              className="button"
-              type="submit"
+              className='button'
+              type='submit'
               onClick={this.handleSubmit}
             >
               Add Content

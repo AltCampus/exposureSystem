@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import validator from 'validator';
 import { studentLogin } from '../../redux/actions/studentAction';
 import swal from 'sweetalert';
+import { Button } from 'antd';
 
 class LoginStudent extends Component {
   constructor(props) {

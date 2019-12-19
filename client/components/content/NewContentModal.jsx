@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createContent } from '../../redux/actions/contentAction';
+import { connect } from 'react-redux';
 
 import { Button, Modal, Form, Input, Radio } from 'antd';
 
@@ -29,20 +30,22 @@ const ContentCreateForm = Form.create({ name: 'form_in_modal' })(
               })(<Input />)}
             </Form.Item>
             <Form.Item label='Description'>
-              {getFieldDecorator('description')(<Input type='textarea' />)}
+              {getFieldDecorator('description')(
+                <Input type='textarea' size='large' />,
+              )}
             </Form.Item>
             <Form.Item label='URL'>
-              {getFieldDecorator('URL', {
+              {getFieldDecorator('contentUrl', {
                 rules: [
                   {
                     required: true,
                     message: 'Please enter a URL!',
                   },
                 ],
-              })(<Input type='text' />)}
+              })(<Input type='url' />)}
             </Form.Item>
             <Form.Item className='collection-create-form_last-form-item'>
-              {getFieldDecorator('modifier', {
+              {getFieldDecorator('type', {
                 initialValue: 'resource',
               })(
                 <Radio.Group>
@@ -61,6 +64,14 @@ const ContentCreateForm = Form.create({ name: 'form_in_modal' })(
 class NewContentModal extends React.Component {
   state = {
     visible: false,
+    type: '',
+    url: '',
+    title: '',
+    description: '',
+  };
+
+  cb = () => {
+    this.props.history.push('/admin/content/list');
   };
 
   showModal = () => {
@@ -79,6 +90,8 @@ class NewContentModal extends React.Component {
       }
 
       console.log('Received values of form: ', values);
+      this.props.createContent(values, this.cb);
+
       form.resetFields();
       this.setState({ visible: false });
     });
@@ -106,4 +119,7 @@ class NewContentModal extends React.Component {
   }
 }
 
-export default NewContentModal;
+const mapStateToProps = state => {
+  return state;
+};
+export default connect(mapStateToProps, { createContent })(NewContentModal);

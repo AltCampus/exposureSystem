@@ -19,9 +19,10 @@ const createContent = (data, cb) => dispatch => {
       });
       swal({
         title: `${content.title}`,
-        text: `of type ${content.type} created`,
-        icon: 'success'
-      }), cb();
+        text: 'created',
+        icon: 'success',
+      }),
+        cb();
     });
 };
 

@@ -46,13 +46,13 @@ class Onboarding extends Component {
 
     swal({
       title: 'Good Job',
-      text:
-        'Please wait for your email verification. Meanwhile, you will be directed to the home page.',
+      text: 'Please wait for your email verification!',
       icon: 'success',
       timer: 3000,
-    }).then(function() {
-      window.location = '/';
     });
+    // .then(function() {
+    //   window.location = '/';
+    // });
   };
 
   render() {

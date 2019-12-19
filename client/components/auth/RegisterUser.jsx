@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import validator from 'validator';
 import Header from '../header/Header';
 import swal from 'sweetalert';
+import { Button } from 'antd';
 
 class RegisterUser extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ class RegisterUser extends Component {
 
     swal({
       title: 'Good job!',
-      text: 'Head For Onboarding',
+      text: 'A few more questions',
       icon: 'success',
       button: 'Go ahead',
     });
