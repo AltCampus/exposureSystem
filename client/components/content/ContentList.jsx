@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 
 import { fetchContentList } from '../../redux/actions/contentAction';
 
+import { Table, Divider } from 'antd';
+const { Column, ColumnGroup } = Table;
+
 class ContentList extends Component {
   constructor(props) {
     super(props);
@@ -28,18 +31,18 @@ class ContentList extends Component {
       this.props.adminReducer.contentList.contents;
     console.log(contentList, 'cc');
     return (
-      <div className="wrapper grid-dashboard">
+      <div className='wrapper grid-dashboard'>
         <div>
           <AdminSidebar />
         </div>
         <div>
-          <h3 className="flex-center" style={{ color: 'rgb(59, 57, 57)' }}>
+          <h3 className='flex-center' style={{ color: 'rgb(59, 57, 57)' }}>
             Content List
           </h3>
-          <div className="grid-col-3">
+          <div className='grid-col-3'>
             {contentList &&
-              contentList.map(content => {
-                return <ContentCard key={content.id} content={content} />;
+              contentList.map((content, i) => {
+                return <ContentCard key={i} content={content} />;
               })}
           </div>
         </div>

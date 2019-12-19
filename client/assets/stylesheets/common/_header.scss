@@ -1,17 +1,17 @@
-.header{
-    background: $primary ;
-    color: $white;
-    margin-bottom: 1rem;
-    box-shadow: $shadow;
-    padding: 1rem;
+.header {
+  background: $primary;
+  color: $white;
+  // margin-bottom: 1rem;
+  box-shadow: $shadow;
+  padding: 1rem;
 }
 
-.icon{
-    color: $white !important;
+.icon {
+  color: $white !important;
 }
 
-.head-links{
-    padding : 0.5rem;
-    color: $white;
-    background: $primary;
+.head-links {
+  padding: 0.5rem;
+  color: $white;
+  background: $primary;
 }

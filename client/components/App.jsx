@@ -92,7 +92,7 @@ class App extends Component {
       <>
         <Header handleLogout={this.handleLogout} />
         <Switch>
-          {/* <Route exact path="/admin/feed" component={AdminFeed} />
+          <Route exact path="/admin/feed" component={AdminFeed} />
           <Route exact path="/admin/content/list" component={ContentList} />
           <Route exact path="/admin/content/new" component={NewContentForm} />
           <Route exact path="/admin/student/list" component={StudentList} />
@@ -105,7 +105,7 @@ class App extends Component {
           <Route
             exact
             path="/admin/pending-approvals"
-            component={PendingApprovals} */}
+            component={PendingApprovals}
           />
         </Switch>
       </>
@@ -149,7 +149,7 @@ class App extends Component {
             path='/await-approval'
             component={RegisterVerification}
           />
-          <Route exact path='/admin/feed' component={AdminFeed} />
+          {/* <Route exact path='/admin/feed' component={AdminFeed} />
           <Route exact path='/admin/content/list' component={ContentList} />
           <Route exact path='/admin/content/new' component={NewContentForm} />
           <Route exact path='/admin/student/list' component={StudentList} />
@@ -162,7 +162,7 @@ class App extends Component {
           <Route
             exact
             path='/admin/pending-approvals'
-            component={PendingApprovals}
+            component={PendingApprovals} */}
           />
           <Route component={Page404} />
         </Switch>
