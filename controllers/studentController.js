@@ -74,20 +74,18 @@ module.exports = {
   },
 
   updateStudentPoints: (req, res, next) => {
-    let { username, id } = req.body;
+    let { userid , contentid } = req.body;
     let sentContent = [];
     let points =
       new Date(req.body.createdAt).valueOf() + 172800 * 1000 > Date.now()
         ? 1
         : -1;
-    Student.findById(req.body.id).then(student => {
-      sentContent.push(...student.sentContent, req.body.sentContent);
+    Student.findById(userid).then(student => {
+      sentContent.push(...student.sentContent, contentid);
     });
     Student.findByIdAndUpdate(
       id,
       {
-        username,
-        email,
         sentContent,
         points,
       },
@@ -104,11 +102,4 @@ module.exports = {
       return res.status.json({ student });
     });
   },
-
-  // updatePoints : (req, res, next) => {
-  //        const id = req.body.id;
-  //        Student.findById(req.params.id)
-  //        if (err) return next(err);
-  //        return res.status.json()({ ...student, points: student.points + student.hasSubmitted ? 0.5 : -1 });
-  //    }
 };

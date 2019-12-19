@@ -39,7 +39,18 @@ const createSubmission = (submissionData, cb) => dispatch => {
         data: submissionData,
       }),
         cb();
-    });
+    }).then(
+      fetch('http://localhost:3000/api/v1/student/update/points' , {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: {
+          userid: submissionData.userid,
+          contentid: submissionData.contentid,
+        }
+      })
+    );
 };
 
 const fetchSubmissionList = () => dispatch => {
