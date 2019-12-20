@@ -4,30 +4,18 @@ const Delivery = require('../models/deliverySchema');
 
 module.exports = {
   newDelivery: (req, res) => {
-    const delivery = new Delivery(req);
-    // console.log(req, 'inside deliveryController');
+    const delivery = new Delivery(req.body);
+    console.log(delivery, 'delivery');
 
     delivery
       .save()
       .then(data => {
-        // console.log(data, "content data")
-
-        // res.send(data);
-        // `http:localhost:3000/delivery/${:deliveryId}`
-        // const mail = `http://localhost:3000/api/v1/delivery/${data.id}`;
-        // console.log(mail);
-        // res.json({ data });
-        // console.log(data._id);
-        const id = data._id;
-        return { id };
+        console.log(data, 'deliverySavedData');
       })
       .catch(err => {
         console.log(err);
-        // res.status(500).json({
-        //   message:
-        //     err.message || 'Some error occurred while initialising delivery',
-        // });
       });
+    res.json({ delivery });
   },
 
   findOneDelivery: (req, res) => {
