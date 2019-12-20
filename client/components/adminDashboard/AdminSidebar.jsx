@@ -57,7 +57,7 @@ function AdminSidebar() {
           <div className='logo'>
             <span>Exposure System</span>
           </div>
-          <Menu theme='dark' mode='inline' defaultSelectedKeys={['1']}>
+          <Menu theme='dark' mode='inline' defaultSelectedKeys={['i']}>
             <Menu.Item key='1'>
               <NavLink to='/admin/feed'>
                 <Icon type='user' />

@@ -51,9 +51,10 @@ const updateContent = (id, cb) => {
     };
 };
 
-const deleteContent = (id, cb) => {
+const deleteContent = (id, cb) => dispatch => {
   console.log(id, 'in action');
-  fetch('http://localhost:3000/api/v1/content/delete', {
+  const url = `http://localhost:3000/api/v1/content/${id}`;
+  fetch(url, {
     method: 'DELETE',
     body: id,
     headers: {
@@ -62,6 +63,22 @@ const deleteContent = (id, cb) => {
   });
   cb();
 };
+
+// const removeStudent = (id, cb) => dispatch => {
+//   fetch(`/api/v1/admin/pending-approvals/remove/${id}`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: localStorage.getItem('token'),
+//     },
+//   }).then(removedStudent => {
+//     swal({
+//       title: 'Student Removed',
+//       icon: 'success',
+//     });
+//   });
+//   cb();
+// };
 
 module.exports = {
   createContent,

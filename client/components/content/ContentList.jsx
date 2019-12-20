@@ -40,7 +40,7 @@ class ContentList extends Component {
     const contentList =
       this.props.adminReducer.contentList &&
       this.props.adminReducer.contentList.contents.reverse();
-    console.log(contentList, 'cc');
+    // console.log(contentList, 'cc');
 
     return (
       <div className='wrapper'>

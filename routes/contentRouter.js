@@ -12,6 +12,6 @@ router.get('/:contentId', content.findOneContent);
 
 router.put('/update', content.updateContent);
 
-router.delete('/delete', content.deleteContent);
+router.delete('/:id', content.deleteContent);
 
 module.exports = router;
