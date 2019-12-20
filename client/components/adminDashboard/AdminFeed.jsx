@@ -40,7 +40,7 @@ class AdminFeed extends Component {
                 </div>
                 <h4
                   className='heading flex-center'
-                  style={{ marginTop: '20rem' }}
+                  style={{ marginTop: '20rem', paddingRight: '15rem' }}
                 >
                   We don't have submissions to show you right now :(
                 </h4>
