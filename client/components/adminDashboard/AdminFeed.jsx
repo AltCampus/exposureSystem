@@ -25,13 +25,6 @@ class AdminFeed extends Component {
       <>
         <div className='wrapper '>
           <AdminSidebar />
-
-          {/* <div className='grid-col-1'>
-            {this.state.submissionList &&
-              this.state.submissionList.map(submission => {
-                <StudentSubmissionCard submission={submission} />;
-              })}
-          </div> */}
           <div>
             {!this.props.submissionReducer.isLoadingSubmissionList ? (
               <div>

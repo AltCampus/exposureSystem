@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import validator from 'validator';
-import Header from '../header/Header';
 import swal from 'sweetalert';
 import { Button } from 'antd';
 

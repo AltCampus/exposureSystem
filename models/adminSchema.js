@@ -1,6 +1,5 @@
-// Requring The Mongoose
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
 
@@ -9,19 +8,18 @@ const adminSchema = new Schema(
     email: {
       type: String,
       require: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
-      required: true
-      // unique: true
+      required: true,
     },
-    isAdmin: { type: Boolean, default: true }
+    isAdmin: { type: Boolean, default: true },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-adminSchema.pre("save", function(next) {
+adminSchema.pre('save', function(next) {
   if (this.password) {
     this.password = bcrypt.hashSync(this.password, 10);
     next();
@@ -32,6 +30,6 @@ adminSchema.pre("save", function(next) {
 adminSchema.methods.confirmPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };
-const Admin = mongoose.model("Admin", adminSchema);
+const Admin = mongoose.model('Admin', adminSchema);
 
 module.exports = Admin;

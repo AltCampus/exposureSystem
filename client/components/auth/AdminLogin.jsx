@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../../redux/store/store';
 import { adminLogin } from '../../redux/actions/adminAction';
 import validator from 'validator';
 import { Button } from 'antd';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
 
 class AdminLogin extends Component {
   constructor(props) {
@@ -23,7 +22,6 @@ class AdminLogin extends Component {
 
   cb = () => {
     this.props.history.push('/admin/feed');
-    // swal('Admin logged in', 'hello', 'success')
   };
 
   handleAdminLogin = e => {
@@ -33,30 +31,31 @@ class AdminLogin extends Component {
       email: this.state.email,
       password: this.state.password,
     };
-    // console.log(adminCredentials, 'adminCredentials');
 
     if (!adminCredentials.email || !adminCredentials.password) {
       return swal({
         title: 'Sorry',
-        text: "Email and Password are must",
-        icon: "error",
-        button: 'Go Back'
+        text: 'Email and Password are must',
+        icon: 'error',
+        button: 'Go Back',
       });
     }
+
     if (!validator.isEmail(adminCredentials.email)) {
       return swal({
         title: 'Sorry',
         text: 'Email is invalid',
-        icon: "error",
-        button: 'Go Back'
+        icon: 'error',
+        button: 'Go Back',
       });
     }
+
     if (adminCredentials.password.length < 6) {
       return swal({
         title: 'Sorry',
-        text: "Password should be at least 6 characters long",
-        icon: "error",
-        button: 'Go Back'
+        text: 'Password should be at least 6 characters long',
+        icon: 'error',
+        button: 'Go Back',
       });
     }
 
@@ -64,7 +63,6 @@ class AdminLogin extends Component {
   };
 
   render() {
-    // console.log(this.props, adminLogin);
     const { email, password } = this.state;
     return (
       <div className='container card flex-center is-grouped'>
@@ -92,7 +90,6 @@ class AdminLogin extends Component {
               <Button
                 className='button'
                 type='primary'
-                // size="large"
                 onClick={this.handleAdminLogin}
               >
                 Submit
@@ -109,4 +106,4 @@ const mapStateToProps = store => {
   return store;
 };
 
-export default connect(mapStateToProps)(AdminLogin);
+export default connect(mapStateToProps, { adminLogin })(AdminLogin);

@@ -12,11 +12,10 @@ const fetchDeliveryData = (deliveryId, cb) => dispatch => {
   })
     .then(res => res.json())
     .then(deliveryData => {
-      console.log(deliveryData.delivery, 'deliverdata'),
-        dispatch({
-          type: 'FETCHING_DELIVERY_DATA_SUCCESS',
-          data: deliveryData.delivery,
-        });
+      dispatch({
+        type: 'FETCHING_DELIVERY_DATA_SUCCESS',
+        data: deliveryData.delivery,
+      });
       cb();
     });
 };
@@ -69,7 +68,6 @@ const fetchSubmissionList = () => dispatch => {
   })
     .then(res => console.log(res.json(), 'res in fetchsubmission'))
     .then(submissionList => {
-      console.log(submissionList, 'list I want');
       dispatch({
         type: 'FETCHING_SUBMISSION_LIST_SUCCESS',
         data: submissionList,

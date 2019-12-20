@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import registerStudent from '../../redux/actions/registerAction';
 import { Button, Checkbox } from 'antd';
-
 import swal from 'sweetalert';
 
 class Onboarding extends Component {
@@ -55,13 +54,9 @@ class Onboarding extends Component {
       icon: 'success',
       timer: 3000,
     });
-    // .then(function() {
-    //   window.location = '/';
-    // });
   };
 
   render() {
-    console.log(this.state, 'onboarding');
     return (
       <div className='container card flex-center'>
         <form className='notification text-center'>
@@ -72,7 +67,6 @@ class Onboarding extends Component {
                 name='isInCampus'
                 onChange={this.onCheckChange1}
                 defaultChecked={false}
-                // checked={true}
               >
                 In Campus
               </Checkbox>
@@ -88,7 +82,6 @@ class Onboarding extends Component {
                   name='isActive'
                   onChange={this.onCheckChange2}
                   defaultChecked={false}
-                  // checked={true}
                 >
                   In Campus
                 </Checkbox>
@@ -96,68 +89,11 @@ class Onboarding extends Component {
             </div>
           </div>
 
-          <Button
-            className='button'
-            type='primary'
-            // size="large"
-            onClick={this.handleSubmit}
-          >
+          <Button className='button' type='primary' onClick={this.handleSubmit}>
             Register
           </Button>
         </form>
       </div>
-      // <div className="wrapper">
-      //   <div className="grid-col-2 onboardingCard">
-      //     <div>
-      //       <h5>Are you on campus currently?</h5>
-      //       <br></br>
-      //       <h5>Do you wish to recieve emails from AltCampus?</h5>
-      //     </div>
-      //     <div className="grid-col-2">
-      //       <div className="flex-end">
-      //         <input
-      //           type="radio"
-      //           name="isInCampus"
-      //           value="true"
-      //           onChange={this.handleChange}
-      //         />
-      //         <p>Yes</p>
-      //       </div>
-      //       <div className="flex-end">
-      //         <input
-      //           type="radio"
-      //           name="isInCampus"
-      //           value="false"
-      //           onChange={this.handleChange}
-      //         />
-      //         <p>No</p>
-      //       </div>
-      //       <div className="flex-end">
-      //         <input
-      //           type="radio"
-      //           name="isActive"
-      //           value="true"
-      //           onChange={this.handleChange}
-      //         />
-      //         <p>Yes</p>
-      //       </div>
-      //       <div className="flex-end">
-      //         <input
-      //           type="radio"
-      //           name="isActive"
-      //           value="true"
-      //           onChange={this.handleChange}
-      //         />
-      //         <p>No</p>
-      //       </div>
-      //     </div>
-      //   </div>
-      //   <div className="flex-end">
-      //     <button type="submit" onClick={this.handleSubmit} className="button is-primary is-normal is-right">
-      //       Register
-      //     </button>
-      //   </div>
-      // </div>
     );
   }
 }

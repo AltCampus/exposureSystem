@@ -18,8 +18,6 @@ const submissionSchema = new Schema(
   { timestamps: true },
 );
 
-//function to push contentid to userSchema on successful submission
-
 const Submission = mongoose.model('Submission', submissionSchema);
 
 module.exports = Submission;

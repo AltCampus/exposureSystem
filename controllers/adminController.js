@@ -20,7 +20,6 @@ module.exports = {
   },
 
   approveStudent: (req, res, next) => {
-    console.log('in approve controller');
     req.body.isApproved = true;
     const { id } = req.params;
     Student.findByIdAndUpdate(id, req.body, { new: true }, (error, student) => {

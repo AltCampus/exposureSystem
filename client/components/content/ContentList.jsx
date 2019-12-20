@@ -40,7 +40,6 @@ class ContentList extends Component {
     const contentList =
       this.props.adminReducer.contentList &&
       this.props.adminReducer.contentList.contents.reverse();
-    // console.log(contentList, 'cc');
 
     return (
       <div className='wrapper'>
@@ -73,8 +72,6 @@ class ContentList extends Component {
                   key='description'
                 />
                 <Column width='7%' title='Type' dataIndex='type' key='type' />
-                {/* <Column width='10%' title='ContentID' dataIndex='_id' key='_id' /> */}
-
                 <Column
                   width='8%'
                   title='Action'

@@ -84,26 +84,6 @@ module.exports = {
   },
 
   deleteContent: (req, res) => {
-    console.log(req.body, 'in delete controller');
-    // Content.findByIdAndRemove(req.body.id)
-    //   .then(content => {
-    //     if (!content) {
-    //       return res.status(404).json({
-    //         message: `Content not found with id ${req.params.contentId}`,
-    //       });
-    //     }
-    //     res.json({ message: 'Content deleted successfully!' });
-    //   })
-    //   .catch(err => {
-    //     if (err.kind === 'ObjectId' || err.name === 'NotFound') {
-    //       return res.status(404).send({
-    //         message: `Content not found with id ${req.params.contentId}`,
-    //       });
-    //     }
-    //     return res.status(500).json({
-    //       message: `Could not delete content with id ${req.params.contentId}`,
-    //     });
-    //   });
     Content.findByIdAndDelete(id, (error, content) => {
       if (error) return next(error);
       return res.status(200).json({ student });

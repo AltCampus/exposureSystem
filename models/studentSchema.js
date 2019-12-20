@@ -31,14 +31,13 @@ const studentSchema = new Schema(
   },
 );
 
-// Implementing The PreSave Function
 studentSchema.pre('save', function(next) {
   if (this.password) {
     this.password = bcrypt.hashSync(this.password, 10);
     next();
   }
 });
-// Comparing The Hash Password With Plane Password
+
 studentSchema.methods.confirmPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };

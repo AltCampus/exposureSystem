@@ -1,6 +1,5 @@
 const express = require('express');
 const studentController = require('../controllers/studentController');
-const auth = require('../utils/auth');
 const Student = require('../models/studentSchema');
 const jwt = require('jsonwebtoken');
 

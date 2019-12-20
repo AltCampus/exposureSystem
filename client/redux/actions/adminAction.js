@@ -3,7 +3,6 @@ const adminLogin = (adminCredentials, cb) => {
     dispatch({
       type: 'ADMIN_LOGIN_START',
     });
-    // console.log('inside adminaction');
     fetch('http://localhost:3000/api/v1/admin/login', {
       method: 'POST',
       body: JSON.stringify(adminCredentials),
@@ -53,13 +52,10 @@ const fetchPendingApprovalList = () => dispatch => {
   })
     .then(res => res.json())
     .then(pendingApprovals =>
-      dispatch(
-        {
-          type: 'FETCHING_PENDING_APPROVALS_SUCCESS',
-          data: pendingApprovals,
-        },
-        // console.log(pendingApprovals),
-      ),
+      dispatch({
+        type: 'FETCHING_PENDING_APPROVALS_SUCCESS',
+        data: pendingApprovals,
+      }),
     );
 };
 

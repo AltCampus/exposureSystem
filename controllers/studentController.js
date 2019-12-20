@@ -29,7 +29,6 @@ module.exports = {
       return res.status(401).json({ error: 'INVALID USER' });
     }
     Student.findOne({ email }, (err, student) => {
-      console.log(student, 'aaaa');
       if (err) return next(err);
       if (!student) return res.json({ student: 'student Not Found' });
       if (!student.confirmPassword(password)) {
@@ -74,7 +73,7 @@ module.exports = {
   },
 
   updateStudentPoints: (req, res, next) => {
-    let { userid , contentid } = req.body;
+    let { userid, contentid } = req.body;
     let sentContent = [];
     let points =
       new Date(req.body.createdAt).valueOf() + 172800 * 1000 > Date.now()

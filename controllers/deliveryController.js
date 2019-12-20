@@ -5,7 +5,6 @@ const Delivery = require('../models/deliverySchema');
 module.exports = {
   newDelivery: (req, res) => {
     const delivery = new Delivery(req.body);
-    console.log(delivery, 'delivery');
 
     delivery
       .save()
@@ -22,12 +21,7 @@ module.exports = {
     Delivery.findById(req.params.deliveryId)
       .populate('content')
       .populate('student')
-      // .exec(function(err, delivery) {
-      //   if (err) return console.log(err);
-      //   console.log(delivery);
-      // });
       .then(delivery => {
-        console.log(delivery, 'gg');
         if (!delivery) {
           return res.status(404).json({
             message: 'Delivery not found with id ' + req.params.deliveryId,

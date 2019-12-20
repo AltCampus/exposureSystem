@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminSidebar from './AdminSidebar';
-import PendingCard from './PendingCard';
 import { fetchPendingApprovalList } from '../../redux/actions/adminAction';
 import { approveStudent, removeStudent } from '../../redux/actions/adminAction';
 

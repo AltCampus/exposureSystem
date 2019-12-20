@@ -6,44 +6,6 @@ const { Header, Content, Footer, Sider } = Layout;
 function AdminSidebar() {
   return (
     <>
-      {/* <div className="flex-column flex-center sidebar">
-        <div className="card-heading flex-center">Quick Access</div>
-        <NavLink
-          className="dash-link"
-          activeClassName="active"
-          to="/admin/feed"
-        >
-          Feed
-        </NavLink>
-        <NavLink
-          className="dash-link"
-          activeClassName="active"
-          to="/admin/content/list"
-        >
-          Content List
-        </NavLink>
-        <NavLink
-          className="dash-link"
-          activeClassName="active"
-          to="/admin/content/new"
-        >
-            Create Content
-        </NavLink>
-        <NavLink
-          className="dash-link"
-          activeClassName="active"
-          to="/admin/student/list"
-        >
-            Student List
-        </NavLink>
-        <NavLink
-          className="dash-link"
-          activeClassName="active"
-          to="/admin/pending-approvals"
-        >
-            Pending Approvals
-        </NavLink>
-      </div> */}
       <Layout>
         <Sider
           style={{

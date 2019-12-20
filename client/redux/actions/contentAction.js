@@ -64,22 +64,6 @@ const deleteContent = (id, cb) => dispatch => {
   cb();
 };
 
-// const removeStudent = (id, cb) => dispatch => {
-//   fetch(`/api/v1/admin/pending-approvals/remove/${id}`, {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Authorization: localStorage.getItem('token'),
-//     },
-//   }).then(removedStudent => {
-//     swal({
-//       title: 'Student Removed',
-//       icon: 'success',
-//     });
-//   });
-//   cb();
-// };
-
 module.exports = {
   createContent,
   fetchContentList,

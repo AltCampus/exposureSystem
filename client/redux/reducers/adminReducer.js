@@ -20,7 +20,7 @@ function adminReducer(state = INITIAL_STATE, action) {
         isAdminLogginIn: true,
       };
     case 'ADMIN_LOGIN_SUCCESS':
-      console.log('INSIDE REDUCER', action)
+      console.log('INSIDE REDUCER', action);
       return {
         ...state,
         isAdminLogginIn: false,

@@ -14,8 +14,6 @@ module.exports = {
       contentid: req.body.contentid,
       pointsAwarded: points,
     });
-    console.log(points, 'points');
-    console.log(req.body, 'inside submission');
 
     submission
       .save()

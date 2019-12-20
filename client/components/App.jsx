@@ -14,7 +14,6 @@ import LoginUser from './auth/LoginUser';
 import AdminLogin from './auth/AdminLogin';
 import Page404 from './Page404';
 import ContentList from './content/ContentList';
-import NewContentForm from './content/NewContentForm';
 import PendingApprovals from './adminDashboard/PendingApprovals';
 import ContentSubmission from './content/ContentSubmission';
 import SingleContent from './content/SingleContent';
