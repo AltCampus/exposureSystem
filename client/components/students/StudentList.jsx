@@ -42,7 +42,7 @@ class StudentList extends Component {
           <AdminSidebar />
         </div>
         {this.props.adminReducer.isLoadingStudentList ? (
-          <div className='flex-center'>
+          <div className='flex-center spinner'>
             <Spin size='large' />
           </div>
         ) : (

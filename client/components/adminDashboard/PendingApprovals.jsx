@@ -47,7 +47,7 @@ class PendingApprovals extends Component {
             <AdminSidebar />
           </div>
           {this.props.adminReducer.isLoadingPendingStudentList ? (
-            <div className='flex-center'>
+            <div className='flex-center spinner'>
               <Spin size='large' />
             </div>
           ) : (

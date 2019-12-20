@@ -37,7 +37,7 @@ class AdminFeed extends Component {
           </div> */}
           <div>
             {this.props.submissionReducer.isLoadingSubmissionList ? (
-              <div className='flex-center'>
+              <div className='flex-center spinner'>
                 <Spin size='large' />
               </div>
             ) : (

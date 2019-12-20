@@ -48,7 +48,7 @@ class ContentList extends Component {
           <AdminSidebar />
         </div>
         {this.props.adminReducer.isLoadingContentList ? (
-          <div className='flex-center'>
+          <div className='flex-center spinner'>
             <Spin size='large' />
           </div>
         ) : (
@@ -61,18 +61,18 @@ class ContentList extends Component {
             <Table bordered dataSource={contentList}>
               <ColumnGroup>
                 <Column
-                  width='20%'
+                  width='15%'
                   title='Title'
                   dataIndex='title'
                   key='title'
                 />
                 <Column
-                  width='55%'
+                  width='50%'
                   title='Description'
                   dataIndex='description'
                   key='description'
                 />
-                <Column width='10%' title='Type' dataIndex='type' key='type' />
+                <Column width='7%' title='Type' dataIndex='type' key='type' />
                 {/* <Column width='10%' title='ContentID' dataIndex='_id' key='_id' /> */}
 
                 <Column
