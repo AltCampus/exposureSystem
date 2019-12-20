@@ -40,8 +40,8 @@ const createSubmission = (submissionData, cbRoute) => dispatch => {
         type: 'NEW_SUBMISSION_CREATED_SUCCESSFULLY',
         data: submission,
       });
-    });
-  // .then(() => cbRoute());
+    })
+    .then(() => cbRoute());
   // .then(
   //   fetch('http://localhost:3000/api/v1/student/update/points', {
   //     method: 'POST',

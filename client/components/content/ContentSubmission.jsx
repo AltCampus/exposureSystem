@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import {
   fetchDeliveryData,
   createSubmission,
@@ -150,4 +151,4 @@ export default connect(mapStateToProps, {
   updatePoints,
   fetchDeliveryData,
   createSubmission,
-})(ContentSubmission);
+})(withRouter(ContentSubmission));
