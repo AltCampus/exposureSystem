@@ -6,6 +6,9 @@ import AdminSidebar from './AdminSidebar';
 import { fetchSubmissionList } from '../../redux/actions/submissonAction';
 
 import { Layout, Menu, Icon } from 'antd';
+import { Table, Divider } from 'antd';
+
+const { Column, ColumnGroup } = Table;
 const { Header, Content, Footer, Sider } = Layout;
 
 class AdminFeed extends Component {
@@ -34,7 +37,7 @@ class AdminFeed extends Component {
           <div>
             <h3 className='flex-center heading'>Submission List</h3>
 
-            <Table bordered dataSource={submissionList}>
+            {/* <Table bordered dataSource={submissionList}>
               <ColumnGroup title='Submission List'>
                 <Column
                   width='10%'
@@ -61,7 +64,7 @@ class AdminFeed extends Component {
                   key='pointsAwarded'
                 />
               </ColumnGroup>
-            </Table>
+            </Table> */}
           </div>
         </div>
       </>

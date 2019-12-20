@@ -31,7 +31,7 @@ const fetchStudentList = () => {
     fetch('http://localhost:3000/api/v1/student/status/list', {
       method: 'GET',
     })
-      .then(res => res.json(), console.log(res))
+      .then(res => res.json())
       .then(studentList =>
         dispatch({
           type: 'FETCHING_STUDENT_LIST_SUCCESS',
@@ -74,8 +74,8 @@ const approveStudent = (id, cb) => dispatch => {
   }).then(approvedStudent => {
     swal({
       title: 'Student Approved',
-      icon: 'success'
-    })
+      icon: 'success',
+    });
   });
   cb();
 };
@@ -90,8 +90,8 @@ const removeStudent = (id, cb) => dispatch => {
   }).then(removedStudent => {
     swal({
       title: 'Student Removed',
-      icon: 'success'
-    })
+      icon: 'success',
+    });
   });
   cb();
 };

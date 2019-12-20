@@ -7,7 +7,7 @@ import {
 } from '../../redux/actions/contentAction';
 import NewContentModal from './NewContentModal';
 import { Table, Divider } from 'antd';
-
+import { Spin } from 'antd';
 const { Column, ColumnGroup } = Table;
 
 class ContentList extends Component {

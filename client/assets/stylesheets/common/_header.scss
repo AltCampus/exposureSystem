@@ -1,9 +1,14 @@
 .header {
   background: $primary;
-  color: $white;
   // margin-bottom: 1rem;
   box-shadow: $shadow;
   padding: 1rem;
+}
+
+.heading-logo {
+  color: $white;
+  font-weight: bolder;
+  margin: 0;
 }
 
 .icon {
@@ -12,6 +17,8 @@
 
 .head-links {
   padding: 0.5rem;
+  font-size: large;
+  font-weight: 600;
   color: $white;
   background: $primary;
 }

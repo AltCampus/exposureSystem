@@ -43,7 +43,7 @@ const fetchContentList = () => dispatch => {
 const updateContent = (id, cb) => {
   fetch('https://localhost:3000/api/v1/content/update'),
     {
-      method: 'POST',
+      method: 'PUT',
       body: id,
       headers: {
         'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ class Header extends React.Component {
         <div className='flex-between'>
           <div>
             <NavLink className='icon' to='/'>
-              <h3>Exposure System</h3>
+              <h1 className='heading-logo'>Exposure System</h1>
             </NavLink>
           </div>
           <button onClick={this.props.handleLogout} className='head-links'>
