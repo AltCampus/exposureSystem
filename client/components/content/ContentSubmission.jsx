@@ -39,23 +39,24 @@ class ContentSubmission extends Component {
   }
   cbRoute = () => {
     this.props.history.push('/feed');
-  }
+  };
   onSubmit = e => {
     e.preventDefault();
-    if (this.state.contentSummary[0].split(' ').length < 500) {
-      return alert('Summary should have atleast 500 words.');
-    } else {
-      this.props.createSubmission(this.state , this.cbRoute);
+    // if (this.state.contentSummary[0].split(' ').length < 500) {
+    //   return alert('Summary should have atleast 500 words.');
+    // } else {
+    {
+      this.props.createSubmission(this.state, this.cbRoute);
     }
   };
   handleChange = e => {
     this.setState({
-      [e.target.name]: [e.target.value],
+      [e.target.name]: e.target.value,
     });
   };
 
   render() {
-    console.log(this.state, 'state');
+    console.log(this.props, 'props');
     const content =
       this.props.submissionReducer.deliveryData &&
       this.props.submissionReducer.deliveryData.content;

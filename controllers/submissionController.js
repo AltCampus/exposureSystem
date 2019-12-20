@@ -2,6 +2,7 @@ const Submission = require('../models/submissionSchema');
 
 module.exports = {
   newSubmission: (req, res) => {
+    console.log('inside sub controller');
     let points =
       new Date(req.body.createdAt).valueOf() + 172800 * 1000 > Date.now()
         ? 1
@@ -22,7 +23,8 @@ module.exports = {
         res.status(200).json({ data });
       })
       .catch(err => {
-        res.status(500).json({
+        console.log(err);
+        res.status(400).json({
           message:
             err.message || 'Some error occurred while creating submission',
         });

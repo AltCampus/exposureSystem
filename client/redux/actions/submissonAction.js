@@ -21,7 +21,8 @@ const fetchDeliveryData = (deliveryId, cb) => dispatch => {
     });
 };
 
-const createSubmission = (submissionData, cb) => dispatch => {
+const createSubmission = (submissionData, cbRoute) => dispatch => {
+  console.log(submissionData, 'create submission called');
   dispatch({
     type: 'CREATE_NEW_SUBMISSION_START',
   });
@@ -30,28 +31,29 @@ const createSubmission = (submissionData, cb) => dispatch => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: submissionData,
+    body: JSON.stringify(submissionData),
   })
     .then(res => res.json())
-    .then(submissionData => {
+    .then(submission => {
+      console.log(submission, 'submissionData');
       dispatch({
         type: 'NEW_SUBMISSION_CREATED_SUCCESSFULLY',
-        data: submissionData,
-      })
-    })
-    .then(
-      fetch('http://localhost:3000/api/v1/student/update/points' , {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: {
-          userid: submissionData.userid,
-          contentid: submissionData.contentid,
-        }
-      })
-      .then(() => cb())
-    );
+        data: submission,
+      });
+    });
+  // .then(() => cbRoute());
+  // .then(
+  //   fetch('http://localhost:3000/api/v1/student/update/points', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: {
+  //       userid: submissionData.userid,
+  //       contentid: submissionData.contentid,
+  //     },
+  //   }).then(() => cbRoute()),
+  // );
 };
 
 const fetchSubmissionList = () => dispatch => {
@@ -75,16 +77,23 @@ const fetchSubmissionList = () => dispatch => {
     });
 };
 
-const fetchSingleSubmission = (id) => dispatch => {
+const fetchSingleSubmission = id => dispatch => {
   dispatch({
     type: 'FETCH_SINGLE_SUBMISSION_START',
   });
   fetch(`http://localhost:3000/api/v1/submission/${id}`)
-  .then(res => res.json())
-  .then(submission => dispatch({
-    type: 'FETCH_SINGLE_SUBMISSION_SUCCESS',
-    data: submission,
-  }))
-}
+    .then(res => res.json())
+    .then(submission =>
+      dispatch({
+        type: 'FETCH_SINGLE_SUBMISSION_SUCCESS',
+        data: submission,
+      }),
+    );
+};
 
-module.exports = { fetchSubmissionList, fetchDeliveryData, createSubmission, fetchSingleSubmission };
+module.exports = {
+  fetchSubmissionList,
+  fetchDeliveryData,
+  createSubmission,
+  fetchSingleSubmission,
+};
