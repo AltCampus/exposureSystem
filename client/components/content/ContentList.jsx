@@ -47,44 +47,54 @@ class ContentList extends Component {
         <div>
           <AdminSidebar />
         </div>
-        {/* {this.props.adminReducer.isLoadingContentList ? (
-          <Loader />
-        ) : ( */}
-        <div>
-          <div className='text-center'>
-            <h2 className='heading'>Content List</h2>
-            <NewContentModal />
-            <br></br>
+        {this.props.adminReducer.isLoadingContentList ? (
+          <div className='flex-center'>
+            <Spin size='large' />
           </div>
-          <Table bordered dataSource={contentList}>
-            <ColumnGroup>
-              <Column width='20%' title='Title' dataIndex='title' key='title' />
-              <Column
-                width='55%'
-                title='Description'
-                dataIndex='description'
-                key='description'
-              />
-              <Column width='10%' title='Type' dataIndex='type' key='type' />
-              {/* <Column width='10%' title='ContentID' dataIndex='_id' key='_id' /> */}
+        ) : (
+          <div>
+            <div className='text-center'>
+              <h2 className='heading'>Content List</h2>
+              <NewContentModal />
+              <br></br>
+            </div>
+            <Table bordered dataSource={contentList}>
+              <ColumnGroup>
+                <Column
+                  width='20%'
+                  title='Title'
+                  dataIndex='title'
+                  key='title'
+                />
+                <Column
+                  width='55%'
+                  title='Description'
+                  dataIndex='description'
+                  key='description'
+                />
+                <Column width='10%' title='Type' dataIndex='type' key='type' />
+                {/* <Column width='10%' title='ContentID' dataIndex='_id' key='_id' /> */}
 
-              <Column
-                width='8%'
-                title='Action'
-                key='action'
-                render={(text, record) => (
-                  <span>
-                    <a target='_blank' href={record.contentUrl}>
-                      Link
-                    </a>
-                    <Divider type='vertical' />
-                    <a onClick={() => this.handleDelete(record._id)}>Delete</a>
-                  </span>
-                )}
-              />
-            </ColumnGroup>
-          </Table>
-        </div>
+                <Column
+                  width='8%'
+                  title='Action'
+                  key='action'
+                  render={(text, record) => (
+                    <span>
+                      <a target='_blank' href={record.contentUrl}>
+                        Link
+                      </a>
+                      <Divider type='vertical' />
+                      <a onClick={() => this.handleDelete(record._id)}>
+                        Delete
+                      </a>
+                    </span>
+                  )}
+                />
+              </ColumnGroup>
+            </Table>
+          </div>
+        )}
       </div>
     );
   }
