@@ -21,6 +21,7 @@ class ContentSubmission extends Component {
       contentSummary: null,
       createdAt: null,
       email: null,
+      contentUrl: null,
     };
   }
 
@@ -32,6 +33,7 @@ class ContentSubmission extends Component {
       contentid: this.props.submissionReducer.deliveryData.content._id,
       createdAt: this.props.submissionReducer.deliveryData.createdAt,
       email: this.props.submissionReducer.deliveryData.student.email,
+      contentUrl: this.props.submissionReducer.deliveryData.content.contentUrl,
     });
   };
   componentDidMount() {
@@ -64,10 +66,6 @@ class ContentSubmission extends Component {
     const student =
       this.props.submissionReducer.deliveryData &&
       this.props.submissionReducer.deliveryData.student;
-    // const points = new Date(
-    //   this.state.createdAt.valueOf() + 172800 * 1000 > Date.now(),
-    // );
-    // console.log(points, 'points');
     console.log(content, 'content');
     if (this.props.state.user.email == this.state.email) {
       return (
@@ -89,11 +87,9 @@ class ContentSubmission extends Component {
               {/* <div>Due by:</div> */}
             </div>
           </div>
-          <iframe
-            className='article'
-            // src={`${this.state.contentUrl}`}
-            target='_parent'
-          />
+          <Button type='primary' href={`${this.state.contentUrl}`}>
+            Visit Page
+          </Button>
           <div className='submission-card'>
             <form>
               <div className='flex-center'>
@@ -128,7 +124,6 @@ class ContentSubmission extends Component {
         </div>
       );
     } else {
-      // return <h2 className='heading'>Oops! Something went wrong there!</h2>;
       return (
         <Result
           status='403'
