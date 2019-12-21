@@ -3,7 +3,7 @@ const studentLogin = (loginData, cb) => {
     dispatch({
       type: 'STUDENT_LOGIN_START',
     });
-    fetch('http://localhost:3000/api/v1/student/login', {
+    fetch('http://localhost:3000/api/v1/students/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

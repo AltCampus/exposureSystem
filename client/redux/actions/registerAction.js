@@ -1,5 +1,5 @@
 const registerStudent = (studentData, cb) => {
-  fetch('/api/v1/student/register', {
+  fetch('/api/v1/students/register', {
     method: 'POST',
     body: JSON.stringify(studentData),
     headers: {
