@@ -1,4 +1,5 @@
 const studentLogin = (loginData, cb) => {
+  console.log('inside action');
   return dispatch => {
     dispatch({
       type: 'STUDENT_LOGIN_START',
@@ -19,9 +20,11 @@ const studentLogin = (loginData, cb) => {
           data: studentData,
         }),
           cb(studentData.student.isApproved);
-      });
-  };
-};
+      })
+    }
+  }
+       
+
 
 const studentLogout = cb => dispatch => (
   {
