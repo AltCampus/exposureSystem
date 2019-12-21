@@ -30,12 +30,13 @@ module.exports = {
     }
     Student.findOne({ email }, (err, student) => {
       if (err) return next(err);
-      if (!student) return res.json({ student: 'student Not Found' });
+      if (!student)
+        return res.status(402).json({ student: 'student Not Found' });
       if (!student.confirmPassword(password)) {
-        return res.json({ error: 'Password Is Not Correct' });
+        return res.status(402).json({ error: 'Password Is Not Correct' });
       }
       if (student.isApproved === false)
-        return res.json({ student, error: 'Not verified' });
+        return res.status(403).json({ student, error: 'Not verified' });
 
       const token = auth.generateToken(email);
       return res.status(200).json({ student, token });

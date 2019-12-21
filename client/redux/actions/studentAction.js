@@ -17,9 +17,10 @@ const studentLogin = (loginData, cb) => {
         dispatch({
           type: 'STUDENT_LOGIN_SUCCESS',
           data: studentData,
-        }),
-          cb(studentData.student.isApproved);
-      });
+        });
+        cb(studentData.student.isApproved);
+      })
+      .catch(err => alert('Please check your credentials'));
   };
 };
 
