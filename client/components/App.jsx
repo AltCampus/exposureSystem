@@ -27,6 +27,7 @@ import Header from './header/Header';
 import { studentLogin, studentLogout } from '../redux/actions/studentAction';
 import { adminLogout } from '../redux/actions/adminAction';
 import Wrapper from './layout/Wrapper';
+import AdminMain from './adminDashboard/AdminMain';
 
 class App extends Component {
   constructor(props) {
@@ -91,7 +92,7 @@ class App extends Component {
   protectedAdminRoutes = () => {
     return (
       <>
-        <Header handleLogout={this.handleLogout} />
+        {/* <Header handleLogout={this.handleLogout} /> */}
         <Switch>
           <Route exact path='/admin/feed' component={AdminFeed} />
           <Route exact path='/admin/contents' component={ContentList} />
@@ -116,7 +117,7 @@ class App extends Component {
   protectedStudentRoutes = () => {
     return (
       <>
-        <Header handleLogout={this.handleLogout} />
+        {/* <Header handleLogout={this.handleLogout} /> */}
         <Switch>
           <Route
             exact
