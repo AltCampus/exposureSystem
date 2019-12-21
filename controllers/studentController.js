@@ -28,6 +28,7 @@ module.exports = {
       } = createdStudent;
       var registerStudents = {
         username: username,
+        isInCampus: isInCampus,
         email: email,
         isApproved: isApproved,
         isActive: isActive,
@@ -70,7 +71,6 @@ module.exports = {
         sentContent: sentContent,
         points: points
       };
-      console.log(loginStudent, "in the login student");
       return res.status(200).json({ loginStudent, token });
     });
   },
