@@ -59,7 +59,7 @@ class AdminLogin extends Component {
       });
     }
 
-    this.props.dispatch(adminLogin(adminCredentials, this.cb));
+    this.props.adminLogin(adminCredentials, this.cb);
   };
 
   render() {

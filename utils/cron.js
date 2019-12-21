@@ -41,7 +41,7 @@ const determineDeliveryType = () => {
   // if (day === 6) {
   //   return GROUP;
   // }
-  return INDIVIDUAL;
+  return PAIR;
 };
 
 const generateLinkAndSendMail = (student, delivery) => {

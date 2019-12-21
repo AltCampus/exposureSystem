@@ -26,7 +26,7 @@ class AdminFeed extends Component {
         <div className='wrapper '>
           <AdminSidebar />
           <div>
-            {!this.props.submissionReducer.isLoadingSubmissionList ? (
+            {this.props.submissionReducer.isLoadingSubmissionList ? (
               <div>
                 <div className='flex-center spinner'>
                   <Spin size='large' />

@@ -16,6 +16,9 @@ const deliverySchema = new Schema(
     // submissionId: [{ type: Schema.Types.ObjectId, ref: "submissionSchema" }],
     challengeMembers: [{ type: Schema.Types.ObjectId, ref: 'userSchema' }],
     pointsRewarded: { type: Number, required: true, default: 0 },
+    // whther individual, pair or group
+    // pair: [],
+    // group: []
   },
   {
     timestamps: true,
