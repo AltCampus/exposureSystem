@@ -95,13 +95,30 @@ class App extends Component {
       <>
         {/* <Header handleLogout={this.handleLogout} /> */}
         <Switch>
-          <Route exact path='/admin/feed' component={AdminFeed} />
+          <Route
+            exact
+            path='/admin/feed'
+            // component={AdminFeed}
+            render={() => (
+              <AdminFeed
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
+          />
           <Route exact path='/admin/contents' component={ContentList} />
           <Route
             exact
             path='/admin/students'
-            component={StudentList}
-            handleLogout={this.handleLogout}
+            // component={StudentList}
+            render={() => (
+              <StudentList
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
           />
           <Route
             exact
@@ -112,10 +129,25 @@ class App extends Component {
           <Route
             exact
             path='/admin/pending-approvals'
-            component={PendingApprovals}
-            handleLogout={this.handleLogout}
+            // component={PendingApprovals}
+            render={() => (
+              <PendingApprovals
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
           />
-          <Route component={AdminFeed} />
+          <Route
+            // component={AdminFeed}
+            render={() => (
+              <AdminFeed
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
+          />
         </Switch>
       </>
     );
