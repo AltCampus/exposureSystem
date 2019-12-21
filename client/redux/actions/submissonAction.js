@@ -66,7 +66,7 @@ const fetchSubmissionList = () => dispatch => {
       Authorization: localStorage.getItem('token'),
     },
   })
-    .then(res => console.log(res.json(), 'res in fetchsubmission'))
+    .then(res => res.json())
     .then(submissionList => {
       dispatch({
         type: 'FETCHING_SUBMISSION_LIST_SUCCESS',

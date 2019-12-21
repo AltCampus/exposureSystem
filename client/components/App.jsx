@@ -26,8 +26,6 @@ import RegisterVerification from './registerVerfication/RegisterVerification';
 import Header from './header/Header';
 import { studentLogin, studentLogout } from '../redux/actions/studentAction';
 import { adminLogout } from '../redux/actions/adminAction';
-import Wrapper from './layout/Wrapper';
-import AdminMain from './adminDashboard/AdminMain';
 
 class App extends Component {
   constructor(props) {
@@ -60,7 +58,7 @@ class App extends Component {
             user: admin,
           });
         } else {
-          fetch('http://localhost:3000/api/v1/student/me', {
+          fetch('http://localhost:3000/api/v1/students/me', {
             method: 'GET',
             headers: {
               authorization: localStorage.token,
@@ -138,7 +136,7 @@ class App extends Component {
               />
             )}
           />
-          <Route
+          {/* <Route
             // component={AdminFeed}
             render={() => (
               <AdminFeed
@@ -147,7 +145,7 @@ class App extends Component {
                 isAuthed={true}
               />
             )}
-          />
+          /> */}
         </Switch>
       </>
     );
@@ -170,10 +168,29 @@ class App extends Component {
             path='/await-approval'
             component={RegisterVerification}
           />
-          {/* <Route path='/dashboard/:username' component={StudentDashboard} /> */}
-          <Route exact path='/feed' component={StudentDashboard} />
-          <Route component={StudentDashboard} />
-          <Route component={Page404} />
+          {/* <Route exact path='/feed' component={StudentDashboard} /> */}
+          <Route
+            exact
+            path='/feed'
+            render={() => (
+              <StudentDashboard
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
+          />
+          <Route
+            component={StudentDashboard}
+            render={props => (
+              <StudentDashboard
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
+          />
+          {/* <Route component={Page404} /> */}
         </Switch>
       </>
     );
@@ -193,7 +210,6 @@ class App extends Component {
             path='/await-approval'
             component={RegisterVerification}
           />
-          <Route exact path='/layout/Wrapper' component={Wrapper} />
 
           <Route component={Page404} />
         </Switch>
@@ -206,11 +222,12 @@ class App extends Component {
     // console.log('app render...', this.state.user);
     return (
       <>
-        {this.state.user
-          ? this.state.user.isAdmin
-            ? this.protectedAdminRoutes()
-            : this.protectedStudentRoutes()
-          : this.nonProtectedRoutes()}
+        {!this.state.user
+          ? this.nonProtectedRoutes()
+          : this.state.user.isAdmin
+          ? this.protectedAdminRoutes()
+          : this.protectedStudentRoutes()}
+        {/* <StudentDashboard /> */}
       </>
     );
   }

@@ -18,7 +18,7 @@ const studentSchema = new Schema(
     password: {
       type: String,
       required: true,
-      select: false,
+      // select: false,
     },
     isInCampus: false,
     isActive: false,

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
 import StudentSidebar from './StudentSidebar';
-import StudentSubmissionCard from './StudentSubmissionCard';
 import { fetchSubmissionList } from '../../../redux/actions/submissonAction';
 
-import { Layout, Menu, Icon, Table, Divider, Spin } from 'antd';
+import { Layout, Menu, Icon, Table, Divider, Spin, Button } from 'antd';
 const { Column, ColumnGroup } = Table;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -20,7 +21,7 @@ class StudentDashboard extends Component {
   render() {
     // const submissionList
     return (
-  
+      <div>
         <div>
           {this.props.submissionReducer.isLoadingSubmissionList ? (
             <div>
@@ -35,7 +36,7 @@ class StudentDashboard extends Component {
               </h4>
             </div>
           ) : (
-            <Layout>
+            <Layout style={{ height: '98vh' }}>
               <Sider
                 breakpoint='lg'
                 collapsedWidth='0'
@@ -152,7 +153,7 @@ class StudentDashboard extends Component {
                         />
                       </ColumnGroup>
                     </Table>
-                  </div>
+                  </div>{' '}
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                   Exposure System ©2018 Created by AltCampus
@@ -161,6 +162,7 @@ class StudentDashboard extends Component {
             </Layout>
           )}
         </div>
+      </div>
     );
   }
 }
