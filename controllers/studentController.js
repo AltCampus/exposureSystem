@@ -26,7 +26,7 @@ module.exports = {
   loginStudent: (req, res, next) => {
     const { password, email } = req.body;
     if (!email || !password) {
-      return res.status(401).json({ error: 'INVALID USER' });
+      return res.status(401).json({ error: 'INVALID STUDENT' });
     }
     Student.findOne({ email }, (err, student) => {
       if (err) return next(err);
@@ -44,6 +44,7 @@ module.exports = {
 
   findStudent: (req, res) => {
     Student.findById(req.params.userId)
+      // .select('+password')
       .then(student => {
         if (!student) {
           return res.status(404).send({

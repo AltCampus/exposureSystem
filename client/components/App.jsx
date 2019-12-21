@@ -93,8 +93,8 @@ class App extends Component {
         <Header handleLogout={this.handleLogout} />
         <Switch>
           <Route exact path='/admin/feed' component={AdminFeed} />
-          <Route exact path='/admin/content/list' component={ContentList} />
-          <Route exact path='/admin/student/list' component={StudentList} />
+          <Route exact path='/admin/contents' component={ContentList} />
+          <Route exact path='/admin/students' component={StudentList} />
           <Route
             exact
             path='/admin/content/:contentid'
