@@ -26,6 +26,7 @@ import RegisterVerification from './registerVerfication/RegisterVerification';
 import Header from './header/Header';
 import { studentLogin, studentLogout } from '../redux/actions/studentAction';
 import { adminLogout } from '../redux/actions/adminAction';
+import Wrapper from './layout/Wrapper';
 
 class App extends Component {
   constructor(props) {
@@ -152,6 +153,7 @@ class App extends Component {
             path='/await-approval'
             component={RegisterVerification}
           />
+          <Route exact path='/layout/Wrapper' component={Wrapper} />
 
           <Route component={Page404} />
         </Switch>
