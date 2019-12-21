@@ -45,7 +45,7 @@ class StudentList extends Component {
             <Spin size='large' />
           </div>
         ) : (
-          <Layout>
+          <Layout style={{ height: '98vh' }}>
             <Sider
               breakpoint='lg'
               collapsedWidth='0'

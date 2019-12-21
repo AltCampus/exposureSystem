@@ -50,7 +50,7 @@ class PendingApprovals extends Component {
             </div>
           ) : (
             <div>
-              <Layout>
+              <Layout style={{ height: '98vh' }}>
                 <Sider
                   breakpoint='lg'
                   collapsedWidth='0'
