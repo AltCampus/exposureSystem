@@ -21,6 +21,9 @@ const studentLogin = (loginData, cb) => {
         }),
           cb(studentData.student.isApproved);
       })
+      .catch(err =>
+        alert('Please check login details.')   
+      )
     }
   }
        

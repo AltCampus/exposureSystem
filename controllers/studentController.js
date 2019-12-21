@@ -29,13 +29,13 @@ module.exports = {
     if (!email || !password) {
       return res.status(401).json({ error: 'INVALID STUDENT' });
     }
-    Student.findOne( { email } , (err, student) => {
+    Student.findOne( { email } , '--password' , (err, student) => {
       console.log('inside findOne')
       console.log(student , 'login student')
       if (err) return next(err);
-      if (!student) return res.json({ student: 'student Not Found' });
+      if (!student) return res.status(403).json({ error: 'student Not Found' });
       if (!student.confirmPassword(password)) {
-        return res.json({ error: 'Password Is Not Correct' });
+        return res.status(401).json({ error: 'Password Is Not Correct' });
       }
       const token = auth.generateToken(email);
       console.log(token, 'token')
@@ -46,7 +46,6 @@ module.exports = {
 
   findStudent: (req, res) => {
     Student.findById(req.params.userId)
-      // .select('+password')
       .then(student => {
         if (!student) {
           return res.status(404).send({
