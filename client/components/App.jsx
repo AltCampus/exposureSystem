@@ -83,6 +83,7 @@ class App extends Component {
 
   handleLogout = e => {
     e.preventDefault();
+    console.log('logout');
     this.props.studentLogout(this.cb);
     this.props.adminLogout(this.cb);
   };
@@ -90,11 +91,33 @@ class App extends Component {
   protectedAdminRoutes = () => {
     return (
       <>
-        <Header handleLogout={this.handleLogout} />
+        {/* <Header handleLogout={this.handleLogout} /> */}
         <Switch>
-          <Route exact path='/admin/feed' component={AdminFeed} />
+          <Route
+            exact
+            path='/admin/feed'
+            // component={AdminFeed}
+            render={() => (
+              <AdminFeed
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
+          />
           <Route exact path='/admin/contents' component={ContentList} />
-          <Route exact path='/admin/students' component={StudentList} />
+          <Route
+            exact
+            path='/admin/students'
+            // component={StudentList}
+            render={() => (
+              <StudentList
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
+          />
           <Route
             exact
             path='/admin/content/:contentid'
@@ -104,9 +127,25 @@ class App extends Component {
           <Route
             exact
             path='/admin/pending-approvals'
-            component={PendingApprovals}
+            // component={PendingApprovals}
+            render={() => (
+              <PendingApprovals
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
           />
-          <Route component={AdminFeed} />
+          {/* <Route
+            // component={AdminFeed}
+            render={() => (
+              <AdminFeed
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
+          /> */}
         </Switch>
       </>
     );
@@ -115,7 +154,7 @@ class App extends Component {
   protectedStudentRoutes = () => {
     return (
       <>
-        <Header handleLogout={this.handleLogout} />
+        {/* <Header handleLogout={this.handleLogout} /> */}
         <Switch>
           <Route
             exact
@@ -129,9 +168,29 @@ class App extends Component {
             path='/await-approval'
             component={RegisterVerification}
           />
-          {/* <Route path='/dashboard/:username' component={StudentDashboard} /> */}
-          <Route exact path='/feed' component={StudentDashboard} />
-          {/* <Route component={StudentDashboard} /> */}
+          {/* <Route exact path='/feed' component={StudentDashboard} /> */}
+          <Route
+            exact
+            path='/feed'
+            render={() => (
+              <StudentDashboard
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
+          />
+          <Route
+            component={StudentDashboard}
+            render={props => (
+              <StudentDashboard
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
+          />
+          {/* <Route component={Page404} /> */}
         </Switch>
       </>
     );
@@ -163,11 +222,12 @@ class App extends Component {
     // console.log('app render...', this.state.user);
     return (
       <>
-        {this.state.user
-          ? this.state.user.isAdmin
-            ? this.protectedAdminRoutes()
-            : this.protectedStudentRoutes()
-          : this.nonProtectedRoutes()}
+        {!this.state.user
+          ? this.nonProtectedRoutes()
+          : this.state.user.isAdmin
+          ? this.protectedAdminRoutes()
+          : this.protectedStudentRoutes()}
+        {/* <StudentDashboard /> */}
       </>
     );
   }

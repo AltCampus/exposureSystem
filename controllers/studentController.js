@@ -29,16 +29,20 @@ module.exports = {
     if (!email || !password) {
       return res.status(401).json({ error: 'INVALID STUDENT' });
     }
-    Student.findOne( { email } , (err, student) => {
-      console.log('inside findOne')
-      console.log(student , 'login student')
+    Student.findOne({ email }, (err, student) => {
+      console.log('inside findOne');
+      console.log(student, 'login student');
       if (err) return next(err);
-      if (!student) return res.status(403).json({ error: 'student Not Found' });
+      if (!student)
+        return res.status(402).json({ student: 'student Not Found' });
       if (!student.confirmPassword(password)) {
-        return res.status(401).json({ error: 'Password Is Not Correct' });
+        return res.status(402).json({ error: 'Password Is Not Correct' });
       }
+      if (student.isApproved === false)
+        return res.status(403).json({ student, error: 'Not verified' });
+
       const token = auth.generateToken(email);
-      console.log(token, 'token')
+      console.log(token, 'token');
 
       return res.status(200).json({ student, token });
     });

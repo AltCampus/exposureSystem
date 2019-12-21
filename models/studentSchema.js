@@ -18,6 +18,7 @@ const studentSchema = new Schema(
     password: {
       type: String,
       required: true,
+      // select: false,
     },
     isInCampus: false,
     isActive: false,
@@ -34,13 +35,13 @@ const studentSchema = new Schema(
 studentSchema.pre('save', function(next) {
   if (this.password) {
     this.password = bcrypt.hashSync(this.password, 10);
-    console.log(this.password, 'this.password')
+    console.log(this.password, 'this.password');
     next();
   }
 });
 
 studentSchema.methods.confirmPassword = function(password) {
-  console.log('inside schema')
+  console.log('inside schema');
   return bcrypt.compareSync(password, this.password);
 };
 
