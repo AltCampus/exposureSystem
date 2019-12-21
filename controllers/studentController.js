@@ -29,7 +29,7 @@ module.exports = {
     if (!email || !password) {
       return res.status(401).json({ error: 'INVALID STUDENT' });
     }
-    Student.findOne( { email } , '--password' , (err, student) => {
+    Student.findOne( { email } , (err, student) => {
       console.log('inside findOne')
       console.log(student , 'login student')
       if (err) return next(err);

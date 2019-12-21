@@ -27,7 +27,25 @@ const studentLogin = (loginData, cb) => {
     }
   }
        
-
+const updateProfile = (toUpdateData) => {
+  return dispatch => {
+    dispatch({
+      type: 'STUDENT_PROFILE_UPDATE_START',
+    });
+    fetch(`http://localhost:3000/api/v1/students/update/${toUpdateData.userid}` , {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(toUpdateData),
+    })
+    .then(res => res.json())
+    .then(updatedData => dispatch({
+      type: 'STUDENT_PROFILE_UPDATE_SUCCESS',
+      data: updatedData,
+    }))
+  }
+}
 
 const studentLogout = cb => dispatch => (
   {

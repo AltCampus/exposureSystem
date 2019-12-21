@@ -11,18 +11,17 @@ const { Header, Content, Footer, Sider } = Layout;
 class StudentDashboard extends Component {
   constructor(props) {
     super(props);
-  }
+  };
 
   componentDidMount() {
     this.props.fetchSubmissionList();
-  }
+  };
 
   render() {
     // const submissionList
     return (
       <div className='wrapper grid-dashboard'>
         <StudentSidebar />
-        <div>
           {!this.props.submissionReducer.isLoadingSubmissionList ? (
             <div>
               <div className='flex-center spinner'>
@@ -32,7 +31,7 @@ class StudentDashboard extends Component {
                 className='heading flex-center'
                 style={{ marginTop: '20rem', paddingRight: '15rem' }}
               >
-                We don't have submissions to show you right now :(
+                We don't have submissions to show you right now 
               </h4>
             </div>
           ) : (
@@ -69,15 +68,13 @@ class StudentDashboard extends Component {
                 </ColumnGroup>
               </Table>
             </div>
-          )}
-        </div>
+            )
+          }
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = store => store;
 
-export default connect(mapStateToProps, { fetchSubmissionList })(
-  StudentDashboard,
-);
+export default connect(mapStateToProps, { fetchSubmissionList })(StudentDashboard);

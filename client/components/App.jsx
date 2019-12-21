@@ -58,7 +58,7 @@ class App extends Component {
             user: admin,
           });
         } else {
-          fetch('http://localhost:3000/api/v1/student/me', {
+          fetch('http://localhost:3000/api/v1/students/me', {
             method: 'GET',
             headers: {
               authorization: localStorage.token,
@@ -131,8 +131,7 @@ class App extends Component {
           />
           {/* <Route path='/dashboard/:username' component={StudentDashboard} /> */}
           <Route exact path='/feed' component={StudentDashboard} />
-          <Route component={StudentDashboard} />
-          <Route component={Page404} />
+          {/* <Route component={StudentDashboard} /> */}
         </Switch>
       </>
     );
