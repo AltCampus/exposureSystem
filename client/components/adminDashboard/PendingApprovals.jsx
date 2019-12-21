@@ -77,7 +77,7 @@ class PendingApprovals extends Component {
                       </NavLink>
                     </Menu.Item>
                     <Menu.Item key='3'>
-                      <NavLink to='/admin/content'>
+                      <NavLink to='/admin/contents'>
                         <Icon type='video-camera' />
                         <span className='nav-text'>Content List</span>
                       </NavLink>

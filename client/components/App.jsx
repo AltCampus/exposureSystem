@@ -85,6 +85,7 @@ class App extends Component {
 
   handleLogout = e => {
     e.preventDefault();
+    console.log('logout');
     this.props.studentLogout(this.cb);
     this.props.adminLogout(this.cb);
   };
@@ -96,7 +97,12 @@ class App extends Component {
         <Switch>
           <Route exact path='/admin/feed' component={AdminFeed} />
           <Route exact path='/admin/contents' component={ContentList} />
-          <Route exact path='/admin/students' component={StudentList} />
+          <Route
+            exact
+            path='/admin/students'
+            component={StudentList}
+            handleLogout={this.handleLogout}
+          />
           <Route
             exact
             path='/admin/content/:contentid'
@@ -107,6 +113,7 @@ class App extends Component {
             exact
             path='/admin/pending-approvals'
             component={PendingApprovals}
+            handleLogout={this.handleLogout}
           />
           <Route component={AdminFeed} />
         </Switch>
