@@ -32,7 +32,7 @@ class StudentDashboard extends Component {
                 className='heading flex-center'
                 style={{ marginTop: '20rem', paddingRight: '15rem' }}
               >
-                We don't have submissions to show you right now :(
+                We don't have submissions to show you right now
               </h4>
             </div>
           ) : (

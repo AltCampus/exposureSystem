@@ -24,11 +24,14 @@ module.exports = {
   },
 
   loginStudent: (req, res, next) => {
+    console.log('inside controller');
     const { password, email } = req.body;
     if (!email || !password) {
       return res.status(401).json({ error: 'INVALID STUDENT' });
     }
     Student.findOne({ email }, (err, student) => {
+      console.log('inside findOne');
+      console.log(student, 'login student');
       if (err) return next(err);
       if (!student)
         return res.status(402).json({ student: 'student Not Found' });
@@ -39,13 +42,14 @@ module.exports = {
         return res.status(403).json({ student, error: 'Not verified' });
 
       const token = auth.generateToken(email);
+      console.log(token, 'token');
+
       return res.status(200).json({ student, token });
     });
   },
 
   findStudent: (req, res) => {
     Student.findById(req.params.userId)
-      // .select('+password')
       .then(student => {
         if (!student) {
           return res.status(404).send({
