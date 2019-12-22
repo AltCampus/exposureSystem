@@ -88,7 +88,7 @@ class StudentDashboard extends Component {
                       width: '90%',
                     }}
                   >
-                    <NavLink to='/'>
+                    <NavLink to='/' className='ant-header' ghost='true'>
                       <h3>Exposure System</h3>
                     </NavLink>
                     <div

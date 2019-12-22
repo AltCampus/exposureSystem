@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { updateProfile } from '../../redux/actions/studentAction';
 
-import { Layout, Menu, Icon, Table, Divider, Spin, Button } from 'antd';
+import { Layout, Menu, Icon, Spin, Button, Card } from 'antd';
 import UpdateProfileModal from './UpdateProfileModal';
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -12,11 +12,12 @@ class StudentProfile extends Component {
     super(props);
   }
 
-  componentDidMount() {}
-
   render() {
     console.log(this.props, 'inside profile');
-    // const submissionList
+
+    const student = this.props.state.user;
+    console.log(student, 'student');
+
     return (
       <div>
         <div>
@@ -45,7 +46,12 @@ class StudentProfile extends Component {
               }}
             >
               <div className='logo'>Exposure System</div>
-              <Menu theme='dark' mode='inline' defaultSelectedKeys={['2']}>
+              <Menu
+                theme='dark'
+                mode='inline'
+                style={{ paddingTop: '2.45rem' }}
+                defaultSelectedKeys={['2']}
+              >
                 <Menu.Item key='1'>
                   <NavLink to='/feed'>
                     <Icon type='user' />
@@ -100,17 +106,34 @@ class StudentProfile extends Component {
               </Header>
               <Content style={{ margin: '24px 16px 0' }}>
                 <div>
-                  <h3 className='flex-center heading'>Update Profile</h3>
-                  <UpdateProfileModal {...this.props} />
-                  <br></br>
-                  <div>
+                  <h3 className='flex-center heading'>Profile</h3>
+                  <div className='text-center'>
+                    <div
+                      className='flex-center'
+                      style={{ background: '#ECECEC', padding: '30px' }}
+                    >
+                      <Card
+                        title={student.username}
+                        bordered={false}
+                        style={{ width: 300 }}
+                      >
+                        <p>Email: {student.email}</p>
+                        <p>In Campus: {student.isInCampus ? 'Yes' : 'No'}</p>
+                        <p>
+                          Status: {student.isActive ? 'Active' : 'Not Active'}
+                        </p>
+                      </Card>
+                    </div>
+                    <br></br>
+                    <UpdateProfileModal {...this.props} />
+                    <br></br>
                     <Button type='primary'>Add Github Profile</Button>
                   </div>
                 </div>
               </Content>
-              <Footer style={{ textAlign: 'center' }}>
+              {/* <Footer style={{ textAlign: 'center' }}>
                 Exposure System ©2018 Created by AltCampus
-              </Footer>
+              </Footer> */}
             </Layout>
           </Layout>
           {/* )} */}
