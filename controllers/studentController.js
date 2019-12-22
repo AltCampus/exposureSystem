@@ -101,10 +101,22 @@ module.exports = {
   },
 
   updateStudent: (req, res, next) => {
-    const id = req.body.id;
-    Student.findByIdAndUpdate(id, req.body, (err, student) => {
-      if (err) return next(err);
-      return res.status.json({ student });
-    });
+    console.log(req.body, 'req.body');
+    const id = req.body._id;
+    console.log(id, 'id');
+    Student.findByIdAndUpdate(
+      id,
+      {
+        email: req.body.email,
+        username: req.body.username,
+        isInCampus: req.body.isInCampus,
+      },
+      { new: true },
+      (err, student) => {
+        console.log(student, 'student inside ctlr');
+        if (err) return next(err);
+        return res.status.json({ student });
+      },
+    );
   },
 };

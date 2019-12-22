@@ -25,6 +25,7 @@ import StudentList from './students/StudentList';
 import RegisterVerification from './registerVerfication/RegisterVerification';
 import { studentLogin, studentLogout } from '../redux/actions/studentAction';
 import { adminLogout } from '../redux/actions/adminAction';
+import StudentProfile from './students/StudentProfile';
 
 class App extends Component {
   constructor(props) {
@@ -174,8 +175,18 @@ class App extends Component {
             )}
           />
           <Route
-            component={StudentDashboard}
-            render={props => (
+            exact
+            path='/profile'
+            render={() => (
+              <StudentProfile
+                state={this.state}
+                handleLogout={this.handleLogout}
+                isAuthed={true}
+              />
+            )}
+          />
+          <Route
+            render={() => (
               <StudentDashboard
                 state={this.state}
                 handleLogout={this.handleLogout}

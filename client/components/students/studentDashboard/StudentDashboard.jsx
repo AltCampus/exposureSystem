@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import StudentSidebar from './StudentSidebar';
 import { fetchSubmissionList } from '../../../redux/actions/submissonAction';
 
 import { Layout, Menu, Icon, Table, Divider, Spin, Button } from 'antd';
@@ -19,7 +18,7 @@ class StudentDashboard extends Component {
   }
 
   render() {
-    // const submissionList
+    console.log(this.props, 'dash');
     return (
       <div>
         <div>
@@ -48,36 +47,22 @@ class StudentDashboard extends Component {
                 }}
               >
                 <div className='logo'>Exposure System</div>
-                <Menu theme='dark' mode='inline' defaultSelectedKeys={['i']}>
+                <Menu
+                  theme='dark'
+                  mode='inline'
+                  style={{ paddingTop: '2.45rem' }}
+                  defaultSelectedKeys={['1']}
+                >
                   <Menu.Item key='1'>
-                    <NavLink to='/admin/feed'>
+                    <NavLink to='/feed'>
                       <Icon type='user' />
                       <span className='nav-text'>Home</span>
-                      {/* <span className='nav-text'>Home (Stats)</span> */}
                     </NavLink>
                   </Menu.Item>
                   <Menu.Item key='2'>
-                    <NavLink to='/admin/feed'>
+                    <NavLink to='/profile'>
                       <Icon type='video-camera' />
-                      <span className='nav-text'>Submissions</span>
-                    </NavLink>
-                  </Menu.Item>
-                  <Menu.Item key='3'>
-                    <NavLink to='/admin/content'>
-                      <Icon type='video-camera' />
-                      <span className='nav-text'>Content List</span>
-                    </NavLink>
-                  </Menu.Item>
-                  <Menu.Item key='4'>
-                    <NavLink to='/admin/students'>
-                      <Icon type='video-camera' />
-                      <span className='nav-text'>Student List</span>
-                    </NavLink>
-                  </Menu.Item>
-                  <Menu.Item key='5'>
-                    <NavLink to='/admin/pending-approvals'>
-                      <Icon type='video-camera' />
-                      <span className='nav-text'>Pending Approvals</span>
+                      <span className='nav-text'>Profile</span>
                     </NavLink>
                   </Menu.Item>
                 </Menu>
