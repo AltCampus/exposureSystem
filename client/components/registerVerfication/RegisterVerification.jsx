@@ -10,7 +10,7 @@ function RegisterVerification() {
     >
       <div style={{ textAlign: 'center', marginTop: '1rem' }}>
         <h1 className='heading'>Thank You for registering with us!</h1>
-        <h5>Please wait for your verification email to proceed</h5>
+        <h5>Please wait for your verification email to proceed!</h5>
         <NavLink to='/'>
           <Button className='button' type='primary' size='large'>
             Home

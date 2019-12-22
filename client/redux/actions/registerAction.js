@@ -9,6 +9,11 @@ const registerStudent = (studentData, cb) => {
     .then(res => res.json())
     .then(user => {
       console.log(user, 'final user');
+      swal({
+        title: 'Registered! ',
+        icon: 'success',
+        timer: 3000,
+      });
     });
   cb();
 };

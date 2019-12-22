@@ -16,7 +16,6 @@ import Page404 from './Page404';
 import ContentList from './content/ContentList';
 import PendingApprovals from './adminDashboard/PendingApprovals';
 import ContentSubmission from './content/ContentSubmission';
-import SingleContent from './content/SingleContent';
 import Onboarding from './auth/Onboarding';
 import StudentDashboard from './students/studentDashboard/StudentDashboard';
 import UpdateContentModal from './content/UpdateContentModal';
@@ -115,11 +114,6 @@ class App extends Component {
               />
             )}
           />
-          <Route
-            exact
-            path='/admin/content/:contentid'
-            component={SingleContent}
-          />
           <Route path='/admin/update-content' component={UpdateContentModal} />
           <Route
             exact
@@ -133,7 +127,6 @@ class App extends Component {
             )}
           />
           <Route
-            // component={AdminFeed}
             render={() => (
               <AdminFeed
                 state={this.state}
