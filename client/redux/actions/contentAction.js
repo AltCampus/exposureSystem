@@ -40,11 +40,12 @@ const fetchContentList = () => dispatch => {
     );
 };
 
-const updateContent = (id, cb) => {
+const updateContent = (data, cb) => {
+  console.log(data, 'in action');
   fetch('https://localhost:3000/api/v1/content/update'),
     {
       method: 'PUT',
-      body: id,
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
       },

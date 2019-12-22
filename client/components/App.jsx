@@ -19,7 +19,7 @@ import ContentSubmission from './content/ContentSubmission';
 import SingleContent from './content/SingleContent';
 import Onboarding from './auth/Onboarding';
 import StudentDashboard from './students/studentDashboard/StudentDashboard';
-import EditContentForm from './content/EditContentForm';
+import UpdateContentModal from './content/UpdateContentModal';
 import AdminFeed from './adminDashboard/AdminFeed';
 import StudentList from './students/StudentList';
 import RegisterVerification from './registerVerfication/RegisterVerification';
@@ -119,7 +119,7 @@ class App extends Component {
             path='/admin/content/:contentid'
             component={SingleContent}
           />
-          <Route path='/admin/editcontent' component={EditContentForm} />
+          <Route path='/admin/update-content' component={UpdateContentModal} />
           <Route
             exact
             path='/admin/pending-approvals'

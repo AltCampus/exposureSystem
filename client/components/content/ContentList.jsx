@@ -10,7 +10,7 @@ import {
 import NewContentModal from './NewContentModal';
 
 import { Table, Divider, Spin, Layout, Menu, Icon, Button } from 'antd/lib';
-import EditContent from './EditContentForm';
+import UpdateContentModal from './UpdateContentModal';
 const { Header, Content, Footer, Sider } = Layout;
 const { Column, ColumnGroup } = Table;
 
@@ -40,7 +40,6 @@ class ContentList extends Component {
   };
 
   render() {
-    console.log(this.props, 'cl');
     const contentList =
       this.props.adminReducer.contentList &&
       this.props.adminReducer.contentList.contents.reverse();
@@ -170,13 +169,16 @@ class ContentList extends Component {
                         key='action'
                         render={(text, record) => (
                           <span
-                            style={{ display: 'flex', alignItems: 'baseline' }}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'baseline',
+                            }}
                           >
                             <a target='_blank' href={record.contentUrl}>
                               Link
                             </a>
                             <Divider type='vertical' />
-                            <EditContent record={record} />
+                            <UpdateContentModal record={record} />
                             <Divider type='vertical' />
                             <a onClick={() => this.handleDelete(record._id)}>
                               Delete
@@ -186,7 +188,7 @@ class ContentList extends Component {
                       />
                     </ColumnGroup>
                   </Table>
-                </div>{' '}
+                </div>
               </Content>
               {/* <Footer style={{ textAlign: 'center' }}>
                 Exposure System ©2018 Created by AltCampus
