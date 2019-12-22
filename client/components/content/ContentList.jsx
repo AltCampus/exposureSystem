@@ -10,6 +10,7 @@ import {
 import NewContentModal from './NewContentModal';
 
 import { Table, Divider, Spin, Layout, Menu, Icon, Button } from 'antd/lib';
+import EditContent from './EditContentForm';
 const { Header, Content, Footer, Sider } = Layout;
 const { Column, ColumnGroup } = Table;
 
@@ -145,32 +146,37 @@ class ContentList extends Component {
                   <Table bordered dataSource={contentList}>
                     <ColumnGroup>
                       <Column
-                        width='15%'
+                        width='10%'
                         title='Title'
                         dataIndex='title'
                         key='title'
                       />
                       <Column
-                        width='50%'
+                        width='45%'
                         title='Description'
                         dataIndex='description'
                         key='description'
                       />
                       <Column
-                        width='7%'
+                        width='5%'
                         title='Type'
                         dataIndex='type'
                         key='type'
+                        style={{ textAlign: 'center' }}
                       />
                       <Column
-                        width='8%'
+                        width='10%'
                         title='Action'
                         key='action'
                         render={(text, record) => (
-                          <span>
+                          <span
+                            style={{ display: 'flex', alignItems: 'baseline' }}
+                          >
                             <a target='_blank' href={record.contentUrl}>
                               Link
                             </a>
+                            <Divider type='vertical' />
+                            <EditContent record={record} />
                             <Divider type='vertical' />
                             <a onClick={() => this.handleDelete(record._id)}>
                               Delete
@@ -182,9 +188,9 @@ class ContentList extends Component {
                   </Table>
                 </div>{' '}
               </Content>
-              <Footer style={{ textAlign: 'center' }}>
+              {/* <Footer style={{ textAlign: 'center' }}>
                 Exposure System ©2018 Created by AltCampus
-              </Footer>
+              </Footer> */}
             </Layout>
           </Layout>
         )}

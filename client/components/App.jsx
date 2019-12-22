@@ -19,11 +19,10 @@ import ContentSubmission from './content/ContentSubmission';
 import SingleContent from './content/SingleContent';
 import Onboarding from './auth/Onboarding';
 import StudentDashboard from './students/studentDashboard/StudentDashboard';
-import EditContent from './content/EditContent';
+import EditContentForm from './content/EditContentForm';
 import AdminFeed from './adminDashboard/AdminFeed';
 import StudentList from './students/StudentList';
 import RegisterVerification from './registerVerfication/RegisterVerification';
-import Header from './header/Header';
 import { studentLogin, studentLogout } from '../redux/actions/studentAction';
 import { adminLogout } from '../redux/actions/adminAction';
 
@@ -91,12 +90,10 @@ class App extends Component {
   protectedAdminRoutes = () => {
     return (
       <>
-        {/* <Header handleLogout={this.handleLogout} /> */}
         <Switch>
           <Route
             exact
             path='/admin/feed'
-            // component={AdminFeed}
             render={() => (
               <AdminFeed
                 state={this.state}
@@ -109,7 +106,6 @@ class App extends Component {
           <Route
             exact
             path='/admin/students'
-            // component={StudentList}
             render={() => (
               <StudentList
                 state={this.state}
@@ -123,11 +119,10 @@ class App extends Component {
             path='/admin/content/:contentid'
             component={SingleContent}
           />
-          <Route path='/admin/editcontent' component={EditContent} />
+          <Route path='/admin/editcontent' component={EditContentForm} />
           <Route
             exact
             path='/admin/pending-approvals'
-            // component={PendingApprovals}
             render={() => (
               <PendingApprovals
                 state={this.state}
@@ -136,7 +131,7 @@ class App extends Component {
               />
             )}
           />
-          {/* <Route
+          <Route
             // component={AdminFeed}
             render={() => (
               <AdminFeed
@@ -145,7 +140,7 @@ class App extends Component {
                 isAuthed={true}
               />
             )}
-          /> */}
+          />
         </Switch>
       </>
     );
@@ -154,7 +149,6 @@ class App extends Component {
   protectedStudentRoutes = () => {
     return (
       <>
-        {/* <Header handleLogout={this.handleLogout} /> */}
         <Switch>
           <Route
             exact
@@ -168,7 +162,6 @@ class App extends Component {
             path='/await-approval'
             component={RegisterVerification}
           />
-          {/* <Route exact path='/feed' component={StudentDashboard} /> */}
           <Route
             exact
             path='/feed'

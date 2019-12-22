@@ -86,6 +86,7 @@ class NewContentModal extends React.Component {
   handleCreate = () => {
     const { form } = this.formRef.props;
     form.validateFields((err, values) => {
+      console.log(values, 'values');
       if (err) {
         return;
       }
