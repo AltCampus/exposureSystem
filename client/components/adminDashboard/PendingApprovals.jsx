@@ -62,7 +62,12 @@ class PendingApprovals extends Component {
                   }}
                 >
                   <div className='logo'>Exposure System</div>
-                  <Menu theme='dark' mode='inline' defaultSelectedKeys={['i']}>
+                  <Menu
+                    theme='dark'
+                    mode='inline'
+                    style={{ paddingTop: '2.45rem' }}
+                    defaultSelectedKeys={['5']}
+                  >
                     <Menu.Item key='1'>
                       <NavLink to='/admin/feed'>
                         <Icon type='user' />

@@ -55,7 +55,12 @@ class StudentList extends Component {
               }}
             >
               <div className='logo'>Exposure System</div>
-              <Menu theme='dark' mode='inline' defaultSelectedKeys={['i']}>
+              <Menu
+                theme='dark'
+                mode='inline'
+                style={{ paddingTop: '2.45rem' }}
+                defaultSelectedKeys={['4']}
+              >
                 <Menu.Item key='1'>
                   <NavLink to='/admin/feed'>
                     <Icon type='user' />

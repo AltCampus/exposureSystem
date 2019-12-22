@@ -35,7 +35,7 @@ class AdminFeed extends Component {
                   className='heading flex-center'
                   style={{ marginTop: '20rem', paddingRight: '15rem' }}
                 >
-                  We don't have submissions to show you right now :(
+                  We're pulling up submissions to show you right now...
                 </h4>
               </div>
             ) : (
@@ -55,7 +55,8 @@ class AdminFeed extends Component {
                     <Menu
                       theme='dark'
                       mode='inline'
-                      defaultSelectedKeys={['i']}
+                      style={{ paddingTop: '2.45rem' }}
+                      defaultSelectedKeys={['2']}
                     >
                       <Menu.Item key='1'>
                         <NavLink to='/admin/feed'>
