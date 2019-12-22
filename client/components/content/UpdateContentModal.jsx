@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { updateContent } from '../../redux/actions/contentAction';
 
 import { Button, Modal, Form, Input, Radio } from 'antd';
-const { TextArea } = Input;
 
 const UpdateContentForm = Form.create({ name: 'form_in_modal' })(
   // eslint-disable-next-line
@@ -14,7 +13,6 @@ const UpdateContentForm = Form.create({ name: 'form_in_modal' })(
     render() {
       const { visible, onCancel, onCreate, form } = this.props;
       const { getFieldDecorator } = form;
-      console.log(this.props, 'newmodal');
 
       return (
         <Modal
@@ -120,7 +118,6 @@ class UpdateContentModal extends React.Component {
   };
 
   render() {
-    console.log(this.props, 'inside modala');
     return (
       <div>
         {/* <a onClick={this.showModal}>New Collection</a> */}

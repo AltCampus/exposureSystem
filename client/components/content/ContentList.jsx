@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AdminSidebar from '../adminDashboard/AdminSidebar';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -35,11 +34,11 @@ class ContentList extends Component {
   }
 
   handleDelete = id => {
-    console.log('delete called');
     this.props.deleteContent(id, this.cb);
   };
 
   render() {
+    // console.log(this.props);
     const contentList =
       this.props.adminReducer.contentList &&
       this.props.adminReducer.contentList.contents.reverse();
@@ -63,7 +62,7 @@ class ContentList extends Component {
               }}
             >
               <div className='logo'>Exposure System</div>
-              <Menu theme='dark' mode='inline' defaultSelectedKeys={['i']}>
+              <Menu theme='dark' mode='inline' defaultSelectedKeys={['3']}>
                 <Menu.Item key='1'>
                   <NavLink to='/admin/feed'>
                     <Icon type='user' />
@@ -78,7 +77,7 @@ class ContentList extends Component {
                   </NavLink>
                 </Menu.Item>
                 <Menu.Item key='3'>
-                  <NavLink to='/admin/content'>
+                  <NavLink to='/admin/contents'>
                     <Icon type='video-camera' />
                     <span className='nav-text'>Content List</span>
                   </NavLink>

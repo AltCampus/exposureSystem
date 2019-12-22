@@ -4,7 +4,7 @@ import { Result, Button } from 'antd';
 function Page404() {
   return (
     <>
-      <Result
+      {/* <Result
         status='404'
         title='404'
         subTitle='Sorry, the page you visited does not exist.'
@@ -13,7 +13,7 @@ function Page404() {
             Back Home
           </Button>
         }
-      />
+      /> */}
     </>
   );
 }

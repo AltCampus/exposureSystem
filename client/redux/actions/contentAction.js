@@ -54,14 +54,16 @@ const updateContent = (data, cb) => {
 
 const deleteContent = (id, cb) => dispatch => {
   console.log(id, 'in action');
-  const url = `http://localhost:3000/api/v1/content/${id}`;
+  const url = `http://localhost:3000/api/v1/content/delete`;
   fetch(url, {
     method: 'DELETE',
-    body: id,
+    body: { id },
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  })
+    .then(res => console.log(res))
+    .catch(err => alert(err));
   cb();
 };
 

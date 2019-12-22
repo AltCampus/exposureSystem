@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import StudentSubmissionCard from '../students/studentDashboard/StudentSubmissionCard';
-import AdminSidebar from './AdminSidebar';
 import { fetchSubmissionList } from '../../redux/actions/submissonAction';
 
 import { Layout, Menu, Icon, Table, Divider, Spin, Button } from 'antd';

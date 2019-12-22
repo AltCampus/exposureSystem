@@ -5,8 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { fetchStudentList } from '../../redux/actions/adminAction';
 import { removeStudent } from '../../redux/actions/adminAction';
 
-import StudentCard from './StudentCard';
-
 import { Table, Divider, Layout, Menu, Icon, Button, Spin } from 'antd';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -72,7 +70,7 @@ class StudentList extends Component {
                   </NavLink>
                 </Menu.Item>
                 <Menu.Item key='3'>
-                  <NavLink to='/admin/content'>
+                  <NavLink to='/admin/contents'>
                     <Icon type='video-camera' />
                     <span className='nav-text'>Content List</span>
                   </NavLink>
