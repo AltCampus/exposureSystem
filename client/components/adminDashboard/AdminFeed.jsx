@@ -19,6 +19,9 @@ class AdminFeed extends Component {
   render() {
     // const submissionFeed =
     console.log(this.props);
+    const submissionList =
+      this.props.submissionReducer.submissionList &&
+      this.props.submissionReducer.submissionList.submissions.reverse();
     return (
       <>
         <div>
@@ -127,9 +130,7 @@ class AdminFeed extends Component {
                     </Header>
                     <Content style={{ margin: '24px 16px 0' }}>
                       <h3 className='flex-center heading'>Submission List</h3>
-                      <Table bordered>
-                        {/* <Table bordered dataSource={submissionList}> */}
-
+                      <Table bordered dataSource={submissionList}>
                         <ColumnGroup title='Submission List'>
                           <Column
                             width='13%'
@@ -158,9 +159,9 @@ class AdminFeed extends Component {
                         </ColumnGroup>
                       </Table>{' '}
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>
+                    {/* <Footer style={{ textAlign: 'center' }}>
                       Exposure System ©2018 Created by AltCampus
-                    </Footer>
+                    </Footer> */}
                   </Layout>
                 </Layout>
               </div>

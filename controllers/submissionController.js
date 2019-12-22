@@ -38,6 +38,8 @@ module.exports = {
     //   return res.status(200).json({ submissions });
     // });
     Submission.find()
+      .populate('contentid')
+      .populate('student')
       .then(submissions => {
         console.log(submissions, 'submissionController');
         res.json({ submissions });

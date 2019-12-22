@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
 import { fetchSubmissionList } from '../../../redux/actions/submissonAction';
 
 import { Layout, Menu, Icon, Table, Divider, Spin, Button } from 'antd';
@@ -19,6 +18,9 @@ class StudentDashboard extends Component {
 
   render() {
     console.log(this.props, 'dash');
+    const submissionList =
+      this.props.submissionReducer.submissionList &&
+      this.props.submissionReducer.submissionList.submissions.reverse();
     return (
       <div>
         <div>
@@ -31,7 +33,7 @@ class StudentDashboard extends Component {
                 className='heading flex-center'
                 style={{ marginTop: '20rem', paddingRight: '15rem' }}
               >
-                We don't have submissions to show you right now
+                We're pulling up submissions to show you...
               </h4>
             </div>
           ) : (
@@ -109,8 +111,7 @@ class StudentDashboard extends Component {
                   <div>
                     <h3 className='flex-center heading'>Submission List</h3>
 
-                    <Table bordered>
-                      {/* <Table bordered dataSource={submissionList}> */}
+                    <Table bordered dataSource={submissionList}>
                       <ColumnGroup title='Submission List'>
                         <Column
                           width='10%'
@@ -119,7 +120,7 @@ class StudentDashboard extends Component {
                           key='username'
                         />
                         <Column
-                          width='30%'
+                          width='20%'
                           title='Title'
                           dataIndex='title'
                           key='title'
@@ -140,9 +141,9 @@ class StudentDashboard extends Component {
                     </Table>
                   </div>{' '}
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>
+                {/* <Footer style={{ textAlign: 'center' }}>
                   Exposure System ©2018 Created by AltCampus
-                </Footer>
+                </Footer> */}
               </Layout>
             </Layout>
           )}
