@@ -27,7 +27,7 @@ const fetchStudentList = () => {
     dispatch({
       type: 'FETCHING_STUDENT_LIST_START',
     });
-    fetch('http://localhost:3000/api/v1/student/status/list', {
+    fetch('http://localhost:3000/api/v1/students/status/list', {
       method: 'GET',
     })
       .then(res => res.json())

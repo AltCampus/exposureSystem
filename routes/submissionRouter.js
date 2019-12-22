@@ -10,6 +10,6 @@ router.post('/new', submissionController.newSubmission);
 
 router.get('/:id', auth.verifyToken, submissionController.getOneSubmission);
 
-router.get('/list', submissionController.findAllSubmission);
+router.get('/', submissionController.findAllSubmission);
 
 module.exports = router;

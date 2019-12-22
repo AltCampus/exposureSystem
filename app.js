@@ -68,7 +68,7 @@ mongoose.connect(
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/students', studentRouter);
 app.use('/api/v1/content', contentRouter);
-app.use('/api/v1/submission', submissionRouter);
+app.use('/api/v1/submissions', submissionRouter);
 app.use('/api/v1/delivery', deliveryRouter);
 app.use('/', indexRouter);
 

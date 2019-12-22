@@ -32,22 +32,22 @@ module.exports = {
   //todo
   //populate user and content while sending
   findAllSubmission: (req, res) => {
-    console.log('inside controller');
-    Submission.find({}, (err, submissions) => {
-      if (err) return next(err);
-      return res.status(200).json({ submissions });
-    });
-    // Submission.find()
-    //   .then(submissions => {
-    //     console.log(submissions, 'submissionController');
-    //     res.json({ submissions });
-    //   })
-    //   .catch(err => {
-    //     res.status(500).json({
-    //       message:
-    //         err.message || 'Some error occurred while retrieving submissions.',
-    //     });
-    //   });
+    // console.log('inside controller');
+    // Submission.find({}, (err, submissions) => {
+    //   if (err) return next(err);
+    //   return res.status(200).json({ submissions });
+    // });
+    Submission.find()
+      .then(submissions => {
+        console.log(submissions, 'submissionController');
+        res.json({ submissions });
+      })
+      .catch(err => {
+        res.status(500).json({
+          message:
+            err.message || 'Some error occurred while retrieving submissions.',
+        });
+      });
   },
 
   getOneSubmission: (req, res) => {

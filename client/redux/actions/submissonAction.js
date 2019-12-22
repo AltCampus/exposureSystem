@@ -25,7 +25,7 @@ const createSubmission = (submissionData, cbRoute) => dispatch => {
   dispatch({
     type: 'CREATE_NEW_SUBMISSION_START',
   });
-  fetch('http://localhost:3000/api/v1/submission/new', {
+  fetch('http://localhost:3000/api/v1/submissions/new', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const fetchSubmissionList = () => dispatch => {
   dispatch({
     type: 'FETCHING_SUBMISSION_LIST_START',
   });
-  fetch('http://localhost:3000/api/v1/submission/list', {
+  fetch('http://localhost:3000/api/v1/submissions', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const fetchSingleSubmission = id => dispatch => {
   dispatch({
     type: 'FETCH_SINGLE_SUBMISSION_START',
   });
-  fetch(`http://localhost:3000/api/v1/submission/${id}`)
+  fetch(`http://localhost:3000/api/v1/submissions/${id}`)
     .then(res => res.json())
     .then(submission =>
       dispatch({
