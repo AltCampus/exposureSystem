@@ -42,14 +42,14 @@ const fetchContentList = () => dispatch => {
 
 const updateContent = (data, cb) => {
   console.log(data, 'in action');
-  fetch('https://localhost:3000/api/v1/content/update'),
-    {
-      method: 'PUT',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+  fetch('http://localhost:3000/api/v1/content/update', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  cb();
 };
 
 const deleteContent = (id, cb) => dispatch => {
@@ -62,7 +62,13 @@ const deleteContent = (id, cb) => dispatch => {
       'Content-Type': 'application/json',
     },
   })
-    .then(res => console.log(res))
+    .then(res =>
+      swal({
+        title: 'Content has been',
+        text: 'Deleted',
+        icon: 'success',
+      }),
+    )
     .catch(err => alert(err));
   cb();
 };

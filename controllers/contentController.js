@@ -55,7 +55,7 @@ module.exports = {
 
   updateContent: (req, res) => {
     Content.findByIdAndUpdate(
-      req.body.id,
+      req.body._id,
       {
         type: req.body.type,
         contentUrl: req.body.contentUrl,
@@ -67,9 +67,10 @@ module.exports = {
       .then(content => {
         if (!content) {
           return res.status(404).send({
-            message: `Content not found with id ${req.params.contentId}`,
+            message: `Content not found with id ${req.body._id}`,
           });
         }
+        res.json(content);
       })
       .catch(err => {
         if (err.kind === 'ObjectId') {

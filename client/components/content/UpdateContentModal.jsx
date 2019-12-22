@@ -13,7 +13,7 @@ const UpdateContentForm = Form.create({ name: 'form_in_modal' })(
     render() {
       const { visible, onCancel, onCreate, form } = this.props;
       const { getFieldDecorator } = form;
-
+      console.log(this.props, 'inside form');
       return (
         <Modal
           visible={visible}
@@ -23,6 +23,19 @@ const UpdateContentForm = Form.create({ name: 'form_in_modal' })(
           onOk={onCreate}
         >
           <Form layout='vertical'>
+            <Form.Item label='ID'>
+              {getFieldDecorator('_id', {
+                initialValue: this.props.record._id,
+
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please dont change the ID',
+                  },
+                ],
+              })(<Input disabled={true} />)}
+            </Form.Item>
+
             <Form.Item label='Title'>
               {getFieldDecorator('title', {
                 initialValue: this.props.record.title,
@@ -77,14 +90,14 @@ const UpdateContentForm = Form.create({ name: 'form_in_modal' })(
 class UpdateContentModal extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      visible: false,
+      type: '',
+      url: '',
+      title: '',
+      description: '',
+    };
   }
-  state = {
-    visible: false,
-    type: '',
-    url: '',
-    title: '',
-    description: '',
-  };
 
   cb = () => {
     this.props.history.push('/admin/content/list');
@@ -108,9 +121,9 @@ class UpdateContentModal extends React.Component {
       console.log('Received values of form: ', values);
       this.props.updateContent(values, this.cb);
 
-      //   form.resetFields();
-      this.setState({ visible: false });
+      // form.resetFields();
     });
+    this.setState({ visible: false });
   };
 
   saveFormRef = formRef => {
