@@ -21,10 +21,6 @@ class ContentList extends Component {
     };
   }
 
-  cb = () => {
-    this.componentDidMount();
-  };
-
   componentDidMount() {
     this.props.fetchContentList();
   }
@@ -34,7 +30,7 @@ class ContentList extends Component {
   }
 
   handleDelete = id => {
-    this.props.deleteContent(id, this.cb);
+    this.props.deleteContent(id, this.componentDidMount);
   };
 
   render() {
