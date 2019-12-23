@@ -85,16 +85,17 @@ module.exports = {
   },
 
   deleteContent: (req, res) => {
-    const id = req.body.id;
+    console.log(req.params, 'params');
+    const { id } = req.params;
 
-    Content.findByIdAndRemove(id)
+    Content.findByIdAndDelete(id)
       .then(content => {
         if (!content) {
           return res.status(404).send({
             message: 'Content not found with id ' + req.params.id,
           });
         }
-        res.send({ message: 'Content deleted successfully!' });
+        return res.json({ message: 'Content deleted successfully!' });
       })
       .catch(err => {
         if (err.kind === 'ObjectId' || err.name === 'NotFound') {

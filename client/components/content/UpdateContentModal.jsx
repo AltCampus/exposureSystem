@@ -13,7 +13,7 @@ const UpdateContentForm = Form.create({ name: 'form_in_modal' })(
     render() {
       const { visible, onCancel, onCreate, form } = this.props;
       const { getFieldDecorator } = form;
-      console.log(this.props, 'inside form');
+      // console.log(this.props, 'inside form');
       return (
         <Modal
           visible={visible}
