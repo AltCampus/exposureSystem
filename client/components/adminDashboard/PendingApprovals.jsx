@@ -17,20 +17,16 @@ class PendingApprovals extends Component {
   }
 
   handleReject = id => {
-    this.props.removeStudent(id, this.cb);
+    this.props.removeStudent(id, this.componentDidMount);
   };
 
   handleApprove = id => {
-    this.props.approveStudent(id, this.cb);
+    this.props.approveStudent(id, this.componentDidMount);
   };
 
   componentDidMount() {
     this.props.fetchPendingApprovalList();
   }
-
-  cb = () => {
-    this.componentDidMount();
-  };
 
   render() {
     const pendingStudentList =
