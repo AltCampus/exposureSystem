@@ -32,18 +32,18 @@ const studentLogin = (loginData, cb) => {
   };
 };
 
-const updateProfile = (toUpdateData, cb) => {
-  console.log(toUpdataData, 'in action');
+const updateProfile = toUpdateData => {
+  console.log('in action', toUpdateData);
   return dispatch => {
     dispatch({
       type: 'STUDENT_PROFILE_UPDATE_START',
     });
-    fetch(`http://localhost:3000/api/v1/students/update`, {
+    fetch('http://localhost:3000/api/v1/students/update', {
       method: 'PUT',
+      body: JSON.stringify(toUpdateData),
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(toUpdateData),
     })
       .then(res => res.json())
       .then(updatedData => {

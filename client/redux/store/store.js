@@ -5,7 +5,6 @@ import registerFormReducer from '../reducers/registerFormReducer';
 import submissionReducer from '../reducers/submissionReducer';
 import studentReducer from '../reducers/studentReducer';
 
-
 const rootreducer = combineReducers({
   adminReducer,
   registerFormReducer,

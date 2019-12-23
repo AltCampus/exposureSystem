@@ -102,7 +102,7 @@ module.exports = {
 
   updateStudent: (req, res, next) => {
     console.log(req.body, 'req.body');
-    const id = req.body._id;
+    const id = req.body.id;
     console.log(id, 'id');
     Student.findByIdAndUpdate(
       id,
@@ -115,7 +115,7 @@ module.exports = {
       (err, student) => {
         console.log(student, 'student inside ctlr');
         if (err) return next(err);
-        return res.status.json({ student });
+        return res.status(200).json({ student });
       },
     );
   },

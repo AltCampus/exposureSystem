@@ -16,7 +16,7 @@ class StudentProfile extends Component {
     console.log(this.props, 'inside profile');
 
     const student = this.props.state.user;
-    console.log(student, 'student');
+    // console.log(student, 'student');
 
     return (
       <div>

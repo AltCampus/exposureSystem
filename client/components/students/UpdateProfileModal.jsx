@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateProfile } from '../../redux/actions/studentAction';
 
-import { Button, Modal, Form, Input, Radio } from 'antd';
+import { Button, Modal, Form, Input, Radio, Checkbox } from 'antd';
 
 const UpdateProfileForm = Form.create({ name: 'form_in_modal' })(
   // eslint-disable-next-line
@@ -10,6 +10,7 @@ const UpdateProfileForm = Form.create({ name: 'form_in_modal' })(
     constructor(props) {
       super(props);
     }
+
     render() {
       const { visible, onCancel, onCreate, form } = this.props;
       const { getFieldDecorator } = form;
@@ -69,8 +70,8 @@ const UpdateProfileForm = Form.create({ name: 'form_in_modal' })(
                 initialValue: this.props.state.user.isInCampus,
               })(
                 <Radio.Group>
-                  <Radio value='true'>Yes!</Radio>
-                  <Radio value='false'>No</Radio>
+                  <Radio value={true}>Yes!</Radio>
+                  <Radio value={false}>No</Radio>
                 </Radio.Group>,
               )}
             </Form.Item>
@@ -86,10 +87,10 @@ class UpdateProfileModal extends React.Component {
     super(props);
     this.state = {
       visible: false,
-      type: '',
-      url: '',
-      title: '',
-      description: '',
+      id: '',
+      username: '',
+      email: '',
+      isInCampus: null,
     };
   }
 
@@ -113,7 +114,8 @@ class UpdateProfileModal extends React.Component {
       }
 
       console.log('Received values of form: ', values);
-      this.props.updateProfile(values, this.cb);
+      this.props.updateProfile(values);
+      // this.props.dispatch(updateProfile(values));
 
       // form.resetFields();
     });
@@ -146,4 +148,5 @@ class UpdateProfileModal extends React.Component {
 const mapStateToProps = state => {
   return state;
 };
+
 export default connect(mapStateToProps, { updateProfile })(UpdateProfileModal);
