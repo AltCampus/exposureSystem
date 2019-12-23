@@ -25,6 +25,11 @@ const createSubmission = (submissionData, cbRoute) => dispatch => {
   dispatch({
     type: 'CREATE_NEW_SUBMISSION_START',
   });
+  const updateData = {
+    studentid: submissionData.userid,
+    contentid: submissionData.contentid,
+    createdAt: submissionData.createdAt,
+  };
   fetch('http://localhost:3000/api/v1/submissions/new', {
     method: 'POST',
     headers: {
@@ -40,19 +45,17 @@ const createSubmission = (submissionData, cbRoute) => dispatch => {
         data: submission,
       });
     })
-    .then(() => cbRoute());
-  // .then(
-  //   fetch('http://localhost:3000/api/v1/student/update/points', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: {
-  //       userid: submissionData.userid,
-  //       contentid: submissionData.contentid,
-  //     },
-  //   }).then(() => cbRoute()),
-  // );
+    .then(
+      fetch('http://localhost:3000/api/v1/students/update/points', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateData),
+      })
+        .then(res => console.log(res, 'res from updatedPoints'))
+        .then(() => cbRoute()),
+    );
 };
 
 const fetchSubmissionList = () => dispatch => {

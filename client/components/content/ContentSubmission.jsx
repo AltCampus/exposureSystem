@@ -61,26 +61,24 @@ class ContentSubmission extends Component {
   };
 
   render() {
-    console.log(this.props, 'props');
+    // console.log(this.props, 'props');
     const content =
       this.props.submissionReducer.deliveryData &&
       this.props.submissionReducer.deliveryData.content;
     const student =
       this.props.submissionReducer.deliveryData &&
       this.props.submissionReducer.deliveryData.student;
-    console.log(content, 'content');
-
-    //if(this.props.state.user.sentContent.includes(this.state.contentid))
+    // console.log(content, 'content');
 
     {
-      if(this.props.submissionReducer.isFetchingDeliveryData) {
+      if (this.props.submissionReducer.isFetchingDeliveryData) {
         return (
-                <div className='flex-center spinner'>
-                  <Spin size='large' />
-                </div>
-               ) 
-      } else if(this.props.state.user.email == this.state.email) {
-        return(
+          <div className='flex-center spinner'>
+            <Spin size='large' />
+          </div>
+        );
+      } else if (this.props.state.user.email == this.state.email) {
+        return (
           <div className='wrapper'>
             <h2 className='heading text-center'>{this.state.title}</h2>
             <div className='grid-col-2'>
@@ -91,63 +89,78 @@ class ContentSubmission extends Component {
               </div>
               <div className='submission-head flex-center'>
                 <div>
-                      <span>Assigned to:</span>
-                      {student && student.username}
-                    </div>
-                    {/* <div>Paired with:</div> */}
-                    <div>Type: {content && content.type}</div>
-                    {/* <div>Due by:</div> */}
-                  </div>
+                  <span>Assigned to:</span>
+                  {student && student.username}
                 </div>
-                <Button type='primary' href={`${this.state.contentUrl}`}>
-                  Visit Page
-                </Button>
-                <div className='submission-card'>
-                  <form>
-                    <div className='flex-center'>
-                      <textarea
-                        width='100%'
-                        minLength='300'
-                        maxLength='1000'
-                        className='summary input'
-                        placeholder='What are your takeaways from this article?'
-                        onChange={this.handleChange}
-                        value={this.state.summary}
-                        name='contentSummary'
-                      />
-                    </div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'flex-end',
-                        marginRight: '14rem',
-                      }}
-                    >
-                      <Button
-                        className='button'
-                        type='primary'
-                        onClick={this.onSubmit}
-                      >
-                        Submit
-                      </Button>
-                    </div>
-                  </form>
-                </div>
+                {/* <div>Paired with:</div> */}
+                <div>Type: {content && content.type}</div>
+                {/* <div>Due by:</div> */}
               </div>
-        )
+            </div>
+            <Button type='primary' href={`${this.state.contentUrl}`}>
+              Visit Page
+            </Button>
+            <div className='submission-card'>
+              <form>
+                <div className='flex-center'>
+                  <textarea
+                    width='100%'
+                    minLength='300'
+                    maxLength='1000'
+                    className='summary input'
+                    placeholder='What are your takeaways from this article?'
+                    onChange={this.handleChange}
+                    value={this.state.summary}
+                    name='contentSummary'
+                  />
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginRight: '14rem',
+                  }}
+                >
+                  <Button
+                    className='button'
+                    type='primary'
+                    onClick={this.onSubmit}
+                  >
+                    Submit
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </div>
+        );
+      } else if (
+        this.props.state.user.sentContent.includes(this.state.contentid)
+      ) {
+        return (
+          <Result
+            status='403'
+            title='403'
+            subTitle='Sorry, you have already submitted this page.'
+            extra={
+              <Button type='primary' href='/'>
+                Back Home
+              </Button>
+            }
+          />
+        );
       } else {
         return (
-                    <Result
-                      status='403'
-                      title='403'
-                      subTitle='Sorry, you are not authorized to access this page.'
-                      extra={
-                        <Button type='primary' href='/'>
-                          Back Home
-                        </Button>
-                      }
-                    />
-        )
+          <Result
+            status='403'
+            title='403'
+            subTitle='Sorry, you are not authorized to access this page.'
+            extra={
+              <Button type='primary' href='/'>
+                Back Home
+              </Button>
+            }
+          />
+        );
       }
     }
   }

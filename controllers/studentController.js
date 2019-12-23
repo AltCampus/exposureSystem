@@ -79,25 +79,30 @@ module.exports = {
   },
 
   updateStudentPoints: (req, res, next) => {
-    let { userid, contentid } = req.body;
+    let { studentid, contentid } = req.body;
+    console.log(studentid, contentid, 'in updatepoints');
     let sentContent = [];
     let points =
       new Date(req.body.createdAt).valueOf() + 172800 * 1000 > Date.now()
         ? 1
         : -1;
-    Student.findById(userid).then(student => {
-      sentContent.push(...student.sentContent, contentid);
-    });
-    Student.findByIdAndUpdate(
-      id,
-      {
-        sentContent,
-        points,
-      },
-      (err, updatedStudent) => {
-        err ? res.json(err) : res.json(updatedStudent);
-      },
-    );
+    Student.findById(studentid)
+      .then(student => {
+        sentContent = [...student.sentContent, contentid];
+      })
+      .then(() =>
+        Student.findByIdAndUpdate(
+          studentid,
+          {
+            sentContent,
+            points,
+          },
+          (err, updatedStudent) => {
+            console.log(updatedStudent, 'updatedStudent with points');
+            err ? res.json(err) : res.json(updatedStudent);
+          },
+        ),
+      );
   },
 
   updateStudent: (req, res, next) => {

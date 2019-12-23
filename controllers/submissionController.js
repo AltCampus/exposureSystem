@@ -41,7 +41,7 @@ module.exports = {
       .populate('contentid')
       .populate('student')
       .then(submissions => {
-        console.log(submissions, 'submissionController');
+        // console.log(submissions, 'submissionController');
         res.json({ submissions });
       })
       .catch(err => {
