@@ -21,7 +21,14 @@ const studentLogin = (loginData, cb) => {
         }),
           cb(studentData.student.isApproved);
       })
-      .catch(err => alert('Please check login details.'));
+      .catch(err => {
+        swal({
+          title: 'Sorry',
+          text: 'Something went wrong. Please try again.',
+          icon: 'error',
+          button: 'Go Back',
+        });
+      });
   };
 };
 

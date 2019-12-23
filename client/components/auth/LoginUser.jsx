@@ -22,11 +22,11 @@ class LoginStudent extends Component {
   cb = status => {
     if (status == true) {
       const username = this.props.studentReducer.studentData.student.username;
-      this.props.history.push('/feed');
       swal({
         title: 'You are successfully logged in',
         icon: 'success',
       });
+      this.props.history.push('/feed');
     } else if (status == false) {
       this.props.history.push('/await-approval');
     }
