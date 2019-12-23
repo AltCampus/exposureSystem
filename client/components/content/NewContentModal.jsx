@@ -1,7 +1,7 @@
 import React from 'react';
 import { createContent } from '../../redux/actions/contentAction';
 import { connect } from 'react-redux';
-
+import { withRouter } from 'react-router-dom';
 import { Button, Modal, Form, Input, Radio } from 'antd';
 const { TextArea } = Input;
 
@@ -124,4 +124,4 @@ class NewContentModal extends React.Component {
 const mapStateToProps = state => {
   return state;
 };
-export default connect(mapStateToProps, { createContent })(NewContentModal);
+export default connect(mapStateToProps, { createContent })(withRouter(NewContentModal));
