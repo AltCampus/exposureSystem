@@ -8,37 +8,40 @@ const studentSchema = new Schema(
   {
     username: {
       type: String,
-      required: true
+      required: true,
     },
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
-      required: true
+      required: true,
+      // select: false,
     },
-    isInCampus: Boolean,
-    isActive: Boolean,
-    isAdmin: false,
+    isInCampus: false,
+    isActive: false,
+    // isAdmin: false,
     isApproved: { type: Boolean, default: false },
-    sentContent: [{ type: Schema.Types.ObjectId, ref: 'contentSchema' }]
+    sentContent: [{ type: Schema.Types.ObjectId, ref: 'contentSchema' }],
+    points: 0,
   },
   {
-    timestamps: true
-  }
+    timestamps: true,
+  },
 );
 
-// Implementing The PreSave Function
-studentSchema.pre('save', function (next) {
+studentSchema.pre('save', function(next) {
   if (this.password) {
     this.password = bcrypt.hashSync(this.password, 10);
+    console.log(this.password, 'this.password');
     next();
   }
 });
-// Comparing The Hash Password With Plane Password
-studentSchema.methods.confirmPassword = function (password) {
+
+studentSchema.methods.confirmPassword = function(password) {
+  console.log('inside schema');
   return bcrypt.compareSync(password, this.password);
 };
 

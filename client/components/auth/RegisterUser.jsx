@@ -1,17 +1,22 @@
+/* eslint-disable no-alert */
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import store from '../../redux/store/store';
-import { userRegister } from '../redux/actions/userAction';
 import { connect } from 'react-redux';
-import Header from '../header/Header';
+import validator from 'validator';
+import registerStudent from '../../redux/actions/registerAction';
+
+import swal from 'sweetalert';
+import { Button, Checkbox } from 'antd';
 
 class RegisterUser extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: '',
       email: '',
       password: '',
+      isInCampus: false,
+      isActive: false,
     };
   }
 
@@ -21,77 +26,155 @@ class RegisterUser extends Component {
     });
   };
 
-  handleSubmit = event => {
+  cb = () => {
+    this.props.history.push('/await-approval');
+  };
+
+  onCheckChange1 = e => {
+    this.setState({
+      isInCampus: e.target.checked,
+    });
+  };
+
+  onCheckChange2 = e => {
+    this.setState({
+      isActive: e.target.checked,
+    });
+  };
+  handleSubmit = (event, cb) => {
     event.preventDefault();
-    const userCredentials = {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password,
+    const username = this.state.username;
+    const email = this.state.email;
+    const password = this.state.password;
+    const isInCampus = this.state.isInCampus;
+    const isActive = this.state.isActive;
+    const studentData = {
+      username,
+      email,
+      password,
+      isInCampus,
+      isActive,
     };
-    if (
-      !userCredentials.username ||
-      !userCredentials.email ||
-      !userCredentials.password
-    ) {
-      alert('check user details!');
-    } else {
-      this.props.userRegister(userCredentials);
-      store.subscribe(() => {
-        this.props.history.push('/login');
+    const { dispatch } = this.props;
+    if (!username || !email || !password) {
+      return swal({
+        title: 'Sorry',
+        text: 'Username, Email and Password are must',
+        icon: 'error',
+        button: 'Go Back',
+        width: '10px',
       });
     }
+
+    if (!validator.isEmail(email)) {
+      return swal({
+        title: 'Sorry',
+        text: 'Email is invalid',
+        icon: 'error',
+        button: 'Go Back',
+      });
+    }
+
+    if (password.length < 6) {
+      return swal({
+        title: 'Sorry',
+        text: 'Password should be atleast 6 characters long',
+        icon: 'error',
+        button: 'Go Back',
+      });
+    }
+
+    // dispatch(
+    //   {
+    //     type: 'REGISTER_PAGE_DATA',
+    //     data: this.state,
+    //   },
+    //   // this.cb(),
+    // );
+    registerStudent(studentData, this.cb);
   };
 
   render() {
+    const { username, email, password, isInCampus, isActive } = this.state;
+    console.log(this.state);
     return (
       <>
-        <Header />
-        <div className="wrapper card text-center">
-          <h1 className="heading">Register</h1>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              className="input"
-              type="text"
-              name="username"
-              placeholder="Enter username"
-              onChange={this.handleChange}
-              value={this.state.username}
-            />
-            <br></br>
+        <div className='container card flex-center is-grouped'>
+          <div className='notification text-center'>
+            <h1 className='heading'>Register</h1>
+            <form>
+              <div className='control'>
+                <input
+                  className='input'
+                  type='text'
+                  name='username'
+                  placeholder='Enter username'
+                  onChange={this.handleChange}
+                  value={username}
+                />
+                <input
+                  className='input'
+                  type='text'
+                  name='email'
+                  placeholder='Enter email'
+                  onChange={this.handleChange}
+                  value={email}
+                />
+                <input
+                  className='input'
+                  type='password'
+                  name='password'
+                  placeholder='Enter password'
+                  onChange={this.handleChange}
+                  value={password}
+                />
+                <br></br>
+                <br></br>
 
-            <input
-              className="input"
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              onChange={this.handleChange}
-              value={this.state.email}
-            />
-            <br></br>
+                <label className='label'>
+                  Are you currently in the campus?{' '}
+                </label>
+                <br></br>
+                <Checkbox
+                  name='isInCampus'
+                  onChange={this.onCheckChange1}
+                  defaultChecked={false}
+                >
+                  In Campus
+                </Checkbox>
+                <br></br>
+                <label className='label'>
+                  Do you consent to receiving emails from us?
+                </label>
+                <br></br>
+                <Checkbox
+                  name='isActive'
+                  onChange={this.onCheckChange2}
+                  defaultChecked={false}
+                >
+                  In Campus
+                </Checkbox>
 
-            <input
-              className="input"
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
-            <br></br>
-
-            {/* <NavLink to="/register/onboarding" className="button">Next</NavLink> */}
-            <button className="button" onClick={this.onSubmit}>
-              Next
-            </button>
-          </form>
+                <br></br>
+                {/* <NavLink to='/register/onboarding'> */}
+                <Button
+                  className='button'
+                  type='primary'
+                  size='large'
+                  onClick={this.handleSubmit}
+                >
+                  Register
+                </Button>
+                {/* </NavLink> */}
+              </div>
+            </form>
+          </div>
         </div>
       </>
     );
   }
 }
 
-const mapstateToProps = state => {
-  return state;
-};
+const mapstateToProps = state => state;
 
-export default connect(mapstateToProps, { userRegister })(RegisterUser);
+export default connect(mapstateToProps, { registerStudent })(RegisterUser);

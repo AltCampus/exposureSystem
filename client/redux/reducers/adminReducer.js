@@ -1,20 +1,18 @@
-const ADMIN_STATE = {
+const INITIAL_STATE = {
   adminData: '',
   isAdminLogginIn: false,
   isAdminLoggedIn: false,
-  submissionList: null,
-  isLoadingSubmissionList: false,
   content: null,
   isCreatingContent: false,
   contentList: null,
   isLoadingContentList: false,
   studentList: null,
   isLoadingStudentList: false,
-  pendingStudentList: null,
+  pendingStudentList: {},
   isLoadingPendingStudentList: false,
 };
 
-function adminReducer(state = ADMIN_STATE, action) {
+function adminReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'ADMIN_LOGIN_START':
       return {
@@ -22,20 +20,12 @@ function adminReducer(state = ADMIN_STATE, action) {
         isAdminLogginIn: true,
       };
     case 'ADMIN_LOGIN_SUCCESS':
+      console.log('INSIDE REDUCER', action);
       return {
         ...state,
         isAdminLogginIn: false,
-      };
-    case 'FETCHING_SUBMISSION_LIST_START':
-      return {
-        ...state,
-        isLoadingSubmissionList: true,
-      };
-    case 'FETCHING_SUBMISSION_LIST_SUCCESS':
-      return {
-        ...state,
-        isLoadingSubmissionList: false,
-        submissionList: action.data,
+        isAdminLoggedIn: true,
+        adminData: action.data.admin,
       };
     case 'CREATE_CONTENT_START':
       return {
@@ -81,14 +71,6 @@ function adminReducer(state = ADMIN_STATE, action) {
         isLoadingPendingStudentList: false,
         pendingStudentList: action.data,
       };
-    case 'APPROVE_STUDENT':
-      return {
-        ...state,
-      };
-    case 'REMOVE_STUDENT':
-      return {
-        ...state,
-      };
     case 'ADMIN_LOGOUT':
       return {
         ...state,
@@ -110,6 +92,5 @@ function adminReducer(state = ADMIN_STATE, action) {
       return state;
   }
 }
-
 
 export default adminReducer;

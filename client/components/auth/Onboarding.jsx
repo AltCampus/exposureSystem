@@ -1,41 +1,103 @@
 /* eslint-disable react/jsx-indent */
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import registerStudent from '../../redux/actions/registerAction';
+import { Button, Checkbox } from 'antd';
+import swal from 'sweetalert';
 
+class Onboarding extends Component {
+  constructor(props) {
+    super(props);
+  }
+  state = {
+    username: this.props.registerFormReducer.studentUsername,
+    email: this.props.registerFormReducer.studentEmail,
+    password: this.props.registerFormReducer.studentPassword,
+    isInCampus: false,
+    isActive: false,
+  };
+  cb = () => {
+    this.props.history.push('/await-approval');
+  };
 
-function Onboarding() {
-  return (
-    <div className="wrapper card flex-column">
-      <div className="grid-col-2 onboardingCard">
-        <div>
-          <h5>Are you on campus currently?</h5>
-          <br></br>
-          <h5>Do you wish to recieve emails from AltCampus?</h5>
-        </div>
-        <div className="grid-col-2">
-            <div className="flex-end">
-                <input type="radio" />
-                <p>Yes</p>
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  onCheckChange1 = e => {
+    this.setState({
+      isInCampus: e.target.checked,
+    });
+  };
+
+  onCheckChange2 = e => {
+    this.setState({
+      isActive: e.target.checked,
+    });
+  };
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log('submit called', this.state);
+    const studentData = {
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      isInCampus: this.state.isInCampus,
+      isActive: this.state.isActive,
+    };
+    registerStudent(studentData, this.cb);
+
+    swal({
+      title: 'Registered! ',
+      icon: 'success',
+      timer: 3000,
+    });
+  };
+
+  render() {
+    return (
+      <div className='container card flex-center'>
+        <form className='notification text-center'>
+          <label className='label'>Are you in campus currently?</label>
+          <div className='control'>
+            <div className='select'>
+              <Checkbox
+                name='isInCampus'
+                onChange={this.onCheckChange1}
+                defaultChecked={false}
+              >
+                In Campus
+              </Checkbox>
             </div>
-            <div className="flex-end">
-                <input type="radio" />
-                <p>No</p>
+          </div>
+          <div className='field'>
+            <label className='label'>
+              Do you consent to receiving emails from us?
+            </label>
+            <div className='control'>
+              <div className='select'>
+                <Checkbox
+                  name='isActive'
+                  onChange={this.onCheckChange2}
+                  defaultChecked={false}
+                >
+                  In Campus
+                </Checkbox>
+              </div>
             </div>
-            <div className="flex-end">
-                <input type="radio" />
-                <p>Yes</p>
-            </div>
-            <div className="flex-end">
-                <input type="radio" />
-                <p>No</p>
-            </div>
-        </div>
+          </div>
+
+          <Button className='button' type='primary' onClick={this.handleSubmit}>
+            Register
+          </Button>
+        </form>
       </div>
-      <div className="flex-end">
-      <button type="submit" className="button">Register</button>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
+const mapStateToProps = state => state;
 
-export default Onboarding;
+export default connect(mapStateToProps, { registerStudent })(Onboarding);

@@ -54,7 +54,7 @@ if (process.env.NODE_ENV === 'development') {
 mongoose.connect(
   'mongodb://localhost:27017/exposuresystem',
   { useNewUrlParser: true },
-  function (err) {
+  function(err) {
     if (err) {
       console.log(err, 'Not Connected To DB');
     } else {
@@ -66,19 +66,19 @@ mongoose.connect(
 
 // Providing The Paths
 app.use('/api/v1/admin', adminRouter);
-app.use('/api/v1/student', studentRouter);
+app.use('/api/v1/students', studentRouter);
 app.use('/api/v1/content', contentRouter);
-app.use('/api/v1/submission', submissionRouter);
+app.use('/api/v1/submissions', submissionRouter);
 app.use('/api/v1/delivery', deliveryRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
