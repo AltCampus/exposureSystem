@@ -1,0 +1,25 @@
+.home-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    color: $textPrimary ;
+    p {
+        font-weight: 900;
+        font-size: 1.5rem;
+    }
+    h4 {
+        color: $primary;
+        font-size: 4rem;
+        margin: 1.5rem;
+    }
+}
+
+.alt-image{
+    
+    height: 4.5rem;
+    width: 12rem;
+    margin-top: 2rem;
+}

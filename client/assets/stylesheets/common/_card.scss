@@ -1,0 +1,32 @@
+.card {
+  margin-top: 10rem;
+  width: 40%;
+  padding: 3rem;
+  box-shadow: $shadow;
+}
+
+.card-details {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  color: $textPrimary;
+  padding: 1rem;
+}
+
+.card-heading {
+  width: 100%;
+  background: $primary;
+  color: $white;
+  padding: 0.8rem;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-footer {
+  color: $textPrimary;
+  display: flex;
+  justify-content: flex-end;
+  background: $secondary;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 0.8rem;
+}

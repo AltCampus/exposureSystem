@@ -1,17 +1,28 @@
-.header{
-    background: $primary ;
-    color: $white;
-    margin-bottom: 1rem;
-    box-shadow: $shadow;
-    padding: 1rem;
+.header {
+  background: #011529;
+  // margin-bottom: 1rem;
+  box-shadow: $shadow;
+  padding: 1rem;
 }
 
-.icon{
-    color: $white !important;
+.heading-logo {
+  color: $white;
+  font-weight: bolder;
+  margin: 0;
 }
 
-.head-links{
-    padding : 0.5rem;
-    color: $white;
-    background: $primary;
+.icon {
+  color: $white !important;
+}
+
+.head-links {
+  padding: 0.5rem;
+  font-size: large;
+  font-weight: 600;
+  color: $white;
+  background: #011529;
+}
+
+.ant-header {
+  color: white;
 }

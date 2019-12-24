@@ -1,64 +1,76 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+/* eslint-disable prefer-arrow-callback */
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
+const ejs = require('ejs');
+const cron = require('./utils/cron');
 
 // Requring The DotEnv file
-require("dotenv").config();
+require('dotenv').config();
 
 // Requring The Routing Section
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/UserRoutes");
-var AdminRoutes = require("./routes/AdminRoutes");
-var newContent = require("./routes/newContent");
+const indexRouter = require('./routes/indexRouter');
+const studentRouter = require('./routes/studentRouter');
+const adminRouter = require('./routes/adminRouter');
+const contentRouter = require('./routes/contentRouter');
+const submissionRouter = require('./routes/submissionRouter');
+const deliveryRouter = require('./routes/deliveryRouter');
 
-var app = express();
+// Mounting The Express Application
+const app = express();
 
-// require("./routes/newContent")(app);
+// view engine setup(Middle-Wares)
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
-if (process.env.NODE_ENV === "development") {
-  var webpack = require("webpack");
-  var webpackConfig = require("./webpack.config");
-  var compiler = webpack(webpackConfig);
+// Webpack Configuration
+if (process.env.NODE_ENV === 'development') {
+  const webpack = require('webpack');
+  const webpackConfig = require('./webpack.config');
+  const compiler = webpack(webpackConfig);
 
   app.use(
-    require("webpack-dev-middleware")(compiler, {
+    require('webpack-dev-middleware')(compiler, {
       noInfo: true,
-      publicPath: webpackConfig.output.publicPath
-    })
+      publicPath: webpackConfig.output.publicPath,
+    }),
   );
 
-  app.use(require("webpack-hot-middleware")(compiler));
+  app.use(require('webpack-hot-middleware')(compiler));
 }
 
 // Connecting With DataBase
 mongoose.connect(
-  "mongodb://localhost:27017/exposuresystem",
+  'mongodb://localhost:27017/exposuresystem',
   { useNewUrlParser: true },
-  err => {
-    err
-      ? console.log("Not Connected To DB")
-      : console.log("Connected Sucessfully TO DB");
-  }
+  function(err) {
+    if (err) {
+      console.log(err, 'Not Connected To DB');
+    } else {
+      console.log('Connected Sucessfully TO DB');
+      require('./utils/seed');
+    }
+  },
 );
 
 // Providing The Paths
-app.use("/admin", AdminRoutes);
-app.use("/users", usersRouter);
-app.use("/newContent", newContent);
-app.use("/", indexRouter);
+app.use('/api/v1/admin', adminRouter);
+app.use('/api/v1/students', studentRouter);
+app.use('/api/v1/content', contentRouter);
+app.use('/api/v1/submissions', submissionRouter);
+app.use('/api/v1/delivery', deliveryRouter);
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -69,11 +81,12 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.render('error');
 });
 
+// Exporting The Sever App
 module.exports = app;

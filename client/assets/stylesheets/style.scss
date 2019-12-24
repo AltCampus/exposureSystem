@@ -14,8 +14,12 @@
 @import "./common/header";
 
 // Add other files here
-@import "./dashboard";
-@import "./student";
-@import "./content";
+@import "./components/dashboard";
+@import "./components/student";
+@import "./components/content";
+@import "./components/home";
+@import "./components/onboarding";
+@import "./common/card";
+
 // Footer
 @import "./common/footer";

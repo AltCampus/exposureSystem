@@ -1,0 +1,35 @@
+.student-card{
+    margin: 1rem ;
+}
+
+.student-pfp{
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+    background: $secondary;
+    margin: 1rem;
+}
+
+
+.pending-footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.reject{
+    font-weight: 700;
+
+    margin: 0;
+    padding: 0.5rem;
+    color: red;
+    border-left: 0.5px $secondary;
+    border-bottom-left-radius: 15px;
+}
+
+.approve{
+    font-weight: 700;
+    margin: 0;
+    padding: 0.5rem;
+    color: $primary;
+    border-bottom-right-radius: 15px;
+}
