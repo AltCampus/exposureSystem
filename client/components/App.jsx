@@ -22,9 +22,13 @@ import UpdateContentModal from './content/UpdateContentModal';
 import AdminFeed from './adminDashboard/AdminFeed';
 import StudentList from './students/StudentList';
 import RegisterVerification from './registerVerfication/RegisterVerification';
+import StudentProfile from './students/StudentProfile';
+import AdminProtectedRoutes from './auth/AdminProtectedRoutes';
+import StudentProtectedRoutes from './auth/StudentProtectedRoutes';
+import NonProtectedRoutes from './auth/NonProtectedRoutes';
+import { verifyUser } from '../redux/actions/verificationAction';
 import { studentLogin, studentLogout } from '../redux/actions/studentAction';
 import { adminLogout } from '../redux/actions/adminAction';
-import StudentProfile from './students/StudentProfile';
 
 class App extends Component {
   constructor(props) {
@@ -88,56 +92,7 @@ class App extends Component {
   };
 
   protectedAdminRoutes = () => {
-    return (
-      <>
-        <Switch>
-          <Route
-            exact
-            path='/admin/feed'
-            render={() => (
-              <AdminFeed
-                state={this.state}
-                handleLogout={this.handleLogout}
-                isAuthed={true}
-              />
-            )}
-          />
-          <Route exact path='/admin/contents' component={ContentList} />
-          <Route
-            exact
-            path='/admin/students'
-            render={() => (
-              <StudentList
-                state={this.state}
-                handleLogout={this.handleLogout}
-                isAuthed={true}
-              />
-            )}
-          />
-          <Route path='/admin/update-content' component={UpdateContentModal} />
-          <Route
-            exact
-            path='/admin/pending-approvals'
-            render={() => (
-              <PendingApprovals
-                state={this.state}
-                handleLogout={this.handleLogout}
-                isAuthed={true}
-              />
-            )}
-          />
-          <Route
-            render={() => (
-              <AdminFeed
-                state={this.state}
-                handleLogout={this.handleLogout}
-                isAuthed={true}
-              />
-            )}
-          />
-        </Switch>
-      </>
-    );
+    
   };
 
   protectedStudentRoutes = () => {
@@ -222,8 +177,8 @@ class App extends Component {
         {!this.state.user
           ? this.nonProtectedRoutes()
           : this.state.user.isAdmin
-          ? this.protectedAdminRoutes()
-          : this.protectedStudentRoutes()}
+          ? <AdminProtectedRoutes />
+          : <StudentProtectedRoutes />}
         {/* <StudentDashboard /> */}
       </>
     );
@@ -232,6 +187,7 @@ class App extends Component {
 const mapStateToProps = store => store;
 
 export default connect(mapStateToProps, {
+  verifyUser,
   studentLogin,
   studentLogout,
   adminLogout,
