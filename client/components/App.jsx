@@ -34,49 +34,16 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      user: null,
-    };
+    // this.state = {
+    //   user: null,
+    // };
   }
 
   componentDidMount() {
     if (localStorage.token) {
-      this.loginUser();
+      this.props.verifyUser();
     }
   }
-
-  loginUser = () => {
-    //TODO Store user/admin in reducer
-    fetch('http://localhost:3000/api/v1/admin/me', {
-      method: 'GET',
-      headers: {
-        authorization: localStorage.token,
-        'content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(admin => {
-        if (admin) {
-          this.setState({
-            user: admin,
-          });
-        } else {
-          fetch('http://localhost:3000/api/v1/students/me', {
-            method: 'GET',
-            headers: {
-              authorization: localStorage.token,
-              'content-Type': 'application/json',
-            },
-          })
-            .then(res => res.json())
-            .then(student => {
-              this.setState({
-                user: student,
-              });
-            });
-        }
-      });
-  };
 
   cb = () => {
     this.setState({ user: null }, () => {
@@ -91,95 +58,17 @@ class App extends Component {
     this.props.adminLogout(this.cb);
   };
 
-  protectedAdminRoutes = () => {
-    
-  };
-
-  protectedStudentRoutes = () => {
-    return (
-      <>
-        <Switch>
-          <Route
-            exact
-            path='/submission/:deliveryid'
-            render={() => (
-              <ContentSubmission state={this.state} isAuthed={true} />
-            )}
-          />
-          <Route
-            exact
-            path='/await-approval'
-            component={RegisterVerification}
-          />
-          <Route
-            exact
-            path='/feed'
-            render={() => (
-              <StudentDashboard
-                state={this.state}
-                handleLogout={this.handleLogout}
-                isAuthed={true}
-              />
-            )}
-          />
-          <Route
-            exact
-            path='/profile'
-            render={() => (
-              <StudentProfile
-                state={this.state}
-                handleLogout={this.handleLogout}
-                isAuthed={true}
-              />
-            )}
-          />
-          <Route
-            render={() => (
-              <StudentDashboard
-                state={this.state}
-                handleLogout={this.handleLogout}
-                isAuthed={true}
-              />
-            )}
-          />
-          {/* <Route component={Page404} /> */}
-        </Switch>
-      </>
-    );
-  };
-
-  nonProtectedRoutes = () => {
-    return (
-      <>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/register' component={RegisterUser} />
-          <Route exact path='/login' component={LoginUser} />
-          <Route exact path='/admin/login' component={AdminLogin} />
-          <Route exact path='/register/onboarding' component={Onboarding} />
-          <Route
-            exact
-            path='/await-approval'
-            component={RegisterVerification}
-          />
-
-          <Route component={Page404} />
-        </Switch>
-      </>
-    );
-  };
-
   render() {
-    if (!this.state.user && localStorage.token) this.loginUser();
+    if ((!this.props.adminReducer.isAdminLoggedIn || !this.props.isStudentLoggedIn ) && localStorage.token) this.props.verifyUser();
     // console.log('app render...', this.state.user);
     return (
       <>
-        {!this.state.user
-          ? this.nonProtectedRoutes()
-          : this.state.user.isAdmin
+        {this.props.adminReducer.isAdminLoggedIn
           ? <AdminProtectedRoutes />
-          : <StudentProtectedRoutes />}
-        {/* <StudentDashboard /> */}
+          : this.props.studentReducer.isStudentLoggedIn
+          ? <StudentProtectedRoutes />
+          : <NonProtectedRoutes />
+        }
       </>
     );
   }

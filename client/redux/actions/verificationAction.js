@@ -1,4 +1,4 @@
-verifyUser = () => {
+const verifyUser = () => dispatch => {
     //TODO Store user/admin in reducer
     fetch('http://localhost:3000/api/v1/admin/me', {
       method: 'GET',
@@ -10,8 +10,9 @@ verifyUser = () => {
       .then(res => res.json())
       .then(admin => {
         if (admin) {
-          this.setState({
-            user: admin,
+          dispatch({
+            type: 'ADMIN_LOGIN_SUCCESS',
+            data: admin,
           });
         } else {
           fetch('http://localhost:3000/api/v1/students/me', {
@@ -23,8 +24,9 @@ verifyUser = () => {
           })
             .then(res => res.json())
             .then(student => {
-              this.setState({
-                user: student,
+              dispatch({
+                type: 'STUDENT_LOGIN_SUCCESS',
+                data: student,
               });
             });
         }
