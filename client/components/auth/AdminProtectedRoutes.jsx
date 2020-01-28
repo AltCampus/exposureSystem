@@ -1,4 +1,10 @@
 import React,{Component} from 'react';
+import { Switch , Route } from 'react-router-dom';
+import AdminFeed from '../adminDashboard/AdminFeed';
+import ContentList from '../content/ContentList';
+import StudentList from '../students/StudentList';
+import UpdateContentModal from '../content/UpdateContentModal';
+import PendingApprovals from '../adminDashboard/PendingApprovals';
 
 class AdminProtectedRoutes extends Component {
   render () {

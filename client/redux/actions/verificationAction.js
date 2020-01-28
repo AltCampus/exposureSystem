@@ -34,4 +34,4 @@ const verifyUser = () => dispatch => {
   };
 
 
-  module.export = {verifyUser};
+  module.exports = { verifyUser };

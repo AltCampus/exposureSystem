@@ -1,4 +1,9 @@
 import React, {Component} from 'react';
+import { Switch , Route } from 'react-router-dom';
+import ContentSubmission from '../content/ContentSubmission';
+import RegisterVerification from '../registerVerfication/RegisterVerification';
+import StudentDashboard from '../students/studentDashboard/StudentDashboard';
+import StudentProfile from '../students/StudentProfile';
 
 class StudentProtectedRoutes extends Component{
     render () {

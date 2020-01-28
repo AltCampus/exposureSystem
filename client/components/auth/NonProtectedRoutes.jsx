@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import { Switch , Route } from 'react-router-dom';
+import Home from '../home/Home';
+import RegisterUser from './RegisterUser';
+import LoginUser from './LoginUser';
+import AdminLogin from './AdminLogin';
+import Onboarding from './Onboarding';
+import RegisterVerification from '../registerVerfication/RegisterVerification';
+import Page404 from '../Page404';
 
 
 class NonProtectedRoutes extends Component {
@@ -21,3 +29,5 @@ class NonProtectedRoutes extends Component {
           );
     }
 }
+
+export default NonProtectedRoutes;

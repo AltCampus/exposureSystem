@@ -59,8 +59,8 @@ class App extends Component {
   };
 
   render() {
-    if ((!this.props.adminReducer.isAdminLoggedIn || !this.props.isStudentLoggedIn ) && localStorage.token) this.props.verifyUser();
-    // console.log('app render...', this.state.user);
+    // if ((!this.props.adminReducer.isAdminLoggedIn || !this.props.isStudentLoggedIn ) && localStorage.token) this.props.verifyUser();
+    // console.log('app render...', this.props);
     return (
       <>
         {this.props.adminReducer.isAdminLoggedIn
