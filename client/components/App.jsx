@@ -8,24 +8,11 @@ import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Home from './home/Home';
-import RegisterUser from './auth/RegisterUser';
-import LoginUser from './auth/LoginUser';
-import AdminLogin from './auth/AdminLogin';
-import Page404 from './Page404';
-import ContentList from './content/ContentList';
-import PendingApprovals from './adminDashboard/PendingApprovals';
-import ContentSubmission from './content/ContentSubmission';
-import Onboarding from './auth/Onboarding';
-import StudentDashboard from './students/studentDashboard/StudentDashboard';
-import UpdateContentModal from './content/UpdateContentModal';
-import AdminFeed from './adminDashboard/AdminFeed';
-import StudentList from './students/StudentList';
-import RegisterVerification from './registerVerfication/RegisterVerification';
-import StudentProfile from './students/StudentProfile';
+
 import AdminProtectedRoutes from './auth/AdminProtectedRoutes';
 import StudentProtectedRoutes from './auth/StudentProtectedRoutes';
 import NonProtectedRoutes from './auth/NonProtectedRoutes';
+
 import { verifyUser } from '../redux/actions/verificationAction';
 import { studentLogin, studentLogout } from '../redux/actions/studentAction';
 import { adminLogout } from '../redux/actions/adminAction';
@@ -63,12 +50,13 @@ class App extends Component {
     // console.log('app render...', this.props);
     return (
       <>
-        {this.props.adminReducer.isAdminLoggedIn
-          ? <AdminProtectedRoutes />
-          : this.props.studentReducer.isStudentLoggedIn
-          ? <StudentProtectedRoutes />
-          : <NonProtectedRoutes />
-        }
+        {this.props.adminReducer.isAdminLoggedIn ? (
+          <AdminProtectedRoutes />
+        ) : this.props.studentReducer.isStudentLoggedIn ? (
+          <StudentProtectedRoutes />
+        ) : (
+          <NonProtectedRoutes />
+        )}
       </>
     );
   }
