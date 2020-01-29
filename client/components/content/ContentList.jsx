@@ -30,8 +30,14 @@ class ContentList extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  // cb = () => {
+  //   console.log('done');
+  //   this.props.fetchContentList();
+  //   // this.props.history.push('/admin/contents');
+  // };
+
   handleDelete = id => {
-    this.props.deleteContent(id, this.componentDidMount);
+    this.props.deleteContent(id, this.componentDidMount());
   };
 
   render() {

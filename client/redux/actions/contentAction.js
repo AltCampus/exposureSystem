@@ -52,7 +52,7 @@ const updateContent = (data, cb) => {
   cb();
 };
 
-const deleteContent = (id, cb) => dispatch => {
+const deleteContent = id => dispatch => {
   console.log(id, 'in action');
   const url = `http://localhost:3000/api/v1/content/delete/${id}`;
   fetch(url, {
@@ -62,33 +62,17 @@ const deleteContent = (id, cb) => dispatch => {
       'Content-Type': 'application/json',
     },
   })
+    .then(res => res.json())
     .then(res => {
       console.log(res, 'res in action');
-      // swal({
-      //   title: 'Content has been',
-      //   text: 'Deleted',
-      //   icon: 'success',
-      // });
+      swal({
+        title: 'Content has been deleted',
+        text: 'Deleted!',
+        icon: 'success',
+      });
     })
     .catch(err => alert(err));
-  cb();
 };
-
-// const deleteContent = (id, cb) => dispatch => {
-//   fetch(`/api/v1/content/delete/${id}`, {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   }).then(removedContent => {
-//     console.log(removedContent, 'content removed');
-//     swal({
-//       title: 'Content Removed',
-//       icon: 'success',
-//     });
-//   });
-//   cb();
-// };
 
 module.exports = {
   createContent,

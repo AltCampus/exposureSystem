@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { updateContent } from '../../redux/actions/contentAction';
+import {
+  updateContent,
+  fetchContentList,
+} from '../../redux/actions/contentAction';
 
 import { Button, Modal, Form, Input, Radio } from 'antd';
 
@@ -101,7 +104,7 @@ class UpdateContentModal extends React.Component {
   }
 
   cb = () => {
-    this.props.history.push('/admin/contents');
+    this.props.fetchContentList();
   };
 
   showModal = () => {
@@ -121,7 +124,6 @@ class UpdateContentModal extends React.Component {
 
       console.log('Received values of form: ', values);
       this.props.updateContent(values, this.cb);
-      // form.resetFields();
     });
     this.setState({ visible: false });
   };
@@ -152,6 +154,6 @@ class UpdateContentModal extends React.Component {
 const mapStateToProps = state => {
   return state;
 };
-export default connect(mapStateToProps, { updateContent })(
+export default connect(mapStateToProps, { updateContent, fetchContentList })(
   withRouter(UpdateContentModal),
 );
