@@ -46,7 +46,7 @@ class PendingApprovals extends Component {
               </div>
             ) : (
               <div>
-                {/* <h3 className='flex-center heading'>Pending Approvals</h3> */}
+                <h3 className='flex-center heading'>Pending Approvals</h3>
                 <Table bordered dataSource={pendingStudentList}>
                   <ColumnGroup title='Student List'>
                     <Column
