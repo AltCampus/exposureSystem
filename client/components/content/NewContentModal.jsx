@@ -72,7 +72,7 @@ class NewContentModal extends React.Component {
   };
 
   cb = () => {
-    this.props.history.push('/admin/content/list');
+    this.props.history.push('/admin/contents');
   };
 
   showModal = () => {
@@ -124,4 +124,6 @@ class NewContentModal extends React.Component {
 const mapStateToProps = state => {
   return state;
 };
-export default connect(mapStateToProps, { createContent })(withRouter(NewContentModal));
+export default connect(mapStateToProps, { createContent })(
+  withRouter(NewContentModal),
+);

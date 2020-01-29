@@ -101,7 +101,7 @@ class UpdateContentModal extends React.Component {
   }
 
   cb = () => {
-    this.props.history.push('/admin/content/list');
+    this.props.history.push('/admin/contents');
   };
 
   showModal = () => {
@@ -152,4 +152,6 @@ class UpdateContentModal extends React.Component {
 const mapStateToProps = state => {
   return state;
 };
-export default connect(mapStateToProps, { updateContent })(withRouter(UpdateContentModal));
+export default connect(mapStateToProps, { updateContent })(
+  withRouter(UpdateContentModal),
+);
