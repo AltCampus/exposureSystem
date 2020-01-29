@@ -47,7 +47,9 @@ function adminReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isLoadingContentList: false,
-        contentList: action.data,
+        contentList: {...action.data,
+          contents: action.data.contents.reverse()
+        },
       };
     case 'FETCHING_STUDENT_LIST_START':
       return {
